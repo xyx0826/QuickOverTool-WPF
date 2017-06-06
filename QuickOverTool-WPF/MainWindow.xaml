@@ -1,12 +1,93 @@
-﻿<Window x:Class="QuickOverTool_WPF.MainWindow"
+﻿<Window x:Name="windowMain" x:Class="QuickOverTool_WPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="QuickOverTool - OverTool 图形化界面" Height="560" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
     <Grid>
-        
+
+        <Label x:Name="labelPath" Content="守望先锋安装路径" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="textBoxPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" Text="C:\Program Files (x86)\Overwatch"/>
+        <Label x:Name="labelValidity" Content="未检测到 OverTool" HorizontalAlignment="Left" Margin="709,10,0,0" VerticalAlignment="Top" Foreground="Red" Height="25" Width="126"/>
+        <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="680,10,0,0" VerticalAlignment="Top" Width="25" Height="25" Content="..." Click="buttonPath_Click"/>
+        <Label x:Name="labelLanguage" Content="目标语言：" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="25" Width="70" VerticalContentAlignment="Center"/>
+        <ComboBox x:Name="comboBoxLanguage" HorizontalAlignment="Left" Margin="85,42,0,0" VerticalAlignment="Top" Width="130" SelectedIndex="0">
+            <ComboBoxItem Content="enUS（英文）"/>
+            <ComboBoxItem Content="zhCN（简体中文）"/>
+            <ComboBoxItem Content="zhTW（繁体中文）"/>
+            <ComboBoxItem Content="jaJP（日文）"/>
+            <ComboBoxItem Content="frFR（法文）"/>
+            <ComboBoxItem Content="deDE（德文）"/>
+            <ComboBoxItem Content="ruRU（俄文）"/>
+            <ComboBoxItem Content="koKR（韩文）"/>
+            <ComboBoxItem Content="itIT（意大利文）"/>
+            <ComboBoxItem Content="plPL（葡萄牙文）"/>
+            <ComboBoxItem Content="ptBR"/>
+            <ComboBoxItem Content="esES"/>
+            <ComboBoxItem Content="esMX"/>
+        </ComboBox>
+        <CheckBox x:Name="checkBoxQuiet" Content="禁用日志输出" HorizontalAlignment="Left" Margin="220,46,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBoxSkipKeys" Content="跳过密钥检测" HorizontalAlignment="Left" Margin="317,46,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBoxExpert" Content="输出更多资源信息" HorizontalAlignment="Left" Margin="414,46,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBoxRaw" Content="完全跳过文件转换" HorizontalAlignment="Left" Margin="535,46,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <GroupBox x:Name="groupBoxSkipExtractions" Header="跳过提取" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170">
+            <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="checkBoxSkipModel" Content="模型" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Height="15" Width="44" IsEnabled="False"/>
+                <CheckBox x:Name="checkBoxSkipTexture" Content="材质" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="15" Width="44" IsEnabled="False"/>
+                <CheckBox x:Name="checkBoxSkipAnimation" Content="动画" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="15" Width="44" IsEnabled="False"/>
+                <CheckBox x:Name="checkBoxSkipSound" Content="声音" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="15" Width="44" IsEnabled="False"/>
+                <CheckBox x:Name="checkBoxSkipRef" Content="模型参考姿势" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" Height="15" Width="92" IsEnabled="False"/>
+                <CheckBox x:Name="checkBoxSkipGUI" Content="用户界面图标" HorizontalAlignment="Left" Margin="59,30,0,0" VerticalAlignment="Top" Height="15" Width="92" IsEnabled="False"/>
+            </Grid>
+        </GroupBox>
+        <CheckBox x:Name="checkBoxCollision" Content="提取碰撞模型" HorizontalAlignment="Left" Margin="656,46,0,0" VerticalAlignment="Top"/>
+        <GroupBox x:Name="groupBoxExtractionFormats" Header="提取格式" HorizontalAlignment="Left" Height="120" Margin="664,70,0,0" VerticalAlignment="Top" Width="170">
+            <Grid x:Name="gridGroupBoxExtractionFormats" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="checkBoxModelFormat" Content="指定模型转换格式" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="15" IsEnabled="False"/>
+                <TextBox x:Name="textBoxModelFormat" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="16" Margin="10,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="10" IsEnabled="False"/>
+                <CheckBox x:Name="checkBoxAnimationFormat" Content="指定动画转换格式" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+                <TextBox x:Name="textBoxAnimationFormat" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="16" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="10" IsEnabled="False"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="groupBoxOutput" Header="输出" HorizontalAlignment="Left" Height="140" Margin="0,383,0,0" VerticalAlignment="Top" Width="835">
+            <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="110" TextWrapping="Wrap" VerticalAlignment="Top" Width="815" Margin="4,4,0,0" Text="QuickOverTool-WPF 已经启动..." HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+        </GroupBox>
+        <GroupBox x:Name="groupBoxModes" Header="工作模式" HorizontalAlignment="Left" Height="120" Margin="185,70,0,0" VerticalAlignment="Top" Width="475">
+            <Grid x:Name="gridGroupBoxModes" HorizontalAlignment="Left" Margin="0,0,-1.8,-12" Width="465">
+                <RadioButton x:Name="radioButtonListGeneralCosmetics" Content="列出通用物品" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonListHeroCosmetics" Content="列出英雄物品" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonListMaps" Content="列出地图" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonListTextures" Content="列出材质" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" ToolTip="可选参数：模型 ID" Foreground="Blue"/>
+                <RadioButton x:Name="radioButtonListStrings" Content="列出字符串" HorizontalAlignment="Left" Margin="106,10,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonListNPCs" Content="列出 NPCs" HorizontalAlignment="Left" Margin="106,29,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonListLootbox" Content="列出补给箱" HorizontalAlignment="Left" Margin="106,48,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonListKeys" Content="列出密钥" HorizontalAlignment="Left" Margin="106,67,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonExtractGeneralCosmetics" Content="提取通用物品" HorizontalAlignment="Left" Margin="202,10,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonExtractHeroCosmetics" Content="提取英雄物品" HorizontalAlignment="Left" Margin="202,29,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：物品类型"/>
+                <RadioButton x:Name="radioButtonExtractMaps" Content="提取地图" HorizontalAlignment="Left" Margin="202,48,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：地图"/>
+                <RadioButton x:Name="radioButtonExtractVoice" Content="提取语音" HorizontalAlignment="Left" Margin="202,67,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：英雄"/>
+                <RadioButton x:Name="radioButtonExtractSoundAllSkins" Content="提取某英雄的全部音频" HorizontalAlignment="Left" Margin="298,10,0,0" VerticalAlignment="Top" ToolTip="可选参数：英雄" Foreground="Blue"/>
+                <RadioButton x:Name="radioButtonExtractWeaponSkins" Content="提取某英雄的武器皮肤" HorizontalAlignment="Left" Margin="298,29,0,0" VerticalAlignment="Top" ToolTip="可选参数：关键字" Foreground="Blue"/>
+                <RadioButton x:Name="radioButtonExtractNPCs" Content="提取 NPCs" HorizontalAlignment="Left" Margin="298,48,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonExtractLootbox" Content="提取补给箱" HorizontalAlignment="Left" Margin="298,67,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <Label x:Name="labelSpecify" Content="蓝色选项的可选参数（英雄、地图名称等）（使用选定语言的名称）" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Height="25" Width="370" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="textBoxSpecify" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="385,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="449" MaxLines="1"/>
+        <Label x:Name="labelOutputPath" Content="文件提取导出路径" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True"/>
+        <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="680,225,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
+        <Button x:Name="buttonStart" Content="开始！" HorizontalAlignment="Left" Margin="710,225,0,0" VerticalAlignment="Top" Width="124" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
+
     </Grid>
 </Window>

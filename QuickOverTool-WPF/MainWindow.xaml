@@ -88,6 +88,22 @@
         <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True"/>
         <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="680,225,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
         <Button x:Name="buttonStart" Content="开始！" HorizontalAlignment="Left" Margin="710,225,0,0" VerticalAlignment="Top" Width="124" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
+        <GroupBox x:Name="groupBoxChecklists" Header="检查单" HorizontalAlignment="Left" Height="123" Margin="10,255,0,0" VerticalAlignment="Top" Width="824">
+            <Grid HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="814" Margin="0,0,-2,-11.8">
+                <Label x:Name="labelTagOverwatchBranch" Content="守望先锋服务器：" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelTagCascLibVersion" Content="OverTool 提取库版本：" HorizontalAlignment="Left" Margin="391,70,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelTagOverToolIntegrity" Content="OverTool 辅助文件：" HorizontalAlignment="Left" Margin="391,40,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelTagOverwatchVersion" Content="守望先锋版本：" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelTagOverwatchIntegrity" Content="守望先锋文件：" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelTagOverToolExecutable" Content="OverTool 核心程序：" HorizontalAlignment="Left" Margin="391,10,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelOverwatchBranch" Content="Label" HorizontalAlignment="Left" Margin="121,70,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelOverwatchIntegrity" Content="Label" HorizontalAlignment="Left" Margin="121,40,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelOverwatchVersion" Content="未知" HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="Label" HorizontalAlignment="Left" Margin="535,70,0,0" VerticalAlignment="Top"/>
+                <Label Content="Label" HorizontalAlignment="Left" Margin="535,40,0,0" VerticalAlignment="Top"/>
+                <Label Content="Label" HorizontalAlignment="Left" Margin="535,10,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
 
     </Grid>
 </Window>

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows;
@@ -15,7 +16,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace QuickOverTool_WPF
 {
@@ -29,20 +29,40 @@ namespace QuickOverTool_WPF
         public MainWindow()
         {
             InitializeComponent();
+            checkOverToolValidity();
+        }
 
-            //  worker.DoWork += worker_DoWork;
-            // worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+        public bool checkOverwatchValidity(string path)
+        {
+            if (File.Exists(Path.Combine(path, ".build.info")))
+            {
+                string overwatchExecutablePath = Path.Combine(path, "Overwatch.exe");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-            string codeBaseLocation = System.IO.Path.GetDirectoryName
-                (System.Reflection.Assembly.GetEntryAssembly().CodeBase);
-            codeBaseLocation = codeBaseLocation.Substring(6);
-            if (File.Exists(codeBaseLocation + "\\OverTool.exe"))
+        public bool checkOverToolValidity()
+        {
+            string overToolLocation = Path.GetDirectoryName
+                (Assembly.GetEntryAssembly().CodeBase);
+            overToolLocation = Path.Combine(overToolLocation.Substring(6),
+                "OverTool.exe");
+            if (File.Exists(overToolLocation))
             {
                 labelValidity.Content = "检测到了 OverTool";
                 labelValidity.Foreground = new SolidColorBrush(Colors.Green);
+                return true;
             }
-
-            textBoxOutput.AppendText("\n" + labelValidity.Content.ToString());
+            else
+            {
+                labelValidity.Content = "未检测到 OverTool";
+                labelValidity.Foreground = new SolidColorBrush(Colors.Red);
+                return false;
+            }
         }
 
         public void addLog(string content)
@@ -75,8 +95,7 @@ namespace QuickOverTool_WPF
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             DialogResult folderBrowserResult = folderBrowser.ShowDialog();
-            textBoxPath.Text = folderBrowser.SelectedPath;
-            if (File.Exists(folderBrowser.SelectedPath + "\\.build.info"))
+            if (checkOverwatchValidity(textBoxPath.Text) == true)
             {
                 labelValidity.Content = "守望先锋目录有效";
                 labelValidity.Foreground = new SolidColorBrush(Colors.Green);
@@ -86,8 +105,6 @@ namespace QuickOverTool_WPF
                 labelValidity.Content = "守望先锋目录无效";
                 labelValidity.Foreground = new SolidColorBrush(Colors.Red);
             }
-            addLog(labelValidity.Content.ToString());
-            return;
         }
 
         private void buttonOutputPath_Click(object sender, RoutedEventArgs e)
@@ -108,17 +125,19 @@ namespace QuickOverTool_WPF
                 textBoxPath.BorderBrush = new SolidColorBrush(Colors.Red);
                 return;
             }
-            else
+            else if (checkOverwatchValidity(textBoxPath.Text) == true)
             {
                 textBoxPath.BorderBrush = new SolidColorBrush(Colors.Blue);
                 textBoxPath.IsEnabled = false;
             }
+            else return;
+
             // 构建命令行
             string cmdLine;
             // 命令行：选定语言
-            string selectedLanguage = comboBoxLanguage.SelectedItem.ToString();
-            cmdLine = " --language=" + selectedLanguage.Substring(38, 4);
-            // 命令行：禁用
+            cmdLine = " --language=" + comboBoxLanguage.SelectedItem.
+                ToString().Substring(38, 4);
+            // 命令行：禁用项
             if (checkBoxSkipAnimation.IsChecked == true) cmdLine = cmdLine + " -A";
             if (checkBoxSkipGUI.IsChecked == true) cmdLine = cmdLine + "-I";
             if (checkBoxSkipKeys.IsChecked == true) cmdLine = cmdLine + "-n";
@@ -151,50 +170,19 @@ namespace QuickOverTool_WPF
             // 启动
             using (Process overTool = new Process())
             {
-                overTool.StartInfo.FileName = "OverTool.exe";
-                overTool.StartInfo.Arguments = cmdLine;
-                overTool.StartInfo.UseShellExecute = false;
-                overTool.StartInfo.RedirectStandardOutput = true;
-                overTool.StartInfo.RedirectStandardError = true;
-                overTool.StartInfo.CreateNoWindow = true;
+                { // OverTool 进程配置
+                    overTool.StartInfo.FileName = "OverTool.exe";
+                    overTool.StartInfo.Arguments = cmdLine;
+                    overTool.StartInfo.UseShellExecute = false;
+                    overTool.StartInfo.RedirectStandardOutput = true;
+                    overTool.StartInfo.RedirectStandardError = true;
+                    overTool.StartInfo.CreateNoWindow = true;
+                }
 
                 overTool.Start();
-                // TODO
                 overTool.BeginOutputReadLine();
                 overTool.BeginErrorReadLine();
-                };
-        }
-        /*
-        private void worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            // 接收参数
-            string args = (string)e.Argument;
-            // 启动
-            var overTool = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "OverTool.exe",
-                    Arguments = args,
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    CreateNoWindow = true
-                }
-            };
-            overTool.Start();
-            while (!overTool.HasExited)
-            {
-                string outputLine = overTool.StandardOutput.ToString();
-                e.Result = outputLine;
             }
-            return;
         }
-
-        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            
-        }
-        */
     }
 }

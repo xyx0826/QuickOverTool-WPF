@@ -31,22 +31,21 @@ namespace QuickOverTool_WPF
         private string cascLibDll;
         // 全局变量：.build.info 读取
         private StreamReader buildInfoStream;
-        // 主窗体
+        // 主窗体初始化
         public MainWindow()
         {
             InitializeComponent();
 
             // 启动检查守望先锋 & OverTool 有效性
-            checkOverToolValidity();
+            CheckOverToolValidity();
             if (!String.IsNullOrEmpty(textBoxPath.Text))
             {
-                checkOverwatchValidity(textBoxPath.Text);
+                CheckOverwatchValidity(textBoxPath.Text);
             }
-
             updateChecklist();
         }
         // 检查守望先锋
-        public bool checkOverwatchValidity(string path)
+        public bool CheckOverwatchValidity(string path)
         {
             buildInfoPath = Path.Combine(path, ".build.info");
             if (File.Exists(buildInfoPath))
@@ -67,7 +66,7 @@ namespace QuickOverTool_WPF
             }
         }
         // 检查 OverTool
-        public bool checkOverToolValidity()
+        public bool CheckOverToolValidity()
         {
             sharedPath = Path.GetDirectoryName
                 (Assembly.GetEntryAssembly().CodeBase).Substring(6);
@@ -90,9 +89,8 @@ namespace QuickOverTool_WPF
         // 检查单更新
         public void updateChecklist()
         {
-            // Overwatch Version
-
-            if (checkOverToolValidity())
+            // OverTool 核心程序
+            if (CheckOverToolValidity())
             {
                 labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Green);
                 labelOverToolExecutable.Content = "有效";
@@ -102,7 +100,7 @@ namespace QuickOverTool_WPF
                 labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Red);
                 labelOverToolExecutable.Content = "无效";
             }
-
+            // OverTool 完整性
             if (File.Exists(Path.Combine(sharedPath, "OWLib.dll")) &&
                 File.Exists(Path.Combine(sharedPath, "CascLib.dll")) &&
                 File.Exists(Path.Combine(sharedPath, "ow.keys")) &&
@@ -116,14 +114,30 @@ namespace QuickOverTool_WPF
                 labelOverToolIntegrity.Foreground = new SolidColorBrush(Colors.Red);
                 labelOverToolIntegrity.Content = "不完整";
             }
-
-            labelCascLibVersion.Content =
+            // 守望先锋信息
+            GetOverwatchInfo();
+            // 守望先锋完整性
+            if (File.Exists(textBoxPath.Text + "\\data\\casc\\data\\shmem"))
+            {
+                labelOverwatchIntegrity.Foreground = new SolidColorBrush(Colors.Green);
+                labelOverwatchIntegrity.Content = "有效";
+            }
+            else
+            {
+                labelOverwatchIntegrity.Foreground = new SolidColorBrush(Colors.Red);
+                labelOverwatchIntegrity.Content = "不完整";
+            }
+            // CascLib 版本
+            if (File.Exists(cascLibDll))
+            {
+                labelCascLibVersion.Content =
                 FileVersionInfo.GetVersionInfo(Path.Combine(sharedPath, "CascLib.dll")).FileVersion;
-
-            buildInfoReader();
+                if (labelCascLibVersion.Content.ToString() == "1.0.0.0")
+                    labelCascLibVersion.Content = "未指定";
+            }
         }
-
-        public void buildInfoReader()
+        // .build.info 读取守望先锋信息
+        public void GetOverwatchInfo()
         {
             string buildInfoRead;
             if (string.IsNullOrEmpty(buildInfoPath)) return;
@@ -159,55 +173,142 @@ namespace QuickOverTool_WPF
             }
         }
         // 日志输出增行
-        public void addLog(string content)
+        public delegate void AddLogRuntime(string content);
+
+        public void AddLog(string content)
         {
-            textBoxOutput.AppendText("\n" + content);
+            if (!Dispatcher.CheckAccess()) // CheckAccess returns true if you're on the dispatcher thread
+            {
+                Dispatcher.Invoke(new AddLogRuntime(AddLog), content);
+                return;
+            }
+            else textBoxOutput.AppendText("\n" + content);
         }
+
+
+        public void NoSpecify()
+        {
+            textBoxSpecify.Text = "";
+            textBoxSpecify.IsEnabled = false;
+        }
+
+        public void NoOutput()
+        {
+            textBoxOutputPath.Text = "";
+            textBoxOutputPath.IsEnabled = false;
+        }
+
         // 检测模式选择
         private string whichRadioButton()
         {
-            if (radioButtonListGeneralCosmetics.IsChecked == true) return "g";
-            else if (radioButtonListHeroCosmetics.IsChecked == true) return "t";
-            else if (radioButtonListMaps.IsChecked == true) return "m";
-            else if (radioButtonListTextures.IsChecked == true) return "T";
-            else if (radioButtonListStrings.IsChecked == true) return "s";
-            else if (radioButtonListNPCs.IsChecked == true) return "n";
-            else if (radioButtonListLootbox.IsChecked == true) return "I";
-            else if (radioButtonListKeys.IsChecked == true) return "Z";
-            else if (radioButtonExtractGeneralCosmetics.IsChecked == true) return "G";
-            else if (radioButtonExtractHeroCosmetics.IsChecked == true) return "x";
-            else if (radioButtonExtractMaps.IsChecked == true) return "M";
-            else if (radioButtonExtractVoice.IsChecked == true) return "v";
-            else if (radioButtonExtractSoundAllSkins.IsChecked == true) return "V";
-            else if (radioButtonExtractWeaponSkins.IsChecked == true) return "w";
-            else if (radioButtonExtractNPCs.IsChecked == true) return "N";
-            else if (radioButtonExtractLootbox.IsChecked == true) return "L";
+            if (radioButtonListGeneralCosmetics.IsChecked == true)
+            {
+                NoOutput();
+                NoSpecify();
+                return "g";
+            }
+            else if (radioButtonListHeroCosmetics.IsChecked == true)
+            {
+                NoOutput();
+                NoSpecify();
+                return "t";
+            }
+            else if (radioButtonListMaps.IsChecked == true)
+            {
+                NoOutput();
+                NoSpecify();
+                return "m";
+            }
+            else if (radioButtonListTextures.IsChecked == true)
+            {
+                NoOutput();
+                return "T";
+            }
+            else if (radioButtonListStrings.IsChecked == true)
+            {
+                NoOutput();
+                NoSpecify();
+                return "s";
+            }
+            else if (radioButtonListNPCs.IsChecked == true)
+            {
+                NoOutput();
+                NoSpecify();
+                return "n";
+            }
+            else if (radioButtonListLootbox.IsChecked == true)
+            {
+                NoOutput();
+                NoSpecify();
+                return "l";
+            }
+            else if (radioButtonListKeys.IsChecked == true)
+            {
+                NoOutput();
+                NoSpecify();
+                return "Z";
+            }
+            else if (radioButtonExtractGeneralCosmetics.IsChecked == true)
+            {
+                return "G";
+            }
+            else if (radioButtonExtractHeroCosmetics.IsChecked == true)
+            {
+                return "x";
+            }
+            else if (radioButtonExtractMaps.IsChecked == true)
+            {
+                return "M";
+            }
+            else if (radioButtonExtractVoice.IsChecked == true)
+            {
+                return "v";
+            }
+            else if (radioButtonExtractSoundAllSkins.IsChecked == true)
+            {
+                return "V";
+            }
+            else if (radioButtonExtractWeaponSkins.IsChecked == true)
+            {
+                return "w";
+            }
+            else if (radioButtonExtractNPCs.IsChecked == true)
+            {
+                NoSpecify();
+                return "N";
+            }
+            else if (radioButtonExtractLootbox.IsChecked == true)
+            {
+                NoSpecify();
+                return "L";
+            }
             else return "";
         }
-        // 走你
+        // 选定守望先锋路径
         private void buttonPath_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             DialogResult folderBrowserResult = folderBrowser.ShowDialog();
             textBoxPath.Text = folderBrowser.SelectedPath;
-            checkOverwatchValidity(textBoxPath.Text);
-            buildInfoReader();
+            CheckOverwatchValidity(textBoxPath.Text);
+            GetOverwatchInfo();
         }
-
+        // 选定输出路径
         private void buttonOutputPath_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             DialogResult folderBrowserResult = folderBrowser.ShowDialog();
             textBoxOutputPath.Text = folderBrowser.SelectedPath;
-            addLog("选定了输出路径：" + textBoxOutputPath.Text);
+            AddLog("选定了输出路径：" + textBoxOutputPath.Text);
             return;
         }
-
+        // 开始
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
+            whichRadioButton();
             // 判断：是否选择了守望先锋路径
             if (labelValidity.Content.ToString() == "守望先锋目录无效") return;
-            else if (checkOverwatchValidity(textBoxPath.Text) == true)
+            else if (CheckOverwatchValidity(textBoxPath.Text) == true)
                 textBoxPath.IsEnabled = false;
             // 构建命令行
             string cmdLine;
@@ -239,16 +340,20 @@ namespace QuickOverTool_WPF
                 cmdLine = cmdLine + " \"" + textBoxOutputPath.Text + "\"";
             }
             // 命令行：附加参数
-            if (!String.IsNullOrEmpty(textBoxSpecify.Text))
+            if (textBoxSpecify.IsEnabled == true)
                 cmdLine = cmdLine + " " + textBoxSpecify.Text;
-            addLog("命令行：OverTool.exe" + cmdLine);
-            addLog("OverTool 现在启动...");
+            AddLog("命令行：OverTool.exe" + cmdLine);
             // 启动
+            StartUp(cmdLine);
+        }
+
+        private void StartUp(string command)
+        {
             using (Process overTool = new Process())
             {
                 { // OverTool 进程配置
                     overTool.StartInfo.FileName = "OverTool.exe";
-                    overTool.StartInfo.Arguments = cmdLine;
+                    overTool.StartInfo.Arguments = command;
                     overTool.StartInfo.UseShellExecute = false;
                     overTool.StartInfo.RedirectStandardOutput = true;
                     overTool.StartInfo.RedirectStandardError = true;
@@ -257,7 +362,17 @@ namespace QuickOverTool_WPF
 
                 overTool.Start();
                 overTool.BeginOutputReadLine();
-                overTool.BeginErrorReadLine();
+
+                // ...
+                overTool.OutputDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
+            }
+        }
+
+        private void OverTool_DataReceived(object sender, DataReceivedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(e.Data))
+            {
+                AddLog(e.Data);
             }
         }
     }

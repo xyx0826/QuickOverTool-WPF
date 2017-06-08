@@ -32,7 +32,7 @@
         <CheckBox x:Name="checkBoxSkipKeys" Content="跳过密钥检测" HorizontalAlignment="Left" Margin="317,46,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="checkBoxExpert" Content="输出更多资源信息" HorizontalAlignment="Left" Margin="414,46,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="checkBoxRaw" Content="完全跳过文件转换" HorizontalAlignment="Left" Margin="535,46,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <GroupBox x:Name="groupBoxSkipExtractions" Header="跳过提取" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170">
+        <GroupBox x:Name="groupBoxSkipExtractions" Header="跳过提取 (WIP)" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170">
             <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -47,7 +47,7 @@
             </Grid>
         </GroupBox>
         <CheckBox x:Name="checkBoxCollision" Content="提取碰撞模型" HorizontalAlignment="Left" Margin="656,46,0,0" VerticalAlignment="Top"/>
-        <GroupBox x:Name="groupBoxExtractionFormats" Header="提取格式" HorizontalAlignment="Left" Height="120" Margin="664,70,0,0" VerticalAlignment="Top" Width="170">
+        <GroupBox x:Name="groupBoxExtractionFormats" Header="提取格式 (WIP)" HorizontalAlignment="Left" Height="120" Margin="664,70,0,0" VerticalAlignment="Top" Width="170">
             <Grid x:Name="gridGroupBoxExtractionFormats" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

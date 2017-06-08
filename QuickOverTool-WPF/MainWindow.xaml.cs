@@ -182,10 +182,13 @@ namespace QuickOverTool_WPF
                 Dispatcher.Invoke(new AddLogRuntime(AddLog), content);
                 return;
             }
-            else textBoxOutput.AppendText("\n" + content);
+            else
+            {
+                textBoxOutput.AppendText("\n" + content);
+                textBoxOutput.ScrollToEnd();
+            }
         }
-
-
+        
         public void NoSpecify()
         {
             textBoxSpecify.Text = "";
@@ -308,8 +311,6 @@ namespace QuickOverTool_WPF
             whichRadioButton();
             // 判断：是否选择了守望先锋路径
             if (labelValidity.Content.ToString() == "守望先锋目录无效") return;
-            else if (CheckOverwatchValidity(textBoxPath.Text) == true)
-                textBoxPath.IsEnabled = false;
             // 构建命令行
             string cmdLine;
             // 命令行：选定语言
@@ -362,9 +363,10 @@ namespace QuickOverTool_WPF
 
                 overTool.Start();
                 overTool.BeginOutputReadLine();
-
-                // ...
+                overTool.BeginErrorReadLine();
                 overTool.OutputDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
+                overTool.ErrorDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
+
             }
         }
 
@@ -372,6 +374,10 @@ namespace QuickOverTool_WPF
         {
             if (!String.IsNullOrEmpty(e.Data))
             {
+                if (e.Data.Contains("Exception"))
+                {
+                    AddLog("发生错误。请确认 OverTool 版本与守望先锋版本匹配。");
+                }
                 AddLog(e.Data);
             }
         }

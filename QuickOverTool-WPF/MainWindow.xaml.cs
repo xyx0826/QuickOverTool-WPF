@@ -360,7 +360,6 @@ namespace QuickOverTool_WPF
                 overTool.BeginErrorReadLine();
                 overTool.OutputDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
                 overTool.ErrorDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
-                AddLog("运行结束。");
             }
         }
         // 获取输出
@@ -370,7 +369,7 @@ namespace QuickOverTool_WPF
             {
                 if (e.Data.Contains("Exception"))
                 {
-                    AddLog("发生错误。请确认 OverTool 版本与守望先锋版本匹配。");
+                    AddLog("发生错误。请确认 OverTool 版本与守望先锋版本匹配，并选择了有效的输出路径。");
                 }
                 AddLog(e.Data);
             }

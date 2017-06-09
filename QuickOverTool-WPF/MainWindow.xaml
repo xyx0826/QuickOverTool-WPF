@@ -85,25 +85,27 @@
         <Label x:Name="labelSpecify" Content="蓝色选项的可选参数（英雄、地图名称等）（使用选定语言的名称）" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Height="25" Width="370" VerticalContentAlignment="Center"/>
         <TextBox x:Name="textBoxSpecify" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="385,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="449" MaxLines="1"/>
         <Label x:Name="labelOutputPath" Content="文件提取导出路径" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True"/>
+        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="Blue"/>
         <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="680,225,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
         <Button x:Name="buttonStart" Content="开始！" HorizontalAlignment="Left" Margin="710,225,0,0" VerticalAlignment="Top" Width="124" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
-        <GroupBox x:Name="groupBoxChecklists" Header="检查单" HorizontalAlignment="Left" Height="123" Margin="10,255,0,0" VerticalAlignment="Top" Width="824">
-            <Grid HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="814" Margin="0,0,-2,-11.8">
+        <GroupBox x:Name="groupBoxChecklists" Header="检查单" HorizontalAlignment="Left" Height="123" Margin="10,255,0,0" VerticalAlignment="Top" Width="620">
+            <Grid HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="620" Margin="0,0,-12,-11.8">
                 <Label x:Name="labelTagOverwatchBranch" Content="守望先锋服务器：" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelTagCascLibVersion" Content="OverTool 提取库版本：" HorizontalAlignment="Left" Margin="391,70,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelTagOverToolIntegrity" Content="OverTool 辅助文件：" HorizontalAlignment="Left" Margin="391,40,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelTagCascLibVersion" Content="OverTool 提取库版本：" HorizontalAlignment="Left" Margin="288,70,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelTagOverToolIntegrity" Content="OverTool 辅助文件：" HorizontalAlignment="Left" Margin="288,40,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelTagOverwatchVersion" Content="守望先锋版本：" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelTagOverwatchIntegrity" Content="守望先锋文件：" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelTagOverToolExecutable" Content="OverTool 核心程序：" HorizontalAlignment="Left" Margin="391,10,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelTagOverToolExecutable" Content="OverTool 核心程序：" HorizontalAlignment="Left" Margin="288,10,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelOverwatchBranch" Content="未知" HorizontalAlignment="Left" Margin="121,70,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelOverwatchIntegrity" Content="未知" HorizontalAlignment="Left" Margin="121,40,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelOverwatchVersion" Content="未知" HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelCascLibVersion" Content="未知" HorizontalAlignment="Left" Margin="535,70,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelOverToolIntegrity" Content="未知" HorizontalAlignment="Left" Margin="535,40,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelOverToolExecutable" Content="未知" HorizontalAlignment="Left" Margin="535,10,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelCascLibVersion" Content="未知" HorizontalAlignment="Left" Margin="432,70,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelOverToolIntegrity" Content="未知" HorizontalAlignment="Left" Margin="432,40,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelOverToolExecutable" Content="未知" HorizontalAlignment="Left" Margin="432,10,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
+        <Button x:Name="buttonTaskkill" Content="中止 OverTool 进程 (WIP)" HorizontalAlignment="Left" Margin="635,291,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click" IsEnabled="False"/>
+        <Button x:Name="buttonSaveOutput" Content="保存输出日志到文件" HorizontalAlignment="Left" Margin="635,321,0,0" VerticalAlignment="Top" Width="198" Height="25" Click="buttonSaveOutput_Click"/>
 
     </Grid>
 </Window>

@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 
 namespace QuickOverTool_WPF
 {
@@ -131,9 +121,7 @@ namespace QuickOverTool_WPF
             if (File.Exists(cascLibDll))
             {
                 labelCascLibVersion.Content =
-                FileVersionInfo.GetVersionInfo(Path.Combine(sharedPath, "CascLib.dll")).FileVersion;
-                if (labelCascLibVersion.Content.ToString() == "1.0.0.0")
-                    labelCascLibVersion.Content = "未指定";
+                FileVersionInfo.GetVersionInfo(Path.Combine(sharedPath, "OWLib.dll")).FileVersion;
             }
         }
         // .build.info 读取守望先锋信息
@@ -156,7 +144,7 @@ namespace QuickOverTool_WPF
                                 buildInfoRead = buildInfoStream.ReadLine();
                                 if (buildInfoRead.StartsWith("us")) break;
                             }
-                            
+                            buildInfoStream.Close();
                             var buildInfoParsed = buildInfoRead.Split('|');
                             labelOverwatchVersion.Content = buildInfoParsed[11];
                             labelOverwatchBranch.Content = buildInfoParsed[6];
@@ -177,7 +165,8 @@ namespace QuickOverTool_WPF
 
         public void AddLog(string content)
         {
-            if (!Dispatcher.CheckAccess()) // CheckAccess returns true if you're on the dispatcher thread
+            // TODO: 编码问题
+            if (!Dispatcher.CheckAccess())
             {
                 Dispatcher.Invoke(new AddLogRuntime(AddLog), content);
                 return;
@@ -303,11 +292,13 @@ namespace QuickOverTool_WPF
             DialogResult folderBrowserResult = folderBrowser.ShowDialog();
             textBoxOutputPath.Text = folderBrowser.SelectedPath;
             AddLog("选定了输出路径：" + textBoxOutputPath.Text);
+            textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Blue);
             return;
         }
         // 开始
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
+            textBoxOutput.Text = "";
             whichRadioButton();
             // 判断：是否选择了守望先锋路径
             if (labelValidity.Content.ToString() == "守望先锋目录无效") return;
@@ -346,8 +337,11 @@ namespace QuickOverTool_WPF
             AddLog("命令行：OverTool.exe" + cmdLine);
             // 启动
             StartUp(cmdLine);
-        }
 
+            textBoxOutputPath.IsEnabled = true;
+            textBoxSpecify.IsEnabled = true;
+        }
+        // 启动进程
         private void StartUp(string command)
         {
             using (Process overTool = new Process())
@@ -366,10 +360,10 @@ namespace QuickOverTool_WPF
                 overTool.BeginErrorReadLine();
                 overTool.OutputDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
                 overTool.ErrorDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
-
+                AddLog("运行结束。");
             }
         }
-
+        // 获取输出
         private void OverTool_DataReceived(object sender, DataReceivedEventArgs e)
         {
             if (!String.IsNullOrEmpty(e.Data))
@@ -379,6 +373,36 @@ namespace QuickOverTool_WPF
                     AddLog("发生错误。请确认 OverTool 版本与守望先锋版本匹配。");
                 }
                 AddLog(e.Data);
+            }
+        }
+
+        private void buttonSaveOutput_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxOutputPath.Text))
+            {
+                try
+                {
+                    File.WriteAllText(Path.Combine(textBoxOutputPath.Text, "log.txt"), textBoxOutput.Text);
+                    textBoxOutput.Text = "写入了日志到 " + Path.Combine(textBoxOutputPath.Text, "log.txt");
+                }
+                catch
+                {
+                    textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
+            }
+            else textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Red);
+        }
+
+        private void buttonTaskkill_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process[] proc = Process.GetProcessesByName("OverTool");
+                proc[0].Kill();
+            }
+            catch
+            {
+                buttonTaskkill.Content = "进程不存在！";
             }
         }
     }

@@ -107,7 +107,7 @@ namespace QuickOverTool_WPF
             // 守望先锋信息
             GetOverwatchInfo();
             // 守望先锋完整性
-            if (File.Exists(textBoxPath.Text + "\\data\\casc\\data\\shmem"))
+            if (File.Exists(Path.Combine(textBoxPath.Text, "Overwatch Launcher.exe")))
             {
                 labelOverwatchIntegrity.Foreground = new SolidColorBrush(Colors.Green);
                 labelOverwatchIntegrity.Content = "有效";

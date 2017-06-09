@@ -88,7 +88,7 @@
         <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="Blue"/>
         <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="680,225,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
         <Button x:Name="buttonStart" Content="开始！" HorizontalAlignment="Left" Margin="710,225,0,0" VerticalAlignment="Top" Width="124" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
-        <GroupBox x:Name="groupBoxChecklists" Header="检查单" HorizontalAlignment="Left" Height="123" Margin="10,255,0,0" VerticalAlignment="Top" Width="620">
+        <GroupBox x:Name="groupBoxChecklists" Header="检查单（仅供参考）" HorizontalAlignment="Left" Height="123" Margin="10,255,0,0" VerticalAlignment="Top" Width="620">
             <Grid HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="620" Margin="0,0,-12,-11.8">
                 <Label x:Name="labelTagOverwatchBranch" Content="守望先锋服务器：" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelTagCascLibVersion" Content="OverTool 提取库版本：" HorizontalAlignment="Left" Margin="288,70,0,0" VerticalAlignment="Top"/>

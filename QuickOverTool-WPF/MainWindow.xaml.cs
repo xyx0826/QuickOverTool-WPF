@@ -144,7 +144,7 @@ namespace QuickOverTool_WPF
                         break;
                     }
                 }
-                labelOverwatchVersion.Content = pdbRead.Substring(pdbRead.Length - 14, 12);
+                labelOverwatchVersion.Content = pdbRead.Substring(pdbRead.Length - 16, 14);
                 pdbStream.BaseStream.Position = 0;
                 pdbStream.DiscardBufferedData();
                 while (pdbStream.Peek() >= 0)
@@ -362,7 +362,9 @@ namespace QuickOverTool_WPF
                     overTool.StartInfo.Arguments = command;
                     overTool.StartInfo.UseShellExecute = false;
                     overTool.StartInfo.RedirectStandardOutput = true;
+                    overTool.StartInfo.StandardOutputEncoding = Encoding.Default;
                     overTool.StartInfo.RedirectStandardError = true;
+                    overTool.StartInfo.StandardErrorEncoding = Encoding.Default;
                     overTool.StartInfo.CreateNoWindow = true;
                 }
 
@@ -378,11 +380,8 @@ namespace QuickOverTool_WPF
         {
             if (!String.IsNullOrEmpty(e.Data))
             {
-                if (e.Data.Contains("Exception"))
-                {
-                    AddLog("发生错误。请确认 OverTool 版本与守望先锋版本匹配，并选择了有效的输出路径。");
-                }
-                AddLog(e.Data);
+                AddLog(Encoding.UTF8.GetString
+                    (Encoding.Default.GetBytes(e.Data)));
             }
         }
 

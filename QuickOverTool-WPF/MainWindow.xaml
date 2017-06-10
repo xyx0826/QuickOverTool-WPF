@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
         mc:Ignorable="d"
-        Title="QuickOverTool - OverTool 图形化界面" Height="560" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
+        Title="QuickOverTool - OverTool 图形化界面 (Alpha-v2.1) - 20170610" Height="560" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
     <Grid>
 
         <Label x:Name="labelPath" Content="守望先锋安装路径" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
         <TextBox x:Name="textBoxPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" Text="C:\Program Files (x86)\Overwatch"/>
-        <Label x:Name="labelValidity" Content="未检测到 OverTool" HorizontalAlignment="Left" Margin="709,10,0,0" VerticalAlignment="Top" Foreground="Red" Height="25" Width="126"/>
+        <Label x:Name="labelValidity" Content="" HorizontalAlignment="Left" Margin="709,10,0,0" VerticalAlignment="Top" Foreground="Red" Height="25" Width="126"/>
         <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="680,10,0,0" VerticalAlignment="Top" Width="25" Height="25" Content="..." Click="buttonPath_Click"/>
         <Label x:Name="labelLanguage" Content="目标语言：" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="25" Width="70" VerticalContentAlignment="Center"/>
         <ComboBox x:Name="comboBoxLanguage" HorizontalAlignment="Left" Margin="85,42,0,0" VerticalAlignment="Top" Width="130" SelectedIndex="0">
@@ -104,8 +104,10 @@
                 <Label x:Name="labelOverToolExecutable" Content="未知" HorizontalAlignment="Left" Margin="432,10,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="buttonTaskkill" Content="中止 OverTool 进程 (WIP)" HorizontalAlignment="Left" Margin="635,291,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click" IsEnabled="False"/>
-        <Button x:Name="buttonSaveOutput" Content="保存输出日志到文件" HorizontalAlignment="Left" Margin="635,321,0,0" VerticalAlignment="Top" Width="198" Height="25" Click="buttonSaveOutput_Click"/>
+        <Button x:Name="buttonTaskkill" Content="中止 OverTool 进程 (WIP)" HorizontalAlignment="Left" Margin="635,277,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click" IsEnabled="False"/>
+        <Button x:Name="buttonSaveOutput" Content="保存输出日志到文件" HorizontalAlignment="Left" Margin="635,307,0,0" VerticalAlignment="Top" Width="198" Height="25" Click="buttonSaveOutput_Click"/>
+        <CheckBox x:Name="checkBoxCopyright" Content="我知悉并承诺：" HorizontalAlignment="Left" Margin="680,341,0,0" VerticalAlignment="Top" Foreground="Red" Checked="checkBoxCopyright_Checked"/>
+        <Label x:Name="labelCopyright" Content="守望先锋资源不可被用作商业用途。" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="635,353,10.6,0" VerticalAlignment="Top" Foreground="Red"/>
 
     </Grid>
 </Window>

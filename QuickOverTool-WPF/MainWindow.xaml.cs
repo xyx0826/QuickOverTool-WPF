@@ -28,7 +28,6 @@ namespace QuickOverTool_WPF
             InitializeComponent();
 
             // 启动检查守望先锋 & OverTool 有效性
-            CheckOverToolValidity();
             if (!String.IsNullOrEmpty(textBoxPath.Text))
             {
                 CheckOverwatchValidity(textBoxPath.Text);
@@ -65,14 +64,10 @@ namespace QuickOverTool_WPF
             if (File.Exists(overToolExecutable))
             {
                 cascLibDll = Path.Combine(sharedPath, "CascLib.dll");
-                labelValidity.Content = "检测到了 OverTool";
-                labelValidity.Foreground = new SolidColorBrush(Colors.Green);
                 return true;
             }
             else
             {
-                labelValidity.Content = "未检测到 OverTool";
-                labelValidity.Foreground = new SolidColorBrush(Colors.Red);
                 return false;
             }
         }
@@ -308,6 +303,12 @@ namespace QuickOverTool_WPF
         // 开始
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
+            // 版权告知
+            if (checkBoxCopyright.IsChecked != true)
+            {
+                labelCopyright.Foreground = new SolidColorBrush(Colors.Yellow);
+                return;
+            }
             textBoxOutput.Text = "";
             whichRadioButton();
             // 判断：是否选择了守望先锋路径
@@ -413,6 +414,11 @@ namespace QuickOverTool_WPF
             {
                 buttonTaskkill.Content = "进程不存在！";
             }
+        }
+
+        private void checkBoxCopyright_Checked(object sender, RoutedEventArgs e)
+        {
+            checkBoxCopyright.BorderBrush = new SolidColorBrush(Colors.White);
         }
     }
 }

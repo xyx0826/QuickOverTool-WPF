@@ -17,10 +17,11 @@ namespace QuickOverTool_WPF
         // 全局变量：二进制文件路径
         private string sharedPath;
         private string buildInfoPath;
+        private string pdbPath;
         private string overToolExecutable;
         private string cascLibDll;
         // 全局变量：.build.info 读取
-        private StreamReader buildInfoStream;
+        private StreamReader pdbStream;
         // 主窗体初始化
         public MainWindow()
         {
@@ -40,7 +41,6 @@ namespace QuickOverTool_WPF
             buildInfoPath = Path.Combine(path, ".build.info");
             if (File.Exists(buildInfoPath))
             {
-                buildInfoPath = Path.Combine(path, ".build.info");
                 labelValidity.Content = "守望先锋目录有效";
                 textBoxPath.BorderBrush = new SolidColorBrush(Colors.Blue);
                 labelValidity.Foreground = new SolidColorBrush(Colors.Green);
@@ -124,39 +124,49 @@ namespace QuickOverTool_WPF
                 FileVersionInfo.GetVersionInfo(Path.Combine(sharedPath, "OWLib.dll")).FileVersion;
             }
         }
-        // .build.info 读取守望先锋信息
+        // .product.db 读取守望先锋信息
         public void GetOverwatchInfo()
         {
-            string buildInfoRead;
-            if (string.IsNullOrEmpty(buildInfoPath)) return;
-            else
+            if (!File.Exists(Path.Combine(textBoxPath.Text, ".product.db")))
             {
-                buildInfoStream = new StreamReader(buildInfoPath);
-                {
-                    try
-                    {
-                        while (buildInfoStream.Peek() >= 0)
-                        {
-                            buildInfoRead = buildInfoStream.ReadLine();
+                labelOverwatchVersion.Content = "无法读取";
+                labelOverwatchBranch.Content = "无法读取";
+                return;
+            }
 
-                            while (!buildInfoRead.StartsWith("us"))
-                            {
-                                buildInfoRead = buildInfoStream.ReadLine();
-                                if (buildInfoRead.StartsWith("us")) break;
-                            }
-                            buildInfoStream.Close();
-                            var buildInfoParsed = buildInfoRead.Split('|');
-                            labelOverwatchVersion.Content = buildInfoParsed[11];
-                            labelOverwatchBranch.Content = buildInfoParsed[6];
-                            break;
-                        }
-                    }
-                    catch
+            pdbPath = Path.Combine(textBoxPath.Text, ".product.db");
+            string pdbRead;
+            pdbStream = new StreamReader(pdbPath);
+
+            using (var reader = File.OpenText(pdbPath))
+            {
+                pdbRead = pdbStream.ReadLine();
+                while (pdbStream.Peek() >= 0)
+                {
+                    pdbRead = pdbStream.ReadLine();
+                    if (pdbRead.EndsWith("B&"))
                     {
-                        labelOverwatchVersion.Content = "无法读取";
-                        labelOverwatchBranch.Content = "无法读取";
+                        break;
                     }
-                    
+                }
+                labelOverwatchVersion.Content = pdbRead.Substring(pdbRead.Length - 14, 12);
+                pdbStream.BaseStream.Position = 0;
+                pdbStream.DiscardBufferedData();
+                while (pdbStream.Peek() >= 0)
+                {
+                    pdbRead = pdbStream.ReadLine();
+                    if (pdbRead.Contains("prometheus_test"))
+                    {
+                        labelOverwatchBranch.Content = "PTR (测试服)";
+                        pdbStream.Close();
+                        break;
+                    }
+                    else if (pdbRead.Contains("prometheus"))
+                    {
+                        labelOverwatchBranch.Content = "正式服";
+                        pdbStream.Close();
+                        break;
+                    }
                 }
             }
         }

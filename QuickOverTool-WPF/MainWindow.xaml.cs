@@ -344,7 +344,7 @@ namespace QuickOverTool_WPF
             }
             // 命令行：附加参数
             if (textBoxSpecify.IsEnabled == true)
-                cmdLine = cmdLine + " " + textBoxSpecify.Text;
+                cmdLine = cmdLine + " \"" + textBoxSpecify.Text + "\"";
             AddLog("命令行：OverTool.exe" + cmdLine);
             // 启动
             StartUp(cmdLine);

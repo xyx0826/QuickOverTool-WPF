@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
         mc:Ignorable="d"
-        Title="QuickOverTool - OverTool 图形化界面 (Alpha-v2.2.1) - 20170623" Height="593.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
+        Title="QuickOverTool - OverTool 图形化界面 (Alpha-v2.3) - 20170630" Height="593.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="321*"/>
@@ -94,21 +94,23 @@
         <Button x:Name="buttonStart" Content="开始！" HorizontalAlignment="Left" Margin="710,252,0,0" VerticalAlignment="Top" Width="124" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
         <GroupBox x:Name="groupBoxChecklists" Header="检查单（仅供参考）" HorizontalAlignment="Left" Height="123" Margin="11,285,0,0" VerticalAlignment="Top" Width="620" Grid.RowSpan="2">
             <Grid HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="620" Margin="0,0,-12,-11.8">
-                <Label x:Name="labelTagOverwatchBranch" Content="守望先锋服务器：" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelTagOverwatchBranch" Content="守望先锋服务器：" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelTagCascLibVersion" Content="OverTool 提取库版本：" HorizontalAlignment="Left" Margin="288,70,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelTagOverToolIntegrity" Content="OverTool 辅助文件：" HorizontalAlignment="Left" Margin="288,40,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelTagOverwatchVersion" Content="守望先锋版本：" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelTagOverwatchIntegrity" Content="守望先锋文件：" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+                <!-- <Label x:Name="labelTagOverwatchVersion" Content="守望先锋版本：" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                -->
+                <Label x:Name="labelTagOverwatchIntegrity" Content="守望先锋文件：" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelTagOverToolExecutable" Content="OverTool 核心程序：" HorizontalAlignment="Left" Margin="288,10,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelOverwatchBranch" Content="未知" HorizontalAlignment="Left" Margin="121,70,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelOverwatchIntegrity" Content="未知" HorizontalAlignment="Left" Margin="121,40,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelOverwatchVersion" Content="未知" HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelOverwatchBranch" Content="未知" HorizontalAlignment="Left" Margin="121,40,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelOverwatchIntegrity" Content="未知" HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
+                <!-- <Label x:Name="labelOverwatchVersion" Content="未知" HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
+                -->
                 <Label x:Name="labelCascLibVersion" Content="未知" HorizontalAlignment="Left" Margin="432,70,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelOverToolIntegrity" Content="未知" HorizontalAlignment="Left" Margin="432,40,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelOverToolExecutable" Content="未知" HorizontalAlignment="Left" Margin="432,10,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="buttonTaskkill" Content="中止 OverTool 进程 (WIP)" HorizontalAlignment="Left" Margin="636,307,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click" IsEnabled="False" Grid.RowSpan="2"/>
+        <Button x:Name="buttonTaskkill" Content="中止 OverTool 进程" HorizontalAlignment="Left" Margin="636,307,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click" Grid.RowSpan="2"/>
         <Button x:Name="buttonSaveOutput" Content="保存输出日志到文件" HorizontalAlignment="Left" Margin="636,16.2,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonSaveOutput_Click" Grid.Row="1"/>
         <CheckBox x:Name="checkBoxCopyright" Content="我知悉并承诺：" HorizontalAlignment="Left" Margin="681,50.2,0,0" VerticalAlignment="Top" Foreground="Red" Checked="checkBoxCopyright_Checked" Grid.Row="1"/>
         <Label x:Name="labelCopyright" Content="守望先锋资源不可被用作商业用途。" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="636,62.2,9.6,0" VerticalAlignment="Top" Foreground="Red" Grid.Row="1"/>

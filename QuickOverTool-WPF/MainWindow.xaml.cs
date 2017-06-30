@@ -22,6 +22,8 @@ namespace QuickOverTool_WPF
         private string cascLibDll;
         // 全局变量：.build.info 读取
         private StreamReader pdbStream;
+        // 全局变量：OverTool 进程 ID
+        private int overToolPID;
         // 主窗体初始化
         public MainWindow()
         {
@@ -32,7 +34,7 @@ namespace QuickOverTool_WPF
             {
                 CheckOverwatchValidity(textBoxPath.Text);
             }
-            updateChecklist();
+            UpdateChecklist();
         }
         // 检查守望先锋
         public bool CheckOverwatchValidity(string path)
@@ -72,7 +74,7 @@ namespace QuickOverTool_WPF
             }
         }
         // 检查单更新
-        public void updateChecklist()
+        public void UpdateChecklist()
         {
             // OverTool 核心程序
             if (CheckOverToolValidity())
@@ -124,7 +126,7 @@ namespace QuickOverTool_WPF
         {
             if (!File.Exists(Path.Combine(textBoxPath.Text, ".product.db")))
             {
-                labelOverwatchVersion.Content = "无法读取";
+                // labelOverwatchVersion.Content = "无法读取";
                 labelOverwatchBranch.Content = "无法读取";
                 return;
             }
@@ -144,7 +146,7 @@ namespace QuickOverTool_WPF
                         break;
                     }
                 }
-                labelOverwatchVersion.Content = pdbRead.Substring(pdbRead.Length - 16, 14);
+                // labelOverwatchVersion.Content = pdbRead.Substring(pdbRead.Length - 16, 14);
                 pdbStream.BaseStream.Position = 0;
                 pdbStream.DiscardBufferedData();
                 while (pdbStream.Peek() >= 0)
@@ -289,6 +291,7 @@ namespace QuickOverTool_WPF
             textBoxPath.Text = folderBrowser.SelectedPath;
             CheckOverwatchValidity(textBoxPath.Text);
             GetOverwatchInfo();
+            UpdateChecklist(); // Thanks NGA ID: 平衡先生 (38935700)
         }
         // 选定输出路径
         private void buttonOutputPath_Click(object sender, RoutedEventArgs e)
@@ -307,6 +310,7 @@ namespace QuickOverTool_WPF
             if (checkBoxCopyright.IsChecked != true)
             {
                 labelCopyright.Foreground = new SolidColorBrush(Colors.Yellow);
+                AddLog("守望先锋的所有资源版权均归暴雪娱乐所有，请勿将其用于商业用途。");
                 return;
             }
             textBoxOutput.Text = "";
@@ -334,6 +338,7 @@ namespace QuickOverTool_WPF
             if (whichRadioButton() == "")
             {
                 groupBoxModes.BorderBrush = new SolidColorBrush(Colors.Red);
+                AddLog("请选择工作模式。");
                 return;
             }
             else cmdLine = cmdLine + " " + whichRadioButton();
@@ -369,6 +374,7 @@ namespace QuickOverTool_WPF
                 }
 
                 overTool.Start();
+                overToolPID = overTool.Id;
                 overTool.BeginOutputReadLine();
                 overTool.BeginErrorReadLine();
                 overTool.OutputDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
@@ -406,12 +412,14 @@ namespace QuickOverTool_WPF
         {
             try
             {
-                Process[] proc = Process.GetProcessesByName("OverTool");
-                proc[0].Kill();
+                Process proc = Process.GetProcessById(overToolPID);
+                proc.Kill();
+                AddLog("OverTool 进程被强行终止了。");
             }
             catch
             {
-                buttonTaskkill.Content = "进程不存在！";
+                AddLog("未能终止 OverTool 进程；或许其并未在运行。");
+                return;
             }
         }
 

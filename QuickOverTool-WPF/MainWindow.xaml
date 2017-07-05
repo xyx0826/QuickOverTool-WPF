@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
         mc:Ignorable="d"
-        Title="QuickOverTool - OverTool 图形化界面 (Alpha-v2.3) - 20170630" Height="593.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
+        Title="QuickOverTool - OverTool 图形化界面 (Alpha-v2.4) - 20170705" Height="593.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="321*"/>
+            <RowDefinition Height="107*"/>
+            <RowDefinition Height="214*"/>
             <RowDefinition Height="244*"/>
         </Grid.RowDefinitions>
 
         <Label x:Name="labelPath" Content="守望先锋安装路径" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" Text="C:\Program Files (x86)\Overwatch"/>
+        <TextBox x:Name="textBoxOverwatchPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" Text="C:\Program Files (x86)\Overwatch"/>
         <Label x:Name="labelValidity" Content="" HorizontalAlignment="Left" Margin="710,10,0,0" VerticalAlignment="Top" Foreground="Red" Height="25" Width="126"/>
         <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="680,10,0,0" VerticalAlignment="Top" Width="25" Height="25" Content="..." Click="buttonPath_Click"/>
         <Label x:Name="labelLanguage" Content="目标语言：" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="25" Width="70" VerticalContentAlignment="Center"/>
@@ -36,7 +37,7 @@
         <CheckBox x:Name="checkBoxSkipKeys" Content="跳过密钥检测" HorizontalAlignment="Left" Margin="317,46,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="checkBoxExpert" Content="输出更多资源信息" HorizontalAlignment="Left" Margin="414,46,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="checkBoxRaw" Content="完全跳过文件转换" HorizontalAlignment="Left" Margin="535,46,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <GroupBox x:Name="groupBoxSkipExtractions" Header="跳过提取 (WIP)" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170">
+        <GroupBox x:Name="groupBoxSkipExtractions" Header="跳过提取 (WIP)" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2" BorderBrush="#FFC000FF" Foreground="#FFC000FF">
             <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -51,7 +52,7 @@
             </Grid>
         </GroupBox>
         <CheckBox x:Name="checkBoxCollision" Content="提取碰撞模型" HorizontalAlignment="Left" Margin="656,46,0,0" VerticalAlignment="Top"/>
-        <GroupBox x:Name="groupBoxExtractionFormats" Header="提取格式 (WIP)" HorizontalAlignment="Left" Height="120" Margin="664,70,0,0" VerticalAlignment="Top" Width="170">
+        <GroupBox x:Name="groupBoxExtractionFormats" Header="提取格式 (WIP)" HorizontalAlignment="Left" Height="120" Margin="664,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2">
             <Grid x:Name="gridGroupBoxExtractionFormats" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -63,10 +64,10 @@
                 <TextBox x:Name="textBoxAnimationFormat" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="16" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="10" IsEnabled="False"/>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="groupBoxOutput" Header="输出" HorizontalAlignment="Left" Height="140" Margin="0,92.2,0,0" VerticalAlignment="Top" Width="835" Grid.Row="1">
+        <GroupBox x:Name="groupBoxOutput" Header="输出" HorizontalAlignment="Left" Height="140" Margin="0,95.2,0,0" VerticalAlignment="Top" Width="835" Grid.Row="2">
             <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="110" TextWrapping="Wrap" VerticalAlignment="Top" Width="815" Margin="4,4,0,0" Text="QuickOverTool-WPF 已经启动..." HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
         </GroupBox>
-        <GroupBox x:Name="groupBoxModes" Header="工作模式" HorizontalAlignment="Left" Height="120" Margin="185,70,0,0" VerticalAlignment="Top" Width="475">
+        <GroupBox x:Name="groupBoxModes" Header="工作模式" HorizontalAlignment="Left" Height="120" Margin="185,70,0,0" VerticalAlignment="Top" Width="475" Grid.RowSpan="2">
             <Grid x:Name="gridGroupBoxModes" HorizontalAlignment="Left" Margin="0,0,-1.8,-12" Width="465">
                 <RadioButton x:Name="radioButtonListGeneralCosmetics" Content="列出通用物品" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <RadioButton x:Name="radioButtonListHeroCosmetics" Content="列出英雄物品" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top"/>
@@ -86,13 +87,14 @@
                 <RadioButton x:Name="radioButtonExtractLootbox" Content="提取补给箱" HorizontalAlignment="Left" Margin="298,67,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
-        <Label x:Name="labelSpecify" Content="蓝色选项的可选参数（英雄、地图名称等）（使用选定语言的名称）" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Height="25" Width="370" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxSpecify" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="385,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="449" MaxLines="1"/>
-        <Label x:Name="labelOutputPath" Content="文件提取导出路径" HorizontalAlignment="Left" Margin="10,252,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3"/>
-        <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="680,252,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
-        <Button x:Name="buttonStart" Content="开始！" HorizontalAlignment="Left" Margin="710,252,0,0" VerticalAlignment="Top" Width="124" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
-        <GroupBox x:Name="groupBoxChecklists" Header="检查单（仅供参考）" HorizontalAlignment="Left" Height="123" Margin="11,285,0,0" VerticalAlignment="Top" Width="620" Grid.RowSpan="2">
+        <Label x:Name="labelSpecify" Content="蓝色选项的可选参数（英雄、地图名称等）（使用选定语言的名称）" HorizontalAlignment="Left" Margin="10,88.2,0,0" VerticalAlignment="Top" Height="25" Width="370" VerticalContentAlignment="Center" Grid.Row="1"/>
+        <Label x:Name="labelSpecifyEHC" Content="仅用于提取英雄资源：" HorizontalAlignment="Left" Margin="10,118.2,0,0" VerticalAlignment="Top" Height="25" Width="127" VerticalContentAlignment="Center" Grid.Row="1" Foreground="#FFC700FF"/>
+        <TextBox x:Name="textBoxSpecify" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="385,88.2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="449" MaxLines="1" Grid.Row="1" ToolTip="这些选项仅对蓝色工作模式生效。黑色模式无需可选参数，而提取英雄资源使用下侧的紫色选项。"/>
+        <Label x:Name="labelOutputPath" Content="文件提取导出路径" HorizontalAlignment="Left" Margin="10,148.2,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center" Grid.Row="1"/>
+        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,148.2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Grid.Row="1"/>
+        <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="680,148.2,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click" Grid.Row="1"/>
+        <Button x:Name="buttonStart" Content="开始！" HorizontalAlignment="Left" Margin="710,148.2,0,0" VerticalAlignment="Top" Width="124" Height="25" Foreground="Blue" Click="buttonStart_Click" Grid.Row="1"/>
+        <GroupBox x:Name="groupBoxChecklists" Header="检查单（仅供参考）" HorizontalAlignment="Left" Height="123" Margin="11,180.2,0,0" VerticalAlignment="Top" Width="620" Grid.RowSpan="2" Grid.Row="1">
             <Grid HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="620" Margin="0,0,-12,-11.8">
                 <Label x:Name="labelTagOverwatchBranch" Content="守望先锋服务器：" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelTagCascLibVersion" Content="OverTool 提取库版本：" HorizontalAlignment="Left" Margin="288,70,0,0" VerticalAlignment="Top"/>
@@ -106,14 +108,14 @@
                 <Label x:Name="labelOverToolExecutable" Content="未知" HorizontalAlignment="Left" Margin="432,10,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="buttonTaskkill" Content="中止 OverTool 进程" HorizontalAlignment="Left" Margin="636,307,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click" Grid.RowSpan="2"/>
-        <Button x:Name="buttonSaveOutput" Content="保存输出日志到文件" HorizontalAlignment="Left" Margin="636,16.2,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonSaveOutput_Click" Grid.Row="1"/>
-        <CheckBox x:Name="checkBoxCopyright" Content="我知悉并承诺：" HorizontalAlignment="Left" Margin="681,50.2,0,0" VerticalAlignment="Top" Foreground="Red" Checked="checkBoxCopyright_Checked" Grid.Row="1"/>
-        <Label x:Name="labelCopyright" Content="守望先锋资源不可被用作商业用途。" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="636,62.2,9.6,0" VerticalAlignment="Top" Foreground="Red" Grid.Row="1"/>
-        <Label x:Name="labelExtractionHero" Content="为英雄" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="10,223,0,0" VerticalAlignment="Top" Height="25" Foreground="#FFC700FF"/>
-        <TextBox x:Name="textBoxExtractionHero" HorizontalAlignment="Left" Height="25" Margin="61,223,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="85" Foreground="#FFC700FF"/>
-        <Label x:Name="labelExtractionType" Content="提取" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="151,223,0,0" VerticalAlignment="Top" Height="25" Foreground="#FFC700FF"/>
-        <ComboBox x:Name="comboBoxExtractionType" HorizontalAlignment="Left" Margin="190,223,0,0" VerticalAlignment="Top" Width="170" Height="25" SelectedIndex="6" Foreground="#FFC700FF">
+        <Button x:Name="buttonTaskkill" Content="中止 OverTool 进程" HorizontalAlignment="Left" Margin="636,202.2,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click" Grid.RowSpan="2" Grid.Row="1"/>
+        <Button x:Name="buttonSaveOutput" Content="保存输出日志到文件" HorizontalAlignment="Left" Margin="636,18.2,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonSaveOutput_Click" Grid.Row="2"/>
+        <CheckBox x:Name="checkBoxCopyright" Content="我知悉并承诺：" HorizontalAlignment="Left" Margin="681,52.2,0,0" VerticalAlignment="Top" Foreground="Red" Checked="checkBoxCopyright_Checked" Grid.Row="2"/>
+        <Label x:Name="labelCopyright" Content="守望先锋资源不可被用作商业用途。" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="636,64.2,9.6,0" VerticalAlignment="Top" Foreground="Red" Grid.Row="2"/>
+        <Label x:Name="labelExtractionHero" Content="为英雄" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="137,118.2,0,0" VerticalAlignment="Top" Height="25" Foreground="#FFC700FF" Grid.Row="1"/>
+        <TextBox x:Name="textBoxExtractionHero" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="187,118.2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="85" Foreground="Black" Grid.Row="1" TextAlignment="Center"/>
+        <Label x:Name="labelExtractionType" Content="提取" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="278,118.2,0,0" VerticalAlignment="Top" Height="25" Foreground="#FFC700FF" Grid.Row="1"/>
+        <ComboBox x:Name="comboBoxExtractionType" HorizontalAlignment="Left" Margin="317,118.2,0,0" VerticalAlignment="Top" Width="170" Height="25" SelectedIndex="6" Foreground="Black" Grid.Row="1">
             <ComboBoxItem Content="*（全部）"/>
             <ComboBoxItem Content="skin（材质与模型）"/>
             <ComboBoxItem Content="spray（喷漆）"/>
@@ -122,7 +124,6 @@
             <ComboBoxItem Content="emote（表情）"/>
             <ComboBoxItem Content="heroic intro（精彩镜头）"/>
         </ComboBox>
-        <Label Content="（尚未完成）" HorizontalAlignment="Left" Margin="365,223,0,0" VerticalAlignment="Top" Foreground="#FFC700FF"/>
 
     </Grid>
 </Window>

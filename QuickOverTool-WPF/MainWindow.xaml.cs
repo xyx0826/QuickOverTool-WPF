@@ -31,9 +31,9 @@ namespace QuickOverTool_WPF
             InitializeComponent();
 
             // 启动检查守望先锋 & OverTool 有效性
-            if (!String.IsNullOrEmpty(textBoxPath.Text))
+            if (!String.IsNullOrEmpty(textBoxOverwatchPath.Text))
             {
-                CheckOverwatchValidity(textBoxPath.Text);
+                CheckOverwatchValidity(textBoxOverwatchPath.Text);
             }
             UpdateChecklist();
         }
@@ -44,7 +44,7 @@ namespace QuickOverTool_WPF
             if (File.Exists(buildInfoPath))
             {
                 labelValidity.Content = "守望先锋目录有效";
-                textBoxPath.BorderBrush = new SolidColorBrush(Colors.Blue);
+                textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Blue);
                 labelValidity.Foreground = new SolidColorBrush(Colors.Green);
                 return true;
             }
@@ -52,7 +52,7 @@ namespace QuickOverTool_WPF
             {
                 buildInfoPath = null;
                 labelValidity.Content = "守望先锋目录无效";
-                textBoxPath.BorderBrush = new SolidColorBrush(Colors.Red);
+                textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Red);
                 labelValidity.Foreground = new SolidColorBrush(Colors.Red);
                 return false;
             }
@@ -105,7 +105,7 @@ namespace QuickOverTool_WPF
             // 守望先锋信息
             GetOverwatchInfo();
             // 守望先锋完整性
-            if (File.Exists(Path.Combine(textBoxPath.Text, "Overwatch Launcher.exe")))
+            if (File.Exists(Path.Combine(textBoxOverwatchPath.Text, "Overwatch Launcher.exe")))
             {
                 labelOverwatchIntegrity.Foreground = new SolidColorBrush(Colors.Green);
                 labelOverwatchIntegrity.Content = "有效";
@@ -125,13 +125,13 @@ namespace QuickOverTool_WPF
         // .product.db 读取守望先锋信息
         public void GetOverwatchInfo()
         {
-            if (!File.Exists(Path.Combine(textBoxPath.Text, ".product.db")))
+            if (!File.Exists(Path.Combine(textBoxOverwatchPath.Text, ".product.db")))
             {
                 labelOverwatchBranch.Content = "无法读取";
                 return;
             }
 
-            pdbPath = Path.Combine(textBoxPath.Text, ".product.db");
+            pdbPath = Path.Combine(textBoxOverwatchPath.Text, ".product.db");
             string pdbRead;
             pdbStream = new StreamReader(pdbPath);
 
@@ -288,8 +288,8 @@ namespace QuickOverTool_WPF
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             DialogResult folderBrowserResult = folderBrowser.ShowDialog();
-            textBoxPath.Text = folderBrowser.SelectedPath;
-            CheckOverwatchValidity(textBoxPath.Text);
+            textBoxOverwatchPath.Text = folderBrowser.SelectedPath;
+            CheckOverwatchValidity(textBoxOverwatchPath.Text);
             GetOverwatchInfo();
             UpdateChecklist(); // Thanks NGA ID: 平衡先生 (38935700)
         }
@@ -316,7 +316,7 @@ namespace QuickOverTool_WPF
             textBoxOutput.Text = "";
             whichRadioButton();
             // 判断：是否选择了守望先锋路径
-            if (labelValidity.Content.ToString() == "守望先锋目录无效") return;
+            if (!CheckOverwatchValidity(textBoxOverwatchPath.Text)) return;
             // 构建命令行
             string cmdLine;
             // 命令行：选定语言
@@ -333,7 +333,7 @@ namespace QuickOverTool_WPF
             if (checkBoxExpert.IsChecked == true) cmdLine = cmdLine + " --ex";
             if (checkBoxCollision.IsChecked == true) cmdLine = cmdLine + " -C";
             // 命令行：守望先锋路径
-            cmdLine = cmdLine + " \"" + textBoxPath.Text + "\"";
+            cmdLine = cmdLine + " \"" + textBoxOverwatchPath.Text + "\"";
             // 命令行：模式判断 + 选定模式
             if (whichRadioButton() == "")
             {
@@ -353,10 +353,16 @@ namespace QuickOverTool_WPF
             // 命令行：提取英雄内容
             if (radioButtonExtractHeroCosmetics.IsChecked == true)
             {
+                if (string.IsNullOrEmpty(textBoxExtractionHero.Text))
+                {
+                    AddLog("没有指定提取英雄。请使用指定的游戏语言中的名称。");
+                    return;
+                }
                 string[] selectedItem = comboBoxExtractionType.SelectedItem.
                     ToString().Split('（');
                 string cosmeticsType = selectedItem[0].Substring(38, selectedItem[0].Length - 38);
-                cmdLine = cmdLine + " \"" + cosmeticsType + "\"";
+                cmdLine = cmdLine + " \"" + cosmeticsType + "\"" 
+                    + " \"" + textBoxExtractionHero.Text + "\"";
             }
 
             AddLog("命令行：OverTool.exe" + cmdLine);

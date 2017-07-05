@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Windows;
 using System.Windows.Forms;
@@ -126,7 +127,6 @@ namespace QuickOverTool_WPF
         {
             if (!File.Exists(Path.Combine(textBoxPath.Text, ".product.db")))
             {
-                // labelOverwatchVersion.Content = "无法读取";
                 labelOverwatchBranch.Content = "无法读取";
                 return;
             }
@@ -172,7 +172,6 @@ namespace QuickOverTool_WPF
 
         public void AddLog(string content)
         {
-            // TODO: 编码问题
             if (!Dispatcher.CheckAccess())
             {
                 Dispatcher.Invoke(new AddLogRuntime(AddLog), content);
@@ -253,6 +252,7 @@ namespace QuickOverTool_WPF
             }
             else if (radioButtonExtractHeroCosmetics.IsChecked == true)
             {
+                NoSpecify();
                 return "x";
             }
             else if (radioButtonExtractMaps.IsChecked == true)
@@ -324,14 +324,14 @@ namespace QuickOverTool_WPF
                 ToString().Substring(38, 4);
             // 命令行：复选框
             if (checkBoxSkipAnimation.IsChecked == true) cmdLine = cmdLine + " -A";
-            if (checkBoxSkipGUI.IsChecked == true) cmdLine = cmdLine + "-I";
-            if (checkBoxSkipKeys.IsChecked == true) cmdLine = cmdLine + "-n";
-            if (checkBoxSkipModel.IsChecked == true) cmdLine = cmdLine + "-M";
-            if (checkBoxSkipRef.IsChecked == true) cmdLine = cmdLine + "-R";
-            if (checkBoxSkipSound.IsChecked == true) cmdLine = cmdLine + "-S";
-            if (checkBoxSkipTexture.IsChecked == true) cmdLine = cmdLine + "-T";
-            if (checkBoxExpert.IsChecked == true) cmdLine = cmdLine + "--ex";
-            if (checkBoxCollision.IsChecked == true) cmdLine = cmdLine + "-C";
+            if (checkBoxSkipGUI.IsChecked == true) cmdLine = cmdLine + " -I";
+            if (checkBoxSkipKeys.IsChecked == true) cmdLine = cmdLine + " -n";
+            if (checkBoxSkipModel.IsChecked == true) cmdLine = cmdLine + " -M";
+            if (checkBoxSkipRef.IsChecked == true) cmdLine = cmdLine + " -R";
+            if (checkBoxSkipSound.IsChecked == true) cmdLine = cmdLine + " -S";
+            if (checkBoxSkipTexture.IsChecked == true) cmdLine = cmdLine + " -T";
+            if (checkBoxExpert.IsChecked == true) cmdLine = cmdLine + " --ex";
+            if (checkBoxCollision.IsChecked == true) cmdLine = cmdLine + " -C";
             // 命令行：守望先锋路径
             cmdLine = cmdLine + " \"" + textBoxPath.Text + "\"";
             // 命令行：模式判断 + 选定模式
@@ -350,6 +350,15 @@ namespace QuickOverTool_WPF
             // 命令行：附加参数
             if (textBoxSpecify.IsEnabled == true)
                 cmdLine = cmdLine + " \"" + textBoxSpecify.Text + "\"";
+            // 命令行：提取英雄内容
+            if (radioButtonExtractHeroCosmetics.IsChecked == true)
+            {
+                string[] selectedItem = comboBoxExtractionType.SelectedItem.
+                    ToString().Split('（');
+                string cosmeticsType = selectedItem[0].Substring(38, selectedItem[0].Length - 38);
+                cmdLine = cmdLine + " \"" + cosmeticsType + "\"";
+            }
+
             AddLog("命令行：OverTool.exe" + cmdLine);
             // 启动
             StartUp(cmdLine);

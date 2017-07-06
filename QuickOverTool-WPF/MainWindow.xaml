@@ -90,7 +90,7 @@
                 <RadioButton x:Name="radioButtonExtractMapAudio" Content="提取地图音效" HorizontalAlignment="Left" Margin="442,29,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：地图"/>
             </Grid>
         </GroupBox>
-        <Label x:Name="labelSpecify" Content="蓝色选项的可选参数（英雄、地图名称等）（使用选定语言的名称）" HorizontalAlignment="Left" Margin="10,88.2,0,0" VerticalAlignment="Top" Height="25" Width="370" VerticalContentAlignment="Center" Grid.Row="1"/>
+        <Label x:Name="labelSpecify" Content="蓝色选项的可选参数（英雄、地图名称等）（使用选定语言的名称）" HorizontalAlignment="Left" Margin="10,88.2,0,0" VerticalAlignment="Top" Height="25" Width="370" VerticalContentAlignment="Center" Grid.Row="1" Foreground="Blue"/>
         <Label x:Name="labelSpecifyEHC" Content="仅用于提取英雄资源：" HorizontalAlignment="Left" Margin="10,118.2,0,0" VerticalAlignment="Top" Height="25" Width="127" VerticalContentAlignment="Center" Grid.Row="1" Foreground="#FFC700FF"/>
         <TextBox x:Name="textBoxSpecify" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="385,88.2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="449" MaxLines="1" Grid.Row="1" ToolTip="这些选项仅对蓝色工作模式生效。黑色模式无需可选参数，而提取英雄资源使用下侧的紫色选项。"/>
         <Label x:Name="labelOutputPath" Content="文件提取导出路径" HorizontalAlignment="Left" Margin="10,148.2,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center" Grid.Row="1"/>

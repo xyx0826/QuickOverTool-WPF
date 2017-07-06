@@ -248,6 +248,7 @@ namespace QuickOverTool_WPF
             }
             else if (radioButtonExtractGeneralCosmetics.IsChecked == true)
             {
+                NoSpecify();
                 return "G";
             }
             else if (radioButtonExtractHeroCosmetics.IsChecked == true)
@@ -330,6 +331,14 @@ namespace QuickOverTool_WPF
             whichRadioButton();
             // 判断：是否选择了守望先锋路径
             if (!CheckOverwatchValidity(textBoxOverwatchPath.Text)) return;
+            // 判断：是否按需选择了输出路径
+            if (textBoxOutputPath.IsEnabled &&
+                string.IsNullOrEmpty(textBoxOutputPath.Text))
+            {
+                textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Red);
+                AddLog("需要选择输出路径。");
+                return;
+            }
             // 构建命令行
             string cmdLine;
             // 命令行：选定语言
@@ -377,7 +386,7 @@ namespace QuickOverTool_WPF
                 cmdLine = cmdLine + " \"" + cosmeticsType + "\"" 
                     + " \"" + textBoxExtractionHero.Text + "\"";
             }
-            // 命令行：跳过提取
+            // 命令行：跳过提取 - 已弃用
             /*
             if (radioButtonExtractHeroCosmetics.IsChecked == true)
             {

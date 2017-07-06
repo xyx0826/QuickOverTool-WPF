@@ -146,7 +146,6 @@ namespace QuickOverTool_WPF
                         break;
                     }
                 }
-                // labelOverwatchVersion.Content = pdbRead.Substring(pdbRead.Length - 16, 14);
                 pdbStream.BaseStream.Position = 0;
                 pdbStream.DiscardBufferedData();
                 while (pdbStream.Peek() >= 0)
@@ -197,6 +196,7 @@ namespace QuickOverTool_WPF
         }
 
         // 检测模式选择
+        // 为模式返回命令行参数，并决定输出路径与额外选项的可用性
         private string whichRadioButton()
         {
             if (radioButtonListGeneralCosmetics.IsChecked == true)
@@ -281,6 +281,19 @@ namespace QuickOverTool_WPF
                 NoSpecify();
                 return "L";
             }
+            else if (radioButtonExtractAnnouncer.IsChecked == true)
+            {
+                NoSpecify();
+                return "c";
+            }
+            else if (radioButtonExtractMapAudio.IsChecked == true)
+            {
+                return "a";
+            }
+            else if (radioButtonExtractNPCVoice.IsChecked == true)
+            {
+                return "v";
+            }
             else return "";
         }
         // 选定守望先锋路径
@@ -364,7 +377,27 @@ namespace QuickOverTool_WPF
                 cmdLine = cmdLine + " \"" + cosmeticsType + "\"" 
                     + " \"" + textBoxExtractionHero.Text + "\"";
             }
-
+            // 命令行：跳过提取
+            /*
+            if (radioButtonExtractHeroCosmetics.IsChecked == true)
+            {
+                cmdLine = cmdLine + " +";
+                if (checkBoxSkipTexture.IsChecked == false) cmdLine = cmdLine + 't';
+                else cmdLine = cmdLine + 'T';
+                if (checkBoxSkipAnimation.IsChecked == false) cmdLine = cmdLine + 'a';
+                else cmdLine = cmdLine + 'A';
+                if (checkBoxSkipModel.IsChecked == false) cmdLine = cmdLine + 'm';
+                else cmdLine = cmdLine + 'M';
+                if (checkBoxSkipSound.IsChecked == false) cmdLine = cmdLine + 's';
+                else cmdLine = cmdLine + 'S';
+                // Default, not all models have collision models
+                cmdLine = cmdLine + 'c';
+                if (checkBoxSkipRef.IsChecked == false) cmdLine = cmdLine + 'r';
+                else cmdLine = cmdLine + 'R';
+                if (checkBoxSkipGUI.IsChecked == false) cmdLine = cmdLine + 'i';
+                else cmdLine = cmdLine + 'I';
+            }
+            */
             AddLog("命令行：OverTool.exe" + cmdLine);
             // 启动
             StartUp(cmdLine);

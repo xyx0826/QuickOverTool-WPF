@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
         mc:Ignorable="d"
-        Title="QuickOverTool - OverTool 图形化界面 (Alpha-v2.4) - 20170705" Height="593.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
+        Title="QuickOverTool - OverTool 图形化界面 (Alpha-v3.0) - 20170706" Height="593.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="107*"/>
@@ -37,22 +37,22 @@
         <CheckBox x:Name="checkBoxSkipKeys" Content="跳过密钥检测" HorizontalAlignment="Left" Margin="317,46,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="checkBoxExpert" Content="输出更多资源信息" HorizontalAlignment="Left" Margin="414,46,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="checkBoxRaw" Content="完全跳过文件转换" HorizontalAlignment="Left" Margin="535,46,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <GroupBox x:Name="groupBoxSkipExtractions" Header="跳过提取 (WIP)" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2" BorderBrush="#FFC000FF" Foreground="#FFC000FF">
-            <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170">
+        <GroupBox x:Name="groupBoxSkipExtractions" Header="跳过提取" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2" BorderBrush="#FFC000FF" Foreground="#FFC000FF" ToolTip="">
+            <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170" ToolTip="">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="0*"/>
                 </Grid.ColumnDefinitions>
-                <CheckBox x:Name="checkBoxSkipModel" Content="模型" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Height="15" Width="44" IsEnabled="False"/>
-                <CheckBox x:Name="checkBoxSkipTexture" Content="材质" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="15" Width="44" IsEnabled="False"/>
-                <CheckBox x:Name="checkBoxSkipAnimation" Content="动画" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="15" Width="44" IsEnabled="False"/>
-                <CheckBox x:Name="checkBoxSkipSound" Content="声音" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="15" Width="44" IsEnabled="False"/>
-                <CheckBox x:Name="checkBoxSkipRef" Content="模型参考姿势" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" Height="15" Width="92" IsEnabled="False"/>
-                <CheckBox x:Name="checkBoxSkipGUI" Content="用户界面图标" HorizontalAlignment="Left" Margin="59,30,0,0" VerticalAlignment="Top" Height="15" Width="92" IsEnabled="False"/>
+                <CheckBox x:Name="checkBoxSkipModel" Content="模型" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Height="15" Width="44"/>
+                <CheckBox x:Name="checkBoxSkipTexture" Content="材质" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="15" Width="44"/>
+                <CheckBox x:Name="checkBoxSkipAnimation" Content="动画" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="15" Width="44"/>
+                <CheckBox x:Name="checkBoxSkipSound" Content="声音" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="15" Width="44"/>
+                <CheckBox x:Name="checkBoxSkipRef" Content="模型参考姿势" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" Height="15" Width="92"/>
+                <CheckBox x:Name="checkBoxSkipGUI" Content="用户界面图标" HorizontalAlignment="Left" Margin="59,30,0,0" VerticalAlignment="Top" Height="15" Width="92"/>
             </Grid>
         </GroupBox>
         <CheckBox x:Name="checkBoxCollision" Content="提取碰撞模型" HorizontalAlignment="Left" Margin="656,46,0,0" VerticalAlignment="Top"/>
-        <GroupBox x:Name="groupBoxExtractionFormats" Header="提取格式 (WIP)" HorizontalAlignment="Left" Height="120" Margin="664,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2">
+        <!-- <GroupBox x:Name="groupBoxExtractionFormats" Header="提取格式 (WIP)" HorizontalAlignment="Left" Height="120" Margin="664,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2">
             <Grid x:Name="gridGroupBoxExtractionFormats" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -63,12 +63,12 @@
                 <CheckBox x:Name="checkBoxAnimationFormat" Content="指定动画转换格式" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" IsEnabled="False"/>
                 <TextBox x:Name="textBoxAnimationFormat" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="16" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="10" IsEnabled="False"/>
             </Grid>
-        </GroupBox>
+        </GroupBox> -->
         <GroupBox x:Name="groupBoxOutput" Header="输出" HorizontalAlignment="Left" Height="140" Margin="0,95.2,0,0" VerticalAlignment="Top" Width="835" Grid.Row="2">
             <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="110" TextWrapping="Wrap" VerticalAlignment="Top" Width="815" Margin="4,4,0,0" Text="QuickOverTool-WPF 已经启动..." HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
         </GroupBox>
-        <GroupBox x:Name="groupBoxModes" Header="工作模式" HorizontalAlignment="Left" Height="120" Margin="185,70,0,0" VerticalAlignment="Top" Width="475" Grid.RowSpan="2">
-            <Grid x:Name="gridGroupBoxModes" HorizontalAlignment="Left" Margin="0,0,-1.8,-12" Width="465">
+        <GroupBox x:Name="groupBoxModes" Header="工作模式" HorizontalAlignment="Left" Height="120" Margin="185,70,0,0" VerticalAlignment="Top" Width="649" Grid.RowSpan="2">
+            <Grid x:Name="gridGroupBoxModes" HorizontalAlignment="Left" Margin="0,0,-2.2,-12" Width="639">
                 <RadioButton x:Name="radioButtonListGeneralCosmetics" Content="列出通用物品" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <RadioButton x:Name="radioButtonListHeroCosmetics" Content="列出英雄物品" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top"/>
                 <RadioButton x:Name="radioButtonListMaps" Content="列出地图" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top"/>
@@ -85,6 +85,9 @@
                 <RadioButton x:Name="radioButtonExtractWeaponSkins" Content="提取某英雄的武器皮肤" HorizontalAlignment="Left" Margin="298,29,0,0" VerticalAlignment="Top" ToolTip="可选参数：关键字" Foreground="Blue"/>
                 <RadioButton x:Name="radioButtonExtractNPCs" Content="提取 NPCs" HorizontalAlignment="Left" Margin="298,48,0,0" VerticalAlignment="Top"/>
                 <RadioButton x:Name="radioButtonExtractLootbox" Content="提取补给箱" HorizontalAlignment="Left" Margin="298,67,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonExtractAnnouncer" Content="提取系统广播" HorizontalAlignment="Left" Margin="442,10,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonExtractNPCVoice" Content="提取 NPC 语音" HorizontalAlignment="Left" Margin="442,48,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：NPC"/>
+                <RadioButton x:Name="radioButtonExtractMapAudio" Content="提取地图音效" HorizontalAlignment="Left" Margin="442,29,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：地图"/>
             </Grid>
         </GroupBox>
         <Label x:Name="labelSpecify" Content="蓝色选项的可选参数（英雄、地图名称等）（使用选定语言的名称）" HorizontalAlignment="Left" Margin="10,88.2,0,0" VerticalAlignment="Top" Height="25" Width="370" VerticalContentAlignment="Center" Grid.Row="1"/>

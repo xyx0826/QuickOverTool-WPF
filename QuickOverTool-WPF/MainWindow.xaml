@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
         mc:Ignorable="d"
-        Title="QuickOverTool - OverTool 图形化界面 (Alpha-v3.0) - 20170706" Height="593.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
+        Title="QuickOverTool - DataTool 图形化界面（守望先锋 1.13+）" Height="593.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="107*"/>
@@ -18,7 +18,7 @@
         <Label x:Name="labelValidity" Content="" HorizontalAlignment="Left" Margin="710,10,0,0" VerticalAlignment="Top" Foreground="Red" Height="25" Width="126"/>
         <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="680,10,0,0" VerticalAlignment="Top" Width="25" Height="25" Content="..." Click="buttonPath_Click"/>
         <Label x:Name="labelLanguage" Content="目标语言：" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="25" Width="70" VerticalContentAlignment="Center"/>
-        <ComboBox x:Name="comboBoxLanguage" HorizontalAlignment="Left" Margin="85,42,0,0" VerticalAlignment="Top" Width="130" SelectedIndex="0">
+        <ComboBox x:Name="comboBoxLanguage" HorizontalAlignment="Left" Margin="85,42,0,0" VerticalAlignment="Top" Width="130" SelectedIndex="0" SelectionChanged="comboBoxLanguage_SelectionChanged">
             <ComboBoxItem Content="enUS（英文）"/>
             <ComboBoxItem Content="zhCN（简体中文）"/>
             <ComboBoxItem Content="zhTW（繁体中文）"/>
@@ -37,8 +37,8 @@
         <CheckBox x:Name="checkBoxSkipKeys" Content="跳过密钥检测" HorizontalAlignment="Left" Margin="317,46,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="checkBoxExpert" Content="输出更多资源信息" HorizontalAlignment="Left" Margin="414,46,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="checkBoxRaw" Content="完全跳过文件转换" HorizontalAlignment="Left" Margin="535,46,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <GroupBox x:Name="groupBoxSkipExtractions" Header="跳过提取" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2" BorderBrush="#FFC000FF" Foreground="#FFC000FF" ToolTip="">
-            <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170" ToolTip="">
+        <GroupBox x:Name="groupBoxSkipExtractions" Header="跳过提取（不可用）" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2" BorderBrush="#FFC000FF" Foreground="#FFC000FF" ToolTip="">
+            <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170" ToolTip="" IsEnabled="False">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="0*"/>
@@ -70,24 +70,24 @@
         <GroupBox x:Name="groupBoxModes" Header="工作模式" HorizontalAlignment="Left" Height="120" Margin="185,70,0,0" VerticalAlignment="Top" Width="649" Grid.RowSpan="2">
             <Grid x:Name="gridGroupBoxModes" HorizontalAlignment="Left" Margin="0,0,-2.2,-12" Width="639">
                 <RadioButton x:Name="radioButtonListGeneralCosmetics" Content="列出通用物品" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="radioButtonListHeroCosmetics" Content="列出英雄物品" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonListHeroCosmetics" Content="列出英雄物品" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" IsEnabled="False"/>
                 <RadioButton x:Name="radioButtonListMaps" Content="列出地图" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="radioButtonListTextures" Content="列出材质" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" ToolTip="可选参数：模型 ID" Foreground="Blue"/>
+                <RadioButton x:Name="radioButtonListTextures" Content="列出材质" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" ToolTip="可选参数：模型 ID" Foreground="Blue" IsEnabled="False"/>
                 <RadioButton x:Name="radioButtonListStrings" Content="列出字符串" HorizontalAlignment="Left" Margin="106,10,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="radioButtonListNPCs" Content="列出 NPCs" HorizontalAlignment="Left" Margin="106,29,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonListNPCs" Content="列出 NPCs" HorizontalAlignment="Left" Margin="106,29,0,0" VerticalAlignment="Top" IsEnabled="False"/>
                 <RadioButton x:Name="radioButtonListLootbox" Content="列出补给箱" HorizontalAlignment="Left" Margin="106,48,0,0" VerticalAlignment="Top"/>
                 <RadioButton x:Name="radioButtonListKeys" Content="列出密钥" HorizontalAlignment="Left" Margin="106,67,0,0" VerticalAlignment="Top"/>
                 <RadioButton x:Name="radioButtonExtractGeneralCosmetics" Content="提取通用物品" HorizontalAlignment="Left" Margin="202,10,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="radioButtonExtractHeroCosmetics" Content="提取英雄资源" HorizontalAlignment="Left" Margin="202,29,0,0" VerticalAlignment="Top" Foreground="#FFC000FF" ToolTip="使用紫色提取选项来自定义目标。"/>
+                <RadioButton x:Name="radioButtonExtractHeroCosmetics" Content="提取英雄资源" HorizontalAlignment="Left" Margin="202,29,0,0" VerticalAlignment="Top" Foreground="#FFC000FF" ToolTip="使用紫色提取选项来自定义目标。" IsEnabled="False"/>
                 <RadioButton x:Name="radioButtonExtractMaps" Content="提取地图" HorizontalAlignment="Left" Margin="202,48,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：地图"/>
-                <RadioButton x:Name="radioButtonExtractVoice" Content="提取语音" HorizontalAlignment="Left" Margin="202,67,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：英雄"/>
-                <RadioButton x:Name="radioButtonExtractSoundAllSkins" Content="提取某英雄的全部音频" HorizontalAlignment="Left" Margin="298,10,0,0" VerticalAlignment="Top" ToolTip="可选参数：英雄" Foreground="Blue"/>
-                <RadioButton x:Name="radioButtonExtractWeaponSkins" Content="提取某英雄的武器皮肤" HorizontalAlignment="Left" Margin="298,29,0,0" VerticalAlignment="Top" ToolTip="可选参数：关键字" Foreground="Blue"/>
+                <RadioButton x:Name="radioButtonExtractVoice" Content="提取语音" HorizontalAlignment="Left" Margin="202,67,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：英雄" IsEnabled="False"/>
+                <RadioButton x:Name="radioButtonExtractSoundAllSkins" Content="提取某英雄的全部音频" HorizontalAlignment="Left" Margin="298,10,0,0" VerticalAlignment="Top" ToolTip="可选参数：英雄" Foreground="Blue" IsEnabled="False"/>
+                <RadioButton x:Name="radioButtonExtractWeaponSkins" Content="提取某英雄的武器皮肤" HorizontalAlignment="Left" Margin="298,29,0,0" VerticalAlignment="Top" ToolTip="可选参数：关键字" Foreground="Blue" IsEnabled="False"/>
                 <RadioButton x:Name="radioButtonExtractNPCs" Content="提取 NPCs" HorizontalAlignment="Left" Margin="298,48,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="radioButtonExtractLootbox" Content="提取补给箱" HorizontalAlignment="Left" Margin="298,67,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="radioButtonExtractAnnouncer" Content="提取系统广播" HorizontalAlignment="Left" Margin="442,10,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="radioButtonExtractNPCVoice" Content="提取 NPC 语音" HorizontalAlignment="Left" Margin="442,48,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：NPC"/>
-                <RadioButton x:Name="radioButtonExtractMapAudio" Content="提取地图音效" HorizontalAlignment="Left" Margin="442,29,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：地图"/>
+                <RadioButton x:Name="radioButtonExtractLootbox" Content="提取补给箱模型" HorizontalAlignment="Left" Margin="298,67,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButtonExtractAnnouncer" Content="提取系统广播" HorizontalAlignment="Left" Margin="442,10,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+                <RadioButton x:Name="radioButtonExtractNPCVoice" Content="提取 NPC 语音" HorizontalAlignment="Left" Margin="442,48,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：NPC" IsEnabled="False"/>
+                <RadioButton x:Name="radioButtonExtractMapAudio" Content="提取地图音效" HorizontalAlignment="Left" Margin="442,29,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="可选参数：地图" IsEnabled="False"/>
             </Grid>
         </GroupBox>
         <Label x:Name="labelSpecify" Content="蓝色选项的可选参数（英雄、地图名称等）（使用选定语言的名称）" HorizontalAlignment="Left" Margin="10,88.2,0,0" VerticalAlignment="Top" Height="25" Width="370" VerticalContentAlignment="Center" Grid.Row="1" Foreground="Blue"/>

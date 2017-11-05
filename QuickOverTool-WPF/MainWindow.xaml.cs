@@ -23,14 +23,14 @@ namespace QuickOverTool_WPF
         private string cascLibDll;
         // 全局变量：.build.info 读取
         private StreamReader pdbStream;
-        // 全局变量：OverTool 进程 ID
-        private int overToolPID;
+        // 全局变量：DataTool 进程 ID
+        private int dataToolPID;
         // 主窗体初始化
         public MainWindow()
         {
             InitializeComponent();
 
-            // 启动检查守望先锋 & OverTool 有效性
+            // 启动检查守望先锋 & DataTool 有效性
             if (!String.IsNullOrEmpty(textBoxOverwatchPath.Text))
             {
                 CheckOverwatchValidity(textBoxOverwatchPath.Text);
@@ -57,13 +57,13 @@ namespace QuickOverTool_WPF
                 return false;
             }
         }
-        // 检查 OverTool
+        // 检查 DataTool
         public bool CheckOverToolValidity()
         {
             sharedPath = Path.GetDirectoryName
                 (Assembly.GetEntryAssembly().CodeBase).Substring(6);
             overToolExecutable = Path.Combine
-                (sharedPath, "OverTool.exe");
+                (sharedPath, "DataTool.exe");
             if (File.Exists(overToolExecutable))
             {
                 cascLibDll = Path.Combine(sharedPath, "CascLib.dll");
@@ -77,7 +77,7 @@ namespace QuickOverTool_WPF
         // 检查单更新
         public void UpdateChecklist()
         {
-            // OverTool 核心程序
+            // DataTool 核心程序
             if (CheckOverToolValidity())
             {
                 labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Green);
@@ -88,7 +88,7 @@ namespace QuickOverTool_WPF
                 labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Red);
                 labelOverToolExecutable.Content = "无效";
             }
-            // OverTool 完整性
+            // DataTool 完整性
             if (File.Exists(Path.Combine(sharedPath, "OWLib.dll")) &&
                 File.Exists(Path.Combine(sharedPath, "CascLib.dll")) &&
                 File.Exists(Path.Combine(sharedPath, "ow.keys")) &&
@@ -386,28 +386,7 @@ namespace QuickOverTool_WPF
                 cmdLine = cmdLine + " \"" + cosmeticsType + "\"" 
                     + " \"" + textBoxExtractionHero.Text + "\"";
             }
-            // 命令行：跳过提取 - 已弃用
-            /*
-            if (radioButtonExtractHeroCosmetics.IsChecked == true)
-            {
-                cmdLine = cmdLine + " +";
-                if (checkBoxSkipTexture.IsChecked == false) cmdLine = cmdLine + 't';
-                else cmdLine = cmdLine + 'T';
-                if (checkBoxSkipAnimation.IsChecked == false) cmdLine = cmdLine + 'a';
-                else cmdLine = cmdLine + 'A';
-                if (checkBoxSkipModel.IsChecked == false) cmdLine = cmdLine + 'm';
-                else cmdLine = cmdLine + 'M';
-                if (checkBoxSkipSound.IsChecked == false) cmdLine = cmdLine + 's';
-                else cmdLine = cmdLine + 'S';
-                // Default, not all models have collision models
-                cmdLine = cmdLine + 'c';
-                if (checkBoxSkipRef.IsChecked == false) cmdLine = cmdLine + 'r';
-                else cmdLine = cmdLine + 'R';
-                if (checkBoxSkipGUI.IsChecked == false) cmdLine = cmdLine + 'i';
-                else cmdLine = cmdLine + 'I';
-            }
-            */
-            AddLog("命令行：OverTool.exe" + cmdLine);
+            AddLog("命令行：DataTool.exe" + cmdLine);
             // 启动
             StartUp(cmdLine);
 
@@ -417,25 +396,25 @@ namespace QuickOverTool_WPF
         // 启动进程
         private void StartUp(string command)
         {
-            using (Process overTool = new Process())
+            using (Process dataTool = new Process())
             {
-                { // OverTool 进程配置
-                    overTool.StartInfo.FileName = "OverTool.exe";
-                    overTool.StartInfo.Arguments = command;
-                    overTool.StartInfo.UseShellExecute = false;
-                    overTool.StartInfo.RedirectStandardOutput = true;
-                    overTool.StartInfo.StandardOutputEncoding = Encoding.Default;
-                    overTool.StartInfo.RedirectStandardError = true;
-                    overTool.StartInfo.StandardErrorEncoding = Encoding.Default;
-                    overTool.StartInfo.CreateNoWindow = true;
+                { // DataTool 进程配置
+                    dataTool.StartInfo.FileName = "DataTool.exe";
+                    dataTool.StartInfo.Arguments = command;
+                    dataTool.StartInfo.UseShellExecute = false;
+                    dataTool.StartInfo.RedirectStandardOutput = true;
+                    dataTool.StartInfo.StandardOutputEncoding = Encoding.Default;
+                    dataTool.StartInfo.RedirectStandardError = true;
+                    dataTool.StartInfo.StandardErrorEncoding = Encoding.Default;
+                    dataTool.StartInfo.CreateNoWindow = true;
                 }
 
-                overTool.Start();
-                overToolPID = overTool.Id;
-                overTool.BeginOutputReadLine();
-                overTool.BeginErrorReadLine();
-                overTool.OutputDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
-                overTool.ErrorDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
+                dataTool.Start();
+                dataToolPID = dataTool.Id;
+                dataTool.BeginOutputReadLine();
+                dataTool.BeginErrorReadLine();
+                dataTool.OutputDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
+                dataTool.ErrorDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
             }
         }
         // 获取输出
@@ -469,13 +448,13 @@ namespace QuickOverTool_WPF
         {
             try
             {
-                Process proc = Process.GetProcessById(overToolPID);
+                Process proc = Process.GetProcessById(dataToolPID);
                 proc.Kill();
-                AddLog("OverTool 进程被强行终止了。");
+                AddLog("DataTool 进程被强行终止了。");
             }
             catch
             {
-                AddLog("未能终止 OverTool 进程；或许其并未在运行。");
+                AddLog("未能终止 DataTool 进程；或许其并未在运行。");
                 return;
             }
         }

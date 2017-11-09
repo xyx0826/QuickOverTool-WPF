@@ -15,156 +15,34 @@ namespace QuickOverTool_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        // 全局变量：二进制文件路径
-        private string sharedPath;
-        private string buildInfoPath;
-        private string pdbPath;
-        private string overToolExecutable;
-        private string cascLibDll;
-        // 全局变量：.build.info 读取
-        private StreamReader pdbStream;
-        // 全局变量：DataTool 进程 ID
         private int dataToolPID;
         // 主窗体初始化
         public MainWindow()
         {
             InitializeComponent();
-
-            // 启动检查守望先锋 & DataTool 有效性
-            if (!String.IsNullOrEmpty(textBoxOverwatchPath.Text))
+            // 启动检查守望先锋 & Validation.DataTool 有效性
+            try
             {
-                CheckOverwatchValidity(textBoxOverwatchPath.Text);
+                if (Validation.Overwatch(textBoxOverwatchPath.Text))
+                {
+                    labelValidity.Content = "守望先锋目录有效";
+                    textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Blue);
+                    labelValidity.Foreground = new SolidColorBrush(Colors.Green);
+                }
+                else
+                {
+                    labelValidity.Content = "守望先锋目录无效";
+                    textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Red);
+                    labelValidity.Foreground = new SolidColorBrush(Colors.Red);
+                }
             }
-            UpdateChecklist();
-        }
-        // 检查守望先锋
-        public bool CheckOverwatchValidity(string path)
-        {
-            buildInfoPath = Path.Combine(path, ".build.info");
-            if (File.Exists(buildInfoPath))
+            catch
             {
-                labelValidity.Content = "守望先锋目录有效";
-                textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Blue);
-                labelValidity.Foreground = new SolidColorBrush(Colors.Green);
-                return true;
-            }
-            else
-            {
-                buildInfoPath = null;
                 labelValidity.Content = "守望先锋目录无效";
                 textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Red);
                 labelValidity.Foreground = new SolidColorBrush(Colors.Red);
-                return false;
             }
-        }
-        // 检查 DataTool
-        public bool CheckOverToolValidity()
-        {
-            sharedPath = Path.GetDirectoryName
-                (Assembly.GetEntryAssembly().CodeBase).Substring(6);
-            overToolExecutable = Path.Combine
-                (sharedPath, "DataTool.exe");
-            if (File.Exists(overToolExecutable))
-            {
-                cascLibDll = Path.Combine(sharedPath, "CascLib.dll");
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        // 检查单更新
-        public void UpdateChecklist()
-        {
-            // DataTool 核心程序
-            if (CheckOverToolValidity())
-            {
-                labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Green);
-                labelOverToolExecutable.Content = "有效";
-            }
-            else
-            {
-                labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Red);
-                labelOverToolExecutable.Content = "无效";
-            }
-            // DataTool 完整性
-            if (File.Exists(Path.Combine(sharedPath, "OWLib.dll")) &&
-                File.Exists(Path.Combine(sharedPath, "CascLib.dll")) &&
-                File.Exists(Path.Combine(sharedPath, "ow.keys")) &&
-                File.Exists(Path.Combine(sharedPath, "ow.events")))
-            {
-                labelOverToolIntegrity.Foreground = new SolidColorBrush(Colors.Green);
-                labelOverToolIntegrity.Content = "完整";
-            }
-            else
-            {
-                labelOverToolIntegrity.Foreground = new SolidColorBrush(Colors.Red);
-                labelOverToolIntegrity.Content = "不完整";
-            }
-            // 守望先锋信息
-            GetOverwatchInfo();
-            // 守望先锋完整性
-            if (File.Exists(Path.Combine(textBoxOverwatchPath.Text, "Overwatch Launcher.exe")))
-            {
-                labelOverwatchIntegrity.Foreground = new SolidColorBrush(Colors.Green);
-                labelOverwatchIntegrity.Content = "有效";
-            }
-            else
-            {
-                labelOverwatchIntegrity.Foreground = new SolidColorBrush(Colors.Red);
-                labelOverwatchIntegrity.Content = "不完整";
-            }
-            // CascLib 版本
-            if (File.Exists(cascLibDll))
-            {
-                labelCascLibVersion.Content =
-                FileVersionInfo.GetVersionInfo(Path.Combine(sharedPath, "OWLib.dll")).FileVersion;
-            }
-        }
-        // .product.db 读取守望先锋信息
-        public void GetOverwatchInfo()
-        {
-            if (!File.Exists(Path.Combine(textBoxOverwatchPath.Text, ".product.db")))
-            {
-                labelOverwatchBranch.Content = "无法读取";
-                return;
-            }
-
-            pdbPath = Path.Combine(textBoxOverwatchPath.Text, ".product.db");
-            string pdbRead;
-            pdbStream = new StreamReader(pdbPath);
-
-            using (var reader = File.OpenText(pdbPath))
-            {
-                pdbRead = pdbStream.ReadLine();
-                while (pdbStream.Peek() >= 0)
-                {
-                    pdbRead = pdbStream.ReadLine();
-                    if (pdbRead.EndsWith("B&"))
-                    {
-                        break;
-                    }
-                }
-                pdbStream.BaseStream.Position = 0;
-                pdbStream.DiscardBufferedData();
-                while (pdbStream.Peek() >= 0)
-                {
-                    pdbRead = pdbStream.ReadLine();
-                    if (pdbRead.Contains("prometheus_test"))
-                    {
-                        labelOverwatchBranch.Content = "PTR (测试服)";
-                        pdbStream.Close();
-                        break;
-                    }
-                    else if (pdbRead.Contains("prometheus"))
-                    {
-                        labelOverwatchBranch.Content = "正式服";
-                        pdbStream.Close();
-                        break;
-                    }
-                }
-            }
+            Validation.Checklist();
         }
         // 日志输出增行
         public delegate void AddLogRuntime(string content);
@@ -195,6 +73,10 @@ namespace QuickOverTool_WPF
             textBoxOutputPath.IsEnabled = false;
         }
 
+        public void SetLabel(string text)
+        {
+            labelOverwatchIntegrity.Content = text;
+        }
         // 检测模式选择
         // 为模式返回命令行参数，并决定输出路径与额外选项的可用性
         private string whichRadioButton()
@@ -303,9 +185,9 @@ namespace QuickOverTool_WPF
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             DialogResult folderBrowserResult = folderBrowser.ShowDialog();
             textBoxOverwatchPath.Text = folderBrowser.SelectedPath;
-            CheckOverwatchValidity(textBoxOverwatchPath.Text);
+            Validation.Overwatch(textBoxOverwatchPath.Text);
             GetOverwatchInfo();
-            UpdateChecklist(); // Thanks NGA ID: 平衡先生 (38935700)
+            UpdateChecklist();
         }
         // 选定输出路径
         private void buttonOutputPath_Click(object sender, RoutedEventArgs e)
@@ -330,7 +212,7 @@ namespace QuickOverTool_WPF
             textBoxOutput.Text = "";
             whichRadioButton();
             // 判断：是否选择了守望先锋路径
-            if (!CheckOverwatchValidity(textBoxOverwatchPath.Text)) return;
+            if (!Validation.Overwatch(textBoxOverwatchPath.Text)) return;
             // 判断：是否按需选择了输出路径
             if (textBoxOutputPath.IsEnabled &&
                 string.IsNullOrEmpty(textBoxOutputPath.Text))
@@ -386,7 +268,7 @@ namespace QuickOverTool_WPF
                 cmdLine = cmdLine + " \"" + cosmeticsType + "\"" 
                     + " \"" + textBoxExtractionHero.Text + "\"";
             }
-            AddLog("命令行：DataTool.exe" + cmdLine);
+            AddLog("命令行：Validation.DataTool.exe" + cmdLine);
             // 启动
             StartUp(cmdLine);
 
@@ -398,8 +280,8 @@ namespace QuickOverTool_WPF
         {
             using (Process dataTool = new Process())
             {
-                { // DataTool 进程配置
-                    dataTool.StartInfo.FileName = "DataTool.exe";
+                { // Validation.DataTool 进程配置
+                    dataTool.StartInfo.FileName = "Validation.DataTool.exe";
                     dataTool.StartInfo.Arguments = command;
                     dataTool.StartInfo.UseShellExecute = false;
                     dataTool.StartInfo.RedirectStandardOutput = true;
@@ -450,11 +332,11 @@ namespace QuickOverTool_WPF
             {
                 Process proc = Process.GetProcessById(dataToolPID);
                 proc.Kill();
-                AddLog("DataTool 进程被强行终止了。");
+                AddLog("Validation.DataTool 进程被强行终止了。");
             }
             catch
             {
-                AddLog("未能终止 DataTool 进程；或许其并未在运行。");
+                AddLog("未能终止 Validation.DataTool 进程；或许其并未在运行。");
                 return;
             }
         }

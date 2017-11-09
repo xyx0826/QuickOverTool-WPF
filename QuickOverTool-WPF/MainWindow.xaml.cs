@@ -15,34 +15,67 @@ namespace QuickOverTool_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int dataToolPID;
+        // Some useful variables
+        int dataToolPID;
+        string sharedPath = Path.GetDirectoryName
+            (Assembly.GetEntryAssembly().CodeBase).Substring(6);
         // 主窗体初始化
         public MainWindow()
         {
             InitializeComponent();
-            // 启动检查守望先锋 & Validation.DataTool 有效性
-            try
+            FlushChecklist();
+        }
+
+        // 检查单更新
+        public void FlushChecklist()
+        {
+            // DataTool 核心程序
+            string[] dataTool = Validation.DataTool(sharedPath);
+            string[] overwatch = Validation.Overwatch(textBoxOverwatchPath.Text);
+            if (dataTool[0] != null)
             {
-                if (Validation.Overwatch(textBoxOverwatchPath.Text))
-                {
-                    labelValidity.Content = "守望先锋目录有效";
-                    textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Blue);
-                    labelValidity.Foreground = new SolidColorBrush(Colors.Green);
-                }
-                else
-                {
-                    labelValidity.Content = "守望先锋目录无效";
-                    textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Red);
-                    labelValidity.Foreground = new SolidColorBrush(Colors.Red);
-                }
+                labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Green);
+                labelOverToolExecutable.Content = dataTool[0];
             }
-            catch
+            else
+            {
+                labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Red);
+                labelOverToolExecutable.Content = "无效";
+            }
+            // DataTool 完整性
+            if (dataTool[1] != null)
+            {
+                labelOverToolIntegrity.Foreground = new SolidColorBrush(Colors.Green);
+                labelOverToolIntegrity.Content = "完整";
+            }
+            else
+            {
+                labelOverToolIntegrity.Foreground = new SolidColorBrush(Colors.Red);
+                labelOverToolIntegrity.Content = "不完整";
+            }
+            // 守望先锋版本
+            if (overwatch != null)
+            {
+                labelValidity.Content = "守望先锋目录有效";
+                labelValidity.Foreground = new SolidColorBrush(Colors.Green);
+                textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Blue);
+
+                labelOverwatchVersion.Foreground = new SolidColorBrush(Colors.Green);
+                labelOverwatchVersion.Content = overwatch[0];
+                labelOverwatchBranch.Foreground = new SolidColorBrush(Colors.Green);
+                labelOverwatchBranch.Content = overwatch[1];
+            }
+            else
             {
                 labelValidity.Content = "守望先锋目录无效";
                 textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Red);
                 labelValidity.Foreground = new SolidColorBrush(Colors.Red);
+
+                labelOverwatchVersion.Foreground = new SolidColorBrush(Colors.Red);
+                labelOverwatchVersion.Content = "未知";
+                labelOverwatchBranch.Foreground = new SolidColorBrush(Colors.Red);
+                labelOverwatchBranch.Content = "未知";
             }
-            Validation.Checklist();
         }
         // 日志输出增行
         public delegate void AddLogRuntime(string content);
@@ -61,7 +94,7 @@ namespace QuickOverTool_WPF
             }
         }
         
-        public void NoSpecify()
+        /* public void NoSpecify()
         {
             textBoxSpecify.Text = "";
             textBoxSpecify.IsEnabled = false;
@@ -71,113 +104,68 @@ namespace QuickOverTool_WPF
         {
             textBoxOutputPath.Text = "";
             textBoxOutputPath.IsEnabled = false;
-        }
+        } */
 
-        public void SetLabel(string text)
-        {
-            labelOverwatchIntegrity.Content = text;
-        }
         // 检测模式选择
         // 为模式返回命令行参数，并决定输出路径与额外选项的可用性
         private string whichRadioButton()
         {
             if (radioButtonListGeneralCosmetics.IsChecked == true)
             {
-                NoOutput();
-                NoSpecify();
+                // NoOutput();
+                // NoSpecify();
                 return "g";
             }
             else if (radioButtonListHeroCosmetics.IsChecked == true)
             {
-                NoOutput();
-                NoSpecify();
+                // NoOutput();
+                // NoSpecify();
                 return "t";
             }
             else if (radioButtonListMaps.IsChecked == true)
             {
-                NoOutput();
-                NoSpecify();
+                // NoOutput();
+                // NoSpecify();
                 return "m";
-            }
-            else if (radioButtonListTextures.IsChecked == true)
-            {
-                NoOutput();
-                return "T";
             }
             else if (radioButtonListStrings.IsChecked == true)
             {
-                NoOutput();
-                NoSpecify();
+                // NoOutput();
+                // NoSpecify();
                 return "s";
-            }
-            else if (radioButtonListNPCs.IsChecked == true)
-            {
-                NoOutput();
-                NoSpecify();
-                return "n";
             }
             else if (radioButtonListLootbox.IsChecked == true)
             {
-                NoOutput();
-                NoSpecify();
+                // NoOutput();
+                // NoSpecify();
                 return "l";
             }
             else if (radioButtonListKeys.IsChecked == true)
             {
-                NoOutput();
-                NoSpecify();
+                // NoOutput();
+                // NoSpecify();
                 return "Z";
             }
             else if (radioButtonExtractGeneralCosmetics.IsChecked == true)
             {
-                NoSpecify();
+                // NoSpecify();
                 return "G";
             }
             else if (radioButtonExtractHeroCosmetics.IsChecked == true)
             {
-                NoSpecify();
+                // NoSpecify();
                 return "x";
             }
             else if (radioButtonExtractMaps.IsChecked == true)
             {
                 return "M";
             }
-            else if (radioButtonExtractVoice.IsChecked == true)
-            {
-                return "v";
-            }
-            else if (radioButtonExtractSoundAllSkins.IsChecked == true)
-            {
-                return "V";
-            }
-            else if (radioButtonExtractWeaponSkins.IsChecked == true)
-            {
-                return "w";
-            }
-            else if (radioButtonExtractNPCs.IsChecked == true)
-            {
-                NoSpecify();
-                return "N";
-            }
             else if (radioButtonExtractLootbox.IsChecked == true)
             {
-                NoSpecify();
+                // NoSpecify();
                 return "L";
             }
-            else if (radioButtonExtractAnnouncer.IsChecked == true)
-            {
-                NoSpecify();
-                return "c";
-            }
-            else if (radioButtonExtractMapAudio.IsChecked == true)
-            {
-                return "a";
-            }
-            else if (radioButtonExtractNPCVoice.IsChecked == true)
-            {
-                return "v";
-            }
-            else return "";
+            else return null;
         }
         // 选定守望先锋路径
         private void buttonPath_Click(object sender, RoutedEventArgs e)
@@ -186,8 +174,7 @@ namespace QuickOverTool_WPF
             DialogResult folderBrowserResult = folderBrowser.ShowDialog();
             textBoxOverwatchPath.Text = folderBrowser.SelectedPath;
             Validation.Overwatch(textBoxOverwatchPath.Text);
-            GetOverwatchInfo();
-            UpdateChecklist();
+            FlushChecklist();
         }
         // 选定输出路径
         private void buttonOutputPath_Click(object sender, RoutedEventArgs e)
@@ -202,6 +189,8 @@ namespace QuickOverTool_WPF
         // 开始
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
+            // Sync the checklist once again
+            FlushChecklist();
             // 版权告知
             if (checkBoxCopyright.IsChecked != true)
             {
@@ -212,7 +201,8 @@ namespace QuickOverTool_WPF
             textBoxOutput.Text = "";
             whichRadioButton();
             // 判断：是否选择了守望先锋路径
-            if (!Validation.Overwatch(textBoxOverwatchPath.Text)) return;
+            if (textBoxOutputPath.IsEnabled && 
+                String.IsNullOrEmpty(textBoxOverwatchPath.Text)) return;
             // 判断：是否按需选择了输出路径
             if (textBoxOutputPath.IsEnabled &&
                 string.IsNullOrEmpty(textBoxOutputPath.Text))
@@ -227,15 +217,8 @@ namespace QuickOverTool_WPF
             cmdLine = " --language=" + comboBoxLanguage.SelectedItem.
                 ToString().Substring(38, 4);
             // 命令行：复选框
-            if (checkBoxSkipAnimation.IsChecked == true) cmdLine = cmdLine + " -A";
-            if (checkBoxSkipGUI.IsChecked == true) cmdLine = cmdLine + " -I";
             if (checkBoxSkipKeys.IsChecked == true) cmdLine = cmdLine + " -n";
-            if (checkBoxSkipModel.IsChecked == true) cmdLine = cmdLine + " -M";
-            if (checkBoxSkipRef.IsChecked == true) cmdLine = cmdLine + " -R";
-            if (checkBoxSkipSound.IsChecked == true) cmdLine = cmdLine + " -S";
-            if (checkBoxSkipTexture.IsChecked == true) cmdLine = cmdLine + " -T";
             if (checkBoxExpert.IsChecked == true) cmdLine = cmdLine + " --ex";
-            if (checkBoxCollision.IsChecked == true) cmdLine = cmdLine + " -C";
             // 命令行：守望先锋路径
             cmdLine = cmdLine + " \"" + textBoxOverwatchPath.Text + "\"";
             // 命令行：模式判断 + 选定模式
@@ -251,10 +234,11 @@ namespace QuickOverTool_WPF
             {
                 cmdLine = cmdLine + " \"" + textBoxOutputPath.Text + "\"";
             }
-            // 命令行：附加参数
+            /* Deprecated - 命令行：附加参数
             if (textBoxSpecify.IsEnabled == true)
                 cmdLine = cmdLine + " \"" + textBoxSpecify.Text + "\"";
-            // 命令行：提取英雄内容
+            */
+            /* Deprecated - 命令行：提取英雄内容
             if (radioButtonExtractHeroCosmetics.IsChecked == true)
             {
                 if (string.IsNullOrEmpty(textBoxExtractionHero.Text))
@@ -268,12 +252,13 @@ namespace QuickOverTool_WPF
                 cmdLine = cmdLine + " \"" + cosmeticsType + "\"" 
                     + " \"" + textBoxExtractionHero.Text + "\"";
             }
-            AddLog("命令行：Validation.DataTool.exe" + cmdLine);
+            */
+            AddLog("命令行：DataTool.exe" + cmdLine);
             // 启动
             StartUp(cmdLine);
 
             textBoxOutputPath.IsEnabled = true;
-            textBoxSpecify.IsEnabled = true;
+            // textBoxSpecify.IsEnabled = true;
         }
         // 启动进程
         private void StartUp(string command)
@@ -281,7 +266,7 @@ namespace QuickOverTool_WPF
             using (Process dataTool = new Process())
             {
                 { // Validation.DataTool 进程配置
-                    dataTool.StartInfo.FileName = "Validation.DataTool.exe";
+                    dataTool.StartInfo.FileName = "DataTool.exe";
                     dataTool.StartInfo.Arguments = command;
                     dataTool.StartInfo.UseShellExecute = false;
                     dataTool.StartInfo.RedirectStandardOutput = true;
@@ -295,12 +280,12 @@ namespace QuickOverTool_WPF
                 dataToolPID = dataTool.Id;
                 dataTool.BeginOutputReadLine();
                 dataTool.BeginErrorReadLine();
-                dataTool.OutputDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
-                dataTool.ErrorDataReceived += new DataReceivedEventHandler(OverTool_DataReceived);
+                dataTool.OutputDataReceived += new DataReceivedEventHandler(DataTool_DataReceived);
+                dataTool.ErrorDataReceived += new DataReceivedEventHandler(DataTool_DataReceived);
             }
         }
         // 获取输出
-        private void OverTool_DataReceived(object sender, DataReceivedEventArgs e)
+        private void DataTool_DataReceived(object sender, DataReceivedEventArgs e)
         {
             if (!String.IsNullOrEmpty(e.Data))
             {
@@ -332,11 +317,11 @@ namespace QuickOverTool_WPF
             {
                 Process proc = Process.GetProcessById(dataToolPID);
                 proc.Kill();
-                AddLog("Validation.DataTool 进程被强行终止了。");
+                AddLog("DataTool 进程被强行终止了。");
             }
             catch
             {
-                AddLog("未能终止 Validation.DataTool 进程；或许其并未在运行。");
+                AddLog("未能终止 DataTool 进程；或许其并未在运行。");
                 return;
             }
         }

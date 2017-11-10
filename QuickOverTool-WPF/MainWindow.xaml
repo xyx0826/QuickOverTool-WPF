@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
         mc:Ignorable="d"
-        Title="QuickDataTool - DataTool 图形化界面（守望先锋 1.13+）" Height="593.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize">
+        Title="QuickDataTool - DataTool 图形化界面（守望先锋 1.13+）" Height="534.4" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -78,7 +78,7 @@
             </Grid>
         </GroupBox>
         <!-- Output box -->
-        <GroupBox x:Name="groupBoxOutput" Header="输出" HorizontalAlignment="Left" Height="140" Margin="11,416,0,0" VerticalAlignment="Top" Width="824">
+        <GroupBox x:Name="groupBoxOutput" Header="输出" HorizontalAlignment="Left" Height="140" Margin="10,357,0,0" VerticalAlignment="Top" Width="824">
             <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="811" Text="QuickDataTool-WPF 已经启动..." HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
         </GroupBox>
         <!-- Modes -->
@@ -119,12 +119,12 @@
         </ComboBox>
         -->
         <!-- Export path -->
-        <Label x:Name="labelOutputPath" Content="文件提取导出路径" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3"/>
-        <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="680,255,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
-        <Button x:Name="buttonStart" Content="开始！" HorizontalAlignment="Left" Margin="710,255,0,0" VerticalAlignment="Top" Width="124" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
+        <Label x:Name="labelOutputPath" Content="文件提取导出路径" HorizontalAlignment="Left" Margin="9,196,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3"/>
+        <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="679,196,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
+        <Button x:Name="buttonStart" Content="开始！" HorizontalAlignment="Left" Margin="709,196,0,0" VerticalAlignment="Top" Width="124" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
         <!-- Checklist -->
-        <GroupBox x:Name="groupBoxChecklists" Header="检查单" HorizontalAlignment="Left" Height="123" Margin="11,287,0,0" VerticalAlignment="Top" Width="620">
+        <GroupBox x:Name="groupBoxChecklists" Header="检查单" HorizontalAlignment="Left" Height="123" Margin="10,228,0,0" VerticalAlignment="Top" Width="620">
             <Grid HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="620" Margin="0,0,-12,-11.8">
                 <Label x:Name="labelTagOverwatchVersion" Content="守望先锋游戏版本：" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelTagOverwatchBranch" Content="守望先锋服务器：" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
@@ -137,9 +137,7 @@
             </Grid>
         </GroupBox>
         <!-- Misc -->
-        <Button x:Name="buttonTaskkill" Content="中止 DataTool 进程" HorizontalAlignment="Left" Margin="636,309,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click"/>
-        <Button x:Name="buttonSaveOutput" Content="保存输出日志到文件" HorizontalAlignment="Left" Margin="636,339,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonSaveOutput_Click"/>
-        <CheckBox x:Name="checkBoxCopyright" Content="我知悉并承诺：" HorizontalAlignment="Left" Margin="681,373,0,0" VerticalAlignment="Top" Foreground="Red" Checked="checkBoxCopyright_Checked"/>
-        <Label x:Name="labelCopyright" Content="守望先锋资源不可被用作商业用途。" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="636,385,9.6,0" VerticalAlignment="Top" Foreground="Red"/>
+        <Button x:Name="buttonTaskkill" Content="中止 DataTool 进程" HorizontalAlignment="Left" Margin="635,250,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click"/>
+        <Button x:Name="buttonSaveOutput" Content="保存输出日志到文件" HorizontalAlignment="Left" Margin="635,280,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonSaveOutput_Click"/>
     </Grid>
 </Window>

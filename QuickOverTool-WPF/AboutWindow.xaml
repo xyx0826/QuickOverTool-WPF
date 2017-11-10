@@ -1,0 +1,33 @@
+﻿<Window x:Name="windowAbout" x:Class="QuickOverTool_WPF.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuickOverTool_WPF"
+        mc:Ignorable="d"
+        Title="About QuickDataTool" Height="350" Width="350" ShowInTaskbar="False" ResizeMode="NoResize">
+    <Grid x:Name="gridAbout">
+        <TextBlock x:Name="textBlockTitle" HorizontalAlignment="Left" Margin="37,5,0,0" TextWrapping="Wrap" Text="QuickDataTool" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="50" Width="274" FontFamily="Consolas" FontWeight="Bold" FontSize="36" TextAlignment="Center">
+        </TextBlock>
+        <TabControl HorizontalAlignment="Left" Height="251" Margin="10,60,0,0" VerticalAlignment="Top" Width="324">
+            <TabItem x:Name="tabAbout" Header="About QDT">
+                <Grid x:Name="gridQDT" Background="#FFE5E5E5">
+                    <TextBox x:Name="textBoxAbout" HorizontalAlignment="Left" Height="203" Margin="10,10,0,0" TextWrapping="Wrap" 
+                             Text="QuickDataTool is made by xyx0826.&#x0a;
+This project can be found at:&#x0a;
+https://github.com/xyx0826/QuickOverTool-WPF/tree/datatool.&#x0a;&#x0a;
+Thanks dynaomi, zingballyhoo, SombraOW and Js41637 for making OverTool toolchain, the ultimate toolset for extracting Overwatch game assets.&#x0a;&#x0a;
+QuickDataTool is my experimental project. It is my first WPF program.&#x0a;
+The GUI for OverTool (Overwatch pre-1.14) is called QuickOverTool, it can be found under the master branch in the GitHub repo.&#x0a;&#x0a;
+If you need a GUI for OverTool-ing pre-1.14 game, please consider checking out Yernemm's OverTool GUI. They did an awesome job at writing a handy interface that even comes with file conversion.&#x0a;
+You can find Yernemm's GUI at:&#x0a;
+https://yernemm.xyz/projects/OverToolGUI.
+                                   " VerticalAlignment="Top" Width="298" AcceptsReturn="True" IsReadOnly="True" HorizontalScrollBarVisibility="Visible"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabHelp" Header="Usage">
+                <Grid x:Name="gridUsage" Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

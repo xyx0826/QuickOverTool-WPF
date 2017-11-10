@@ -59,23 +59,23 @@ namespace QuickOverTool_WPF
             else
             {
                 labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Red);
-                labelOverToolExecutable.Content = "无效";
+                labelOverToolExecutable.Content = "Not Found";
             }
             // DataTool 完整性
             if (dataTool[1] != null)
             {
                 labelOverToolIntegrity.Foreground = new SolidColorBrush(Colors.Green);
-                labelOverToolIntegrity.Content = "完整";
+                labelOverToolIntegrity.Content = "Found";
             }
             else
             {
                 labelOverToolIntegrity.Foreground = new SolidColorBrush(Colors.Red);
-                labelOverToolIntegrity.Content = "不完整";
+                labelOverToolIntegrity.Content = "Not Found";
             }
             // 守望先锋版本
             if (overwatch != null)
             {
-                labelValidity.Content = "守望先锋目录有效";
+                labelValidity.Content = "Overwatch is Valid";
                 labelValidity.Foreground = new SolidColorBrush(Colors.Green);
                 textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Blue);
 
@@ -85,18 +85,21 @@ namespace QuickOverTool_WPF
                 labelOverwatchBranch.Content = overwatch[1];
                 // DataTool does not support PTR builds
                 if (overwatch[1] == "PTR")
+                {
+                    AddLog("(Potential) PTR build detected. DataTool is incompatible with PTR.");
                     labelOverwatchBranch.Foreground = new SolidColorBrush(Colors.Red);
+                } 
             }
             else
             {
-                labelValidity.Content = "守望先锋目录无效";
+                labelValidity.Content = "Overwatch is Invalid";
                 textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Red);
                 labelValidity.Foreground = new SolidColorBrush(Colors.Red);
 
                 labelOverwatchVersion.Foreground = new SolidColorBrush(Colors.Red);
-                labelOverwatchVersion.Content = "未知";
+                labelOverwatchVersion.Content = "N/A";
                 labelOverwatchBranch.Foreground = new SolidColorBrush(Colors.Red);
-                labelOverwatchBranch.Content = "未知";
+                labelOverwatchBranch.Content = "N/A";
             }
         }
         // 日志输出增行
@@ -142,7 +145,7 @@ namespace QuickOverTool_WPF
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             DialogResult folderBrowserResult = folderBrowser.ShowDialog();
             textBoxOutputPath.Text = folderBrowser.SelectedPath;
-            AddLog("选定了输出路径：" + textBoxOutputPath.Text);
+            AddLog("Output path: " + textBoxOutputPath.Text);
             textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Blue);
             return;
         }
@@ -175,7 +178,7 @@ namespace QuickOverTool_WPF
             else
             {
                 groupBoxModes.BorderBrush = new SolidColorBrush(Colors.Red);
-                AddLog("请选择工作模式。");
+                AddLog("Please select a mode.");
                 return;
             }
             // 命令行：导出路径
@@ -184,11 +187,18 @@ namespace QuickOverTool_WPF
             {
                 cmdLine = cmdLine + " \"" + textBoxOutputPath.Text + "\"";
             }
-            AddLog("命令行：DataTool.exe" + cmdLine);
-            // 启动
+            // If custom cmdline is specified
+            if (checkBoxCommand.IsChecked == true)
+            {
+                cmdLine = " " + textBoxCommand.Text;
+                AddLog("Custom cmdline is checked.");
+            }
+            else textBoxCommand.Text = cmdLine;
+            // Launch
+            AddLog("Time now: " + DateTime.Now.ToString());
+            AddLog("Cmdline: DataTool.exe" + cmdLine);
+            AddLog("Output: " + textBoxOutputPath.Text);
             StartUp(cmdLine);
-            // textBoxOutputPath.IsEnabled = true;
-            // textBoxSpecify.IsEnabled = true;
         }
         // 启动进程
         private void StartUp(string command)
@@ -205,8 +215,16 @@ namespace QuickOverTool_WPF
                     dataTool.StartInfo.StandardErrorEncoding = Encoding.Default;
                     dataTool.StartInfo.CreateNoWindow = true;
                 }
-                dataTool.Start();
-                dataToolPID = dataTool.Id;
+                try
+                {
+                    dataTool.Start();
+                    dataToolPID = dataTool.Id;
+                }
+                catch
+                {
+                    AddLog("Launch unsuccessful. Check DataTool validity.");
+                    return;
+                }
                 dataTool.BeginOutputReadLine();
                 dataTool.BeginErrorReadLine();
                 dataTool.OutputDataReceived += new DataReceivedEventHandler(DataTool_DataReceived);
@@ -228,12 +246,12 @@ namespace QuickOverTool_WPF
             try
             {
                 File.WriteAllText(Path.Combine(textBoxOutputPath.Text, "log.txt"), textBoxOutput.Text);
-                textBoxOutput.Text = "写入了日志到 " + Path.Combine(textBoxOutputPath.Text, "log.txt");
+                textBoxOutput.Text = "Log written to " + Path.Combine(textBoxOutputPath.Text, "log.txt");
             }
             catch
             {
                 textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Red);
-                AddLog("输出路径无效或无权限。");
+                AddLog("Output path invalid or permission denied.");
             }
         }
 
@@ -243,19 +261,42 @@ namespace QuickOverTool_WPF
             {
                 Process proc = Process.GetProcessById(dataToolPID);
                 DialogResult prompt = System.Windows.Forms.MessageBox.
-                    Show("DataTool 还在运行。确定吗？", "确认", MessageBoxButtons.YesNo);
+                    Show("DataTool is still running. Terminate?", "Confirm", MessageBoxButtons.YesNo);
                 if (prompt == System.Windows.Forms.DialogResult.Yes)
                 {
                     proc.Kill();
-                    AddLog("DataTool 进程被强行终止了。");
+                    AddLog("DataTool is terminated.");
                 }
                 else if (prompt == System.Windows.Forms.DialogResult.No) return;
             }
             catch
             {
-                AddLog("未能终止 DataTool 进程；或许其并未在运行。");
+                AddLog("Termination failed; DataTool might not be running.");
                 return;
             }
+        }
+
+        private void buttonAbout_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow window = new AboutWindow();
+            window.Show();
+        }
+
+        private void checkBoxCommand_Checked(object sender, RoutedEventArgs e)
+        {
+            textBoxCommand.IsEnabled = true;
+            textBoxCommand.BorderBrush = new SolidColorBrush(Colors.Green);
+        }
+
+        private void checkBoxCommand_UnChecked(object sender, RoutedEventArgs e)
+        {
+            textBoxCommand.IsEnabled = false;
+            textBoxCommand.BorderBrush = new SolidColorBrush(Colors.Gray);
+        }
+
+        private void buttonClearCommand_Click(object sender, RoutedEventArgs e)
+        {
+            textBoxCommand.Text = "";
         }
     }
 }

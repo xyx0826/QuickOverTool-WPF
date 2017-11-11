@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
         mc:Ignorable="d"
-        Title="Edit Extraction Queries" ResizeMode="NoResize" Topmost="True" Width="670" Height="275">
+        Title="Edit Extraction Queries" ResizeMode="NoResize" Topmost="True" Width="670" Height="458">
     <Grid>
         <GroupBox Header="Types" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="250" Margin="16,7,0,0">
             <Grid Margin="0,0,-2,-12.8">
-                <Button x:Name="buttonSkin" Content="Skin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="65" Height="20" Click="buttonSkin_Click"/>
-                <Button x:Name="buttonIcon" Content="Icon" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="65" Height="20" Click="buttonIcon_Click"/>
-                <Button x:Name="buttonSpray" HorizontalAlignment="Left" Margin="82,10,0,0" VerticalAlignment="Top" Width="65" Height="20" Content="Spray" Click="buttonSpray_Click"/>
-                <Button x:Name="buttonEmote" Content="Emote" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Height="20" Margin="82,35,0,0" Click="buttonEmote_Click"/>
-                <Button x:Name="buttonPose" Content="VictoryPose" HorizontalAlignment="Left" Margin="152,10,0,0" VerticalAlignment="Top" Width="80" Height="20" Click="buttonPose_Click"/>
-                <Button x:Name="buttonIntro" Content="HighlightIntro" HorizontalAlignment="Left" Margin="152,35,0,0" VerticalAlignment="Top" Width="80" Height="20" Click="buttonIntro_Click"/>
+                <Button x:Name="buttonSkin" Content="Skin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="65" Height="20" Click="buttonTypes_Click"/>
+                <Button x:Name="buttonIcon" Content="Icon" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="65" Height="20" Click="buttonTypes_Click"/>
+                <Button x:Name="buttonSpray" HorizontalAlignment="Left" Margin="82,10,0,0" VerticalAlignment="Top" Width="65" Height="20" Content="Spray" Click="buttonTypes_Click"/>
+                <Button x:Name="buttonEmote" Content="Emote" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Height="20" Margin="82,35,0,0" Click="buttonTypes_Click"/>
+                <Button x:Name="buttonPose" Content="VictoryPose" HorizontalAlignment="Left" Margin="152,10,0,0" VerticalAlignment="Top" Width="80" Height="20" Click="buttonTypes_Click"/>
+                <Button x:Name="buttonIntro" Content="HighlightIntro" HorizontalAlignment="Left" Margin="152,35,0,0" VerticalAlignment="Top" Width="80" Height="20" Click="buttonTypes_Click"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Tags" HorizontalAlignment="Left" Height="80" Margin="271,7,0,0" VerticalAlignment="Top" Width="310">
@@ -43,7 +43,16 @@
                 <TextBox x:Name="textBoxQuery" HorizontalAlignment="Left" Height="30" Margin="10,36,0,0" Text="" VerticalAlignment="Top" Width="600" Padding="0,6,0,0" FontFamily="Consolas"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="buttonHelp" Content="Syntax?" HorizontalAlignment="Left" Margin="586,17,0,0" VerticalAlignment="Top" Width="60" Height="65" Click="buttonHelp_Click"/>
-        <Button x:Name="buttonExit" Content="Done" Margin="294,208,294,0" VerticalAlignment="Top" Click="buttonExit_Click"/>
+        <Button x:Name="buttonHelp" Content="Syntax?" HorizontalAlignment="Left" Margin="586,17,0,0" VerticalAlignment="Top" Width="60" Height="65"/>
+        <Button x:Name="buttonExit" Content="Done" Margin="294,208,0,0" VerticalAlignment="Top" Click="buttonExit_Click" HorizontalAlignment="Left" Width="76" HorizontalContentAlignment="Center"/>
+        <GroupBox Header="Syntax Formats" HorizontalAlignment="Left" Height="191" Margin="16,228,0,0" VerticalAlignment="Top" Width="630">
+            <RichTextBox HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="620" Margin="0,0,-2,-2.6">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text="RichTextBox"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </GroupBox>
     </Grid>
 </Window>

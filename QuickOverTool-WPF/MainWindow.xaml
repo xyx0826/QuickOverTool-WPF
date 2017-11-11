@@ -66,7 +66,7 @@
                 <RadioButton x:Name="radioButtonListSubtitlesReal" Content="List Subtitles (From Audio)" HorizontalAlignment="Left" Margin="393,48,0,0" VerticalAlignment="Top" ToolTip="List in-game subtitles from audio data."/>
                 <RadioButton x:Name="radioButtonListHighlights" Content="List Highlights" HorizontalAlignment="Left" Margin="141,67,0,0" VerticalAlignment="Top" ToolTip="List all player highlights."/>
                 <RadioButton x:Name="radioButtonListChat" Content="List Chat Replacements" HorizontalAlignment="Left" Margin="393,10,0,0" VerticalAlignment="Top" ToolTip="List chat keywords, e.g. profanity, GGEZ, etc."/>
-                <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="393,65,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Visible" Click="buttonExtractQuery_Click"/>
+                <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="393,65,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Hidden" Click="buttonExtractQuery_Click"/>
             </Grid>
         </GroupBox>
         <!-- Export path -->

@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Resources;
 using System.Text;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
-using System.Linq;
 
 namespace QuickOverTool_WPF
 {

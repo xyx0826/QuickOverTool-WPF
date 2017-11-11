@@ -7,4 +7,4 @@ OverTool GUI by C# &amp; WPF
 
 原工具包的新工具 DataTool 正在开发中，目前并不完善。
 
-DataTool 的图形界面位于分支 datatool 下。目前正在适配，暂不可用。
+DataTool 的图形界面位于分支 datatool 下。目前界面为英文，正在进行本地化。

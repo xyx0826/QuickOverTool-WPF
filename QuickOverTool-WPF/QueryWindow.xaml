@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
         mc:Ignorable="d"
-        Title="Edit Extraction Queries" ResizeMode="NoResize" Topmost="True" Width="670" Height="458">
+        Title="Edit Extraction Queries" ResizeMode="NoResize" Topmost="True" Width="670" Height="433.2">
     <Grid>
         <GroupBox Header="Types" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="250" Margin="16,7,0,0">
             <Grid Margin="0,0,-2,-12.8">
@@ -45,14 +45,14 @@
         </GroupBox>
         <Button x:Name="buttonHelp" Content="Syntax?" HorizontalAlignment="Left" Margin="586,17,0,0" VerticalAlignment="Top" Width="60" Height="65"/>
         <Button x:Name="buttonExit" Content="Done" Margin="294,208,0,0" VerticalAlignment="Top" Click="buttonExit_Click" HorizontalAlignment="Left" Width="76" HorizontalContentAlignment="Center"/>
-        <GroupBox Header="Syntax Formats" HorizontalAlignment="Left" Height="191" Margin="16,228,0,0" VerticalAlignment="Top" Width="630">
-            <RichTextBox HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="620" Margin="0,0,-2,-2.6">
-                <FlowDocument>
-                    <Paragraph>
-                        <Run Text="RichTextBox"/>
-                    </Paragraph>
-                </FlowDocument>
-            </RichTextBox>
+        <GroupBox Header="Syntax Formats" HorizontalAlignment="Left" Height="166" Margin="16,228,0,0" VerticalAlignment="Top" Width="630">
+            <Grid HorizontalAlignment="Left" Height="156" Margin="0,0,-2,-12.8" VerticalAlignment="Top" Width="620">
+                <Label Content="Extract Hero Contents: &quot;{hero name}|{type}=({tag name}={tag}),{item name}&quot;" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="600" Height="20" FontSize="10" Padding="5,2,5,5"/>
+                <Label Content="    - Enter the hero name in target locale, then use buttons to compose your query. You may add multiple queries separated by space." HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="600" Height="20" FontSize="10" Padding="5,2,5,5"/>
+                <Label Content="Extract NPCs: similar syntax with above." HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="600" Height="20" FontSize="10" Padding="5,2,5,5"/>
+                <Label Content="    - Enter the NPC name in target locale. Example: &quot;Eradicator&quot;" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="600" Height="20" FontSize="10" Padding="5,2,5,5"/>
+                <Label Content="Wildcards (*) are welcome." HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="600" Height="20" FontSize="10" Padding="5,2,5,5"/>
+            </Grid>
         </GroupBox>
     </Grid>
 </Window>

@@ -7,12 +7,12 @@ using System.Windows;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("QuickOverTool-WPF")]
-[assembly: AssemblyDescription("OverTool 图形化 GUI, 提取守望先锋资源更轻松、更直观。")]
+[assembly: AssemblyTitle("QuickDataTool")]
+[assembly: AssemblyDescription("Graphical interface for DataTool, the Overwatch assets extractor.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("QuickOverTool-WPF")]
-[assembly: AssemblyCopyright("Copyright © 2017: NGA - xyx0826")]
+[assembly: AssemblyProduct("QuickDataTool")]
+[assembly: AssemblyCopyright("Copyright © 2017: xyx0826 (GitHub)")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +51,5 @@ using System.Windows;
 // 可以指定所有值，也可以使用以下所示的 "*" 预置版本号和修订号
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.0.2.0")]
-[assembly: AssemblyFileVersion("3.0.2.0")]
+[assembly: AssemblyVersion("1.2.2")]
+[assembly: AssemblyFileVersion("1.2.2")]

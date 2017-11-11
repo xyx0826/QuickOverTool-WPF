@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
-        Title="QuickDataTool - DataTool GUI（For Overwatch 1.13+）" Height="567.2" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+        Title="QuickDataTool - DataTool GUI（For Overwatch 1.13+）" Height="667.475" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="Height">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -45,37 +45,39 @@
             </Grid>
         </GroupBox>
         <!-- Output box -->
-        <GroupBox x:Name="groupBoxOutput" Header="Logging" HorizontalAlignment="Left" Height="140" Margin="10,396,0,0" VerticalAlignment="Top" Width="824">
+        <GroupBox x:Name="groupBoxOutput" Header="Logging" HorizontalAlignment="Left" Height="140" Margin="10,434,0,0" VerticalAlignment="Top" Width="824">
             <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="811" Text="QuickDataTool has launched." HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
         </GroupBox>
         <!-- Modes -->
-        <GroupBox x:Name="groupBoxModes" Header="Mode" HorizontalAlignment="Left" Height="120" Margin="185,70,0,0" VerticalAlignment="Top" Width="649">
+        <GroupBox x:Name="groupBoxModes" Header="Mode" HorizontalAlignment="Left" Height="131" Margin="185,70,0,0" VerticalAlignment="Top" Width="649">
             <Grid x:Name="gridGroupBoxModes" HorizontalAlignment="Left" Margin="0,0,-2.2,-12" Width="639">
-                <RadioButton x:Name="radioButtonListHeroes" Content="List Heroes" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" ToolTip="List all heroes."/>
+                <RadioButton x:Name="radioButtonListHeroes" Content="List Heroes" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" ToolTip="List all heroes."/>
                 <RadioButton x:Name="radioButtonListGeneralCosmetics" Content="List General Unlocks" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" ToolTip="List general icons, sprays and player portraits."/>
-                <RadioButton x:Name="radioButtonListHeroCosmetics" Content="List Hero Unlocks" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" Foreground="Black" ToolTip="List hero-specific unlockable contents."/>
-                <RadioButton x:Name="radioButtonListMaps" Content="List Maps" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" ToolTip="List all maps."/>
+                <RadioButton x:Name="radioButtonListHeroCosmetics" Content="List Hero Unlocks" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Foreground="Black" ToolTip="List hero-specific unlockable contents."/>
+                <RadioButton x:Name="radioButtonListMaps" Content="List Maps" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" ToolTip="List all maps."/>
                 <RadioButton x:Name="radioButtonListStrings" Content="List Strings" HorizontalAlignment="Left" Margin="141,10,0,0" VerticalAlignment="Top" ToolTip="List all strings."/>
-                <RadioButton x:Name="radioButtonListLootbox" Content="List Lootboxes" HorizontalAlignment="Left" Margin="141,28,0,0" VerticalAlignment="Top" ToolTip="List all lootboxes."/>
-                <RadioButton x:Name="radioButtonListKeys" Content="List Keys" HorizontalAlignment="Left" Margin="141,47,0,0" VerticalAlignment="Top" ToolTip="List all encryption keys."/>
+                <RadioButton x:Name="radioButtonListLootbox" Content="List Lootboxes" HorizontalAlignment="Left" Margin="141,25,0,0" VerticalAlignment="Top" ToolTip="List all lootboxes."/>
+                <RadioButton x:Name="radioButtonListKeys" Content="List Keys" HorizontalAlignment="Left" Margin="141,40,0,0" VerticalAlignment="Top" ToolTip="List all encryption keys."/>
                 <RadioButton x:Name="radioButtonExtractGeneralCosmetics" Content="Extract General Unlocks" HorizontalAlignment="Left" Margin="244,10,0,0" VerticalAlignment="Top" ToolTip="Extract general icons, sprays and player portraits."/>
-                <RadioButton x:Name="radioButtonExtractHeroCosmetics" Content="Extract Hero Unlocks" HorizontalAlignment="Left" Margin="244,28,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="Extract hero-specific unlockable contents." Checked="radioButtonExtractHeroCosmetics_Checked" Unchecked="radioButtonExtractHeroCosmetics_Unchecked"/>
-                <RadioButton x:Name="radioButtonExtractMaps" Content="Extract Maps" HorizontalAlignment="Left" Margin="244,47,0,0" VerticalAlignment="Top" Foreground="Black" ToolTip="Extract all maps."/>
-                <RadioButton x:Name="radioButtonExtractLootbox" Content="Extract Lootboxes" HorizontalAlignment="Left" Margin="244,67,0,0" VerticalAlignment="Top" ToolTip="Extract all lootbox models."/>
-                <RadioButton x:Name="radioButtonListSubtitles" Content="List Subtitles" HorizontalAlignment="Left" Margin="393,29,0,0" VerticalAlignment="Top" ToolTip="List in-game subtitles."/>
-                <RadioButton x:Name="radioButtonListSubtitlesReal" Content="List Subtitles (From Audio)" HorizontalAlignment="Left" Margin="393,48,0,0" VerticalAlignment="Top" ToolTip="List in-game subtitles from audio data."/>
-                <RadioButton x:Name="radioButtonListHighlights" Content="List Highlights" HorizontalAlignment="Left" Margin="141,67,0,0" VerticalAlignment="Top" ToolTip="List all player highlights."/>
+                <RadioButton x:Name="radioButtonExtractHeroCosmetics" Content="Extract Hero Unlocks" HorizontalAlignment="Left" Margin="244,25,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="Extract hero-specific unlockable contents." Checked="extraQueries_Checked" Unchecked="extraQueries_Unchecked"/>
+                <RadioButton x:Name="radioButtonExtractMaps" Content="Extract Maps" HorizontalAlignment="Left" Margin="244,40,0,0" VerticalAlignment="Top" Foreground="Black" ToolTip="Extract all maps."/>
+                <RadioButton x:Name="radioButtonExtractLootbox" Content="Extract Lootboxes" HorizontalAlignment="Left" Margin="244,55,0,0" VerticalAlignment="Top" ToolTip="Extract all lootbox models."/>
+                <RadioButton x:Name="radioButtonExtractNPCs" Content="Extract NPCs" HorizontalAlignment="Left" Margin="244,71,0,0" VerticalAlignment="Top" ToolTip="Extract NPC models." Foreground="Blue" Checked="extraQueries_Checked" Unchecked="extraQueries_Unchecked"/>
+                <RadioButton x:Name="radioButtonExtractAbilities" Content="Extract Abilities" HorizontalAlignment="Left" Margin="244,87,0,0" VerticalAlignment="Top" ToolTip="Extract hero ability icons and video demos."/>
+                <RadioButton x:Name="radioButtonListSubtitles" Content="List Subtitles" HorizontalAlignment="Left" Margin="393,25,0,0" VerticalAlignment="Top" ToolTip="List in-game subtitles."/>
+                <RadioButton x:Name="radioButtonListSubtitlesReal" Content="List Subtitles (From Audio)" HorizontalAlignment="Left" Margin="393,40,0,0" VerticalAlignment="Top" ToolTip="List in-game subtitles from audio data."/>
+                <RadioButton x:Name="radioButtonListHighlights" Content="List Highlights" HorizontalAlignment="Left" Margin="141,55,0,0" VerticalAlignment="Top" ToolTip="List all player highlights."/>
                 <RadioButton x:Name="radioButtonListChat" Content="List Chat Replacements" HorizontalAlignment="Left" Margin="393,10,0,0" VerticalAlignment="Top" ToolTip="List chat keywords, e.g. profanity, GGEZ, etc."/>
                 <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="393,65,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Hidden" Click="buttonExtractQuery_Click"/>
             </Grid>
         </GroupBox>
         <!-- Export path -->
-        <Label x:Name="labelOutputPath" Content="Output Path" HorizontalAlignment="Left" Margin="9,229,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,229,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Text="./"/>
-        <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="679,229,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
-        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="709,229,0,0" VerticalAlignment="Top" Width="124" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
+        <Label x:Name="labelOutputPath" Content="Output Path" HorizontalAlignment="Left" Margin="9,267,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,267,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Text="./"/>
+        <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="679,267,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
+        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="709,267,0,0" VerticalAlignment="Top" Width="124" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
         <!-- Checklist -->
-        <GroupBox x:Name="groupBoxChecklists" Header="Checklist" HorizontalAlignment="Left" Height="123" Margin="10,267,0,0" VerticalAlignment="Top" Width="620">
+        <GroupBox x:Name="groupBoxChecklists" Header="Checklist" HorizontalAlignment="Left" Height="123" Margin="10,305,0,0" VerticalAlignment="Top" Width="620">
             <Grid HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="620" Margin="0,0,-12,-11.8">
                 <Label x:Name="labelTagOverwatchVersion" Content="Overwatch Version:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelTagOverwatchBranch" Content="Overwatch Branch:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
@@ -88,11 +90,11 @@
             </Grid>
         </GroupBox>
         <!-- Misc -->
-        <Button x:Name="buttonTaskkill" Content="Kill DataTool Process" HorizontalAlignment="Left" Margin="635,289,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click"/>
-        <Button x:Name="buttonSaveOutput" Content="Save Log to File" HorizontalAlignment="Left" Margin="635,319,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonSaveOutput_Click"/>
-        <Button x:Name="buttonAbout" Content="Help..." HorizontalAlignment="Left" Margin="635,348,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonAbout_Click" Foreground="Black"/>
-        <TextBox x:Name="textBoxCommand" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,197,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" BorderBrush="#FFABADB3" IsEnabled="False" ToolTip="Check the checkbox at the left to use custom command line."/>
-        <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="13,202,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
-        <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="680,197,0,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
+        <Button x:Name="buttonTaskkill" Content="Kill DataTool Process" HorizontalAlignment="Left" Margin="635,327,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click"/>
+        <Button x:Name="buttonSaveOutput" Content="Save Log to File" HorizontalAlignment="Left" Margin="635,357,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonSaveOutput_Click"/>
+        <Button x:Name="buttonAbout" Content="Help..." HorizontalAlignment="Left" Margin="635,386,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonAbout_Click" Foreground="Black"/>
+        <TextBox x:Name="textBoxCommand" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,235,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" BorderBrush="#FFABADB3" IsEnabled="False" ToolTip="Check the checkbox at the left to use custom command line."/>
+        <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="13,240,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
+        <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="680,235,0,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
     </Grid>
 </Window>

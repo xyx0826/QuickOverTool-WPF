@@ -37,6 +37,14 @@ namespace QuickOverTool_WPF
             PopulateDict();
             FlushChecklist();
         }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            System.Windows.Application.Current.Shutdown();
+        }
+
         // Mode dictionary populator
         private void PopulateDict()
         {
@@ -51,6 +59,8 @@ namespace QuickOverTool_WPF
             modes.Add("radioButtonExtractHeroCosmetics", "extract-unlocks");
             modes.Add("radioButtonExtractMaps", "extract-maps");
             modes.Add("radioButtonExtractLootbox", "extract-lootbox");
+            modes.Add("radioButtonExtractNPCs", "extract-npcs");
+            modes.Add("radioButtonExtractAbilities", "extract-abilities");
             modes.Add("radioButtonListSubtitles", "list-subtitles");
             modes.Add("radioButtonListSubtitlesReal", "list-subtitles-real");
             modes.Add("radioButtonListHighlights", "list-highlights");
@@ -252,12 +262,12 @@ namespace QuickOverTool_WPF
             textBoxCommand.Text = "";
         }
 
-        private void radioButtonExtractHeroCosmetics_Checked(object sender, RoutedEventArgs e)
+        private void extraQueries_Checked(object sender, RoutedEventArgs e)
         {
             buttonExtractQuery.Visibility = Visibility.Visible;
         }
 
-        private void radioButtonExtractHeroCosmetics_Unchecked(object sender, RoutedEventArgs e)
+        private void extraQueries_Unchecked(object sender, RoutedEventArgs e)
         {
             buttonExtractQuery.Visibility = Visibility.Hidden;
         }

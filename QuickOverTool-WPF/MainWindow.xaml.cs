@@ -13,21 +13,35 @@ using System.Linq;
 namespace QuickOverTool_WPF
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// MainWindow.xaml logics.
+    /// Mostly button events.
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Some useful variables
+        // About window and query window
+        AboutWindow about = new AboutWindow();
+        QueryWindow query = new QueryWindow();
+        // Color brushes...
+        SolidColorBrush red = new SolidColorBrush(Colors.Red);
+        SolidColorBrush green = new SolidColorBrush(Colors.Green);
+        SolidColorBrush blue = new SolidColorBrush(Colors.Blue);
+        SolidColorBrush gray = new SolidColorBrush(Colors.Gray);
+        // DataTool path and PID
         int dataToolPID = -1;
         string sharedPath = Path.GetDirectoryName
             (Assembly.GetEntryAssembly().CodeBase).Substring(6);
+        // Mode parameters dictionary
         Dictionary<string, string> modes = new Dictionary<string, string>();
-        // 主窗体初始化
+
         public MainWindow()
         {
             InitializeComponent();
+            PopulateDict();
             FlushChecklist();
-            // Populate the mode dictionary
+        }
+        // Mode dictionary populator
+        private void PopulateDict()
+        {
             modes.Add("radioButtonListHeroes", "list-heroes");
             modes.Add("radioButtonListGeneralCosmetics", "list-general-unlocks");
             modes.Add("radioButtonListHeroCosmetics", "list-unlocks");
@@ -44,13 +58,18 @@ namespace QuickOverTool_WPF
             modes.Add("radioButtonListHighlights", "list-highlights");
             modes.Add("radioButtonListChat", "list-chat-replacements");
         }
-
-        // 检查单更新
+        // Update checklist
         public void FlushChecklist()
         {
-            // DataTool 核心程序
+            // Reset colors of important controls
+            textBoxOverwatchPath.BorderBrush = gray;
+            textBoxOutputPath.BorderBrush = gray;
+            groupBoxModes.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#ffd5dfe5"));
+            buttonExtractQuery.BorderBrush = gray;
+            // Retrieve results from validators
             string[] dataTool = Validation.DataTool(sharedPath);
             string[] overwatch = Validation.Overwatch(textBoxOverwatchPath.Text);
+            // Datatool.exe
             if (dataTool[0] != null)
             {
                 labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Green);
@@ -61,7 +80,7 @@ namespace QuickOverTool_WPF
                 labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Red);
                 labelOverToolExecutable.Content = "Not Found";
             }
-            // DataTool 完整性
+            // Ow.keys
             if (dataTool[1] != null)
             {
                 labelOverToolIntegrity.Foreground = new SolidColorBrush(Colors.Green);
@@ -72,7 +91,7 @@ namespace QuickOverTool_WPF
                 labelOverToolIntegrity.Foreground = new SolidColorBrush(Colors.Red);
                 labelOverToolIntegrity.Content = "Not Found";
             }
-            // 守望先锋版本
+            // Overwatch
             if (overwatch != null)
             {
                 labelValidity.Content = "Overwatch is Valid";
@@ -102,7 +121,7 @@ namespace QuickOverTool_WPF
                 labelOverwatchBranch.Content = "N/A";
             }
         }
-        // 日志输出增行
+        // Log increment
         public delegate void AddLogRuntime(string content);
 
         public void AddLog(string content)
@@ -118,10 +137,8 @@ namespace QuickOverTool_WPF
                 textBoxOutput.ScrollToEnd();
             }
         }
-
-        // 检测模式选择
-        // 为模式返回命令行参数，并决定输出路径与额外选项的可用性
-        private string whichRadioButton()
+        // Get mode selection
+        private string GetRadioButton()
         {
             foreach (System.Windows.Controls.RadioButton selection 
                 in gridGroupBoxModes.Children)
@@ -152,84 +169,23 @@ namespace QuickOverTool_WPF
         // 开始
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
-            // Refresh the checklist once again
             FlushChecklist();
-            textBoxOutput.Text = "";
-            // 判断：是否选择了守望先锋路径
-            if (textBoxOutputPath.IsEnabled && 
-                String.IsNullOrEmpty(textBoxOverwatchPath.Text)) return;
-            // 命令行：选定语言
-            string cmdLine = " --language=" + comboBoxLanguage.SelectedItem.
-                ToString().Substring(38, 4);
-            // 命令行：复选框
-            if (checkBoxQuiet.IsChecked == true) cmdLine += " --quiet";
-            if (checkBoxSkipKeys.IsChecked == true) cmdLine += " --skip-keys";
-            if (checkBoxGraceful.IsChecked == true) cmdLine += " --graceful-exit";
-            if (checkBoxExpert.IsChecked == true) cmdLine += " --expert";
-
-            if (checkBoxRCN.IsChecked == true) cmdLine += " --rcn";
-            if (checkBoxCDNValidate.IsChecked == true) cmdLine += " --validate-cache";
-            if (checkBoxCDNIndex.IsChecked == true) cmdLine += " --cache";
-            if (checkBoxCDNData.IsChecked == true) cmdLine += " --cache-data";
-            // 命令行：守望先锋路径
-            cmdLine = cmdLine + " \"" + textBoxOverwatchPath.Text + "\" ";
-            // 命令行：模式判断 + 选定模式
-            if (whichRadioButton() != null) cmdLine += whichRadioButton();
-            else
+            textBoxOutput.Text = "";    // Clear log output
+            string command;
+            try
             {
-                groupBoxModes.BorderBrush = new SolidColorBrush(Colors.Red);
-                AddLog("Please select a mode.");
+               command = FabricateCmdline();
+            }
+            catch (ArgumentException x)
+            {
+                AddLog(x.Message);
                 return;
             }
-            // 命令行：导出路径
-            if (textBoxOutputPath.IsEnabled == true && 
-                !String.IsNullOrEmpty(textBoxOutputPath.Text))
-            {
-                cmdLine = cmdLine + " \"" + textBoxOutputPath.Text + "\"";
-            }
-            // If custom cmdline is specified
-            if (checkBoxCommand.IsChecked == true)
-            {
-                cmdLine = " " + textBoxCommand.Text;
-                AddLog("Custom cmdline is checked.");
-            }
-            else textBoxCommand.Text = cmdLine;
             // Launch
             AddLog("Time now: " + DateTime.Now.ToString());
-            AddLog("Cmdline: DataTool.exe" + cmdLine);
+            AddLog("Cmdline: DataTool.exe" + command);
             AddLog("Output: " + textBoxOutputPath.Text);
-            StartUp(cmdLine);
-        }
-        // 启动进程
-        private void StartUp(string command)
-        {
-            using (Process dataTool = new Process())
-            {
-                { // Validation.DataTool 进程配置
-                    dataTool.StartInfo.FileName = "DataTool.exe";
-                    dataTool.StartInfo.Arguments = command;
-                    dataTool.StartInfo.UseShellExecute = false;
-                    dataTool.StartInfo.RedirectStandardOutput = true;
-                    dataTool.StartInfo.StandardOutputEncoding = Encoding.Default;
-                    dataTool.StartInfo.RedirectStandardError = true;
-                    dataTool.StartInfo.StandardErrorEncoding = Encoding.Default;
-                    dataTool.StartInfo.CreateNoWindow = true;
-                }
-                try
-                {
-                    dataTool.Start();
-                    dataToolPID = dataTool.Id;
-                }
-                catch
-                {
-                    AddLog("Launch unsuccessful. Check DataTool validity.");
-                    return;
-                }
-                dataTool.BeginOutputReadLine();
-                dataTool.BeginErrorReadLine();
-                dataTool.OutputDataReceived += new DataReceivedEventHandler(DataTool_DataReceived);
-                dataTool.ErrorDataReceived += new DataReceivedEventHandler(DataTool_DataReceived);
-            }
+            StartUp(command);
         }
         // 获取输出
         private void DataTool_DataReceived(object sender, DataReceivedEventArgs e)
@@ -278,8 +234,7 @@ namespace QuickOverTool_WPF
 
         private void buttonAbout_Click(object sender, RoutedEventArgs e)
         {
-            AboutWindow window = new AboutWindow();
-            window.Show();
+            about.Show();
         }
 
         private void checkBoxCommand_Checked(object sender, RoutedEventArgs e)
@@ -297,6 +252,21 @@ namespace QuickOverTool_WPF
         private void buttonClearCommand_Click(object sender, RoutedEventArgs e)
         {
             textBoxCommand.Text = "";
+        }
+
+        private void radioButtonExtractHeroCosmetics_Checked(object sender, RoutedEventArgs e)
+        {
+            buttonExtractQuery.Visibility = Visibility.Visible;
+        }
+
+        private void radioButtonExtractHeroCosmetics_Unchecked(object sender, RoutedEventArgs e)
+        {
+            buttonExtractQuery.Visibility = Visibility.Hidden;
+        }
+
+        private void buttonExtractQuery_Click(object sender, RoutedEventArgs e)
+        {
+            query.Show();
         }
     }
 }

@@ -64,6 +64,10 @@
     <Compile Include="AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Process.cs" />
+    <Compile Include="QueryWindow.xaml.cs">
+      <DependentUpon>QueryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Validation.cs" />
     <Page Include="AboutWindow.xaml">
       <SubType>Designer</SubType>
@@ -81,6 +85,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="QueryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -102,8 +110,6 @@
   <ItemGroup>
     <Resource Include="extract.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\DataSources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,7 +5,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
-        mc:Ignorable="d"
         Title="QuickDataTool - DataTool GUI（For Overwatch 1.13+）" Height="567.2" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Grid>
         <Grid.RowDefinitions>
@@ -37,38 +36,6 @@
         <CheckBox x:Name="checkBoxSkipKeys" Content="Skip Key Detection" HorizontalAlignment="Left" Margin="321,46,0,0" VerticalAlignment="Top" ToolTip="Skip encryption key detection."/>
         <CheckBox x:Name="checkBoxGraceful" Content="Graceful Exit" HorizontalAlignment="Left" Margin="445,46,0,0" VerticalAlignment="Top" ToolTip="Prevent decryption failures from crashing the tool."/>
         <CheckBox x:Name="checkBoxExpert" Content="Expert Mode" HorizontalAlignment="Left" Margin="535,46,0,0" VerticalAlignment="Top" ToolTip="Output more asset information."/>
-        <!-- Deprecated - misc flags
-        <CheckBox x:Name="checkBoxRaw" Content="完全跳过文件转换" HorizontalAlignment="Left" Margin="535,46,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="checkBoxCollision" Content="提取碰撞模型" HorizontalAlignment="Left" Margin="656,46,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        -->
-        <!-- Deprecated - skip extraction and conversion
-        <GroupBox x:Name="groupBoxSkipExtractions" Header="跳过提取（不可用）" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2" BorderBrush="#FFC000FF" Foreground="#FFC000FF" ToolTip="">
-            <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170" ToolTip="" IsEnabled="False">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="0*"/>
-                </Grid.ColumnDefinitions>
-                <CheckBox x:Name="checkBoxSkipModel" Content="模型" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Height="15" Width="44"/>
-                <CheckBox x:Name="checkBoxSkipTexture" Content="材质" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="15" Width="44"/>
-                <CheckBox x:Name="checkBoxSkipAnimation" Content="动画" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="15" Width="44"/>
-                <CheckBox x:Name="checkBoxSkipSound" Content="声音" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="15" Width="44"/>
-                <CheckBox x:Name="checkBoxSkipRef" Content="模型参考姿势" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" Height="15" Width="92"/>
-                <CheckBox x:Name="checkBoxSkipGUI" Content="用户界面图标" HorizontalAlignment="Left" Margin="59,30,0,0" VerticalAlignment="Top" Height="15" Width="92"/>
-            </Grid>
-        </GroupBox>
-        <GroupBox x:Name="groupBoxExtractionFormats" Header="提取格式 (WIP)" HorizontalAlignment="Left" Height="120" Margin="664,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2">
-            <Grid x:Name="gridGroupBoxExtractionFormats" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="0*"/>
-                </Grid.ColumnDefinitions>
-                <CheckBox x:Name="checkBoxModelFormat" Content="指定模型转换格式" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="15" IsEnabled="False"/>
-                <TextBox x:Name="textBoxModelFormat" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="16" Margin="10,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="10" IsEnabled="False"/>
-                <CheckBox x:Name="checkBoxAnimationFormat" Content="指定动画转换格式" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-                <TextBox x:Name="textBoxAnimationFormat" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="16" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="10" IsEnabled="False"/>
-            </Grid>
-        </GroupBox>
-        -->
         <GroupBox x:Name="groupBoxSkipExtractions" Header="CMF &amp; CDN" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2" BorderBrush="#FFD5DFE5" Foreground="Black" ToolTip="">
             <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170" ToolTip="">
                 <CheckBox x:Name="checkBoxRCN" Content="Use RCN CMF" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="15" ToolTip="This might cause DataTool to stop working."/>
@@ -85,39 +52,23 @@
         <GroupBox x:Name="groupBoxModes" Header="Mode" HorizontalAlignment="Left" Height="120" Margin="185,70,0,0" VerticalAlignment="Top" Width="649">
             <Grid x:Name="gridGroupBoxModes" HorizontalAlignment="Left" Margin="0,0,-2.2,-12" Width="639">
                 <RadioButton x:Name="radioButtonListHeroes" Content="List Heroes" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" ToolTip="List all heroes."/>
-                <RadioButton x:Name="radioButtonListGeneralCosmetics" Content="List General Unlocks" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" ToolTip="List general icons and sprays."/>
-                <RadioButton x:Name="radioButtonListHeroCosmetics" Content="List Hero Unlocks" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" Foreground="Black" ToolTip="List hero-specific icons and sprays."/>
+                <RadioButton x:Name="radioButtonListGeneralCosmetics" Content="List General Unlocks" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" ToolTip="List general icons, sprays and player portraits."/>
+                <RadioButton x:Name="radioButtonListHeroCosmetics" Content="List Hero Unlocks" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" Foreground="Black" ToolTip="List hero-specific unlockable contents."/>
                 <RadioButton x:Name="radioButtonListMaps" Content="List Maps" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" ToolTip="List all maps."/>
                 <RadioButton x:Name="radioButtonListStrings" Content="List Strings" HorizontalAlignment="Left" Margin="141,10,0,0" VerticalAlignment="Top" ToolTip="List all strings."/>
                 <RadioButton x:Name="radioButtonListLootbox" Content="List Lootboxes" HorizontalAlignment="Left" Margin="141,28,0,0" VerticalAlignment="Top" ToolTip="List all lootboxes."/>
                 <RadioButton x:Name="radioButtonListKeys" Content="List Keys" HorizontalAlignment="Left" Margin="141,47,0,0" VerticalAlignment="Top" ToolTip="List all encryption keys."/>
-                <RadioButton x:Name="radioButtonExtractGeneralCosmetics" Content="Extract General Unlocks" HorizontalAlignment="Left" Margin="244,10,0,0" VerticalAlignment="Top" ToolTip="Extract general icons and sprays."/>
-                <RadioButton x:Name="radioButtonExtractHeroCosmetics" Content="Extract Hero Unlocks" HorizontalAlignment="Left" Margin="244,28,0,0" VerticalAlignment="Top" Foreground="Black" ToolTip="Extract hero-specific icons and sprays."/>
+                <RadioButton x:Name="radioButtonExtractGeneralCosmetics" Content="Extract General Unlocks" HorizontalAlignment="Left" Margin="244,10,0,0" VerticalAlignment="Top" ToolTip="Extract general icons, sprays and player portraits."/>
+                <RadioButton x:Name="radioButtonExtractHeroCosmetics" Content="Extract Hero Unlocks" HorizontalAlignment="Left" Margin="244,28,0,0" VerticalAlignment="Top" Foreground="Blue" ToolTip="Extract hero-specific unlockable contents." Checked="radioButtonExtractHeroCosmetics_Checked" Unchecked="radioButtonExtractHeroCosmetics_Unchecked"/>
                 <RadioButton x:Name="radioButtonExtractMaps" Content="Extract Maps" HorizontalAlignment="Left" Margin="244,47,0,0" VerticalAlignment="Top" Foreground="Black" ToolTip="Extract all maps."/>
                 <RadioButton x:Name="radioButtonExtractLootbox" Content="Extract Lootboxes" HorizontalAlignment="Left" Margin="244,67,0,0" VerticalAlignment="Top" ToolTip="Extract all lootbox models."/>
                 <RadioButton x:Name="radioButtonListSubtitles" Content="List Subtitles" HorizontalAlignment="Left" Margin="393,29,0,0" VerticalAlignment="Top" ToolTip="List in-game subtitles."/>
                 <RadioButton x:Name="radioButtonListSubtitlesReal" Content="List Subtitles (From Audio)" HorizontalAlignment="Left" Margin="393,48,0,0" VerticalAlignment="Top" ToolTip="List in-game subtitles from audio data."/>
                 <RadioButton x:Name="radioButtonListHighlights" Content="List Highlights" HorizontalAlignment="Left" Margin="141,67,0,0" VerticalAlignment="Top" ToolTip="List all player highlights."/>
                 <RadioButton x:Name="radioButtonListChat" Content="List Chat Replacements" HorizontalAlignment="Left" Margin="393,10,0,0" VerticalAlignment="Top" ToolTip="List chat keywords, e.g. profanity, GGEZ, etc."/>
+                <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="393,65,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Visible" Click="buttonExtractQuery_Click"/>
             </Grid>
         </GroupBox>
-        <!-- Deprecated - specifying mode parameters
-        <Label x:Name="labelSpecify" Content="蓝色选项的可选参数（英雄、地图名称等）（使用选定语言的名称）" HorizontalAlignment="Left" Margin="10,88.2,0,0" VerticalAlignment="Top" Height="25" Width="370" VerticalContentAlignment="Center" Grid.Row="1" Foreground="Blue"/>
-        <TextBox x:Name="textBoxSpecify" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="385,88.2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="449" MaxLines="1" Grid.Row="1" ToolTip="这些选项仅对蓝色工作模式生效。黑色模式无需可选参数，而提取英雄资源使用下侧的紫色选项。"/>
-        <Label x:Name="labelSpecifyEHC" Content="仅用于提取英雄资源：" HorizontalAlignment="Left" Margin="10,118.2,0,0" VerticalAlignment="Top" Height="25" Width="127" VerticalContentAlignment="Center" Grid.Row="1" Foreground="#FFC700FF"/>
-        <Label x:Name="labelExtractionHero" Content="为英雄" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="137,118.2,0,0" VerticalAlignment="Top" Height="25" Foreground="#FFC700FF" Grid.Row="1"/>
-        <TextBox x:Name="textBoxExtractionHero" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="187,118.2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="85" Foreground="Black" Grid.Row="1" TextAlignment="Center"/>
-        <Label x:Name="labelExtractionType" Content="提取" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="278,118.2,0,0" VerticalAlignment="Top" Height="25" Foreground="#FFC700FF" Grid.Row="1"/>
-        <ComboBox x:Name="comboBoxExtractionType" HorizontalAlignment="Left" Margin="317,118.2,0,0" VerticalAlignment="Top" Width="170" Height="25" SelectedIndex="6" Foreground="Black" Grid.Row="1">
-            <ComboBoxItem Content="*（全部）"/>
-            <ComboBoxItem Content="skin（材质与模型）"/>
-            <ComboBoxItem Content="spray（喷漆）"/>
-            <ComboBoxItem Content="icon（图标）"/>
-            <ComboBoxItem Content="victory pose（胜利姿势）"/>
-            <ComboBoxItem Content="emote（表情）"/>
-            <ComboBoxItem Content="heroic intro（精彩镜头）"/>
-        </ComboBox>
-        -->
         <!-- Export path -->
         <Label x:Name="labelOutputPath" Content="Output Path" HorizontalAlignment="Left" Margin="9,229,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
         <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,229,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Text="./"/>
@@ -139,9 +90,9 @@
         <!-- Misc -->
         <Button x:Name="buttonTaskkill" Content="Kill DataTool Process" HorizontalAlignment="Left" Margin="635,289,0,0" VerticalAlignment="Top" Width="199" Height="25" Foreground="Red" Click="buttonTaskkill_Click"/>
         <Button x:Name="buttonSaveOutput" Content="Save Log to File" HorizontalAlignment="Left" Margin="635,319,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonSaveOutput_Click"/>
-        <Button x:Name="buttonAbout" Content="About &amp; Help" HorizontalAlignment="Left" Margin="635,348,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonAbout_Click" Foreground="Blue"/>
+        <Button x:Name="buttonAbout" Content="Help..." HorizontalAlignment="Left" Margin="635,348,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonAbout_Click" Foreground="Black"/>
         <TextBox x:Name="textBoxCommand" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,197,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" BorderBrush="#FFABADB3" IsEnabled="False" ToolTip="Check the checkbox at the left to use custom command line."/>
         <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="13,202,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
-        <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="680,197,0,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Blue" Click="buttonClearCommand_Click"/>
+        <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="680,197,0,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
     </Grid>
 </Window>

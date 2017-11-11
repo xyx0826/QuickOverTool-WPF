@@ -3,6 +3,10 @@ using System.IO;
 
 namespace QuickOverTool_WPF
 {
+    /// <summary>
+    /// Methods for getting the info on
+    /// DataTool and Overwatch.
+    /// </summary>
     class Validation
     {
         // Validate Overwatch and return its version and branch
@@ -24,20 +28,6 @@ namespace QuickOverTool_WPF
                         if (pdbRead.EndsWith("B&")) break;
                     }
                     version = pdbRead.Substring(pdbRead.IndexOf("1."), 14);
-                    /*
-                    pdbStream.BaseStream.Position = 0;
-                    pdbStream.DiscardBufferedData();
-                    while (pdbStream.Peek() >= 0)
-                    {
-                        pdbRead = pdbStream.ReadLine();
-                        if (pdbRead.Contains("prometheus"))
-                        {
-                            labelOverwatchBranch.Content = "正式服";
-                            pdbStream.Close();
-                            break;
-                        }
-                    }
-                    */
                 }
                 return new string[] { version, branch };
             }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 
@@ -48,23 +49,23 @@ namespace QuickOverTool_WPF
         // Mode dictionary populator
         private void PopulateDict()
         {
-            modes.Add("radioButtonListHeroes", "list-heroes");
-            modes.Add("radioButtonListGeneralCosmetics", "list-general-unlocks");
-            modes.Add("radioButtonListHeroCosmetics", "list-unlocks");
-            modes.Add("radioButtonListMaps", "list-maps");
-            modes.Add("radioButtonListStrings", "dump-strings");
-            modes.Add("radioButtonListLootbox", "extract-lootbox");
-            modes.Add("radioButtonListKeys", "list-keys");
-            modes.Add("radioButtonExtractGeneralCosmetics", "extract-general");
-            modes.Add("radioButtonExtractHeroCosmetics", "extract-unlocks");
-            modes.Add("radioButtonExtractMaps", "extract-maps");
-            modes.Add("radioButtonExtractLootbox", "extract-lootbox");
-            modes.Add("radioButtonExtractNPCs", "extract-npcs");
-            modes.Add("radioButtonExtractAbilities", "extract-abilities");
-            modes.Add("radioButtonListSubtitles", "list-subtitles");
-            modes.Add("radioButtonListSubtitlesReal", "list-subtitles-real");
-            modes.Add("radioButtonListHighlights", "list-highlights");
-            modes.Add("radioButtonListChat", "list-chat-replacements");
+            modes.Add("l_heroes", "list-heroes");
+            modes.Add("l_generalUnlocks", "list-general-unlocks");
+            modes.Add("l_heroUnlocks", "list-unlocks");
+            modes.Add("l_maps", "list-maps");
+            modes.Add("l_strings", "dump-strings");
+            modes.Add("l_lootboxes", "extract-lootbox");
+            modes.Add("l_keys", "list-keys");
+            modes.Add("e_generalUnlocks", "extract-general");
+            modes.Add("e_heroUnlocks", "extract-unlocks");
+            modes.Add("e_maps", "extract-maps");
+            modes.Add("e_lootboxes", "extract-lootbox");
+            modes.Add("e_npcs", "extract-npcs");
+            modes.Add("e_abilities", "extract-abilities");
+            modes.Add("l_subt", "list-subtitles");
+            modes.Add("l_subtAudio", "list-subtitles-real");
+            modes.Add("l_highlights", "list-highlights");
+            modes.Add("l_chat", "list-chat-replacements");
         }
         // Update checklist
         public void FlushChecklist()
@@ -72,7 +73,7 @@ namespace QuickOverTool_WPF
             // Reset colors of important controls
             textBoxOverwatchPath.BorderBrush = gray;
             textBoxOutputPath.BorderBrush = gray;
-            groupBoxModes.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#ffd5dfe5"));
+            groupBoxModesNew.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#ffd5dfe5"));
             buttonExtractQuery.BorderBrush = gray;
             // Retrieve results from validators
             string[] dataTool = Validation.DataTool(sharedPath);
@@ -148,10 +149,21 @@ namespace QuickOverTool_WPF
         // Get mode selection
         private string GetRadioButton()
         {
-            foreach (System.Windows.Controls.RadioButton selection 
-                in gridGroupBoxModes.Children)
+            ComboBoxItem selection = new ComboBoxItem();
+            if (radioButtonListMode.IsChecked == true)
             {
-                if (selection.IsChecked == true) return modes[selection.Name];
+                selection = (ComboBoxItem)comboBoxList.SelectedItem;
+                return modes[selection.Name];
+            }
+            else if (radioButtonExtractMode.IsChecked == true)
+            {
+                selection = (ComboBoxItem)comboBoxExtract.SelectedItem;
+                return modes[selection.Name];
+            }
+            else
+            {
+                groupBoxModesNew.BorderBrush = new SolidColorBrush(Colors.Red);
+                throw new ArgumentException("Mode is not selected; please select a mode.");
             }
             return null;
         }
@@ -262,14 +274,31 @@ namespace QuickOverTool_WPF
             textBoxCommand.Text = "";
         }
 
-        private void extraQueries_Checked(object sender, RoutedEventArgs e)
+        private void listMode_Checked(object sender, RoutedEventArgs e)
         {
-            buttonExtractQuery.Visibility = Visibility.Visible;
+            UpdateQueryEditor(null, null);
+            comboBoxList.IsEnabled = true;
+            comboBoxList.Foreground = new SolidColorBrush(Colors.Black);
+            comboBoxExtract.IsEnabled = false;
+            comboBoxExtract.Foreground = gray;
         }
 
-        private void extraQueries_Unchecked(object sender, RoutedEventArgs e)
+        private void extractMode_Checked(object sender, RoutedEventArgs e)
         {
-            buttonExtractQuery.Visibility = Visibility.Hidden;
+            UpdateQueryEditor(null, null);
+            comboBoxList.IsEnabled = false;
+            comboBoxList.Foreground = gray;
+            comboBoxExtract.IsEnabled = true;
+            comboBoxExtract.Foreground = new SolidColorBrush(Colors.Black);
+        }
+
+        private void UpdateQueryEditor(object sender, RoutedEventArgs e)
+        {
+            if (radioButtonExtractMode.IsChecked == true && 
+                (e_heroUnlocks.IsSelected == true ||
+                e_npcs.IsSelected == true))
+                buttonExtractQuery.Visibility = Visibility.Visible;
+            else buttonExtractQuery.Visibility = Visibility.Hidden;
         }
 
         private void buttonExtractQuery_Click(object sender, RoutedEventArgs e)

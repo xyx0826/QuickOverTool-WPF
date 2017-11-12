@@ -51,7 +51,7 @@ namespace QuickOverTool_WPF
             }
             catch
             {
-                groupBoxModes.BorderBrush = new SolidColorBrush(Colors.Red);
+                groupBoxModesNew.BorderBrush = new SolidColorBrush(Colors.Red);
                 throw new ArgumentException("Mode is not selected; please select a mode.");
             }
             // Export path
@@ -65,8 +65,8 @@ namespace QuickOverTool_WPF
             }
 
             // Extract queries
-            if (radioButtonExtractHeroCosmetics.IsChecked == true ||
-                radioButtonExtractNPCs.IsChecked == true)
+            if (radioButtonExtractMode.IsChecked == true && 
+                (e_heroUnlocks.IsSelected == true || e_npcs.IsSelected == true))
             {
                 if (String.IsNullOrWhiteSpace(query.GetQueries()))
                 {

@@ -11,7 +11,7 @@
         </TextBlock>
         <TabControl HorizontalAlignment="Left" Height="251" Margin="10,60,0,0" VerticalAlignment="Top" Width="324">
             <TabItem x:Name="tabAbout" Header="About QDT">
-                <Grid x:Name="gridQDT" Background="#FFE5E5E5">
+                <Grid x:Name="gridQDT" Background="#FFFFFFFF">
                     <TextBox x:Name="textBoxAbout" HorizontalAlignment="Left" Height="203" Margin="10,10,0,0" TextWrapping="Wrap" 
                              Text="QuickDataTool is made by xyx0826.&#x0a;
 This project can be found at:&#x0a;
@@ -25,8 +25,14 @@ https://yernemm.xyz/projects/OverToolGUI.
                                    " VerticalAlignment="Top" Width="298" AcceptsReturn="True" IsReadOnly="True" HorizontalScrollBarVisibility="Visible"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabHelp" Header="Usage">
-                <Grid x:Name="gridUsage" Background="#FFE5E5E5"/>
+            <TabItem x:Name="tabHelp" Header="Updates">
+                <Grid Background="#FFFFFFFF">
+                    <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="203" Width="298">
+                        <Hyperlink NavigateUri="https://facepunch.com/showthread.php?t=1578997">
+                            DataTool / Overwatch modelling thread (Facepunch)
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

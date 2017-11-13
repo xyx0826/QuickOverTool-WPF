@@ -54,7 +54,7 @@ namespace QuickOverTool_WPF
             modes.Add("l_heroUnlocks", "list-unlocks");
             modes.Add("l_maps", "list-maps");
             modes.Add("l_strings", "dump-strings");
-            modes.Add("l_lootboxes", "extract-lootbox");
+            modes.Add("l_lootboxes", "list-lootbox");
             modes.Add("l_keys", "list-keys");
             modes.Add("e_generalUnlocks", "extract-general");
             modes.Add("e_heroUnlocks", "extract-unlocks");

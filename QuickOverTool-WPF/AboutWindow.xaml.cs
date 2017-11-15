@@ -30,7 +30,5 @@ namespace QuickOverTool_WPF
         {
             InitializeComponent();
         }
-        
-        // Todo: add data through binding, instead of XAML
     }
 }

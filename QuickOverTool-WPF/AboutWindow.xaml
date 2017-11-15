@@ -13,15 +13,6 @@
             <TabItem x:Name="tabAbout" Header="About QDT">
                 <Grid x:Name="gridQDT" Background="#FFFFFFFF">
                     <TextBox x:Name="textBoxAbout" HorizontalAlignment="Left" Height="203" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding Text, ElementName=windowAbout}" VerticalAlignment="Top" Width="298" AcceptsReturn="True" IsReadOnly="True" HorizontalScrollBarVisibility="Visible"/>
-                    <!-- Text="QuickDataTool is made by xyx0826.&#x0a;
-This project can be found at:&#x0a;
-https://github.com/xyx0826/QuickOverTool-WPF/tree/datatool.&#x0a;&#x0a;
-Thanks dynaomi, zingballyhoo, SombraOW and Js41637 for making OverTool toolchain, the ultimate toolset for extracting Overwatch game assets.&#x0a;&#x0a;
-QuickDataTool is my experimental project. It is my first WPF program.&#x0a;
-The GUI for OverTool (Overwatch pre-1.14) is called QuickOverTool, it can be found under the master branch in the GitHub repo.&#x0a;&#x0a;
-If you need a GUI for OverTool-ing pre-1.14 game, please consider checking out Yernemm's OverTool GUI. They did an awesome job at writing a handy interface that even comes with file conversion.&#x0a;
-You can find Yernemm's GUI at:&#x0a;
-https://yernemm.xyz/projects/OverToolGUI. -->
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabHelp" Header="Updates">

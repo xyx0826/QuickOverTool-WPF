@@ -68,14 +68,18 @@ namespace QuickOverTool_WPF
 
             // Extract queries
             if (radioButtonExtractMode.IsChecked == true && 
-                (e_heroUnlocks.IsSelected == true || e_npcs.IsSelected == true))
+                (e_heroUnlocks.IsSelected == true ||
+                e_npcs.IsSelected == true ||
+                e_heroVoice.IsSelected == true))
             {
-                if (String.IsNullOrWhiteSpace(query.GetQueries()))
+                if (String.IsNullOrWhiteSpace(query.GetQueries()) &&
+                    e_heroUnlocks.IsSelected == true ||
+                    e_npcs.IsSelected == true)
                 {
                     buttonExtractQuery.BorderBrush = new SolidColorBrush(Colors.Red);
                     throw new ArgumentException("Queries not found; please enter a query in the editor.");
                 }
-                else cmdLine += query.GetQueries();
+                cmdLine += query.GetQueries();
             }
 
             textBoxCommand.Text = cmdLine;

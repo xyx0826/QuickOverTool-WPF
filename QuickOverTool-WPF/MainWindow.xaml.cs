@@ -37,7 +37,7 @@ namespace QuickOverTool_WPF
         {
             InitializeComponent();
             PopulateDict();
-            ReadConfig();
+            // ReadConfig();
             FlushChecklist();
             // Networking.IsNewBuildAvail();
         }

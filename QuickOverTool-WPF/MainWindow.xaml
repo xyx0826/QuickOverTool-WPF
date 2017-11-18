@@ -12,7 +12,7 @@
         </Grid.RowDefinitions>
         <!-- Overwatch path and language-->
         <Label x:Name="labelPath" Content="Overwatch Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxOverwatchPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,10,0,0" VerticalAlignment="Top" Width="548" MaxLines="1" IsReadOnly="True" Text="C:\Program Files (x86)\Overwatch"/>
+        <TextBox x:Name="textBoxOverwatchPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,10,0,0" VerticalAlignment="Top" Width="548" MaxLines="1" IsReadOnly="True"/>
         <Label x:Name="labelValidity" Content="" HorizontalAlignment="Left" Margin="710,10,0,0" VerticalAlignment="Top" Foreground="Red" Height="25" Width="126"/>
         <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="680,10,0,0" VerticalAlignment="Top" Width="25" Height="25" Content="..." Click="buttonPath_Click"/>
         <Label x:Name="labelLanguage" Content="Language:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="25" Width="70" VerticalContentAlignment="Center"/>
@@ -69,17 +69,20 @@
                 <ComboBox x:Name="comboBoxExtract" HorizontalAlignment="Left" Margin="135,30,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
                     <ComboBoxItem x:Name="e_generalUnlocks" Content="General Unlocks" ToolTip="Extract general icons, sprays and player portraits."/>
                     <ComboBoxItem x:Name="e_heroUnlocks" Content="Hero Unlocks..." ToolTip="Extract hero-specific unlockable contents." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
+                    <ComboBoxItem x:Name="e_heroVoice" Content="Hero Voice..." ToolTip="Extracts all hero voice sounds into groups." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
                     <ComboBoxItem x:Name="e_maps" Content="Maps" ToolTip="Extract all maps."/>
                     <ComboBoxItem x:Name="e_lootboxes" Content="Lootboxes" ToolTip="Extract all lootbox models."/>
                     <ComboBoxItem x:Name="e_npcs" Content="NPCs..." ToolTip="Extract NPC models." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
                     <ComboBoxItem x:Name="e_abilities" Content="Abilities" ToolTip="Extract hero ability icons and video demos."/>
                 </ComboBox>
                 <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="260,30,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Hidden" Click="buttonExtractQuery_Click" Height="22"/>
+                <CheckBox x:Name="checkBoxNoTex" Content="Don't Convert Textures" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" ToolTip="Disable texture conversion to DDS."/>
+                <CheckBox x:Name="checkBoxNoSnd" Content="Don't Convert Sound" HorizontalAlignment="Left" Margin="155,70,0,0" VerticalAlignment="Top" ToolTip="Disable sound conversion to OGG."/>
             </Grid>
         </GroupBox>
         <!-- Export path -->
         <Label x:Name="labelOutputPath" Content="Output Path" HorizontalAlignment="Left" Margin="9,233,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,233,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Text="./"/>
+        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,233,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3"/>
         <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="680,233,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
         <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="710,233,0,0" VerticalAlignment="Top" Width="123" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
         <!-- Checklist -->

@@ -34,6 +34,8 @@ namespace QuickOverTool_WPF
             if (checkBoxCDNValidate.IsChecked == true) cmdLine += " --validate-cache";
             if (checkBoxCDNIndex.IsChecked == true) cmdLine += " --cache";
             if (checkBoxCDNData.IsChecked == true) cmdLine += " --cache-data";
+            if (checkBoxNoTex.IsChecked == true) cmdLine += "--convert-textures=false";
+            if (checkBoxNoSnd.IsChecked == true) cmdLine += "--convert-sound=false";
 
             // Overwatch path
             if (textBoxOutputPath.IsEnabled &&

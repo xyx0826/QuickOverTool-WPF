@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -36,13 +37,15 @@ namespace QuickOverTool_WPF
         {
             InitializeComponent();
             PopulateDict();
+            ReadConfig();
             FlushChecklist();
+            // Networking.IsNewBuildAvail();
         }
 
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-
+            // SaveConfig();
             System.Windows.Application.Current.Shutdown();
         }
 
@@ -58,6 +61,7 @@ namespace QuickOverTool_WPF
             modes.Add("l_keys", "list-keys");
             modes.Add("e_generalUnlocks", "extract-general");
             modes.Add("e_heroUnlocks", "extract-unlocks");
+            modes.Add("e_heroVoice", "extract-hero-voice");
             modes.Add("e_maps", "extract-maps");
             modes.Add("e_lootboxes", "extract-lootbox");
             modes.Add("e_npcs", "extract-npcs");
@@ -66,6 +70,19 @@ namespace QuickOverTool_WPF
             modes.Add("l_subtAudio", "list-subtitles-real");
             modes.Add("l_highlights", "list-highlights");
             modes.Add("l_chat", "list-chat-replacements");
+        }
+        // Read paths from config file
+        private void ReadConfig()
+        {
+            var appSettings = ConfigurationManager.AppSettings;
+            textBoxOverwatchPath.Text = appSettings["OverwatchPath"];
+            textBoxOutputPath.Text = appSettings["OutputPath"];
+        }
+        // Save paths to config file
+        private void SaveConfig()
+        {
+            var appSettings = ConfigurationManager.AppSettings;
+            // TODO
         }
         // Update checklist
         public void FlushChecklist()
@@ -296,7 +313,8 @@ namespace QuickOverTool_WPF
         {
             if (radioButtonExtractMode.IsChecked == true && 
                 (e_heroUnlocks.IsSelected == true ||
-                e_npcs.IsSelected == true))
+                e_npcs.IsSelected == true ||
+                e_heroVoice.IsSelected == true))
                 buttonExtractQuery.Visibility = Visibility.Visible;
             else buttonExtractQuery.Visibility = Visibility.Hidden;
         }

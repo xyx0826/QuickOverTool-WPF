@@ -26,7 +26,7 @@ namespace QuickOverTool_WPF
             return " " + textBoxQuery.Text;
         }
         // Event selector
-        private void ComboBox_SelectionChanged(object sender, RoutedEventArgs e)
+        private void AppendEvent(object sender, RoutedEventArgs e)
         {
             string selection = "(event=";
             if (checkBoxExcept.IsChecked == true) selection += "!";
@@ -35,17 +35,17 @@ namespace QuickOverTool_WPF
             selection += ")";
             textBoxQuery.Text += selection;
         }
+        // Type selector
+        private void AppendType(object sender, RoutedEventArgs e)
+        {
+            string selection = ("|" + comboBoxType.SelectedItem
+                .ToString().Substring(37) + "=");
+            textBoxQuery.Text += selection;
+        }
 
         private void buttonExit_Click(object sender, RoutedEventArgs e)
-        {
+        {  
             windowQuery.Hide();
-        }
-        // Trace to the button that fired the event
-        private void buttonTypes_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Controls.Button button = 
-                (System.Windows.Controls.Button)sender;
-            textBoxQuery.Text += ("|" + button.Content.ToString().ToLower() + "=");
         }
 
         private void butonCommon_Click(object sender, RoutedEventArgs e)
@@ -61,6 +61,41 @@ namespace QuickOverTool_WPF
         private void buttonLegendary_Click(object sender, RoutedEventArgs e)
         {
             textBoxQuery.Text += "(rarity=legedary)";
+        }
+
+        public string HeroUnlocksHelp
+        {
+            get
+            {
+                return "    Format: {hero name}|{type}=({tag name}={tag}),{item name}\n" +
+                    "        Enter the hero name in target locale, then use buttons to compose your query.\n" +
+                    "        You may add multiple queries separated by space.\n" +
+                    "        Example: \"Roadhog|emote=(rarity=rare)\"";
+            }
+            set { }
+        }
+
+        public string HeroVoiceHelp
+        {
+            get
+            {
+                return "    Supports optional queries: (leaving query empty will extract all voice lines)\n" +
+                     "        Types:\n" +
+                     "            soundRestriction: only extract a certain sound\n" +
+                     "            groupRestriction: only extract a certain group\n" +
+                     "        Example: \"Lúcio|soundRestriction = 00000000B56B.0B2\"\n";
+            }
+            set { }
+        }
+
+        public string NPCsHelp
+        {
+            get
+            {
+                return "    Enter the NPC name in target locale.\n" +
+                    "        Example: \"Eradicator\"";
+            }
+            set { }
         }
     }
 }

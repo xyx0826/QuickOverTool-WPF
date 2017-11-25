@@ -63,7 +63,7 @@ namespace QuickOverTool_WPF
             {
                 textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Red);
                 AddLog("Output path not found; setting it to DataTool directory.");
-                cmdLine += ".\\";
+                cmdLine += " .\\";
             }
 
             // Extract queries

@@ -183,7 +183,6 @@ namespace QuickOverTool_WPF
                 groupBoxModesNew.BorderBrush = new SolidColorBrush(Colors.Red);
                 throw new ArgumentException("Mode is not selected; please select a mode.");
             }
-            return null;
         }
         // 选定守望先锋路径
         private void buttonPath_Click(object sender, RoutedEventArgs e)
@@ -246,6 +245,23 @@ namespace QuickOverTool_WPF
             {
                 textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Red);
                 AddLog("Output path invalid or permission denied.");
+            }
+        }
+
+        private void buttonSaveCmdline_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string[] batFile = {"echo off\n",
+                ".\\DataTool.exe" + FabricateCmdline(),
+                "\npause\n"};
+                File.WriteAllLines(".\\_" + GetRadioButton() + ".bat", batFile);
+                AddLog("Written batch file for mode " + GetRadioButton() +
+                    " to _" + GetRadioButton() + ".bat.");
+            }
+            catch
+            {
+                AddLog("Settings invalid. Please check your mode settings.");
             }
         }
 

@@ -101,7 +101,8 @@
         </GroupBox>
         <!-- Misc -->
         <Button x:Name="buttonTaskkill" Content="Kill DataTool Process" HorizontalAlignment="Left" Margin="635,293,0,0" VerticalAlignment="Top" Width="198" Height="25" Foreground="Red" Click="buttonTaskkill_Click"/>
-        <Button x:Name="buttonSaveOutput" Content="Save Log to File" HorizontalAlignment="Left" Margin="635,323,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonSaveOutput_Click"/>
+        <Button x:Name="buttonSaveOutput" Content="Save Log to File" HorizontalAlignment="Left" Margin="635,323,0,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveOutput_Click"/>
+        <Button x:Name="buttonSaveCmdline" Content="Save Cmdline" HorizontalAlignment="Left" Margin="738,323,0,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveCmdline_Click"/>
         <Button x:Name="buttonAbout" Content="Help and Update..." HorizontalAlignment="Left" Margin="635,352,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonAbout_Click" Foreground="Black"/>
         <TextBox x:Name="textBoxCommand" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,201,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" BorderBrush="#FFABADB3" IsEnabled="False" ToolTip="Check the checkbox at the left to use custom command line."/>
         <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="13,206,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>

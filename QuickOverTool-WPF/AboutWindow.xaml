@@ -11,17 +11,42 @@
         </TextBlock>
         <TabControl HorizontalAlignment="Left" Height="251" Margin="10,60,0,0" VerticalAlignment="Top" Width="324">
             <TabItem x:Name="tabAbout" Header="About QDT">
-                <Grid x:Name="gridQDT" Background="#FFFFFFFF">
+                <Grid Background="#FFFFFFFF">
                     <TextBox x:Name="textBoxAbout" HorizontalAlignment="Left" Height="203" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding Text, ElementName=windowAbout}" VerticalAlignment="Top" Width="298" AcceptsReturn="True" IsReadOnly="True" HorizontalScrollBarVisibility="Visible"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabHelp" Header="Updates">
+            <TabItem x:Name="tabLinks" Header="Useful Links">
                 <Grid Background="#FFFFFFFF">
                     <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="203" Width="298">
-                        <Hyperlink NavigateUri="https://facepunch.com/showthread.php?t=1578997">
-                            DataTool / Overwatch modelling thread (Facepunch)
+                        <Hyperlink NavigateUri="https://facepunch.com/showthread.php?t=1578997" RequestNavigate="Hyperlink_RequestNavigate">
+                            Overwatch Modelling / DataTool thread
+                        </Hyperlink>
+                        <Hyperlink NavigateUri="https://ci.appveyor.com/project/yukimono/OWLib/build/artifacts" RequestNavigate="Hyperlink_RequestNavigate">
+                            <LineBreak/>
+                            <LineBreak/>Latest DataTool release (may be unstable!)
+                        </Hyperlink>
+                        <Hyperlink NavigateUri="https://ci.appveyor.com/project/xyx0826/quickovertool-wpf/branch/datatool/artifacts" RequestNavigate="Hyperlink_RequestNavigate">
+                            <LineBreak/>Latest DataTool GUI release
+                        </Hyperlink>
+                        <Hyperlink NavigateUri="https://yernemm.xyz/projects/OverToolGUI" RequestNavigate="Hyperlink_RequestNavigate">
+                            <LineBreak/>
+                            <LineBreak/>Yernemm's OverTool GUI for Overwatch pre-1.14
                         </Hyperlink>
                     </TextBlock>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabUpd" Header="Updater">
+                <Grid Background="#FFFFFFFF">
+                    <Label Content="Latest DataTool Version:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{Binding DTInfo[0], ElementName=windowAbout}" HorizontalAlignment="Left" Margin="151,10,0,0" VerticalAlignment="Top" Height="26" Width="157" FontFamily="Consolas"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="15,41,0,0" TextWrapping="Wrap" Text="{Binding DTInfo[1], ElementName=windowAbout}" VerticalAlignment="Top" Height="45" Width="293" FontFamily="Consolas"/>
+                    <TextBlock x:Name="textBlockDownloader" HorizontalAlignment="Left" Margin="15,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="125">
+                        <Hyperlink NavigateUri="{Binding DTInfo[2], ElementName=windowAbout}" RequestNavigate="DownloadNewDataTool">
+                            Acquire latest DataTool
+                        </Hyperlink>
+                    </TextBlock>
+                    <Label Content="{Binding Warning, ElementName=windowAbout}" HorizontalAlignment="Left" Margin="15,111,0,0" VerticalAlignment="Top" Height="102" Width="293" Foreground="Red" BorderBrush="Red"/>
+                    <ProgressBar x:Name="downloadBar" HorizontalAlignment="Left" Height="15" Margin="145,91,0,0" VerticalAlignment="Top" Width="163"/>
                 </Grid>
             </TabItem>
         </TabControl>

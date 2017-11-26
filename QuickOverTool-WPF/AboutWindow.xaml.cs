@@ -73,7 +73,7 @@ namespace QuickOverTool_WPF
         private string[] GetDTInfo()
         {
             // Request XML data from Appveyor API
-            HttpWebRequest req = WebRequest.Create("https://ci.appveyor.com/api/projects/yukimono/owlib") as HttpWebRequest;
+            HttpWebRequest req = WebRequest.Create("https://ci.appveyor.com/api/projects/yukimono/owlib/branch/overwatch/1.14") as HttpWebRequest;
             req.Accept = "application/xml";
             HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
             // Parse XML response

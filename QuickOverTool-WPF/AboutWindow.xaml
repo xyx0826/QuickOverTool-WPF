@@ -12,7 +12,7 @@
         <TabControl HorizontalAlignment="Left" Height="251" Margin="10,60,0,0" VerticalAlignment="Top" Width="324">
             <TabItem x:Name="tabAbout" Header="About QDT">
                 <Grid Background="#FFFFFFFF">
-                    <TextBox x:Name="textBoxAbout" HorizontalAlignment="Left" Height="203" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding Text, ElementName=windowAbout}" VerticalAlignment="Top" Width="298" AcceptsReturn="True" IsReadOnly="True" HorizontalScrollBarVisibility="Visible"/>
+                    <TextBox x:Name="textBoxAbout" HorizontalAlignment="Left" Height="203" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding About, ElementName=windowAbout}" VerticalAlignment="Top" Width="298" AcceptsReturn="True" IsReadOnly="True" HorizontalScrollBarVisibility="Visible"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabLinks" Header="Useful Links">

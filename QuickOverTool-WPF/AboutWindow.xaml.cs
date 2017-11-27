@@ -22,7 +22,7 @@ namespace QuickOverTool_WPF
             windowAbout.Hide();
         }
 
-        public string Text
+        public string About
         {
             get
             {
@@ -83,7 +83,7 @@ namespace QuickOverTool_WPF
             }
         }
 
-        void Unzip(object sender, AsyncCompletedEventArgs e)
+        private void Unzip(object sender, AsyncCompletedEventArgs e)
         {
             string zipPath = ".\\datatool_" + Networking.GetDTInfo()[0] + ".zip";
             // Read zip content and remove old build
@@ -101,16 +101,9 @@ namespace QuickOverTool_WPF
             textBlockDownloader.Text = "Update successful.";
         }
 
-        void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        private void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             downloadBar.Value = e.ProgressPercentage;
         }
-
-        /*
-        private void Unzip(string zipFile)
-        {
-            
-        }
-        */
     }
 }

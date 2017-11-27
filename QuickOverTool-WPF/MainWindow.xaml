@@ -12,7 +12,7 @@
         </Grid.RowDefinitions>
         <!-- Overwatch path and language-->
         <Label x:Name="labelPath" Content="Overwatch Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxOverwatchPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,10,0,0" VerticalAlignment="Top" Width="548" MaxLines="1" IsReadOnly="True" Text="C:\Program Files (x86)\Overwatch"/>
+        <TextBox x:Name="textBoxOverwatchPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,10,0,0" VerticalAlignment="Top" Width="548" MaxLines="1" IsReadOnly="True"/>
         <Label x:Name="labelValidity" Content="" HorizontalAlignment="Left" Margin="710,10,0,0" VerticalAlignment="Top" Foreground="Red" Height="25" Width="126"/>
         <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="680,10,0,0" VerticalAlignment="Top" Width="25" Height="25" Content="..." Click="buttonPath_Click"/>
         <Label x:Name="labelLanguage" Content="Language:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="25" Width="70" VerticalContentAlignment="Center"/>

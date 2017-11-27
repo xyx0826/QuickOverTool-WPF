@@ -37,15 +37,14 @@ namespace QuickOverTool_WPF
         {
             InitializeComponent();
             PopulateDict();
-            // ReadConfig();
+            ReadConfig();
             FlushChecklist();
-            // Networking.IsNewBuildAvail();
         }
 
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            // SaveConfig();
+            SaveConfig();
             System.Windows.Application.Current.Shutdown();
         }
 
@@ -75,15 +74,19 @@ namespace QuickOverTool_WPF
         // Read paths from config file
         private void ReadConfig()
         {
-            var appSettings = ConfigurationManager.AppSettings;
-            textBoxOverwatchPath.Text = appSettings["OverwatchPath"];
-            textBoxOutputPath.Text = appSettings["OutputPath"];
+            if (String.IsNullOrWhiteSpace(Properties.Settings.Default.overwatchPath))
+                Properties.Settings.Default.overwatchPath = "C:\\Program Files (x86)\\Overwatch";
+            if (String.IsNullOrWhiteSpace(Properties.Settings.Default.outputPath))
+                Properties.Settings.Default.outputPath = ".\\";
+            textBoxOverwatchPath.Text = Properties.Settings.Default.overwatchPath;
+            textBoxOutputPath.Text = Properties.Settings.Default.outputPath;
         }
-        // Save paths to config file
+        // Save paths from config file
         private void SaveConfig()
         {
-            var appSettings = ConfigurationManager.AppSettings;
-            // TODO
+            Properties.Settings.Default.overwatchPath = textBoxOverwatchPath.Text;
+            Properties.Settings.Default.outputPath = textBoxOutputPath.Text;
+            Properties.Settings.Default.Save();
         }
         // Update checklist
         public void FlushChecklist()

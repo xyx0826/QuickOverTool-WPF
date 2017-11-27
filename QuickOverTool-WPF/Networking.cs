@@ -10,15 +10,28 @@ namespace QuickOverTool_WPF
 {
     class Networking
     {
-        public static bool IsNewBuildAvail()
+        public static string[] GetDTInfo()
         {
-            // AppVeyor gives a json response
+            // Request XML data from Appveyor API
+            HttpWebRequest req = WebRequest.Create("https://ci.appveyor.com/api/projects/yukimono/owlib/branch/overwatch/1.14") as HttpWebRequest;
+            req.Accept = "application/xml";
+            HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
+            // Parse XML response
             XmlDocument appveyor = new XmlDocument();
-            //appveyor.Load("https://gist.githubusercontent.com/xyx0826/dd6945a1d288a9b5a2427224814d87ff/raw/7c22afeafd90b2c08f1d5df953cb1f1552692918/test.xml");
-            appveyor.Load("https://gist.githubusercontent.com/xyx0826/dd6945a1d288a9b5a2427224814d87ff/raw/26535820c0c0ea0ae26054f6114cc7c23db89094/test.xml");
-            XmlElement root = appveyor.DocumentElement;
-            string remoteVer = root.SelectSingleNode("/ProjectBuildResults/Build/BuildNumber").InnerText;
-            return true;
+            appveyor.Load(resp.GetResponseStream());
+            string dtVersion = appveyor.GetElementsByTagName("Version")[0].InnerText;
+            string dtMessage = appveyor.GetElementsByTagName("Message")[0].InnerText;
+            string dtDownload = MakeDownloadURL(appveyor.GetElementsByTagName("JobId")[0].InnerText,
+                                              "dist%2Ftoolchain-release.zip");
+            return new string[] { dtVersion, dtMessage, dtDownload };
+        }
+
+        public static string MakeDownloadURL(string jobID, string filename)
+        {
+            return "https://ci.appveyor.com/api/buildjobs/" +
+                    jobID +
+                    "/artifacts/" +
+                    filename;
         }
     }
 }

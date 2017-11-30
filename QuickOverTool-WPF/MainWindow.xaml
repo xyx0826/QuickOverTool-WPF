@@ -46,7 +46,7 @@
         </GroupBox>
         <!-- Output box -->
         <GroupBox x:Name="groupBoxOutput" Header="Logging" HorizontalAlignment="Left" Height="140" Margin="10,400,0,0" VerticalAlignment="Top" Width="824">
-            <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="811" Text="QuickDataTool has launched." HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+            <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="811" Text="{Binding Path=Log, UpdateSourceTrigger=PropertyChanged}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
         </GroupBox>
         <!-- Modes -->
         <GroupBox x:Name="groupBoxModesNew" Header="Mode" HorizontalAlignment="Left" Height="120" Margin="220,70,0,0" VerticalAlignment="Top" Width="455">

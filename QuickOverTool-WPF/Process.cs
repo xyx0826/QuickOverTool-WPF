@@ -49,7 +49,7 @@ namespace QuickOverTool_WPF
             // Mode
             try
             {
-                cmdLine += GetRadioButton();
+                cmdLine += GetMode();
             }
             catch
             {

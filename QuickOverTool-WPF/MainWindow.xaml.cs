@@ -30,17 +30,20 @@ namespace QuickOverTool_WPF
         int dataToolPID = -1;
         string sharedPath = Path.GetDirectoryName
             (Assembly.GetEntryAssembly().CodeBase).Substring(6);
+        Logging logger = new Logging();
         // Mode parameters dictionary
         Dictionary<string, string> modes = new Dictionary<string, string>();
-
+        // Populate mode dictionary and load config upon application launch
         public MainWindow()
         {
             InitializeComponent();
             PopulateDict();
             ReadConfig();
             FlushChecklist();
+            textBoxOutput.DataContext = logger;
+            logger.Increment("OnLaunch");
         }
-
+        // Save config and close application upon MainWindow closure
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
@@ -88,6 +91,7 @@ namespace QuickOverTool_WPF
             Properties.Settings.Default.outputPath = textBoxOutputPath.Text;
             Properties.Settings.Default.Save();
         }
+
         // Update checklist
         public void FlushChecklist()
         {
@@ -151,6 +155,7 @@ namespace QuickOverTool_WPF
                 labelOverwatchBranch.Content = "N/A";
             }
         }
+
         // Log increment
         public delegate void AddLogRuntime(string content);
 
@@ -163,12 +168,13 @@ namespace QuickOverTool_WPF
             }
             else
             {
-                textBoxOutput.AppendText("\n" + content);
+                logger.Log = content;
                 textBoxOutput.ScrollToEnd();
             }
         }
+
         // Get mode selection
-        private string GetRadioButton()
+        private string GetMode()
         {
             ComboBoxItem selection = new ComboBoxItem();
             if (radioButtonListMode.IsChecked == true)
@@ -232,7 +238,7 @@ namespace QuickOverTool_WPF
         {
             if (!String.IsNullOrEmpty(e.Data))
             {
-                AddLog(Encoding.UTF8.GetString
+                logger.Increment(Encoding.UTF8.GetString
                     (Encoding.Default.GetBytes(e.Data)));
             }
         }
@@ -258,13 +264,13 @@ namespace QuickOverTool_WPF
                 string[] batFile = {"echo off\n",
                 ".\\DataTool.exe" + FabricateCmdline(),
                 "\npause\n"};
-                File.WriteAllLines(".\\_" + GetRadioButton() + ".bat", batFile);
-                AddLog("Written batch file for mode " + GetRadioButton() +
-                    " to _" + GetRadioButton() + ".bat.");
+                File.WriteAllLines(".\\_" + GetMode() + ".bat", batFile);
+                AddLog("Written batch file for mode " + GetMode() +
+                    " to _" + GetMode() + ".bat.");
             }
             catch
             {
-                AddLog("Settings invalid. Please check your mode settings.");
+                logger.Increment("Settings invalid. Please check your mode settings.");
             }
         }
 

@@ -49,7 +49,7 @@
             <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="811" Text="QuickDataTool has launched." HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
         </GroupBox>
         <!-- Modes -->
-        <GroupBox x:Name="groupBoxModesNew" Header="Mode" HorizontalAlignment="Left" Height="120" Margin="220,70,0,0" VerticalAlignment="Top" Width="455">
+        <GroupBox x:Name="groupBoxModesNew" Header="Mode" HorizontalAlignment="Left" Height="120" Margin="185,70,0,0" VerticalAlignment="Top" Width="455">
             <Grid Height="110" VerticalAlignment="Top" Margin="0,0,-2,-12.8">
                 <RadioButton x:Name="radioButtonListMode" Content="List..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="listMode_Checked"/>
                 <RadioButton x:Name="radioButtonExtractMode" Content="Extract..." HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Checked="extractMode_Checked"/>
@@ -107,5 +107,16 @@
         <TextBox x:Name="textBoxCommand" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,201,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" BorderBrush="#FFABADB3" IsEnabled="False" ToolTip="Check the checkbox at the left to use custom command line."/>
         <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="13,206,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
         <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="680,201,0,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
+        <GroupBox Header="Texture Format" HorizontalAlignment="Left" Height="120" Margin="645,70,0,0" VerticalAlignment="Top" Width="153">
+            <Grid HorizontalAlignment="Left" Height="110" Margin="0,0,-2.2,-12.8" VerticalAlignment="Top" Width="143">
+                <Label Content="Convert Texture To:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="123"/>
+                <ComboBox x:Name="comboBoxTextureFmt" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+                    <ComboBoxItem Content="dds"/>
+                    <ComboBoxItem Content="tif"/>
+                    <ComboBoxItem Content="tga"/>
+                </ComboBox>
+
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>

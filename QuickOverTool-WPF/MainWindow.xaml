@@ -5,107 +5,180 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
-        Title="QuickDataTool - DataTool GUI（For Overwatch 1.14+）" Height="570" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="Height">
+        Title="QuickDataTool - DataTool GUI（For Overwatch 1.14+）" Height="639.2" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="Height" Visibility="Visible">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <!-- Overwatch path and language-->
-        <Label x:Name="labelPath" Content="Overwatch Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxOverwatchPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="125,10,0,0" VerticalAlignment="Top" Width="548" MaxLines="1" IsReadOnly="True"/>
-        <Label x:Name="labelValidity" Content="" HorizontalAlignment="Left" Margin="710,10,0,0" VerticalAlignment="Top" Foreground="Red" Height="25" Width="126"/>
-        <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="680,10,0,0" VerticalAlignment="Top" Width="25" Height="25" Content="..." Click="buttonPath_Click"/>
-        <Label x:Name="labelLanguage" Content="Language:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="25" Width="70" VerticalContentAlignment="Center"/>
-        <ComboBox x:Name="comboBoxLanguage" HorizontalAlignment="Left" Margin="85,42,0,0" VerticalAlignment="Top" Width="130" SelectedIndex="0">
-            <ComboBoxItem Content="enUS"/>
-            <ComboBoxItem Content="zhCN"/>
-            <ComboBoxItem Content="zhTW"/>
-            <ComboBoxItem Content="jaJP"/>
-            <ComboBoxItem Content="frFR"/>
-            <ComboBoxItem Content="deDE"/>
-            <ComboBoxItem Content="ruRU"/>
-            <ComboBoxItem Content="koKR"/>
-            <ComboBoxItem Content="itIT"/>
-            <ComboBoxItem Content="plPL"/>
-            <ComboBoxItem Content="ptBR"/>
-            <ComboBoxItem Content="esES"/>
-            <ComboBoxItem Content="esMX"/>
-        </ComboBox>
-        <!-- Flags -->
-        <CheckBox x:Name="checkBoxQuiet" Content="Suppress Logs" HorizontalAlignment="Left" Margin="220,46,0,0" VerticalAlignment="Top" ToolTip="Disable most output information."/>
-        <CheckBox x:Name="checkBoxSkipKeys" Content="Skip Key Detection" HorizontalAlignment="Left" Margin="321,46,0,0" VerticalAlignment="Top" ToolTip="Skip encryption key detection."/>
-        <CheckBox x:Name="checkBoxGraceful" Content="Graceful Exit" HorizontalAlignment="Left" Margin="445,46,0,0" VerticalAlignment="Top" ToolTip="Prevent decryption failures from crashing the tool."/>
-        <CheckBox x:Name="checkBoxExpert" Content="Expert Mode" HorizontalAlignment="Left" Margin="535,46,0,0" VerticalAlignment="Top" ToolTip="Output more asset information."/>
-        <GroupBox x:Name="groupBoxSkipExtractions" Header="CMF &amp; CDN" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2" BorderBrush="#FFD5DFE5" Foreground="Black" ToolTip="">
-            <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170" ToolTip="">
-                <CheckBox x:Name="checkBoxRCN" Content="Use RCN CMF" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="15" ToolTip="This might cause DataTool to stop working."/>
-                <CheckBox x:Name="checkBoxCDNValidate" Content="Validate files" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Height="15" ToolTip="Validate files from CDN."/>
-                <CheckBox x:Name="checkBoxCDNIndex" Content="Cache indexes" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="15" IsChecked="True" ToolTip="Cache index files from CDN."/>
-                <CheckBox x:Name="checkBoxCDNData" Content="Cache data" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="15" IsChecked="True" ToolTip="Cache data files from CDN."/>
-            </Grid>
-        </GroupBox>
-        <!-- Output box -->
-        <GroupBox x:Name="groupBoxOutput" Header="Logging" HorizontalAlignment="Left" Height="140" Margin="10,400,0,0" VerticalAlignment="Top" Width="824">
-            <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="811" Text="{Binding Path=Log, UpdateSourceTrigger=PropertyChanged}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
-        </GroupBox>
-        <!-- Modes -->
-        <GroupBox x:Name="groupBoxModesNew" Header="Mode" HorizontalAlignment="Left" Height="120" Margin="220,70,0,0" VerticalAlignment="Top" Width="455">
-            <Grid Height="110" VerticalAlignment="Top" Margin="0,0,-2,-12.8">
-                <RadioButton x:Name="radioButtonListMode" Content="List..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="listMode_Checked"/>
-                <RadioButton x:Name="radioButtonExtractMode" Content="Extract..." HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Checked="extractMode_Checked"/>
-                <ComboBox x:Name="comboBoxList" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
-                    <ComboBoxItem x:Name="l_generalUnlocks" Content="General Unlocks" ToolTip="List general icons, sprays and player portraits."/>
-                    <ComboBoxItem x:Name="l_heroUnlocks" Content="Hero Unlocks" ToolTip="List hero-specific unlockable contents."/>
-                    <ComboBoxItem x:Name="l_heroes" Content="Heroes" ToolTip="List all heroes."/>
-                    <ComboBoxItem x:Name="l_maps" Content="Maps" ToolTip="List all maps."/>
-                    <ComboBoxItem x:Name="l_strings" Content="Strings" ToolTip="List all strings."/>
-                    <ComboBoxItem x:Name="l_achievements" Content="Achievements" ToolTip="List all achievements."/>
-                    <ComboBoxItem x:Name="l_lootboxes" Content="Lootboxes" ToolTip="List all lootboxes."/>
-                    <ComboBoxItem x:Name="l_highlights" Content="Highlights" ToolTip="List all player highlights."/>
-                    <ComboBoxItem x:Name="l_keys" Content="Encryption Keys" ToolTip="List all encryption keys."/>
-                    <ComboBoxItem x:Name="l_chat" Content="Chat Replacements" ToolTip="List chat keywords, e.g. profanity, GGEZ, etc."/>
-                    <ComboBoxItem x:Name="l_subt" Content="Subtitles" ToolTip="List in-game subtitles."/>
-                    <ComboBoxItem x:Name="l_subtAudio" Content="Subtitles (Audio)" ToolTip="List in-game subtitles from audio data."/>
+
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="844" Margin="0,0,-0.4,0" Background="#FF0080E2" Height="72">
+            <Image HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="{StaticResource OverwatchLogo}"/>
+            <Label Content="Version:" HorizontalAlignment="Left" Margin="65,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="Server:" HorizontalAlignment="Left" Margin="65,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
+            <Label x:Name="lblOverwatchVersion" Content="Unknown" HorizontalAlignment="Left" Margin="122,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label x:Name="lblOverwatchServer" Content="Unknown" HorizontalAlignment="Left" Margin="122,34,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Image HorizontalAlignment="Left" Height="50" Margin="250,10,0,0" VerticalAlignment="Top" Width="50" Source="{StaticResource ExtractorLogo}"/>
+            <Label Content="Version:" HorizontalAlignment="Left" Margin="305,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="Integrity:" HorizontalAlignment="Left" Margin="305,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
+            <Label x:Name="lblDataToolOversion" Content="Unknown" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label x:Name="lblDataToolIntegrity" Content="Unknown" HorizontalAlignment="Left" Margin="362,34,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Button Content="{StaticResource SettingsIcon}" HorizontalAlignment="Left" Margin="765,20,0,0" VerticalAlignment="Top" Width="32" Height="32">
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="#FF007BD8" Opacity="0"/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                </Button.Background>
+            </Button>
+            <Button Content="{StaticResource AboutIcon}" HorizontalAlignment="Left" Margin="802,20,0,0" VerticalAlignment="Top" Width="32" Height="32">
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <TabControl Margin="0,72,-0.4,-0.2" BorderThickness="0" TabStripPlacement="Left">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Grid Name="Panel">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Right"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Panel" Property="Background" Value="#FF1C97EA" />
+                                        <Setter Property="Foreground" Value="White" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Panel" Property="Background" Value="White" />
+                                        <Setter Property="Foreground" Value="Black" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Width" Value="115" />
+                    <Setter Property="Height" Value="20" />
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="DataTool Modes" Height="30">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Content="OWorkbench" FontSize="36" Margin="10,10,0,0" Width="235" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="v. 2.1.16" Margin="245,13,397.8,471.4" FontFamily="Segoe UI" VerticalContentAlignment="Bottom" FontWeight="Bold" FontSize="16" Height="50" Width="80"/>
+                    <Label Content="Simplifying Overwatch asset extraction and management." Margin="12,70,290.8,431.4" FontSize="16" Height="33" Width="420"/>
+                    <Label Content="Getting Started" FontSize="36" Margin="10,108,437.8,366.4" Width="275" Height="60" FontWeight="Bold" Foreground="#FF007BD8"/>
+                    <Label Content="Simply choose a mode from the menu on the left." Margin="12,168,290.8,333.4" FontSize="16" Height="33" Width="420"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="List Assets"/>
+            <TabItem Header="Extract Assets" HorizontalAlignment="Left"/>
+            <Grid x:Name="TrashGrid" Visibility="Hidden" Height="100" Width="100">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- Overwatch path and language-->
+                <Label x:Name="labelPath" Content="Overwatch Path" HorizontalAlignment="Left" Margin="382,171,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="textBoxOverwatchPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="496,171,-200.4,0" VerticalAlignment="Top" Width="548" MaxLines="1" IsReadOnly="True"/>
+                <Label x:Name="labelValidity" Content="" HorizontalAlignment="Left" Margin="1082,171,-364.4,0" VerticalAlignment="Top" Foreground="Red" Height="25" Width="126"/>
+                <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="1052,171,-233.4,0" VerticalAlignment="Top" Width="25" Height="25" Content="..." Click="buttonPath_Click"/>
+                <Label x:Name="labelLanguage" Content="Language:" HorizontalAlignment="Left" Margin="382,201,0,0" VerticalAlignment="Top" Height="25" Width="70" VerticalContentAlignment="Center"/>
+                <ComboBox x:Name="comboBoxLanguage" HorizontalAlignment="Left" Margin="457,203,0,0" VerticalAlignment="Top" Width="130" SelectedIndex="0">
+                    <ComboBoxItem Content="enUS"/>
+                    <ComboBoxItem Content="zhCN"/>
+                    <ComboBoxItem Content="zhTW"/>
+                    <ComboBoxItem Content="jaJP"/>
+                    <ComboBoxItem Content="frFR"/>
+                    <ComboBoxItem Content="deDE"/>
+                    <ComboBoxItem Content="ruRU"/>
+                    <ComboBoxItem Content="koKR"/>
+                    <ComboBoxItem Content="itIT"/>
+                    <ComboBoxItem Content="plPL"/>
+                    <ComboBoxItem Content="ptBR"/>
+                    <ComboBoxItem Content="esES"/>
+                    <ComboBoxItem Content="esMX"/>
                 </ComboBox>
-                <ComboBox x:Name="comboBoxExtract" HorizontalAlignment="Left" Margin="135,30,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
-                    <ComboBoxItem x:Name="e_generalUnlocks" Content="General Unlocks" ToolTip="Extract general icons, sprays and player portraits."/>
-                    <ComboBoxItem x:Name="e_heroUnlocks" Content="Hero Unlocks..." ToolTip="Extract hero-specific unlockable contents." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
-                    <ComboBoxItem x:Name="e_heroVoice" Content="Hero Voice..." ToolTip="Extracts all hero voice sounds into groups." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
-                    <ComboBoxItem x:Name="e_maps" Content="Maps" ToolTip="Extract all maps."/>
-                    <ComboBoxItem x:Name="e_lootboxes" Content="Lootboxes" ToolTip="Extract all lootbox models."/>
-                    <ComboBoxItem x:Name="e_npcs" Content="NPCs..." ToolTip="Extract NPC models." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
-                    <ComboBoxItem x:Name="e_abilities" Content="Abilities" ToolTip="Extract hero ability icons and video demos."/>
-                </ComboBox>
-                <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="260,30,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Hidden" Click="buttonExtractQuery_Click" Height="22"/>
-                <CheckBox x:Name="checkBoxNoTex" Content="Don't Convert Textures" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" ToolTip="Disable texture conversion to DDS."/>
-                <CheckBox x:Name="checkBoxNoSnd" Content="Don't Convert Sound" HorizontalAlignment="Left" Margin="155,70,0,0" VerticalAlignment="Top" ToolTip="Disable sound conversion to OGG."/>
+                <!-- Flags -->
+                <CheckBox x:Name="checkBoxQuiet" Content="Suppress Logs" HorizontalAlignment="Left" Margin="592,207,0,0" VerticalAlignment="Top" ToolTip="Disable most output information."/>
+                <CheckBox x:Name="checkBoxSkipKeys" Content="Skip Key Detection" HorizontalAlignment="Left" Margin="693,207,0,0" VerticalAlignment="Top" ToolTip="Skip encryption key detection."/>
+                <CheckBox x:Name="checkBoxGraceful" Content="Graceful Exit" HorizontalAlignment="Left" Margin="817,207,-58.4,0" VerticalAlignment="Top" ToolTip="Prevent decryption failures from crashing the tool."/>
+                <CheckBox x:Name="checkBoxExpert" Content="Expert Mode" HorizontalAlignment="Left" Margin="907,207,-150.4,0" VerticalAlignment="Top" ToolTip="Output more asset information."/>
+                <GroupBox x:Name="groupBoxSkipExtractions" Header="CMF &amp; CDN" HorizontalAlignment="Left" Height="120" Margin="382,231,0,0" VerticalAlignment="Top" Width="170" BorderBrush="#FFD5DFE5" Foreground="Black" ToolTip="">
+                    <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170" ToolTip="">
+                        <CheckBox x:Name="checkBoxRCN" Content="Use RCN CMF" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="15" ToolTip="This might cause DataTool to stop working."/>
+                        <CheckBox x:Name="checkBoxCDNValidate" Content="Validate files" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Height="15" ToolTip="Validate files from CDN."/>
+                        <CheckBox x:Name="checkBoxCDNIndex" Content="Cache indexes" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="15" IsChecked="True" ToolTip="Cache index files from CDN."/>
+                        <CheckBox x:Name="checkBoxCDNData" Content="Cache data" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="15" IsChecked="True" ToolTip="Cache data files from CDN."/>
+                    </Grid>
+                </GroupBox>
+                <!-- Output box -->
+                <GroupBox x:Name="groupBoxOutput" Header="Logging" HorizontalAlignment="Left" Height="140" Margin="382,561,-362.4,0" VerticalAlignment="Top" Width="824">
+                    <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="811" Text="{Binding Path=Log, UpdateSourceTrigger=PropertyChanged}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+                </GroupBox>
+                <!-- Modes -->
+                <GroupBox x:Name="groupBoxModesNew" Header="Mode" HorizontalAlignment="Left" Height="120" Margin="592,231,-203.4,0" VerticalAlignment="Top" Width="455">
+                    <Grid Height="110" VerticalAlignment="Top" Margin="0,0,-2,-12.8">
+                        <RadioButton x:Name="radioButtonListMode" Content="List..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="listMode_Checked"/>
+                        <RadioButton x:Name="radioButtonExtractMode" Content="Extract..." HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Checked="extractMode_Checked"/>
+                        <ComboBox x:Name="comboBoxList" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
+                            <ComboBoxItem x:Name="l_generalUnlocks" Content="General Unlocks" ToolTip="List general icons, sprays and player portraits."/>
+                            <ComboBoxItem x:Name="l_heroUnlocks" Content="Hero Unlocks" ToolTip="List hero-specific unlockable contents."/>
+                            <ComboBoxItem x:Name="l_heroes" Content="Heroes" ToolTip="List all heroes."/>
+                            <ComboBoxItem x:Name="l_maps" Content="Maps" ToolTip="List all maps."/>
+                            <ComboBoxItem x:Name="l_strings" Content="Strings" ToolTip="List all strings."/>
+                            <ComboBoxItem x:Name="l_achievements" Content="Achievements" ToolTip="List all achievements."/>
+                            <ComboBoxItem x:Name="l_lootboxes" Content="Lootboxes" ToolTip="List all lootboxes."/>
+                            <ComboBoxItem x:Name="l_highlights" Content="Highlights" ToolTip="List all player highlights."/>
+                            <ComboBoxItem x:Name="l_keys" Content="Encryption Keys" ToolTip="List all encryption keys."/>
+                            <ComboBoxItem x:Name="l_chat" Content="Chat Replacements" ToolTip="List chat keywords, e.g. profanity, GGEZ, etc."/>
+                            <ComboBoxItem x:Name="l_subt" Content="Subtitles" ToolTip="List in-game subtitles."/>
+                            <ComboBoxItem x:Name="l_subtAudio" Content="Subtitles (Audio)" ToolTip="List in-game subtitles from audio data."/>
+                        </ComboBox>
+                        <ComboBox x:Name="comboBoxExtract" HorizontalAlignment="Left" Margin="135,30,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
+                            <ComboBoxItem x:Name="e_generalUnlocks" Content="General Unlocks" ToolTip="Extract general icons, sprays and player portraits."/>
+                            <ComboBoxItem x:Name="e_heroUnlocks" Content="Hero Unlocks..." ToolTip="Extract hero-specific unlockable contents." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
+                            <ComboBoxItem x:Name="e_heroVoice" Content="Hero Voice..." ToolTip="Extracts all hero voice sounds into groups." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
+                            <ComboBoxItem x:Name="e_maps" Content="Maps" ToolTip="Extract all maps."/>
+                            <ComboBoxItem x:Name="e_lootboxes" Content="Lootboxes" ToolTip="Extract all lootbox models."/>
+                            <ComboBoxItem x:Name="e_npcs" Content="NPCs..." ToolTip="Extract NPC models." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
+                            <ComboBoxItem x:Name="e_abilities" Content="Abilities" ToolTip="Extract hero ability icons and video demos."/>
+                        </ComboBox>
+                        <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="260,30,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Hidden" Click="buttonExtractQuery_Click" Height="22"/>
+                        <CheckBox x:Name="checkBoxNoTex" Content="Don't Convert Textures" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" ToolTip="Disable texture conversion to DDS."/>
+                        <CheckBox x:Name="checkBoxNoSnd" Content="Don't Convert Sound" HorizontalAlignment="Left" Margin="155,70,0,0" VerticalAlignment="Top" ToolTip="Disable sound conversion to OGG."/>
+                    </Grid>
+                </GroupBox>
+                <!-- Export path -->
+                <Label x:Name="labelOutputPath" Content="Output Path" HorizontalAlignment="Left" Margin="381,394,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="495,394,-201.4,0" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Text="./"/>
+                <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="1052,394,-233.4,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
+                <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="1082,394,-361.4,0" VerticalAlignment="Top" Width="123" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
+                <!-- Checklist -->
+                <GroupBox x:Name="groupBoxChecklists" Header="Checklist" HorizontalAlignment="Left" Height="123" Margin="382,432,-158.4,0" VerticalAlignment="Top" Width="620">
+                    <Grid HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="620" Margin="0,0,-12,-11.8">
+                        <Label x:Name="labelTagOverwatchVersion" Content="Overwatch Version:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="labelTagOverwatchBranch" Content="Overwatch Branch:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="labelTagOverToolExecutable" Content="DataTool Version:" HorizontalAlignment="Left" Margin="288,10,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="labelTagOverToolIntegrity" Content="DataTool Keyfile:" HorizontalAlignment="Left" Margin="288,40,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="labelOverwatchVersion" Content="N/A" HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="labelOverwatchBranch" Content="N/A" HorizontalAlignment="Left" Margin="121,40,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="labelOverToolIntegrity" Content="N/A" HorizontalAlignment="Left" Margin="432,40,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="labelOverToolExecutable" Content="N/A" HorizontalAlignment="Left" Margin="432,10,0,0" VerticalAlignment="Top"/>
+                    </Grid>
+                </GroupBox>
+                <!-- Misc -->
+                <Button x:Name="buttonTaskkill" Content="Kill DataTool Process" HorizontalAlignment="Left" Margin="1007,454,-361.4,0" VerticalAlignment="Top" Width="198" Height="25" Foreground="Red" Click="buttonTaskkill_Click"/>
+                <Button x:Name="buttonSaveOutput" Content="Save Log to File" HorizontalAlignment="Left" Margin="1007,484,-258.4,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveOutput_Click"/>
+                <Button x:Name="buttonSaveCmdline" Content="Save Cmdline" HorizontalAlignment="Left" Margin="1107,484,-358.4,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveCmdline_Click"/>
+                <Button x:Name="buttonAbout" Content="Help and Update..." HorizontalAlignment="Left" Margin="1007,513,-361.4,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonAbout_Click" Foreground="Black"/>
+                <TextBox x:Name="textBoxCommand" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="495,362,-201.4,0" VerticalAlignment="Top" Width="550" MaxLines="1" BorderBrush="#FFABADB3" IsEnabled="False" ToolTip="Check the checkbox at the left to use custom command line."/>
+                <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="385,367,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
+                <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="1052,362,-361.4,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
             </Grid>
-        </GroupBox>
-        <!-- Export path -->
-        <Label x:Name="labelOutputPath" Content="Output Path" HorizontalAlignment="Left" Margin="9,233,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,233,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Text="./"/>
-        <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="680,233,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
-        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="710,233,0,0" VerticalAlignment="Top" Width="123" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
-        <!-- Checklist -->
-        <GroupBox x:Name="groupBoxChecklists" Header="Checklist" HorizontalAlignment="Left" Height="123" Margin="10,271,0,0" VerticalAlignment="Top" Width="620">
-            <Grid HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="620" Margin="0,0,-12,-11.8">
-                <Label x:Name="labelTagOverwatchVersion" Content="Overwatch Version:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelTagOverwatchBranch" Content="Overwatch Branch:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelTagOverToolExecutable" Content="DataTool Version:" HorizontalAlignment="Left" Margin="288,10,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelTagOverToolIntegrity" Content="DataTool Keyfile:" HorizontalAlignment="Left" Margin="288,40,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelOverwatchVersion" Content="N/A" HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelOverwatchBranch" Content="N/A" HorizontalAlignment="Left" Margin="121,40,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelOverToolIntegrity" Content="N/A" HorizontalAlignment="Left" Margin="432,40,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="labelOverToolExecutable" Content="N/A" HorizontalAlignment="Left" Margin="432,10,0,0" VerticalAlignment="Top"/>
-            </Grid>
-        </GroupBox>
-        <!-- Misc -->
-        <Button x:Name="buttonTaskkill" Content="Kill DataTool Process" HorizontalAlignment="Left" Margin="635,293,0,0" VerticalAlignment="Top" Width="198" Height="25" Foreground="Red" Click="buttonTaskkill_Click"/>
-        <Button x:Name="buttonSaveOutput" Content="Save Log to File" HorizontalAlignment="Left" Margin="635,323,0,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveOutput_Click"/>
-        <Button x:Name="buttonSaveCmdline" Content="Save Cmdline" HorizontalAlignment="Left" Margin="738,323,0,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveCmdline_Click"/>
-        <Button x:Name="buttonAbout" Content="Help and Update..." HorizontalAlignment="Left" Margin="635,352,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonAbout_Click" Foreground="Black"/>
-        <TextBox x:Name="textBoxCommand" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,201,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" BorderBrush="#FFABADB3" IsEnabled="False" ToolTip="Check the checkbox at the left to use custom command line."/>
-        <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="13,206,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
-        <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="680,201,0,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
+        </TabControl>
     </Grid>
 </Window>

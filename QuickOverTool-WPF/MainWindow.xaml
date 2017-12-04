@@ -76,7 +76,11 @@
                 </Grid>
             </TabItem>
             <TabItem Header="List Assets"/>
-            <TabItem Header="Extract Assets" HorizontalAlignment="Left"/>
+            <TabItem Header="Extract Assets"/>
+            <TabItem Header="Logging"/>
+            <TabItem Header="Version Managing" Height="30"/>
+            <TabItem Header="Game Version"/>
+            <TabItem Header="Tool Version"/>
             <Grid x:Name="TrashGrid" Visibility="Hidden" Height="100" Width="100">
                 <Grid.RowDefinitions>
                     <RowDefinition/>

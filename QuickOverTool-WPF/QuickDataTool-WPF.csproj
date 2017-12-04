@@ -89,6 +89,7 @@
       <DependentUpon>QueryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Validation.cs" />
+    <Compile Include="VersionManagement.cs" />
     <Page Include="AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

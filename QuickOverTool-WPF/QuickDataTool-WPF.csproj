@@ -82,14 +82,19 @@
     <Compile Include="AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Logging.cs" />
-    <Compile Include="Networking.cs" />
+    <Compile Include="Logics\Logging.cs" />
+    <Compile Include="Logics\Networking.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="QueryWindow.xaml.cs">
       <DependentUpon>QueryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Validation.cs" />
-    <Compile Include="VersionManagement.cs" />
+    <Compile Include="Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Logics\Validation.cs" />
+    <Compile Include="Logics\VersionManagement.cs" />
     <Page Include="AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,6 +153,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

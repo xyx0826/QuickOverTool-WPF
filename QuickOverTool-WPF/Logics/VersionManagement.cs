@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace QuickOverTool_WPF
@@ -35,7 +33,30 @@ namespace QuickOverTool_WPF
             return latestVersion;
         }
 
-        public List<String> CheckDataTool(string dtPath)
+        public bool IsOverwatchPTR(string owPath)
+        {
+            try
+            {
+                string pdbPath = Path.Combine(owPath, ".product.db");
+                StreamReader pdbStream = new StreamReader(pdbPath);
+                using (var reader = File.OpenText(pdbPath))
+                {
+                    string pdbRead = pdbStream.ReadLine();
+                    while (pdbStream.Peek() >= 0)
+                    {
+                        pdbRead = pdbStream.ReadLine();
+                        if (pdbRead.Contains("prometheus_test")) return true;
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<String> CheckDataToolIntegrity(string dtPath)
         {
             string[] files = {"CascLib.dll",
                               "DataTool.exe",

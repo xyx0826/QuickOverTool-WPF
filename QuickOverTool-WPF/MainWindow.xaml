@@ -66,20 +66,26 @@
                     <Setter Property="Height" Value="20" />
                 </Style>
             </TabControl.Resources>
-            <TabItem Header="DataTool Modes" Height="30">
+            <TabItem Header="Quick Start" Height="30" FontWeight="Bold">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Label Content="OWorkbench" FontSize="36" Margin="10,10,0,0" Width="235" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <Label Content="v. 2.1.16" Margin="245,13,397.8,471.4" FontFamily="Segoe UI" VerticalContentAlignment="Bottom" FontWeight="Bold" FontSize="16" Height="50" Width="80"/>
-                    <Label Content="Simplifying Overwatch asset extraction and management." Margin="12,70,290.8,431.4" FontSize="16" Height="33" Width="420"/>
+                    <Label Content="Simplifying Overwatch asset extraction and management." Margin="12,70,290.8,431.4" FontSize="16" Height="33" Width="420" FontWeight="Normal"/>
                     <Label Content="Getting Started" FontSize="36" Margin="10,108,437.8,366.4" Width="275" Height="60" FontWeight="Bold" Foreground="#FF007BD8"/>
-                    <Label Content="Simply choose a mode from the menu on the left." Margin="12,168,290.8,333.4" FontSize="16" Height="33" Width="420"/>
+                    <Label Content="Simply choose something to do from the menu on the left." Margin="12,168,280.8,333.4" FontSize="16" Height="33" FontWeight="Normal"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="DataTool Modes" Height="30" IsEnabled="False" FontWeight="Bold"/>
             <TabItem Header="List Assets"/>
             <TabItem Header="Extract Assets"/>
             <TabItem Header="Logging"/>
-            <TabItem Header="Version Managing" Height="30"/>
-            <TabItem Header="Game Version"/>
+            <TabItem Header="Version Controls" Height="30" IsEnabled="False" FontWeight="Bold"/>
+            <TabItem Header="Game Version">
+                <Grid>
+                    <Label Content="Adds/removes Overwatch versions to be used in " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="35" Width="703"/>
+
+                </Grid>
+            </TabItem>
             <TabItem Header="Tool Version"/>
             <Grid x:Name="TrashGrid" Visibility="Hidden" Height="100" Width="100">
                 <Grid.RowDefinitions>
@@ -121,7 +127,7 @@
                 </GroupBox>
                 <!-- Output box -->
                 <GroupBox x:Name="groupBoxOutput" Header="Logging" HorizontalAlignment="Left" Height="140" Margin="382,561,-362.4,0" VerticalAlignment="Top" Width="824">
-                    <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="811" Text="{Binding Path=Log, UpdateSourceTrigger=PropertyChanged}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+                    <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="811" Text="{Binding Log, UpdateSourceTrigger=PropertyChanged}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
                 </GroupBox>
                 <!-- Modes -->
                 <GroupBox x:Name="groupBoxModesNew" Header="Mode" HorizontalAlignment="Left" Height="120" Margin="592,231,-203.4,0" VerticalAlignment="Top" Width="455">
@@ -183,6 +189,7 @@
                 <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="385,367,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
                 <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="1052,362,-361.4,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
             </Grid>
+            <Label Content="Label" Height="99" Width="100"/>
         </TabControl>
     </Grid>
 </Window>

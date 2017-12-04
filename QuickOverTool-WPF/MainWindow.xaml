@@ -1,7 +1,6 @@
 ﻿<Window x:Name="WindowMain" x:Class="QuickOverTool_WPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:p="clr-namespace:QuickOverTool_WPF.Properties"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
@@ -68,7 +67,7 @@
             </TabControl.Resources>
             <TabItem Header="Quick Start" Height="30" FontWeight="Bold">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Label Content="OWorkbench" FontSize="36" Margin="10,10,0,0" Width="235" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="{x:Static local:Resources.TAB0_DESC1}" FontSize="36" Margin="10,10,0,0" Width="235" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <Label Content="v. 2.1.16" Margin="245,13,397.8,471.4" FontFamily="Segoe UI" VerticalContentAlignment="Bottom" FontWeight="Bold" FontSize="16" Height="50" Width="80"/>
                     <Label Content="Simplifying Overwatch asset extraction and management." Margin="12,70,290.8,431.4" FontSize="16" Height="33" Width="420" FontWeight="Normal"/>
                     <Label Content="Getting Started" FontSize="36" Margin="10,108,437.8,366.4" Width="275" Height="60" FontWeight="Bold" Foreground="#FF007BD8"/>

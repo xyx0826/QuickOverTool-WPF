@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CBA0F207-3DB9-44D3-9661-C6473277CCAA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>QuickOverTool_WPF</RootNamespace>
+    <RootNamespace>QuickDataTool</RootNamespace>
     <AssemblyName>QuickDataTool</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

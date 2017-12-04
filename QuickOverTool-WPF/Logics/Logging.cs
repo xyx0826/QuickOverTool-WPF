@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace QuickOverTool_WPF
+namespace QuickDataTool
 {
     public class Logging : INotifyPropertyChanged
     {

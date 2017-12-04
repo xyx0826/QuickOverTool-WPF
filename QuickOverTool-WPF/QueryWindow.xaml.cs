@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace QuickOverTool_WPF
+namespace QuickDataTool
 {
     /// <summary>
     /// QueryWindow.xaml 的交互逻辑

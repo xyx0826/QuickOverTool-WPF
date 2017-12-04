@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace QuickOverTool_WPF
+namespace QuickDataTool
 {
     /// <summary>
     /// App.xaml 的交互逻辑

@@ -9,7 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 
-namespace QuickOverTool_WPF
+namespace QuickDataTool
 {
     /// <summary>
     /// MainWindow.xaml logics.

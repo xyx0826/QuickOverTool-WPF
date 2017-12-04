@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:QuickOverTool_WPF">
+                    xmlns:local="clr-namespace:QuickDataTool">
     <DrawingImage x:Key="OverwatchLogo">
         <DrawingImage.Drawing>
             <DrawingGroup ClipGeometry="M0,0 V600 H600 V0 H0 Z">

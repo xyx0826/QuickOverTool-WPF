@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 
-namespace QuickOverTool_WPF
+namespace QuickDataTool
 {
     /// <summary>
     /// Methods for getting the info on

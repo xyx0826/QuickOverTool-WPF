@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace QuickOverTool_WPF
+namespace QuickDataTool
 {
     class Networking
     {

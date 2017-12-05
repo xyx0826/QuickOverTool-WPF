@@ -8,7 +8,7 @@ namespace QuickDataTool
 {
     public class VersionManagement
     {
-        public string GetOverwatchVersion(string owPath)
+        public string GetOWVersion(string owPath)
         {
             List<string> versions = new List<string>();
             string latestVersion = "0.00.0.0.00000";
@@ -24,8 +24,8 @@ namespace QuickDataTool
             }
             foreach (string version in versions)
             {
-                if (Int32.Parse(version.Substring(version.Length - 4)) >
-                    Int32.Parse(latestVersion.Substring(latestVersion.Length - 4)))
+                if (Int32.Parse(version.Substring(version.Length - 5)) >
+                    Int32.Parse(latestVersion.Substring(latestVersion.Length - 5)))
                 {
                     latestVersion = version;
                 }
@@ -33,7 +33,7 @@ namespace QuickDataTool
             return latestVersion;
         }
 
-        public bool IsOverwatchPTR(string owPath)
+        public bool IsOWPtr(string owPath)
         {
             try
             {
@@ -56,19 +56,19 @@ namespace QuickDataTool
             }
         }
 
-        public List<String> CheckDataToolIntegrity(string dtPath)
+        public List<String> CheckDTIntegerity(string dtPath)
         {
-            string[] files = {"CascLib.dll",
-                              "DataTool.exe",
-                              "ow.events",
-                              "ow.keys",
-                              "OWlib.dll",
-                              "OWReplayLib.dll",
-                              "STULib.dll",
-                              "Third Party\\packed_codebooks_aoTuV_603.bin",
-                              "Third Party\\revorb.exe",
-                              "Third Party\\texconv.exe",
-                              "Third Party\\ww2ogg.exe" };
+            string[] files = {"\\CascLib.dll",
+                              "\\DataTool.exe",
+                              "\\ow.events",
+                              "\\ow.keys",
+                              "\\OWlib.dll",
+                              "\\OWReplayLib.dll",
+                              "\\STULib.dll",
+                              "\\Third Party\\packed_codebooks_aoTuV_603.bin",
+                              "\\Third Party\\revorb.exe",
+                              "\\Third Party\\texconv.exe",
+                              "\\Third Party\\ww2ogg.exe" };
             List<string> missingFiles = new List<string>();
             foreach (string file in files)
             {
@@ -77,7 +77,7 @@ namespace QuickDataTool
             return missingFiles;
         }
 
-        public string GetDataToolVersion(string dtPath)
+        public string GetDTVersion(string dtPath)
         {
             string version;
             try

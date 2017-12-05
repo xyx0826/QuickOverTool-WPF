@@ -6,18 +6,18 @@
         xmlns:local="clr-namespace:QuickDataTool"
         Title="QuickDataTool - DataTool GUI（For Overwatch 1.14+）" Height="639.2" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="Height" Visibility="Visible">
     <Grid>
-
+        <!-- Header -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="844" Margin="0,0,-0.4,0" Background="#FF0080E2" Height="72">
             <Image HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="{StaticResource OverwatchLogo}"/>
             <Label Content="Version:" HorizontalAlignment="Left" Margin="65,10,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label Content="Server:" HorizontalAlignment="Left" Margin="65,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
-            <Label x:Name="lblOverwatchVersion" Content="Unknown" HorizontalAlignment="Left" Margin="122,10,0,0" VerticalAlignment="Top" Foreground="White"/>
-            <Label x:Name="lblOverwatchServer" Content="Unknown" HorizontalAlignment="Left" Margin="122,34,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="{Binding CurrentOWVersion, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="122,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="{Binding CurrentOWServer, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="122,34,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Image HorizontalAlignment="Left" Height="50" Margin="250,10,0,0" VerticalAlignment="Top" Width="50" Source="{StaticResource ExtractorLogo}"/>
             <Label Content="Version:" HorizontalAlignment="Left" Margin="305,10,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label Content="Integrity:" HorizontalAlignment="Left" Margin="305,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
-            <Label x:Name="lblDataToolOversion" Content="Unknown" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top" Foreground="White"/>
-            <Label x:Name="lblDataToolIntegrity" Content="Unknown" HorizontalAlignment="Left" Margin="362,34,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="{Binding DTVersion, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="{Binding DTIntegrity, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="362,34,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Button Content="{StaticResource SettingsIcon}" HorizontalAlignment="Left" Margin="765,20,0,0" VerticalAlignment="Top" Width="32" Height="32">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF007BD8" Opacity="0"/>
@@ -35,7 +35,9 @@
                 </Button.Background>
             </Button>
         </Grid>
+        <!-- Main TabControl -->
         <TabControl Margin="0,72,-0.4,-0.2" BorderThickness="0" TabStripPlacement="Left">
+            <!-- Styles -->
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
@@ -65,27 +67,57 @@
                     <Setter Property="Height" Value="20" />
                 </Style>
             </TabControl.Resources>
+            <!-- Individual tabs-->
             <TabItem Header="Quick Start" Height="30" FontWeight="Bold">
-                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <!--<Label Content="{x:Static local:Resources.TAB0_DESC1}" FontSize="36" Margin="10,10,0,0" Width="235" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
-                    <Label Content="v. 2.1.16" Margin="245,13,397.8,471.4" FontFamily="Segoe UI" VerticalContentAlignment="Bottom" FontWeight="Bold" FontSize="16" Height="50" Width="80"/>
-                    <Label Content="Simplifying Overwatch asset extraction and management." Margin="12,70,290.8,431.4" FontSize="16" Height="33" Width="420" FontWeight="Normal"/>
-                    <Label Content="Getting Started" FontSize="36" Margin="10,108,437.8,366.4" Width="275" Height="60" FontWeight="Bold" Foreground="#FF007BD8"/>
-                    <Label Content="Simply choose something to do from the menu on the left." Margin="12,168,280.8,333.4" FontSize="16" Height="33" FontWeight="Normal"/>
+                <Grid>
+                    <Label Content="{x:Static local:Resources.TAB0_TITLE1}" FontSize="36" Margin="10,10,0,0" Width="235" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="{x:Static local:Resources.TAB0_DESC1}" Margin="12,70,290.8,431.4" FontSize="16" Height="33" Width="420" FontWeight="Normal"/>
+                    <Label Content="{Binding owbVersion, ElementName=WindowMain}" Margin="245,13,397.8,471.4" FontFamily="Segoe UI" VerticalContentAlignment="Bottom" FontWeight="Bold" FontSize="16" Height="50" Width="80"/>
+                    <Label Content="{x:Static local:Resources.TAB0_TITLE2}" FontSize="36" Margin="10,108,437.8,366.4" Width="275" Height="60" FontWeight="Bold" Foreground="#FF007BD8"/>
+                    <Label Content="{x:Static local:Resources.TAB0_DESC2}" Margin="12,168,280.8,333.4" FontSize="16" Height="33" FontWeight="Normal"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="DataTool Modes" Height="30" IsEnabled="False" FontWeight="Bold"/>
-            <TabItem Header="List Assets"/>
-            <TabItem Header="Extract Assets"/>
-            <TabItem Header="Logging"/>
-            <TabItem Header="Version Controls" Height="30" IsEnabled="False" FontWeight="Bold"/>
-            <TabItem Header="Game Version">
+            <TabItem Header="DataTool Modes" Height="30" IsEnabled="False" FontWeight="Bold">
                 <Grid>
-                    <Label Content="Adds/removes Overwatch versions to be used in " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="35" Width="703"/>
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Tool Version"/>
+            <TabItem Header="List Assets">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Extract Assets">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Logging">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Version Controls" Height="30" IsEnabled="False" FontWeight="Bold">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Game Version">
+                <Grid>
+                    <Label Content="{x:Static local:Resources.TAB6_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <Label Content="Current installation location:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0"/>
+                    <Label Content="Current installation size:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0"/>
+                    <Label Content="Current installation size:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0"/>
+                    <Label Content="{Binding CurrentOWPath, ElementName=WindowMain}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,60,0,0"/>
+                    <Label Content="{Binding CurrentOWSize, ElementName=WindowMain}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,91,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tool Version">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <!-- Obsolete controls from v1 -->
             <Grid x:Name="TrashGrid" Visibility="Hidden" Height="100" Width="100">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -188,7 +220,6 @@
                 <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="385,367,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
                 <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="1052,362,-361.4,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
             </Grid>
-            <Label Content="Label" Height="99" Width="100"/>
         </TabControl>
     </Grid>
 </Window>

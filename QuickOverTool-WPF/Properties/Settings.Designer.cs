@@ -25,25 +25,25 @@ namespace QuickDataTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string overwatchPath {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Overwatch\\")]
+        public string Path_CurrentOW {
             get {
-                return ((string)(this["overwatchPath"]));
+                return ((string)(this["Path_CurrentOW"]));
             }
             set {
-                this["overwatchPath"] = value;
+                this["Path_CurrentOW"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string outputPath {
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\")]
+        public string Path_Output {
             get {
-                return ((string)(this["outputPath"]));
+                return ((string)(this["Path_Output"]));
             }
             set {
-                this["outputPath"] = value;
+                this["Path_Output"] = value;
             }
         }
     }

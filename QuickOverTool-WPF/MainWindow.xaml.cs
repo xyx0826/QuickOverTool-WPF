@@ -9,6 +9,8 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 
+using static QuickDataTool.Properties.Settings;
+
 namespace QuickDataTool
 {
     /// <summary>
@@ -17,6 +19,59 @@ namespace QuickDataTool
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string BenchDir
+        {
+            get { return Path.GetDirectoryName(
+                         Assembly.GetEntryAssembly().
+                         CodeBase).Substring(6); }
+        }
+        public string BenchVersion
+        {
+            get { return "v. " + 
+                    Assembly.GetExecutingAssembly()
+                    .GetName().Version.ToString(); }
+        }
+        public string CurrentOWVersion
+        {
+            get
+            {
+                VersionManagement vm = new VersionManagement();
+                string s = vm.GetOWVersion(Default.Path_CurrentOW);
+                if (s != null) return s;
+                else return "Unknown";
+            }
+        }
+        public string CurrentOWServer
+        {
+            get
+            {
+                VersionManagement vm = new VersionManagement();
+                if (vm.IsOWPtr(Default.Path_CurrentOW)) return "PTR";
+                else return "Live";
+            }
+        }
+        public string DTVersion
+        {
+            get
+            {
+                VersionManagement vm = new VersionManagement();
+                string s = vm.GetDTVersion(BenchDir);
+                if (s != null) return s;
+                else return "Unknown";
+            }
+        }
+        public string DTIntegrity
+        {
+            get
+            {
+                VersionManagement vm = new VersionManagement();
+                List<string> list = vm.CheckDTIntegerity(BenchDir);
+                if (list == null) return "Complete";
+                else return "Incomplete";
+            }
+        }
+
+        VersionManagement vm = new VersionManagement();
         // About window and query window
         AboutWindow about = new AboutWindow();
         QueryWindow query = new QueryWindow();
@@ -76,18 +131,18 @@ namespace QuickDataTool
         // Read paths from config file
         private void ReadConfig()
         {
-            if (String.IsNullOrWhiteSpace(Properties.Settings.Default.overwatchPath))
-                Properties.Settings.Default.overwatchPath = "C:\\Program Files (x86)\\Overwatch";
-            if (String.IsNullOrWhiteSpace(Properties.Settings.Default.outputPath))
-                Properties.Settings.Default.outputPath = ".\\";
-            textBoxOverwatchPath.Text = Properties.Settings.Default.overwatchPath;
-            textBoxOutputPath.Text = Properties.Settings.Default.outputPath;
+            if (String.IsNullOrWhiteSpace(Properties.Settings.Default.Path_CurrentOW))
+                Properties.Settings.Default.Path_CurrentOW = "C:\\Program Files (x86)\\Overwatch";
+            if (String.IsNullOrWhiteSpace(Properties.Settings.Default.Path_Output))
+                Properties.Settings.Default.Path_Output = ".\\";
+            textBoxOverwatchPath.Text = Properties.Settings.Default.Path_CurrentOW;
+            textBoxOutputPath.Text = Properties.Settings.Default.Path_Output;
         }
         // Save paths from config file
         private void SaveConfig()
         {
-            Properties.Settings.Default.overwatchPath = textBoxOverwatchPath.Text;
-            Properties.Settings.Default.outputPath = textBoxOutputPath.Text;
+            Properties.Settings.Default.Path_CurrentOW = textBoxOverwatchPath.Text;
+            Properties.Settings.Default.Path_Output = textBoxOutputPath.Text;
             Properties.Settings.Default.Save();
         }
 

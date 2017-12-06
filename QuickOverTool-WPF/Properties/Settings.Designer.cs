@@ -46,5 +46,16 @@ namespace QuickDataTool.Properties {
                 this["Path_Output"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Generic.List<System.String> List_OWInsts {
+            get {
+                return ((global::System.Collections.Generic.List<System.String>)(this["List_OWInsts"]));
+            }
+            set {
+                this["List_OWInsts"] = value;
+            }
+        }
     }
 }

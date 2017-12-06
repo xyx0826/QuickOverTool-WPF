@@ -8,5 +8,8 @@
     <Setting Name="Path_Output" Type="System.String" Scope="User">
       <Value Profile="(Default)">.\</Value>
     </Setting>
+    <Setting Name="List_OWInsts" Type="System.Collections.Generic.List&lt;System.String&gt;" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

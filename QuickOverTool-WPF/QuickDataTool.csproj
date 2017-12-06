@@ -82,6 +82,7 @@
     <Compile Include="AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Logics\Config.cs" />
     <Compile Include="Logics\Logging.cs" />
     <Compile Include="Logics\Networking.cs" />
     <Compile Include="Process.cs" />
@@ -132,6 +133,7 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

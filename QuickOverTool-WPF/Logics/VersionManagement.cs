@@ -92,5 +92,6 @@ namespace QuickDataTool
             }
             return version;
         }
+        
     }
 }

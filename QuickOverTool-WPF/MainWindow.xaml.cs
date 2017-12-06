@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuickDataTool.Logics;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -8,70 +9,21 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
-
 using static QuickDataTool.Properties.Settings;
 
 namespace QuickDataTool
 {
-    /// <summary>
-    /// MainWindow.xaml logics.
-    /// Mostly button events.
-    /// </summary>
     public partial class MainWindow : Window
     {
-        public string BenchDir
+        public void AddInst(object sender, RoutedEventArgs e)
         {
-            get { return Path.GetDirectoryName(
-                         Assembly.GetEntryAssembly().
-                         CodeBase).Substring(6); }
-        }
-        public string BenchVersion
-        {
-            get { return "v. " + 
-                    Assembly.GetExecutingAssembly()
-                    .GetName().Version.ToString(); }
-        }
-        public string CurrentOWVersion
-        {
-            get
-            {
-                VersionManagement vm = new VersionManagement();
-                string s = vm.GetOWVersion(Default.Path_CurrentOW);
-                if (s != null) return s;
-                else return "Unknown";
-            }
-        }
-        public string CurrentOWServer
-        {
-            get
-            {
-                VersionManagement vm = new VersionManagement();
-                if (vm.IsOWPtr(Default.Path_CurrentOW)) return "PTR";
-                else return "Live";
-            }
-        }
-        public string DTVersion
-        {
-            get
-            {
-                VersionManagement vm = new VersionManagement();
-                string s = vm.GetDTVersion(BenchDir);
-                if (s != null) return s;
-                else return "Unknown";
-            }
-        }
-        public string DTIntegrity
-        {
-            get
-            {
-                VersionManagement vm = new VersionManagement();
-                List<string> list = vm.CheckDTIntegerity(BenchDir);
-                if (list == null) return "Complete";
-                else return "Incomplete";
-            }
+            FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
+            DialogResult folderBrowserResult = folderBrowser.ShowDialog();
+            cfg.AddOWInst(folderBrowser.SelectedPath);
         }
 
         VersionManagement vm = new VersionManagement();
+        Config cfg = new Config();
         // About window and query window
         AboutWindow about = new AboutWindow();
         QueryWindow query = new QueryWindow();
@@ -92,7 +44,9 @@ namespace QuickDataTool
         {
             InitializeComponent();
             PopulateDict();
-            ReadConfig();
+            // ReadConfig();
+            cfg.ConfigInit();
+            cfg.ReadGenericConfig();
             FlushChecklist();
             textBoxOutput.DataContext = logger;
             logger.Increment("OnLaunch");
@@ -131,19 +85,15 @@ namespace QuickDataTool
         // Read paths from config file
         private void ReadConfig()
         {
-            if (String.IsNullOrWhiteSpace(Properties.Settings.Default.Path_CurrentOW))
-                Properties.Settings.Default.Path_CurrentOW = "C:\\Program Files (x86)\\Overwatch";
-            if (String.IsNullOrWhiteSpace(Properties.Settings.Default.Path_Output))
-                Properties.Settings.Default.Path_Output = ".\\";
-            textBoxOverwatchPath.Text = Properties.Settings.Default.Path_CurrentOW;
-            textBoxOutputPath.Text = Properties.Settings.Default.Path_Output;
+            textBoxOverwatchPath.Text = Default.Path_CurrentOW;
+            textBoxOutputPath.Text = Default.Path_Output;
         }
         // Save paths from config file
         private void SaveConfig()
         {
-            Properties.Settings.Default.Path_CurrentOW = textBoxOverwatchPath.Text;
-            Properties.Settings.Default.Path_Output = textBoxOutputPath.Text;
-            Properties.Settings.Default.Save();
+            Default.Path_CurrentOW = textBoxOverwatchPath.Text;
+            Default.Path_Output = textBoxOutputPath.Text;
+            Default.Save();
         }
 
         // Update checklist

@@ -1,6 +1,23 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:QuickDataTool">
+    <!-- Program Icon-->
+    <Rectangle Width="128" Height="128" x:Key="MainIcon">
+        <Rectangle.Fill>
+            <DrawingBrush>
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <DrawingGroup.Children>
+                            <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                            <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M14.4805,4.7017L15.2395,3.3247 12.6765,0.761700000000001 11.2985,1.5207C9.6265,0.561700000000001 7.3545,-0.000299999999999301 5.0785,-0.000299999999999301 4.2445,-0.000299999999999301 3.4865,0.0787000000000004 2.8245,0.234700000000001L2.0525,0.415700000000001 2.0525,2.2857 2.8515,2.4507C4.2185,2.7307,5.7445,3.3637,7.5015,4.3807L7.5015,5.5857 0.000499999999998835,13.0857 0.000499999999998835,13.9137 2.0855,15.9997 2.9145,15.9997 10.4155,8.4997 11.6195,8.4997C12.6335,10.2517,13.2675,11.7777,13.5515,13.1507L13.7165,13.9477 15.5835,13.9477 15.7645,13.1777C16.2995,10.9177,15.9455,7.2577,14.4805,4.7017" />
+                            <GeometryDrawing Brush="#FF414141" Geometry="F1M13.3203,4.7324L14.0003,3.5004 12.5003,2.0004 11.2663,2.6794C8.9833,1.1214,5.2503,0.6914,3.0523,1.2084L3.0523,1.4704C4.7263,1.8144,6.4983,2.6014,8.5013,3.8104L8.5003,6.0004 0.9993,13.5004 2.5003,15.0004 10.0003,7.5004 12.1883,7.5004C13.3983,9.5024,14.1833,11.2744,14.5303,12.9474L14.7913,12.9474C15.3103,10.7524,14.8783,7.0164,13.3203,4.7324" />
+                        </DrawingGroup.Children>
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+        </Rectangle.Fill>
+    </Rectangle>
+    <!-- UI Logos-->
     <DrawingImage x:Key="OverwatchLogo">
         <DrawingImage.Drawing>
             <DrawingGroup ClipGeometry="M0,0 V600 H600 V0 H0 Z">
@@ -18,7 +35,7 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
-
+    <!-- UI Icons-->
     <Rectangle Width="30" Height="30" x:Key="SettingsIcon">
         <Rectangle.Fill>
             <DrawingBrush>
@@ -43,6 +60,36 @@
                             <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
                             <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M10,14L6,14 6,2 10,2z" />
                             <GeometryDrawing Brush="#FF424242" Geometry="F1M9,3L7,3 7,5 9,5z M9,13L7,13 7,6 9,6z" />
+                        </DrawingGroup.Children>
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+        </Rectangle.Fill>
+    </Rectangle>
+    <Rectangle Width="22" Height="22" x:Key="AddIcon">
+        <Rectangle.Fill>
+            <DrawingBrush>
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <DrawingGroup.Children>
+                            <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                            <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M6.0003,-0.000199999999999534L6.0003,5.9998 0.000300000000000189,5.9998 0.000300000000000189,9.9998 6.0003,9.9998 6.0003,15.9998 10.0003,15.9998 10.0003,9.9998 16.0003,9.9998 16.0003,5.9998 10.0003,5.9998 10.0003,-0.000199999999999534z" />
+                            <GeometryDrawing Brush="#FF388934" Geometry="F1M15,9L9,9 9,15 7,15 7,9 1,9 1,7 7,7 7,1 9,1 9,7 15,7z" />
+                        </DrawingGroup.Children>
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+        </Rectangle.Fill>
+    </Rectangle>
+    <Rectangle Width="22" Height="22" x:Key="RemoveIcon">
+        <Rectangle.Fill>
+            <DrawingBrush>
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <DrawingGroup.Children>
+                            <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                            <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M0,10L16,10 16,6 0,6z" />
+                            <GeometryDrawing Brush="#FF424242" Geometry="F1M15,9L1,9 1,7 15,7z" />
                         </DrawingGroup.Children>
                     </DrawingGroup>
                 </DrawingBrush.Drawing>

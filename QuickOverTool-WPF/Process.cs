@@ -6,10 +6,6 @@ using System.Windows.Media;
 
 namespace QuickDataTool
 {
-    /// <summary>
-    /// MainWindow.xaml logics.
-    /// Process-related methods, e.g. cmdline, startup.
-    /// </summary>
     public partial class MainWindow : Window
     {
         private string FabricateCmdline()

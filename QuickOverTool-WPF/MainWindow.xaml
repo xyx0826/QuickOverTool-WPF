@@ -102,14 +102,15 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Game Version">
+            <TabItem Header="Game Version" Margin="0,0,0.2,0" Height="Auto">
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB6_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     <Label Content="Current installation location:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0"/>
-                    <Label Content="Current installation size:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0"/>
-                    <Label Content="Current installation size:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0"/>
                     <Label Content="{Binding CurrentOWPath, ElementName=WindowMain}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,60,0,0"/>
-                    <Label Content="{Binding CurrentOWSize, ElementName=WindowMain}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,91,0,0"/>
+                    <Label Content="Select another installation:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0"/>
+                    <ComboBox x:Name="comboOWInsts" Margin="174,91,388.8,417.4"/>
+                    <Button Content="{StaticResource AddIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,357.8,417.4" Background="{x:Null}" BorderBrush="{x:Null}" Click="AddInst"/>
+                    <Button Content="{StaticResource RemoveIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,326.8,417.4" Background="{x:Null}" BorderBrush="{x:Null}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Tool Version">

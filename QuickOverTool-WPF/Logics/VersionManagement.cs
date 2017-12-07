@@ -10,9 +10,18 @@ namespace QuickDataTool
     {
         public string GetOWVersion(string owPath)
         {
+            string[] buildInfo;
             List<string> versions = new List<string>();
             string latestVersion = "0.00.0.0.00000";
-            string[] buildInfo = File.ReadAllLines(owPath + ".build.info");
+            try
+            {
+                buildInfo = File.ReadAllLines(owPath + "\\.build.info");
+            }
+            catch
+            {
+                throw new FileNotFoundException("Failed to read version info for " + owPath + 
+                    ": .build.info not found.");
+            }
             Regex pattern = new Regex(@"^\d.\d{2}.\d.\d.\d{5}");
             foreach (string buildEntry in buildInfo)
             {
@@ -30,7 +39,12 @@ namespace QuickDataTool
                     latestVersion = version;
                 }
             }
-            return latestVersion;
+            if (latestVersion != "0.00.0.0.00000") return latestVersion;
+            else
+            {
+                throw new FileNotFoundException("Failed to read version info for " + owPath +
+                    ": .build.info invalid.");
+            }
         }
 
         public bool IsOWPtr(string owPath)

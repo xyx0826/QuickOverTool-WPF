@@ -15,43 +15,6 @@ namespace QuickDataTool
 {
     public partial class MainWindow : Window
     {
-        public void AddInst(object sender, RoutedEventArgs e)
-        {
-            FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
-            DialogResult folderBrowserResult = folderBrowser.ShowDialog();
-            cfg.AddOWInst(folderBrowser.SelectedPath);
-            FlushInst();
-        }
-
-        public void FlushInst()
-        {
-            comboOWInsts.Items.Clear();
-            Dictionary<String, String> versionDict = new Dictionary<string, string>();
-            foreach (string path in Default.List_OWInsts)
-            {
-                string version;
-                try { version = vm.GetOWVersion(path); }
-                catch (FileNotFoundException e)
-                {
-                    AddLog(e.Message);
-                    version = path;
-                    continue;
-                }
-                try { versionDict.Add(path, vm.GetOWVersion(path)); }
-                catch (ArgumentException)
-                {
-                    AddLog("Failed to add this installation. Path duplicate.");
-                    continue;
-                }
-            }
-            foreach (KeyValuePair<string, string> inst in versionDict)
-            {
-                comboOWInsts.Items.Add(inst.Key);
-            }
-        }
-
-        VersionManagement vm = new VersionManagement();
-        Config cfg = new Config();
         // About window and query window
         AboutWindow about = new AboutWindow();
         QueryWindow query = new QueryWindow();
@@ -72,7 +35,6 @@ namespace QuickDataTool
         {
             InitializeComponent();
             PopulateDict();
-            // ReadConfig();
             cfg.ConfigInit();
             cfg.ReadGenericConfig();
             FlushInst();

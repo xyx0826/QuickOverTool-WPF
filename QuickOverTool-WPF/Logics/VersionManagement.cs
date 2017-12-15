@@ -19,8 +19,8 @@ namespace QuickDataTool
             }
             catch
             {
-                throw new FileNotFoundException("Failed to read version info for " + owPath + 
-                    ": .build.info not found.");
+                return "(Version unknown)";
+                // throw new FileNotFoundException("Failed to read version info for " + owPath + ": .build.info not found.");
             }
             Regex pattern = new Regex(@"^\d.\d{2}.\d.\d.\d{5}");
             foreach (string buildEntry in buildInfo)

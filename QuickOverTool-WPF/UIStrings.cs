@@ -2,12 +2,24 @@
 using System.IO;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Data;
 using static QuickDataTool.Properties.Settings;
 
 namespace QuickDataTool
 {
     public partial class MainWindow : Window
     {
+        private void Rebind(object sender, RoutedEventArgs e)
+        {
+            BindingExpression binding;
+            binding = lblOWVer.GetBindingExpression(ContentProperty);
+            binding.UpdateTarget();
+            binding = lblOWSvr.GetBindingExpression(ContentProperty);
+            binding.UpdateTarget();
+            binding = lblDTVer.GetBindingExpression(ContentProperty);
+            binding.UpdateTarget();
+        }
+
         public string BenchDir
         {
             get

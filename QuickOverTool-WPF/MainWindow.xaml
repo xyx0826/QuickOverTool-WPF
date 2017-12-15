@@ -4,18 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickDataTool"
-        Title="QuickDataTool - DataTool GUI（For Overwatch 1.14+）" Height="639.2" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="Height" Visibility="Visible">
+        Title="QuickDataTool - DataTool GUI（For Overwatch 1.14+）" Height="673.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="Height" Visibility="Visible">
     <Grid>
         <!-- Header -->
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="844" Margin="0,0,-0.4,0" Background="#FF0080E2" Height="72">
+        <Grid x:Name="grdHeader" HorizontalAlignment="Left" VerticalAlignment="Top" Width="844" Margin="0,0,-0.4,0" Background="#FF0080E2" Height="72">
             <Image HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="{StaticResource OverwatchLogo}"/>
             <Label Content="Version:" HorizontalAlignment="Left" Margin="65,10,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label Content="Server:" HorizontalAlignment="Left" Margin="65,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
-            <Label Content="{Binding CurrentOWVersion, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="122,10,0,0" VerticalAlignment="Top" Foreground="White"/>
-            <Label Content="{Binding CurrentOWServer, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="122,34,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label x:Name="lblOWVer" Content="{Binding CurrentOWVersion, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="122,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label x:Name="lblOWSvr" Content="{Binding CurrentOWServer, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="122,34,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Image HorizontalAlignment="Left" Height="50" Margin="250,10,0,0" VerticalAlignment="Top" Width="50" Source="{StaticResource ExtractorLogo}"/>
-            <Label Content="Version:" HorizontalAlignment="Left" Margin="305,10,0,0" VerticalAlignment="Top" Foreground="White"/>
-            <Label Content="Integrity:" HorizontalAlignment="Left" Margin="305,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
+            <Label x:Name="lblDTVer" Content="Version:" HorizontalAlignment="Left" Margin="305,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label x:Name="lblDTItg" Content="Integrity:" HorizontalAlignment="Left" Margin="305,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
             <Label Content="{Binding DTVersion, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label Content="{Binding DTIntegrity, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="362,34,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Button Content="{StaticResource SettingsIcon}" HorizontalAlignment="Left" Margin="765,20,0,0" VerticalAlignment="Top" Width="32" Height="32">
@@ -36,7 +36,7 @@
             </Button>
         </Grid>
         <!-- Main TabControl -->
-        <TabControl Margin="0,72,-0.4,-0.2" BorderThickness="0" TabStripPlacement="Left">
+        <TabControl Margin="0,72,-0.4,-0.6" BorderThickness="1,0,0,0" TabStripPlacement="Left" Height="539" VerticalAlignment="Top">
             <!-- Styles -->
             <TabControl.Resources>
                 <Style TargetType="TabItem">
@@ -110,8 +110,8 @@
                     <Label Content="Select another installation:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0"/>
                     <ComboBox x:Name="comboOWInsts" Margin="174,91,388.8,417.4"/>
                     <Button Content="{StaticResource AddIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,357.8,417.4" Background="{x:Null}" BorderBrush="{x:Null}" Click="AddInst"/>
-                    <Button Content="{StaticResource RemoveIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,326.8,417.4" Background="{x:Null}" BorderBrush="{x:Null}"/>
-                    <Button Content="{StaticResource ProceedIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,295.8,417.4" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                    <Button Content="{StaticResource RemoveIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,326.8,417.4" Background="{x:Null}" BorderBrush="{x:Null}" Click="DelInst"/>
+                    <Button Content="{StaticResource ProceedIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,295.8,417.4" Background="{x:Null}" BorderBrush="{x:Null}" Click="SetInst"/>
                     <Label Content="Selected installation:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,122,0,0"/>
                 </Grid>
             </TabItem>
@@ -224,5 +224,6 @@
                 <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="1052,362,-361.4,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
             </Grid>
         </TabControl>
+        <Label Content="OWorkbench has started." HorizontalAlignment="Left" Margin="0,611,-0.4,0" VerticalAlignment="Top" Height="32" Width="844" BorderBrush="#FFB4B4B4" BorderThickness="0,1,0,0"/>
     </Grid>
 </Window>

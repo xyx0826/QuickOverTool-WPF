@@ -97,5 +97,15 @@ namespace QuickOverTool_WPF
             }
             set { }
         }
+
+        public string MapHelp
+        {
+            get
+            {
+                return "    Enter the map name in target locale.\n" +
+                    "        Example: \"Black Forest\"";
+            }
+            set { }
+        }
     }
 }

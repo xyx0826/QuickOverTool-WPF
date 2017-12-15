@@ -72,7 +72,8 @@ namespace QuickOverTool_WPF
             if (radioButtonExtractMode.IsChecked == true && 
                 (e_heroUnlocks.IsSelected == true ||
                 e_npcs.IsSelected == true ||
-                e_heroVoice.IsSelected == true))
+                e_heroVoice.IsSelected == true ||
+                e_maps.IsSelected == true))
             {
                 if (String.IsNullOrWhiteSpace(query.GetQueries()) &&
                     e_heroUnlocks.IsSelected == true ||

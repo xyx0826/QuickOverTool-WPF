@@ -71,7 +71,7 @@
                     <ComboBoxItem x:Name="e_generalUnlocks" Content="General Unlocks" ToolTip="Extract general icons, sprays and player portraits."/>
                     <ComboBoxItem x:Name="e_heroUnlocks" Content="Hero Unlocks..." ToolTip="Extract hero-specific unlockable contents." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
                     <ComboBoxItem x:Name="e_heroVoice" Content="Hero Voice..." ToolTip="Extracts all hero voice sounds into groups." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
-                    <ComboBoxItem x:Name="e_maps" Content="Maps" ToolTip="Extract all maps."/>
+                    <ComboBoxItem x:Name="e_maps" Content="Maps..." ToolTip="Extract all maps." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue" />
                     <ComboBoxItem x:Name="e_lootboxes" Content="Lootboxes" ToolTip="Extract all lootbox models."/>
                     <ComboBoxItem x:Name="e_npcs" Content="NPCs..." ToolTip="Extract NPC models." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
                     <ComboBoxItem x:Name="e_abilities" Content="Abilities" ToolTip="Extract hero ability icons and video demos."/>

@@ -54,6 +54,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Expander Header="Hero Unlocks">
                     <TextBlock Text="{Binding HeroUnlocksHelp, ElementName=windowQuery}" />
@@ -63,6 +64,9 @@
                 </Expander>
                 <Expander Grid.Row="2" Header="NPCs">
                     <TextBlock Text="{Binding NPCsHelp, ElementName=windowQuery}" />
+                </Expander>
+                <Expander Grid.Row="3" Header="Map">
+                    <TextBlock Text="{Binding MapHelp, ElementName=windowQuery}" />
                 </Expander>
             </Grid>
         </GroupBox>

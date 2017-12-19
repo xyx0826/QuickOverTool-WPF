@@ -60,7 +60,7 @@ namespace QuickOverTool_WPF
             }
             // Export path
             if (!String.IsNullOrEmpty(textBoxOutputPath.Text))
-                cmdLine = cmdLine + " \"" + textBoxOutputPath.Text + "\"";
+                cmdLine = cmdLine + " \"" + textBoxOutputPath.Text.Replace("\\", "\\\\") + "\"";
             else
             {
                 textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Red);

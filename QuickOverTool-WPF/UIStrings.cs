@@ -9,7 +9,7 @@ namespace QuickDataTool
 {
     public partial class MainWindow : Window
     {
-        private void Rebind(object sender, RoutedEventArgs e)
+        private void Rebind()
         {
             BindingExpression binding;
             binding = lblOWVer.GetBindingExpression(ContentProperty);
@@ -17,6 +17,8 @@ namespace QuickDataTool
             binding = lblOWSvr.GetBindingExpression(ContentProperty);
             binding.UpdateTarget();
             binding = lblDTVer.GetBindingExpression(ContentProperty);
+            binding.UpdateTarget();
+            binding = lblDTItg.GetBindingExpression(ContentProperty);
             binding.UpdateTarget();
         }
 

@@ -14,10 +14,10 @@
             <Label x:Name="lblOWVer" Content="{Binding CurrentOWVersion, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="122,10,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label x:Name="lblOWSvr" Content="{Binding CurrentOWServer, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="122,34,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Image HorizontalAlignment="Left" Height="50" Margin="250,10,0,0" VerticalAlignment="Top" Width="50" Source="{StaticResource ExtractorLogo}"/>
-            <Label x:Name="lblDTVer" Content="Version:" HorizontalAlignment="Left" Margin="305,10,0,0" VerticalAlignment="Top" Foreground="White"/>
-            <Label x:Name="lblDTItg" Content="Integrity:" HorizontalAlignment="Left" Margin="305,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
-            <Label Content="{Binding DTVersion, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top" Foreground="White"/>
-            <Label Content="{Binding DTIntegrity, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="362,34,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="Version:" HorizontalAlignment="Left" Margin="305,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="Integrity:" HorizontalAlignment="Left" Margin="305,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
+            <Label x:Name="lblDTVer" Content="{Binding DTVersion, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label x:Name="lblDTItg" Content="{Binding DTIntegrity, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="362,34,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Button Content="{StaticResource SettingsIcon}" HorizontalAlignment="Left" Margin="765,20,0,0" VerticalAlignment="Top" Width="32" Height="32">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF007BD8" Opacity="0"/>
@@ -106,7 +106,7 @@
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB6_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     <Label Content="Currently used installation:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0"/>
-                    <Label Content="{Binding CurrentOWPath, ElementName=WindowMain}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,60,0,0"/>
+                    <Label x:Name="lblOWCurrent" Content="{Binding CurrentOWPath, ElementName=WindowMain}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,60,0,0"/>
                     <Label Content="Select another installation:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0"/>
                     <ComboBox x:Name="comboOWInsts" Margin="174,91,388.8,417.4"/>
                     <Button Content="{StaticResource AddIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,357.8,417.4" Background="{x:Null}" BorderBrush="{x:Null}" Click="AddInst"/>

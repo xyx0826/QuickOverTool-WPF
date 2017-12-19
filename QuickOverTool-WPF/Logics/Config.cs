@@ -24,6 +24,7 @@ namespace QuickDataTool.Logics
                     "C:\\Program Files (x86)\\Overwatch"
                 };
             }
+            Default.Save();
         }
 
         public Dictionary<string, string> ReadGenericConfig()
@@ -63,6 +64,7 @@ namespace QuickDataTool.Logics
         public void SetOWInst(int index)
         {
             Default.Path_CurrentOW = Default.List_OWInsts[index];
+            Default.Save();
         }
 
         public int CountOWInst()

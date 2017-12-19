@@ -41,6 +41,7 @@ namespace QuickDataTool
             FlushChecklist();
             textBoxOutput.DataContext = logger;
             logger.Increment("OnLaunch");
+            Rebind();
         }
         // Save config and close application upon MainWindow closure
         protected override void OnClosed(EventArgs e)
@@ -82,8 +83,8 @@ namespace QuickDataTool
         // Save paths from config file
         private void SaveConfig()
         {
-            Default.Path_CurrentOW = textBoxOverwatchPath.Text;
-            Default.Path_Output = textBoxOutputPath.Text;
+            // Default.Path_CurrentOW = textBoxOverwatchPath.Text;
+            // Default.Path_Output = textBoxOutputPath.Text;
             Default.Save();
         }
 

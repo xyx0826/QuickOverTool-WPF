@@ -58,7 +58,7 @@ namespace QuickDataTool
             if (comboOWInsts.SelectedIndex != -1)
             {
                 cfg.SetOWInst(comboOWInsts.SelectedIndex);
-                grdHeader.InvalidateVisual();
+                Rebind();
             }
             else AddLog("Failed to set Overwatch installation. " +
                     "Please select an installation first.");
@@ -88,6 +88,7 @@ namespace QuickDataTool
             foreach (KeyValuePair<string, string> inst in versionDict)
             {
                 comboOWInsts.Items.Add(inst.Key);
+                comboOWInsts.SelectedIndex = 0;
             }
         }
     }

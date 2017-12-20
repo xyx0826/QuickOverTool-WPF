@@ -38,7 +38,6 @@ namespace QuickDataTool
             cfg.ConfigInit();
             cfg.ReadGenericConfig();
             FlushInst();
-            FlushChecklist();
             textBoxOutput.DataContext = logger;
             logger.Increment("OnLaunch");
             Rebind();
@@ -88,70 +87,6 @@ namespace QuickDataTool
             Default.Save();
         }
 
-        // Update checklist
-        public void FlushChecklist()
-        {
-            // Reset colors of important controls
-            textBoxOverwatchPath.BorderBrush = gray;
-            textBoxOutputPath.BorderBrush = gray;
-            groupBoxModesNew.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#ffd5dfe5"));
-            buttonExtractQuery.BorderBrush = gray;
-            // Retrieve results from validators
-            string[] dataTool = Validation.DataTool(sharedPath);
-            string[] overwatch = Validation.Overwatch(textBoxOverwatchPath.Text);
-            // Datatool.exe
-            if (dataTool[0] != null)
-            {
-                labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Green);
-                labelOverToolExecutable.Content = dataTool[0];
-            }
-            else
-            {
-                labelOverToolExecutable.Foreground = new SolidColorBrush(Colors.Red);
-                labelOverToolExecutable.Content = "Not Found";
-            }
-            // Ow.keys
-            if (dataTool[1] != null)
-            {
-                labelOverToolIntegrity.Foreground = new SolidColorBrush(Colors.Green);
-                labelOverToolIntegrity.Content = "Found";
-            }
-            else
-            {
-                labelOverToolIntegrity.Foreground = new SolidColorBrush(Colors.Red);
-                labelOverToolIntegrity.Content = "Not Found";
-            }
-            // Overwatch
-            if (overwatch != null)
-            {
-                labelValidity.Content = "Overwatch is Valid";
-                labelValidity.Foreground = new SolidColorBrush(Colors.Green);
-                textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Blue);
-
-                labelOverwatchVersion.Foreground = new SolidColorBrush(Colors.Green);
-                labelOverwatchVersion.Content = overwatch[0];
-                labelOverwatchBranch.Foreground = new SolidColorBrush(Colors.Green);
-                labelOverwatchBranch.Content = overwatch[1];
-                // DataTool does not support PTR builds
-                if (overwatch[1] == "PTR")
-                {
-                    AddLog("(Potential) PTR build detected. DataTool is incompatible with PTR.");
-                    labelOverwatchBranch.Foreground = new SolidColorBrush(Colors.Red);
-                } 
-            }
-            else
-            {
-                labelValidity.Content = "Overwatch is Invalid";
-                textBoxOverwatchPath.BorderBrush = new SolidColorBrush(Colors.Red);
-                labelValidity.Foreground = new SolidColorBrush(Colors.Red);
-
-                labelOverwatchVersion.Foreground = new SolidColorBrush(Colors.Red);
-                labelOverwatchVersion.Content = "N/A";
-                labelOverwatchBranch.Foreground = new SolidColorBrush(Colors.Red);
-                labelOverwatchBranch.Content = "N/A";
-            }
-        }
-
         // Log increment
         public delegate void AddLogRuntime(string content);
 
@@ -188,15 +123,6 @@ namespace QuickDataTool
                 groupBoxModesNew.BorderBrush = new SolidColorBrush(Colors.Red);
                 throw new ArgumentException("Mode is not selected; please select a mode.");
             }
-        }
-        // 选定守望先锋路径
-        private void buttonPath_Click(object sender, RoutedEventArgs e)
-        {
-            FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
-            DialogResult folderBrowserResult = folderBrowser.ShowDialog();
-            textBoxOverwatchPath.Text = folderBrowser.SelectedPath;
-            Validation.Overwatch(textBoxOverwatchPath.Text);
-            FlushChecklist();
         }
         // 选定输出路径
         private void buttonOutputPath_Click(object sender, RoutedEventArgs e)

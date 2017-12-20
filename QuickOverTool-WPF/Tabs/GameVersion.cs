@@ -58,7 +58,7 @@ namespace QuickDataTool
             if (comboOWInsts.SelectedIndex != -1)
             {
                 cfg.SetOWInst(comboOWInsts.SelectedIndex);
-                Rebind();
+                uistring.Rebind(null);
             }
             else AddLog("Failed to set Overwatch installation. " +
                     "Please select an installation first.");

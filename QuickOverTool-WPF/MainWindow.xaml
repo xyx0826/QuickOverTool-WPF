@@ -11,13 +11,13 @@
             <Image HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="{StaticResource OverwatchLogo}"/>
             <Label Content="Version:" HorizontalAlignment="Left" Margin="65,10,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label Content="Server:" HorizontalAlignment="Left" Margin="65,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
-            <Label x:Name="lblOWVer" Content="{Binding CurrentOWVersion, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="122,10,0,0" VerticalAlignment="Top" Foreground="White"/>
-            <Label x:Name="lblOWSvr" Content="{Binding CurrentOWServer, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="122,34,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="{Binding CurrentOWVersion}" HorizontalAlignment="Left" Margin="122,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="{Binding CurrentOWServer}" HorizontalAlignment="Left" Margin="122,34,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Image HorizontalAlignment="Left" Height="50" Margin="250,10,0,0" VerticalAlignment="Top" Width="50" Source="{StaticResource ExtractorLogo}"/>
             <Label Content="Version:" HorizontalAlignment="Left" Margin="305,10,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label Content="Integrity:" HorizontalAlignment="Left" Margin="305,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
-            <Label x:Name="lblDTVer" Content="{Binding DTVersion, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top" Foreground="White"/>
-            <Label x:Name="lblDTItg" Content="{Binding DTIntegrity, ElementName=WindowMain}" HorizontalAlignment="Left" Margin="362,34,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="{Binding DTVersion}" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="{Binding DTIntegrity}" HorizontalAlignment="Left" Margin="362,34,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Button Content="{StaticResource SettingsIcon}" HorizontalAlignment="Left" Margin="765,20,0,0" VerticalAlignment="Top" Width="32" Height="32">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF007BD8" Opacity="0"/>
@@ -106,13 +106,12 @@
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB6_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     <Label Content="Currently used installation:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0"/>
-                    <Label x:Name="lblOWCurrent" Content="{Binding CurrentOWPath, ElementName=WindowMain}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,60,0,0"/>
+                    <Label Content="{Binding CurrentOWPath}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,60,0,0"/>
                     <Label Content="Select another installation:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0"/>
-                    <ComboBox x:Name="comboOWInsts" Margin="174,91,388.8,417.4"/>
-                    <Button Content="{StaticResource AddIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,357.8,417.4" Background="{x:Null}" BorderBrush="{x:Null}" Click="AddInst"/>
-                    <Button Content="{StaticResource RemoveIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,326.8,417.4" Background="{x:Null}" BorderBrush="{x:Null}" Click="DelInst"/>
-                    <Button Content="{StaticResource ProceedIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,295.8,417.4" Background="{x:Null}" BorderBrush="{x:Null}" Click="SetInst"/>
-                    <Label Content="Selected installation:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,122,0,0"/>
+                    <ComboBox x:Name="comboOWInsts" Margin="174,91,317.6,417.2"/>
+                    <Button Content="{StaticResource AddIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,286.6,418.2" Background="{x:Null}" BorderBrush="{x:Null}" Click="AddInst"/>
+                    <Button Content="{StaticResource RemoveIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,255.6,417.2" Background="{x:Null}" BorderBrush="{x:Null}" Click="DelInst"/>
+                    <Button Content="{StaticResource ProceedIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,224.6,417.2" Background="{x:Null}" BorderBrush="{x:Null}" Click="SetInst"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Tool Version">
@@ -129,7 +128,7 @@
                 <Label x:Name="labelPath" Content="Overwatch Path" HorizontalAlignment="Left" Margin="382,171,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
                 <TextBox x:Name="textBoxOverwatchPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="496,171,-200.4,0" VerticalAlignment="Top" Width="548" MaxLines="1" IsReadOnly="True"/>
                 <Label x:Name="labelValidity" Content="" HorizontalAlignment="Left" Margin="1082,171,-364.4,0" VerticalAlignment="Top" Foreground="Red" Height="25" Width="126"/>
-                <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="1052,171,-233.4,0" VerticalAlignment="Top" Width="25" Height="25" Content="..." Click="buttonPath_Click"/>
+                <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="1052,171,-233.4,0" VerticalAlignment="Top" Width="25" Height="25" Content="..."/>
                 <Label x:Name="labelLanguage" Content="Language:" HorizontalAlignment="Left" Margin="382,201,0,0" VerticalAlignment="Top" Height="25" Width="70" VerticalContentAlignment="Center"/>
                 <ComboBox x:Name="comboBoxLanguage" HorizontalAlignment="Left" Margin="457,203,0,0" VerticalAlignment="Top" Width="130" SelectedIndex="0">
                     <ComboBoxItem Content="enUS"/>

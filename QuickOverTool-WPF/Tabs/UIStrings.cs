@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -7,19 +8,18 @@ using static QuickDataTool.Properties.Settings;
 
 namespace QuickDataTool
 {
-    public partial class MainWindow : Window
+    class UIString : INotifyPropertyChanged
     {
-        private void Rebind()
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void Rebind(string name)
         {
-            BindingExpression binding;
-            binding = lblOWVer.GetBindingExpression(ContentProperty);
-            binding.UpdateTarget();
-            binding = lblOWSvr.GetBindingExpression(ContentProperty);
-            binding.UpdateTarget();
-            binding = lblDTVer.GetBindingExpression(ContentProperty);
-            binding.UpdateTarget();
-            binding = lblDTItg.GetBindingExpression(ContentProperty);
-            binding.UpdateTarget();
+            OnPropertyChanged(name);
+        }
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public string BenchDir

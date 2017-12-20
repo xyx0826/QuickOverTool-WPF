@@ -28,6 +28,7 @@ namespace QuickDataTool
         string sharedPath = Path.GetDirectoryName
             (Assembly.GetEntryAssembly().CodeBase).Substring(6);
         Logging logger = new Logging();
+        UIString uistring = new UIString();
         // Mode parameters dictionary
         Dictionary<string, string> modes = new Dictionary<string, string>();
         // Populate mode dictionary and load config upon application launch
@@ -40,7 +41,7 @@ namespace QuickDataTool
             FlushInst();
             textBoxOutput.DataContext = logger;
             logger.Increment("OnLaunch");
-            Rebind();
+            DataContext = uistring;
         }
         // Save config and close application upon MainWindow closure
         protected override void OnClosed(EventArgs e)
@@ -137,7 +138,6 @@ namespace QuickDataTool
         // 开始
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
-            FlushChecklist();
             textBoxOutput.Text = "";    // Clear log output
             string command;
             try

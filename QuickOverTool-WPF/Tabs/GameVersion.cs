@@ -1,15 +1,10 @@
-﻿using QuickDataTool.Logics;
-using System;
+﻿using System.Windows;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Reflection;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Forms;
-using System.Windows.Media;
 using static QuickDataTool.Properties.Settings;
+using System;
+using QuickDataTool.Logics;
+using System.Windows.Forms;
 
 namespace QuickDataTool
 {

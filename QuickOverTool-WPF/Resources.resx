@@ -129,10 +129,16 @@
   <data name="TAB0_TITLE2" xml:space="preserve">
     <value>Getting Started</value>
   </data>
+  <data name="TAB2_SUMMARY" xml:space="preserve">
+    <value>Using DataTool to list Overwatch contents.</value>
+  </data>
+  <data name="TAB3_SUMMARY" xml:space="preserve">
+    <value>Using DataTool to extract Overwatch contents.</value>
+  </data>
   <data name="TAB6_SUMMARY" xml:space="preserve">
     <value>Choosing/managing the Overwatch version used in OWorkbench.</value>
   </data>
   <data name="TAB7_SUMMARY" xml:space="preserve">
-    <value />
+    <value>Updating the DataTool version used in OWorkbench.</value>
   </data>
 </root>

@@ -97,6 +97,24 @@ namespace QuickDataTool {
         }
         
         /// <summary>
+        ///   查找类似 Using DataTool to list Overwatch contents. 的本地化字符串。
+        /// </summary>
+        public static string TAB2_SUMMARY {
+            get {
+                return ResourceManager.GetString("TAB2_SUMMARY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Using DataTool to extract Overwatch contents. 的本地化字符串。
+        /// </summary>
+        public static string TAB3_SUMMARY {
+            get {
+                return ResourceManager.GetString("TAB3_SUMMARY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Choosing/managing the Overwatch version used in OWorkbench. 的本地化字符串。
         /// </summary>
         public static string TAB6_SUMMARY {
@@ -106,7 +124,7 @@ namespace QuickDataTool {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Updating the DataTool version used in OWorkbench. 的本地化字符串。
         /// </summary>
         public static string TAB7_SUMMARY {
             get {

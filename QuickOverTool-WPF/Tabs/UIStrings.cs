@@ -83,5 +83,25 @@ namespace QuickDataTool
                 else return "Incomplete";
             }
         } // Datatool file integrity
+
+        private int downloadProgress = 0;
+
+        public int DownloadProgress
+        {
+            get { return downloadProgress; }
+            set { downloadProgress = value; }
+        }
+
+        private string updateButton = "Update to This Version";
+
+        public string UpdateButton
+        {
+            get { return updateButton; }
+            set
+            {
+                updateButton = value;
+                Rebind(null);
+            }
+        }
     }
 }

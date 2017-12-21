@@ -97,6 +97,7 @@
     <Compile Include="Logics\Validation.cs" />
     <Compile Include="Logics\VersionManagement.cs" />
     <Compile Include="Tabs\GameVersion.cs" />
+    <Compile Include="Tabs\ToolVersion.cs" />
     <Compile Include="Tabs\UIStrings.cs" />
     <Page Include="AboutWindow.xaml">
       <SubType>Designer</SubType>

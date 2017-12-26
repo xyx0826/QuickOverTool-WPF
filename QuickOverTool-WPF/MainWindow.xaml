@@ -121,7 +121,7 @@
                     <Label Content="{Binding DTInfo[0], ElementName=windowMain}" HorizontalAlignment="Left" Margin="151,60,0,0" VerticalAlignment="Top" Height="26" Width="163" FontFamily="Consolas"/>
                     <TextBlock HorizontalAlignment="Left" Margin="350,65,0,0" TextWrapping="Wrap" Text="{Binding DTInfo[1], ElementName=windowAbout}" VerticalAlignment="Top" Height="45" Width="293" FontFamily="Consolas"/>
                     <TextBlock x:Name="textBlockDownloader" HorizontalAlignment="Left" Margin="15,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="131">
-                        <Hyperlink NavigateUri="{Binding DTInfo[2], ElementName=windowAbout}" RequestNavigate="DownloadNewDataTool">
+                        <Hyperlink NavigateUri="{Binding DTInfo[2], ElementName=WindowMain}" RequestNavigate="DownloadNewDataTool">
                             Acquire latest DataTool
                         </Hyperlink>
                     </TextBlock>
@@ -232,6 +232,6 @@
                 <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="1052,362,-361.4,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
             </Grid>
         </TabControl>
-        <Label Content="OWorkbench has started." HorizontalAlignment="Left" Margin="0,611,-0.4,0" VerticalAlignment="Top" Height="32" Width="844" BorderBrush="#FFB4B4B4" BorderThickness="0,1,0,0"/>
+        <Label x:Name="lblNotif" Content="OWorkbench has started." HorizontalAlignment="Left" Margin="0,611,-0.4,0" VerticalAlignment="Top" Height="32" Width="844" BorderBrush="#FFB4B4B4" BorderThickness="0,1,0,0"/>
     </Grid>
 </Window>

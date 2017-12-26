@@ -15,34 +15,6 @@ namespace QuickDataTool
 {
     public partial class MainWindow : Window
     {
-        public string About
-        {
-            get
-            {
-                return "QuickDataTool is made by xyx0826.\n" +
-                    "This project can be found at:\n" +
-                    "https://github.com/xyx0826/QuickOverTool-WPF/tree/datatool. \n\n" +
-                    "Thanks dynaomi, zingballyhoo, SombraOW and Js41637 for making OverTool toolchain, the ultimate toolset for extracting Overwatch game assets.\n\n" +
-                    "If you need a GUI for OverTool-ing pre-1.14 game, please consider checking out Yernemm's OverTool GUI.\n" +
-                    "You can find Yernemm's GUI at:\n" +
-                    "https://yernemm.xyz/projects/OverToolGUI.";
-
-            }
-            set { }
-        }
-
-        public string Warning
-        {
-            get
-            {
-                return "Warning:\n" +
-                    "New builds may be UNSTABLE.\n" +
-                    "They may contain bugs, or be totally broken.\n" +
-                    "Please only update when you know what will happen.\n\n";
-            }
-            set { }
-        }
-
         public string[] DTInfo
         {
             get
@@ -62,7 +34,8 @@ namespace QuickDataTool
         {
             string zipPath = ".\\datatool_" + Networking.GetDTInfo()[0] + ".zip";
             // Download new build from appveyor
-            uistring.UpdateButton = "Downloading...";
+            textBlockDownloader.IsEnabled = false;
+            textBlockDownloader.Text = "Downloading...";
             using (WebClient wc = new WebClient())
             {
                 wc.DownloadProgressChanged += wc_DownloadProgressChanged;
@@ -86,7 +59,7 @@ namespace QuickDataTool
                 ZipFile.ExtractToDirectory(zipPath, ".\\");
             }
             catch { }
-            uistring.UpdateButton = "Update successful.";
+            textBlockDownloader.Text = "Update successful.";
         }
 
         private void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)

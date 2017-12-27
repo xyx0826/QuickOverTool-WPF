@@ -119,7 +119,7 @@
                     <Label Content="{x:Static local:Resources.TAB7_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     <Label Content="Latest DataTool Version:" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
                     <Label Content="{Binding DTInfo[0], ElementName=windowMain}" HorizontalAlignment="Left" Margin="151,60,0,0" VerticalAlignment="Top" Height="26" Width="163" FontFamily="Consolas"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="350,65,0,0" TextWrapping="Wrap" Text="{Binding DTInfo[1], ElementName=windowAbout}" VerticalAlignment="Top" Height="45" Width="293" FontFamily="Consolas"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="350,65,0,0" TextWrapping="Wrap" Text="{Binding DTInfo[1], ElementName=windowMain}" VerticalAlignment="Top" Height="45" Width="293" FontFamily="Consolas"/>
                     <TextBlock x:Name="textBlockDownloader" HorizontalAlignment="Left" Margin="15,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="131">
                         <Hyperlink NavigateUri="{Binding DTInfo[2], ElementName=WindowMain}" RequestNavigate="DownloadNewDataTool">
                             Acquire latest DataTool
@@ -226,7 +226,7 @@
                 <Button x:Name="buttonTaskkill" Content="Kill DataTool Process" HorizontalAlignment="Left" Margin="1007,454,-361.4,0" VerticalAlignment="Top" Width="198" Height="25" Foreground="Red" Click="buttonTaskkill_Click"/>
                 <Button x:Name="buttonSaveOutput" Content="Save Log to File" HorizontalAlignment="Left" Margin="1007,484,-258.4,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveOutput_Click"/>
                 <Button x:Name="buttonSaveCmdline" Content="Save Cmdline" HorizontalAlignment="Left" Margin="1107,484,-358.4,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveCmdline_Click"/>
-                <Button x:Name="buttonAbout" Content="Help and Update..." HorizontalAlignment="Left" Margin="1007,513,-361.4,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonAbout_Click" Foreground="Black"/>
+                <Button x:Name="buttonAbout" Content="Help and Update..." HorizontalAlignment="Left" Margin="1007,513,-361.4,0" VerticalAlignment="Top" Width="198" Height="24" Foreground="Black"/>
                 <TextBox x:Name="textBoxCommand" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="495,362,-201.4,0" VerticalAlignment="Top" Width="550" MaxLines="1" BorderBrush="#FFABADB3" IsEnabled="False" ToolTip="Check the checkbox at the left to use custom command line."/>
                 <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="385,367,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
                 <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="1052,362,-361.4,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>

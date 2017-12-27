@@ -16,7 +16,6 @@ namespace QuickDataTool
     public partial class MainWindow : Window
     {
         // About window and query window
-        AboutWindow about = new AboutWindow();
         QueryWindow query = new QueryWindow();
         // Color brushes...
         SolidColorBrush red = new SolidColorBrush(Colors.Red);
@@ -215,11 +214,6 @@ namespace QuickDataTool
                 AddLog("Termination failed; DataTool might not be running.");
                 return;
             }
-        }
-
-        private void buttonAbout_Click(object sender, RoutedEventArgs e)
-        {
-            about.Show();
         }
 
         private void checkBoxCommand_Checked(object sender, RoutedEventArgs e)

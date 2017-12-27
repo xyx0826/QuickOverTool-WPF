@@ -79,9 +79,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AboutWindow.xaml.cs">
-      <DependentUpon>AboutWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Logics\Config.cs" />
     <Compile Include="Logics\Logging.cs" />
     <Compile Include="Logics\Networking.cs" />
@@ -99,10 +96,6 @@
     <Compile Include="Tabs\GameVersion.cs" />
     <Compile Include="Tabs\ToolVersion.cs" />
     <Compile Include="Tabs\UIStrings.cs" />
-    <Page Include="AboutWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

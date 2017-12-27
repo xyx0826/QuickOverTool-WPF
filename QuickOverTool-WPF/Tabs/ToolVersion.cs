@@ -34,7 +34,6 @@ namespace QuickDataTool
         {
             string zipPath = ".\\datatool_" + Networking.GetDTInfo()[0] + ".zip";
             // Download new build from appveyor
-            textBlockDownloader.IsEnabled = false;
             textBlockDownloader.Text = "Downloading...";
             using (WebClient wc = new WebClient())
             {

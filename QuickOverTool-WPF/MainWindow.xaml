@@ -118,7 +118,7 @@
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB7_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     <Label Content="Latest DataTool Version:" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
-                    <Label Content="{Binding DTInfo[0], ElementName=windowMain}" HorizontalAlignment="Left" Margin="151,60,0,0" VerticalAlignment="Top" Height="26" Width="163" FontFamily="Consolas"/>
+                    <Label Content="{Binding DTInfo[0], ElementName=WindowMain}" HorizontalAlignment="Left" Margin="151,60,0,0" VerticalAlignment="Top" Height="26" Width="163" FontFamily="Consolas"/>
                     <TextBlock HorizontalAlignment="Left" Margin="350,65,0,0" TextWrapping="Wrap" Text="{Binding DTInfo[1], ElementName=windowMain}" VerticalAlignment="Top" Height="45" Width="293" FontFamily="Consolas"/>
                     <TextBlock x:Name="textBlockDownloader" HorizontalAlignment="Left" Margin="15,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="131">
                         <Hyperlink NavigateUri="{Binding DTInfo[2], ElementName=WindowMain}" RequestNavigate="DownloadNewDataTool">

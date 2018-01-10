@@ -79,6 +79,7 @@
                 <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="260,30,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Hidden" Click="buttonExtractQuery_Click" Height="22"/>
                 <CheckBox x:Name="checkBoxNoTex" Content="Don't Convert Textures" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" ToolTip="Disable texture conversion to DDS."/>
                 <CheckBox x:Name="checkBoxNoSnd" Content="Don't Convert Sound" HorizontalAlignment="Left" Margin="155,70,0,0" VerticalAlignment="Top" ToolTip="Disable sound conversion to OGG."/>
+                <CheckBox x:Name="checkBoxNoMdl" Content="Don't Convert Models" HorizontalAlignment="Left" Margin="291,70,0,0" VerticalAlignment="Top" ToolTip="Disable model conversion to OWMDL."/>
             </Grid>
         </GroupBox>
         <!-- Export path -->

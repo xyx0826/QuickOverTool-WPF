@@ -82,6 +82,7 @@
     <Compile Include="AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AsyncUpdateChecker.cs" />
     <Compile Include="Networking.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="QueryWindow.xaml.cs">

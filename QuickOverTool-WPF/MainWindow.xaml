@@ -85,6 +85,22 @@
             <TabItem Header="List Assets">
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB2_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <GroupBox Header="Select a Mode" Margin="10,44,10,351" Foreground="Black">
+                        <ComboBox x:Name="comboBoxList" HorizontalAlignment="Left" Margin="40,27,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
+                            <ComboBoxItem x:Name="l_generalUnlocks" Content="General Unlocks" ToolTip="List general icons, sprays and player portraits."/>
+                            <ComboBoxItem x:Name="l_heroUnlocks" Content="Hero Unlocks" ToolTip="List hero-specific unlockable contents."/>
+                            <ComboBoxItem x:Name="l_heroes" Content="Heroes" ToolTip="List all heroes."/>
+                            <ComboBoxItem x:Name="l_maps" Content="Maps" ToolTip="List all maps."/>
+                            <ComboBoxItem x:Name="l_strings" Content="Strings" ToolTip="List all strings."/>
+                            <ComboBoxItem x:Name="l_achievements" Content="Achievements" ToolTip="List all achievements."/>
+                            <ComboBoxItem x:Name="l_lootboxes" Content="Lootboxes" ToolTip="List all lootboxes."/>
+                            <ComboBoxItem x:Name="l_highlights" Content="Highlights" ToolTip="List all player highlights."/>
+                            <ComboBoxItem x:Name="l_keys" Content="Encryption Keys" ToolTip="List all encryption keys."/>
+                            <ComboBoxItem x:Name="l_chat" Content="Chat Replacements" ToolTip="List chat keywords, e.g. profanity, GGEZ, etc."/>
+                            <ComboBoxItem x:Name="l_subt" Content="Subtitles" ToolTip="List in-game subtitles."/>
+                            <ComboBoxItem x:Name="l_subtAudio" Content="Subtitles (Audio)" ToolTip="List in-game subtitles from audio data."/>
+                        </ComboBox>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Extract Assets">
@@ -176,20 +192,6 @@
                     <Grid Height="110" VerticalAlignment="Top" Margin="0,0,-2,-12.8">
                         <RadioButton x:Name="radioButtonListMode" Content="List..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="listMode_Checked"/>
                         <RadioButton x:Name="radioButtonExtractMode" Content="Extract..." HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Checked="extractMode_Checked"/>
-                        <ComboBox x:Name="comboBoxList" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
-                            <ComboBoxItem x:Name="l_generalUnlocks" Content="General Unlocks" ToolTip="List general icons, sprays and player portraits."/>
-                            <ComboBoxItem x:Name="l_heroUnlocks" Content="Hero Unlocks" ToolTip="List hero-specific unlockable contents."/>
-                            <ComboBoxItem x:Name="l_heroes" Content="Heroes" ToolTip="List all heroes."/>
-                            <ComboBoxItem x:Name="l_maps" Content="Maps" ToolTip="List all maps."/>
-                            <ComboBoxItem x:Name="l_strings" Content="Strings" ToolTip="List all strings."/>
-                            <ComboBoxItem x:Name="l_achievements" Content="Achievements" ToolTip="List all achievements."/>
-                            <ComboBoxItem x:Name="l_lootboxes" Content="Lootboxes" ToolTip="List all lootboxes."/>
-                            <ComboBoxItem x:Name="l_highlights" Content="Highlights" ToolTip="List all player highlights."/>
-                            <ComboBoxItem x:Name="l_keys" Content="Encryption Keys" ToolTip="List all encryption keys."/>
-                            <ComboBoxItem x:Name="l_chat" Content="Chat Replacements" ToolTip="List chat keywords, e.g. profanity, GGEZ, etc."/>
-                            <ComboBoxItem x:Name="l_subt" Content="Subtitles" ToolTip="List in-game subtitles."/>
-                            <ComboBoxItem x:Name="l_subtAudio" Content="Subtitles (Audio)" ToolTip="List in-game subtitles from audio data."/>
-                        </ComboBox>
                         <ComboBox x:Name="comboBoxExtract" HorizontalAlignment="Left" Margin="135,30,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
                             <ComboBoxItem x:Name="e_generalUnlocks" Content="General Unlocks" ToolTip="Extract general icons, sprays and player portraits."/>
                             <ComboBoxItem x:Name="e_heroUnlocks" Content="Hero Unlocks..." ToolTip="Extract hero-specific unlockable contents." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>

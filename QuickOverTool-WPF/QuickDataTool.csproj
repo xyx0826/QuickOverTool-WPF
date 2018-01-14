@@ -80,6 +80,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Logics\Config.cs" />
+    <Compile Include="Logics\Execution.cs" />
     <Compile Include="Logics\Logging.cs" />
     <Compile Include="Logics\Networking.cs" />
     <Compile Include="Process.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Logics\Validation.cs" />
     <Compile Include="Logics\VersionManagement.cs" />
     <Compile Include="Tabs\GameVersion.cs" />
+    <Compile Include="Tabs\ListAssets.cs" />
     <Compile Include="Tabs\ToolVersion.cs" />
     <Compile Include="Tabs\UIStrings.cs" />
     <Page Include="MainWindow.xaml">

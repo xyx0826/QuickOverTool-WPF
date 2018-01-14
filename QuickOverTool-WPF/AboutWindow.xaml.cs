@@ -42,10 +42,8 @@ namespace QuickOverTool_WPF
         {
             get
             {
-                return "Warning:\n" +
-                    "New builds may be UNSTABLE.\n" +
-                    "They may contain bugs, or be totally broken.\n" +
-                    "Please only update when you know what will happen.\n\n";
+                return "Update your DataTool version from \n" +
+                    "the stable branch.\n";
             }
             set { }
         }

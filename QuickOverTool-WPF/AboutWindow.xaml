@@ -45,7 +45,7 @@
                             Acquire latest DataTool
                         </Hyperlink>
                     </TextBlock>
-                    <Label Content="{Binding Warning, ElementName=windowAbout}" HorizontalAlignment="Left" Margin="15,111,0,0" VerticalAlignment="Top" Height="102" Width="293" Foreground="Red" BorderBrush="Red"/>
+                    <Label Content="{Binding Warning, ElementName=windowAbout}" HorizontalAlignment="Left" Margin="15,111,0,0" VerticalAlignment="Top" Height="102" Width="293" Foreground="Black"/>
                     <ProgressBar x:Name="downloadBar" HorizontalAlignment="Left" Height="15" Margin="145,91,0,0" VerticalAlignment="Top" Width="163"/>
                 </Grid>
             </TabItem>

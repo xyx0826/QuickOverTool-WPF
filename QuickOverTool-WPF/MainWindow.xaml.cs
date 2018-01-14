@@ -39,6 +39,7 @@ namespace QuickOverTool_WPF
             PopulateDict();
             ReadConfig();
             CheckGUIUpdate();
+            CheckDTUpdate();
             FlushChecklist();
         }
 

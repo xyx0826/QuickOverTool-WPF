@@ -70,7 +70,10 @@ namespace QuickOverTool_WPF
                 return "    Format: {hero name}|{type}=({tag name}={tag}),{item name}\n" +
                     "        Enter the hero name in target locale, then use buttons to compose your query.\n" +
                     "        You may add multiple queries separated by space.\n" +
-                    "        Example: \"Roadhog|emote=(rarity=rare)\"";
+                    "        Example: \"Roadhog|emote=(rarity=rare)\"\n" +
+                    "       To extract OWL skins, examples:\n" +
+                    "        \"{hero name}|skin=(leagueTeam=*)\"\n" +
+                    "        \"{hero name}|skin=(leagueTeam=Boston Uprising)\"\n";
             }
             set { }
         }

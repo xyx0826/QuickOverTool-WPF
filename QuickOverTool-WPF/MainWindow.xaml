@@ -85,21 +85,11 @@
             <TabItem Header="List Assets">
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB2_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-                    <GroupBox Header="Select a Mode" Margin="10,44,10,351" Foreground="Black">
-                        <ComboBox x:Name="comboBoxList" HorizontalAlignment="Left" Margin="40,27,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
-                            <ComboBoxItem x:Name="l_generalUnlocks" Content="General Unlocks" ToolTip="List general icons, sprays and player portraits."/>
-                            <ComboBoxItem x:Name="l_heroUnlocks" Content="Hero Unlocks" ToolTip="List hero-specific unlockable contents."/>
-                            <ComboBoxItem x:Name="l_heroes" Content="Heroes" ToolTip="List all heroes."/>
-                            <ComboBoxItem x:Name="l_maps" Content="Maps" ToolTip="List all maps."/>
-                            <ComboBoxItem x:Name="l_strings" Content="Strings" ToolTip="List all strings."/>
-                            <ComboBoxItem x:Name="l_achievements" Content="Achievements" ToolTip="List all achievements."/>
-                            <ComboBoxItem x:Name="l_lootboxes" Content="Lootboxes" ToolTip="List all lootboxes."/>
-                            <ComboBoxItem x:Name="l_highlights" Content="Highlights" ToolTip="List all player highlights."/>
-                            <ComboBoxItem x:Name="l_keys" Content="Encryption Keys" ToolTip="List all encryption keys."/>
-                            <ComboBoxItem x:Name="l_chat" Content="Chat Replacements" ToolTip="List chat keywords, e.g. profanity, GGEZ, etc."/>
-                            <ComboBoxItem x:Name="l_subt" Content="Subtitles" ToolTip="List in-game subtitles."/>
-                            <ComboBoxItem x:Name="l_subtAudio" Content="Subtitles (Audio)" ToolTip="List in-game subtitles from audio data."/>
-                        </ComboBox>
+                    <GroupBox Header="Select a Mode" Margin="10,44,10,421" Foreground="Black">
+                        <Grid>
+                            <Label Content="Mode:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <ComboBox x:Name="comboListAssets" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="59,12,0,0" Width="240" />
+                        </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
@@ -232,6 +222,7 @@
                 <TextBox x:Name="textBoxCommand" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="495,362,-201.4,0" VerticalAlignment="Top" Width="550" MaxLines="1" BorderBrush="#FFABADB3" IsEnabled="False" ToolTip="Check the checkbox at the left to use custom command line."/>
                 <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="385,367,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
                 <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="1052,362,-361.4,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
+                <ComboBox x:Name="comboBoxList" Height="100" Width="120"/>
             </Grid>
         </TabControl>
         <Label x:Name="lblNotif" Content="OWorkbench has started." HorizontalAlignment="Left" Margin="0,611,-0.4,0" VerticalAlignment="Top" Height="32" Width="844" BorderBrush="#FFB4B4B4" BorderThickness="0,1,0,0"/>

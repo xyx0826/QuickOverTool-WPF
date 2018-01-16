@@ -35,6 +35,7 @@ namespace QuickDataTool
         {
             InitializeComponent();
             PopulateDict();
+            PopulateListAssets();
             cfg.ConfigInit();
             cfg.ReadGenericConfig();
             FlushInst();

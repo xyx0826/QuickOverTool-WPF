@@ -10,23 +10,19 @@ namespace QuickDataTool
 {
     public partial class MainWindow : Window
     {
-        public class ListMode
+        private KeyValuePair<string, string> CreatePair(string text, string value)
         {
-            public string Name { get; set; }
-            public string Value { get; set; }
-
-            public ListMode(string name, string value)
-            {
-                Name = name;
-                Value = value;
-            }
+            return new KeyValuePair<string, string>(text, value);
         }
-
-        private void PopulateModesList()
+        private void PopulateListAssets()
         {
-            List<ListMode> modes = new List<ListMode>();
-            modes.Add(new ListMode("helli", "test"));
-
+            List<KeyValuePair<string, string>> modes = new List<KeyValuePair<string, string>>();
+            modes.Add(CreatePair("List achievements", "list-achievements"));
+            modes.Add(CreatePair("List chat replacements", "list-chat-replacements"));
+            modes.Add(CreatePair("List general unlocks", "list-general-unlocks"));
+            comboListAssets.ItemsSource = modes;
+            comboListAssets.SelectedValuePath = "Value";
+            comboListAssets.DisplayMemberPath = "Key";
         }
     }
 }

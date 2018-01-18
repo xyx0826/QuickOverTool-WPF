@@ -77,9 +77,11 @@
                     <ComboBoxItem x:Name="e_abilities" Content="Abilities" ToolTip="Extract hero ability icons and video demos."/>
                 </ComboBox>
                 <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="260,30,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Hidden" Click="buttonExtractQuery_Click" Height="22"/>
-                <CheckBox x:Name="checkBoxNoTex" Content="Don't Convert Textures" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" ToolTip="Disable texture conversion to DDS."/>
-                <CheckBox x:Name="checkBoxNoSnd" Content="Don't Convert Sound" HorizontalAlignment="Left" Margin="155,70,0,0" VerticalAlignment="Top" ToolTip="Disable sound conversion to OGG."/>
-                <CheckBox x:Name="checkBoxNoMdl" Content="Don't Convert Models" HorizontalAlignment="Left" Margin="291,70,0,0" VerticalAlignment="Top" ToolTip="Disable model conversion to OWMDL."/>
+                <Label Content="Do not convert:" Margin="6,62,344.2,23"/>
+                <CheckBox x:Name="checkBoxNoTex" Content="Textures" HorizontalAlignment="Left" Margin="101,68,0,0" VerticalAlignment="Top" ToolTip="Disable texture conversion to DDS."/>
+                <CheckBox x:Name="checkBoxNoSnd" Content="Sound" HorizontalAlignment="Left" Margin="169,68,0,0" VerticalAlignment="Top" ToolTip="Disable sound conversion to OGG."/>
+                <CheckBox x:Name="checkBoxNoMdl" Content="Models" HorizontalAlignment="Left" Margin="228,68,0,0" VerticalAlignment="Top" ToolTip="Disable model conversion to OWMDL."/>
+                <CheckBox x:Name="checkBoxNoAni" Content="Animations" HorizontalAlignment="Left" Margin="292,68,0,0" VerticalAlignment="Top" ToolTip="Disable animation conversion to SEANIM."/>
             </Grid>
         </GroupBox>
         <!-- Export path -->

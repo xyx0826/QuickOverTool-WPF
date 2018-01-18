@@ -2,8 +2,6 @@
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
-using System.Windows;
-using System.Windows.Data;
 using static QuickDataTool.Properties.Settings;
 
 namespace QuickDataTool
@@ -79,8 +77,12 @@ namespace QuickDataTool
             {
                 VersionManagement vm = new VersionManagement();
                 List<string> list = vm.CheckDTIntegerity(BenchDir);
-                if (list == null) return "Complete";
-                else return "Incomplete";
+                if (list.Count == 0) return "Complete";
+                else
+                {
+                    // output missing files to log
+                    return "Incomplete";
+                }
             }
         } // Datatool file integrity
 

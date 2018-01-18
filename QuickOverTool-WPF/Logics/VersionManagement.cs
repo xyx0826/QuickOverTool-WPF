@@ -81,8 +81,7 @@ namespace QuickDataTool
                               "\\STULib.dll",
                               "\\Third Party\\packed_codebooks_aoTuV_603.bin",
                               "\\Third Party\\revorb.exe",
-                              "\\Third Party\\texconv.exe",
-                              "\\Third Party\\ww2ogg.exe" };
+                              "\\Third Party\\texconv.exe"};
             List<string> missingFiles = new List<string>();
             foreach (string file in files)
             {

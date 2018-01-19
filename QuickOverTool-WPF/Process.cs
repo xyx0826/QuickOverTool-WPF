@@ -20,7 +20,18 @@ namespace QuickOverTool_WPF
                 AddLog("Custom cmdline is checked; using specified cmdline instead.");
                 return " " + textBoxCommand.Text;
             }
-
+            // Output path fabrication
+            string outputPath;
+            if (!String.IsNullOrEmpty(textBoxOutputPath.Text))
+            {
+                outputPath = " \"" + textBoxOutputPath.Text.Replace("\\", "\\\\") + "\"";
+            }
+            else
+            {
+                textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Red);
+                outputPath = " .\\";
+                AddLog("Output path not found; setting it to DataTool directory.");
+            }
             // Language
             string cmdLine = " --language=" + comboBoxLanguage.SelectedItem.
                 ToString().Substring(38, 4);
@@ -38,6 +49,7 @@ namespace QuickOverTool_WPF
             if (checkBoxNoSnd.IsChecked == true) cmdLine += " --convert-sound=false";
             if (checkBoxNoMdl.IsChecked == true) cmdLine += " --convert-models=false";
             if (checkBoxNoAni.IsChecked == true) cmdLine += " --convert-animations=false";
+            if (checkBoxJSONOut.IsChecked == true) cmdLine += " --json";
             cmdLine += (" --convert-textures-type=" + comboBoxTextureFmt.SelectedItem. // Texture conversion type
                 ToString().Substring(38, 3));
 
@@ -60,16 +72,8 @@ namespace QuickOverTool_WPF
                 groupBoxModesNew.BorderBrush = new SolidColorBrush(Colors.Red);
                 throw new ArgumentException("Mode is not selected; please select a mode.");
             }
-            // Export path
-            if (!String.IsNullOrEmpty(textBoxOutputPath.Text))
-                cmdLine = cmdLine + " \"" + textBoxOutputPath.Text.Replace("\\", "\\\\") + "\"";
-            else
-            {
-                textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Red);
-                AddLog("Output path not found; setting it to DataTool directory.");
-                cmdLine += " .\\";
-            }
-
+            // Output path addition
+            cmdLine += outputPath;
             // Extract queries
             if (radioButtonExtractMode.IsChecked == true && 
                 (e_heroUnlocks.IsSelected == true ||

@@ -82,6 +82,7 @@
                 <CheckBox x:Name="checkBoxNoSnd" Content="Sound" HorizontalAlignment="Left" Margin="169,68,0,0" VerticalAlignment="Top" ToolTip="Disable sound conversion to OGG."/>
                 <CheckBox x:Name="checkBoxNoMdl" Content="Models" HorizontalAlignment="Left" Margin="228,68,0,0" VerticalAlignment="Top" ToolTip="Disable model conversion to OWMDL."/>
                 <CheckBox x:Name="checkBoxNoAni" Content="Animations" HorizontalAlignment="Left" Margin="292,68,0,0" VerticalAlignment="Top" ToolTip="Disable animation conversion to SEANIM."/>
+                <CheckBox x:Name="checkBoxJSONOut" Content="Output result as JSON" HorizontalAlignment="Left" Margin="262,34,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
             </Grid>
         </GroupBox>
         <!-- Export path -->

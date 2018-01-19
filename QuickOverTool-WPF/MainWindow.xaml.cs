@@ -320,6 +320,7 @@ namespace QuickOverTool_WPF
             comboBoxList.Foreground = new SolidColorBrush(Colors.Black);
             comboBoxExtract.IsEnabled = false;
             comboBoxExtract.Foreground = gray;
+            checkBoxJSONOut.Visibility = Visibility.Visible;
         }
 
         private void extractMode_Checked(object sender, RoutedEventArgs e)
@@ -329,6 +330,8 @@ namespace QuickOverTool_WPF
             comboBoxList.Foreground = gray;
             comboBoxExtract.IsEnabled = true;
             comboBoxExtract.Foreground = new SolidColorBrush(Colors.Black);
+            checkBoxJSONOut.IsChecked = false;
+            checkBoxJSONOut.Visibility = Visibility.Hidden;
         }
 
         private void UpdateQueryEditor(object sender, RoutedEventArgs e)

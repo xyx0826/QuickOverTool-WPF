@@ -60,7 +60,7 @@ namespace QuickOverTool_WPF
 
         private void buttonLegendary_Click(object sender, RoutedEventArgs e)
         {
-            textBoxQuery.Text += "(rarity=legedary)";
+            textBoxQuery.Text += "(rarity=legendary)";
         }
 
         public string HeroUnlocksHelp

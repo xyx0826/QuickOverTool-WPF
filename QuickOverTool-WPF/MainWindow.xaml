@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickOverTool_WPF"
-        Title="QuickDataTool - DataTool GUI（For Overwatch 1.14+）" Height="570" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="Height">
+        Title="QuickDataTool - DataTool GUI（For Overwatch 1.14+）" Height="600" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="Height">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -36,7 +36,7 @@
         <CheckBox x:Name="checkBoxSkipKeys" Content="Skip Key Detection" HorizontalAlignment="Left" Margin="321,46,0,0" VerticalAlignment="Top" ToolTip="Skip encryption key detection."/>
         <CheckBox x:Name="checkBoxGraceful" Content="Graceful Exit" HorizontalAlignment="Left" Margin="445,46,0,0" VerticalAlignment="Top" ToolTip="Prevent decryption failures from crashing the tool."/>
         <CheckBox x:Name="checkBoxExpert" Content="Expert Mode" HorizontalAlignment="Left" Margin="535,46,0,0" VerticalAlignment="Top" ToolTip="Output more asset information."/>
-        <GroupBox x:Name="groupBoxSkipExtractions" Header="CMF &amp; CDN" HorizontalAlignment="Left" Height="120" Margin="10,70,0,0" VerticalAlignment="Top" Width="170" Grid.RowSpan="2" BorderBrush="#FFD5DFE5" Foreground="Black" ToolTip="">
+        <GroupBox x:Name="groupBoxSkipExtractions" Header="CMF &amp; CDN" HorizontalAlignment="Left" Height="150" Margin="10,70,0,0" VerticalAlignment="Top" Width="170" BorderBrush="#FFD5DFE5" Foreground="Black" ToolTip="">
             <Grid x:Name="gridGroupBoxSkipExtractions" HorizontalAlignment="Left" Height="110" Margin="0,0,-12,-12" VerticalAlignment="Top" Width="170" ToolTip="">
                 <CheckBox x:Name="checkBoxRCN" Content="Use RCN CMF" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="15" ToolTip="This might cause DataTool to stop working."/>
                 <CheckBox x:Name="checkBoxCDNValidate" Content="Validate files" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Height="15" ToolTip="Validate files from CDN."/>
@@ -45,12 +45,12 @@
             </Grid>
         </GroupBox>
         <!-- Output box -->
-        <GroupBox x:Name="groupBoxOutput" Header="Logging" HorizontalAlignment="Left" Height="140" Margin="10,400,0,0" VerticalAlignment="Top" Width="824">
+        <GroupBox x:Name="groupBoxOutput" Header="Logging" HorizontalAlignment="Left" Height="140" Margin="9,421,0,0" VerticalAlignment="Top" Width="824">
             <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="811" Text="QuickDataTool has launched." HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
         </GroupBox>
         <!-- Modes -->
-        <GroupBox x:Name="groupBoxModesNew" Header="Mode" HorizontalAlignment="Left" Height="120" Margin="185,70,0,0" VerticalAlignment="Top" Width="455">
-            <Grid Height="110" VerticalAlignment="Top" Margin="0,0,-2,-12.8">
+        <GroupBox x:Name="groupBoxModesNew" Header="Mode" HorizontalAlignment="Left" Height="150" Margin="185,70,0,0" VerticalAlignment="Top" Width="455">
+            <Grid Height="140" VerticalAlignment="Top" Margin="0,0,-2,-12">
                 <RadioButton x:Name="radioButtonListMode" Content="List..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="listMode_Checked"/>
                 <RadioButton x:Name="radioButtonExtractMode" Content="Extract..." HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Checked="extractMode_Checked"/>
                 <ComboBox x:Name="comboBoxList" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
@@ -82,16 +82,20 @@
                 <CheckBox x:Name="checkBoxNoSnd" Content="Sound" HorizontalAlignment="Left" Margin="169,68,0,0" VerticalAlignment="Top" ToolTip="Disable sound conversion to OGG."/>
                 <CheckBox x:Name="checkBoxNoMdl" Content="Models" HorizontalAlignment="Left" Margin="228,68,0,0" VerticalAlignment="Top" ToolTip="Disable model conversion to OWMDL."/>
                 <CheckBox x:Name="checkBoxNoAni" Content="Animations" HorizontalAlignment="Left" Margin="292,68,0,0" VerticalAlignment="Top" ToolTip="Disable animation conversion to SEANIM."/>
+                <Label Content="More extraction options:" Margin="6,83,298,28"/>
+                <CheckBox x:Name="checkBoxRefpose" Content="Extract skeleton refposes" HorizontalAlignment="Left" Margin="152,89,0,0" VerticalAlignment="Top" ToolTip="Disable animation conversion to SEANIM."/>
+                <Label Content="LOD=" Margin="315,83,88,28"/>
                 <CheckBox x:Name="checkBoxJSONOut" Content="Output result as JSON" HorizontalAlignment="Left" Margin="262,34,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                <TextBox x:Name="textBoxLOD" HorizontalAlignment="Left" Height="20" Margin="352,85,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="20" MaxLength="1" TextAlignment="Center"/>
             </Grid>
         </GroupBox>
         <!-- Export path -->
-        <Label x:Name="labelOutputPath" Content="Output Path" HorizontalAlignment="Left" Margin="9,233,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,233,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Text="./"/>
-        <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="680,233,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
-        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="710,233,0,0" VerticalAlignment="Top" Width="123" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
+        <Label x:Name="labelOutputPath" Content="Output Path" HorizontalAlignment="Left" Margin="9,257,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,257,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Text="./"/>
+        <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="680,257,0,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
+        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="710,257,0,0" VerticalAlignment="Top" Width="123" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
         <!-- Checklist -->
-        <GroupBox x:Name="groupBoxChecklists" Header="Checklist" HorizontalAlignment="Left" Height="123" Margin="10,271,0,0" VerticalAlignment="Top" Width="620">
+        <GroupBox x:Name="groupBoxChecklists" Header="Checklist" HorizontalAlignment="Left" Height="123" Margin="10,295,0,0" VerticalAlignment="Top" Width="620">
             <Grid HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="620" Margin="0,0,-12,-11.8">
                 <Label x:Name="labelTagOverwatchVersion" Content="Overwatch Version:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="labelTagOverwatchBranch" Content="Overwatch Branch:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
@@ -104,14 +108,14 @@
             </Grid>
         </GroupBox>
         <!-- Misc -->
-        <Button x:Name="buttonTaskkill" Content="Kill DataTool Process" HorizontalAlignment="Left" Margin="635,293,0,0" VerticalAlignment="Top" Width="198" Height="25" Foreground="Red" Click="buttonTaskkill_Click"/>
-        <Button x:Name="buttonSaveOutput" Content="Save Log to File" HorizontalAlignment="Left" Margin="635,323,0,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveOutput_Click"/>
-        <Button x:Name="buttonSaveCmdline" Content="Save Cmdline" HorizontalAlignment="Left" Margin="738,323,0,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveCmdline_Click"/>
-        <Button x:Name="buttonAbout" Content="Help and Update..." HorizontalAlignment="Left" Margin="635,352,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonAbout_Click" Foreground="Black"/>
-        <TextBox x:Name="textBoxCommand" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,201,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" BorderBrush="#FFABADB3" IsEnabled="False" ToolTip="Check the checkbox at the left to use custom command line."/>
-        <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="13,206,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
-        <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="680,201,0,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
-        <GroupBox Header="Texture Format" HorizontalAlignment="Left" Height="120" Margin="645,70,0,0" VerticalAlignment="Top" Width="153">
+        <Button x:Name="buttonTaskkill" Content="Kill DataTool Process" HorizontalAlignment="Left" Margin="635,317,0,0" VerticalAlignment="Top" Width="198" Height="25" Foreground="Red" Click="buttonTaskkill_Click"/>
+        <Button x:Name="buttonSaveOutput" Content="Save Log to File" HorizontalAlignment="Left" Margin="635,347,0,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveOutput_Click"/>
+        <Button x:Name="buttonSaveCmdline" Content="Save Cmdline" HorizontalAlignment="Left" Margin="738,347,0,0" VerticalAlignment="Top" Width="95" Height="24" Click="buttonSaveCmdline_Click"/>
+        <Button x:Name="buttonAbout" Content="Help and Update..." HorizontalAlignment="Left" Margin="635,376,0,0" VerticalAlignment="Top" Width="198" Height="24" Click="buttonAbout_Click" Foreground="Black"/>
+        <TextBox x:Name="textBoxCommand" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="123,225,0,0" VerticalAlignment="Top" Width="550" MaxLines="1" BorderBrush="#FFABADB3" IsEnabled="False" ToolTip="Check the checkbox at the left to use custom command line."/>
+        <CheckBox x:Name="checkBoxCommand" Content="DataTool.exe" HorizontalAlignment="Left" Margin="13,230,0,0" VerticalAlignment="Top" Height="15" ToolTip="Check this box to enter custom command line." Width="99" Checked="checkBoxCommand_Checked" Unchecked="checkBoxCommand_UnChecked"/>
+        <Button x:Name="buttonClearCommand" Content="Clear Custom Cmdline" HorizontalAlignment="Left" Margin="680,225,0,0" VerticalAlignment="Top" Width="153" Height="25" Foreground="Black" Click="buttonClearCommand_Click"/>
+        <GroupBox Header="Texture Format" HorizontalAlignment="Left" Height="150" Margin="645,70,0,0" VerticalAlignment="Top" Width="153">
             <Grid HorizontalAlignment="Left" Height="110" Margin="0,0,-2.2,-12.8" VerticalAlignment="Top" Width="143">
                 <Label Content="Convert Texture To:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="123"/>
                 <ComboBox x:Name="comboBoxTextureFmt" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">

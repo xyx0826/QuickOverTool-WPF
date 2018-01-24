@@ -49,6 +49,8 @@ namespace QuickOverTool_WPF
             if (checkBoxNoSnd.IsChecked == true) cmdLine += " --convert-sound=false";
             if (checkBoxNoMdl.IsChecked == true) cmdLine += " --convert-models=false";
             if (checkBoxNoAni.IsChecked == true) cmdLine += " --convert-animations=false";
+            if (checkBoxRefpose.IsChecked == true) cmdLine += " --extract-refpose=true";
+            if (textBoxLOD.Text != "0") cmdLine += " --lod=" + textBoxLOD.Text;
             if (checkBoxJSONOut.IsChecked == true) cmdLine += " --json";
             cmdLine += (" --convert-textures-type=" + comboBoxTextureFmt.SelectedItem. // Texture conversion type
                 ToString().Substring(38, 3));

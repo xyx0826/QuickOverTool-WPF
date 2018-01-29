@@ -1,5 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace QuickOverTool_WPF
 {
@@ -9,14 +12,50 @@ namespace QuickOverTool_WPF
     /// </summary>
     class Validation
     {
-        // Validate Overwatch and return its version and branch
+        /* Validate Overwatch and return its version and branch
         public static string[] Overwatch(string path)
         {
             string version;
-            string branch = "Live";
+            
+        } */
+        public static string[] Overwatch(string owPath)
+        {
+            string[] buildInfo;
+            List<string> versions = new List<string>();
+            string latestVersion = "0.00.0.0.00000";
             try
             {
-                string pdbPath = Path.Combine(path, ".product.db");
+                buildInfo = File.ReadAllLines(owPath + "\\.build.info");
+                Regex pattern = new Regex(@"^\d.\d{2}.\d.\d.\d{5}");
+                foreach (string buildEntry in buildInfo)
+                {
+                    string[] keys = buildEntry.Split('|');
+                    foreach (string key in keys)
+                    {
+                        if (pattern.IsMatch(key)) versions.Add(key);
+                    }
+                }
+                foreach (string version in versions)
+                {
+                    if (Int32.Parse(version.Substring(version.Length - 5)) >
+                        Int32.Parse(latestVersion.Substring(latestVersion.Length - 5)))
+                    {
+                        latestVersion = version;
+                    }
+                }
+            }
+            catch { }
+            if (latestVersion == "0.00.0.0.00000")
+            {
+                // throw new FileNotFoundException("Failed to read version info for " + owPath +
+                //     ": .build.info invalid.");
+                latestVersion = "Unknown";
+            }
+            // Attempt to get branch info
+            string branch = "Live/Unknown";
+            try
+            {
+                string pdbPath = Path.Combine(owPath, ".product.db");
                 StreamReader pdbStream = new StreamReader(pdbPath);
                 using (var reader = File.OpenText(pdbPath))
                 {
@@ -27,9 +66,8 @@ namespace QuickOverTool_WPF
                         if (pdbRead.Contains("prometheus_test")) branch = "PTR";
                         if (pdbRead.EndsWith("B&")) break;
                     }
-                    version = pdbRead.Substring(pdbRead.IndexOf("1."), 14);
                 }
-                return new string[] { version, branch };
+                return new string[] { latestVersion, branch };
             }
             catch
             {

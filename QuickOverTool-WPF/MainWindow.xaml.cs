@@ -189,7 +189,7 @@ namespace QuickOverTool_WPF
                 throw new ArgumentException("Mode is not selected; please select a mode.");
             }
         }
-        // 选定守望先锋路径
+        // Select Overwatch path
         private void buttonPath_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
@@ -198,7 +198,7 @@ namespace QuickOverTool_WPF
             Validation.Overwatch(textBoxOverwatchPath.Text);
             FlushChecklist();
         }
-        // 选定输出路径
+        // Select output path
         private void buttonOutputPath_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
@@ -208,7 +208,7 @@ namespace QuickOverTool_WPF
             textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Blue);
             return;
         }
-        // 开始
+        // Start
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
             FlushChecklist();
@@ -229,7 +229,7 @@ namespace QuickOverTool_WPF
             AddLog("Output: " + textBoxOutputPath.Text);
             StartUp(command);
         }
-        // 获取输出
+        // Get DataTool logging
         private void DataTool_DataReceived(object sender, DataReceivedEventArgs e)
         {
             if (!String.IsNullOrEmpty(e.Data))
@@ -237,6 +237,11 @@ namespace QuickOverTool_WPF
                 AddLog(Encoding.UTF8.GetString
                     (Encoding.Default.GetBytes(e.Data)));
             }
+        }
+        // On DataTool exit
+        private void DataTool_Exited(object sender, EventArgs e)
+        {
+            AddLog(DateTime.Now.ToString() + " - DataTool has exited.");
         }
 
         private void buttonSaveOutput_Click(object sender, RoutedEventArgs e)

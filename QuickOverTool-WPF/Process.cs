@@ -101,7 +101,7 @@ namespace QuickOverTool_WPF
         {
             using (Process dataTool = new Process())
             {
-                { // Validation.DataTool 进程配置
+                { // DataTool process configuration
                     dataTool.StartInfo.FileName = "DataTool.exe";
                     dataTool.StartInfo.Arguments = command;
                     dataTool.StartInfo.UseShellExecute = false;
@@ -113,6 +113,8 @@ namespace QuickOverTool_WPF
                 }
                 try
                 {
+                    dataTool.EnableRaisingEvents = true;
+                    dataTool.Exited += DataTool_Exited;
                     dataTool.Start();
                     dataToolPID = dataTool.Id;
                 }

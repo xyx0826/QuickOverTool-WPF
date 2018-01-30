@@ -100,7 +100,7 @@
             </TabItem>
             <TabItem Header="Logging">
                 <Grid>
-                    <TextBox x:Name="tbLog" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="811" Text="{Binding Log, UpdateSourceTrigger=PropertyChanged}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+                    <ListBox x:Name="logBox" ItemsSource="{Binding LogCollection}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Version Controls" Height="30" IsEnabled="False" FontWeight="Bold">

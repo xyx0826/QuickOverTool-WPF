@@ -39,10 +39,11 @@ namespace QuickDataTool
             cfg.ConfigInit();
             cfg.ReadGenericConfig();
             FlushInst();
-            textBoxOutput.DataContext = logger;
-            logger.Increment("OnLaunch");
             DataContext = uistring;
+
+            Initialize();
         }
+        partial void Initialize();
         // Save config and close application upon MainWindow closure
         protected override void OnClosed(EventArgs e)
         {
@@ -93,16 +94,7 @@ namespace QuickDataTool
 
         public void AddLog(string content)
         {
-            if (!Dispatcher.CheckAccess())
-            {
-                Dispatcher.Invoke(new AddLogRuntime(AddLog), content);
-                return;
-            }
-            else
-            {
-                logger.Log = content;
-                textBoxOutput.ScrollToEnd();
-            }
+            throw new NotImplementedException();
         }
 
         // Get mode selection

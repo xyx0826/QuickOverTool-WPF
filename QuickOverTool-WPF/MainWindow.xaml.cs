@@ -26,7 +26,6 @@ namespace QuickDataTool
         int dataToolPID = -1;
         string sharedPath = Path.GetDirectoryName
             (Assembly.GetEntryAssembly().CodeBase).Substring(6);
-        Logging logger = new Logging();
         UIString uistring = new UIString();
         // Mode parameters dictionary
         Dictionary<string, string> modes = new Dictionary<string, string>();
@@ -34,14 +33,15 @@ namespace QuickDataTool
         public MainWindow()
         {
             InitializeComponent();
-            PopulateDict();
-            PopulateListAssets();
+            
             cfg.ConfigInit();
             cfg.ReadGenericConfig();
             FlushInst();
             DataContext = uistring;
 
             Initialize();
+            InitializeListAssets();
+            InitializeLogging();
         }
         partial void Initialize();
         // Save config and close application upon MainWindow closure

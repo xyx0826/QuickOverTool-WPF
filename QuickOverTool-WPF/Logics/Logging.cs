@@ -35,7 +35,11 @@ namespace QuickDataTool
 
         public void Increment(string log)
         {
-            try { logCollection.Add(log); }
+            try
+            {
+                logCollection.Add(log);
+                Refresh();
+            }
             catch { throw new System.Exception(); }
         }
 

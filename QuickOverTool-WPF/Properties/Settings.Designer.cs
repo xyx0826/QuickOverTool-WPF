@@ -37,24 +37,24 @@ namespace QuickDataTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".\\")]
-        public string Path_Output {
-            get {
-                return ((string)(this["Path_Output"]));
-            }
-            set {
-                this["Path_Output"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public global::System.Collections.Generic.List<System.String> List_OWInsts {
             get {
                 return ((global::System.Collections.Generic.List<System.String>)(this["List_OWInsts"]));
             }
             set {
                 this["List_OWInsts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\\\")]
+        public string Path_Output {
+            get {
+                return ((string)(this["Path_Output"]));
+            }
+            set {
+                this["Path_Output"] = value;
             }
         }
     }

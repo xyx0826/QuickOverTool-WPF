@@ -10,10 +10,20 @@ namespace QuickDataTool
 {
     public partial class MainWindow : Window
     {
+        #region Initialization
+        ControlHandler listAssetsHandler = new ControlHandler();
+        public void InitializeListAssets()
+        {
+            tabListAssets.DataContext = listAssetsHandler;
+            PopulateListAssets();
+        }
+        #endregion
+        #region Populate modes
         private KeyValuePair<string, string> CreatePair(string text, string value)
         {
             return new KeyValuePair<string, string>(text, value);
         }
+
         private void PopulateListAssets()
         {
             List<KeyValuePair<string, string>> modes = new List<KeyValuePair<string, string>>();
@@ -32,5 +42,26 @@ namespace QuickDataTool
             comboListAssets.SelectedValuePath = "Value";
             comboListAssets.DisplayMemberPath = "Key";
         }
+        #endregion
+        #region Global interaction
+        public void ResetOptions(object sender, RoutedEventArgs e)
+        {
+            listAssetsHandler.ResetOptions();
+        }
+
+        public Object[] GetSummary()
+        {
+            Object[] values = new Object[] {listAssetsHandler.ComboBoxIndex,
+                listAssetsHandler.ComboBoxMode.Value,
+                listAssetsHandler.IsJson,
+                listAssetsHandler.ComboBoxMode};
+            return values;
+        }
+
+        public void Launch(object sender, RoutedEventArgs e)
+        {
+            listAssetsHandler.ResetOptions();
+        }
+        #endregion
     }
 }

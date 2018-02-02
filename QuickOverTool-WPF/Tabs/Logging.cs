@@ -1,16 +1,20 @@
 ﻿using System.Windows;
 using System.ComponentModel;
+using System;
 
 namespace QuickDataTool
 {
     public partial class MainWindow : Window
     {
-        partial void Initialize()
+        #region Iniialization
+        Logging logger = new Logging();
+        public void InitializeLogging()
         {
-            logBox.DataContext = logger;
+            tabLogging.DataContext = logger;
             logger.Refresh();
-            LogTester();
+            // LogTester();
         }
+        #endregion
         // Log testing
         BackgroundWorker logPopulator = new BackgroundWorker();
 
@@ -22,11 +26,11 @@ namespace QuickDataTool
 
         public void Spam(object sender, DoWorkEventArgs e)
         {
-            int i = 0;
+            Random rnd = new Random();
             while (true)
             {
-                logger.Increment(logBox.Dispatcher, i.ToString());
-                i++;
+                logger.Increment(logBox.Dispatcher, rnd.Next(10000000, 90000000).ToString() + rnd.Next(10000000, 90000000).ToString());
+                System.Threading.Thread.Sleep(20);
             }
         }
     }

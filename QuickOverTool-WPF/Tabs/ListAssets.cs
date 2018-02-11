@@ -5,6 +5,7 @@ using static QuickDataTool.Properties.Settings;
 using System;
 using QuickDataTool.Logics;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace QuickDataTool
 {
@@ -27,6 +28,7 @@ namespace QuickDataTool
         private void PopulateListAssets()
         {
             List<KeyValuePair<string, string>> modes = new List<KeyValuePair<string, string>>();
+            modes.Add(CreatePair("(Please select a mode...)", null));
             modes.Add(CreatePair("List achievements", "list-achievements"));
             modes.Add(CreatePair("List chat replacements", "list-chat-replacements"));
             modes.Add(CreatePair("List general unlocks", "list-general-unlocks"));
@@ -60,7 +62,13 @@ namespace QuickDataTool
 
         public void Launch(object sender, RoutedEventArgs e)
         {
-            listAssetsHandler.ResetOptions();
+            if (listAssetsHandler.ComboBoxMode.Value == null)
+                uistring.SetNotif(lblNotif.Dispatcher, "ERROR: Please choose a list mode.");
+            if (listAssetsHandler.GoToLogging) tabControl.SelectedIndex = 4;
+            string cmdLine = " --" + ((KeyValuePair<string, string>)Default.TAB2_Array[1]).Value;
+            if ((bool)Default.TAB2_Array[2]) cmdLine += " --json";
+            Execution execution = new Execution();
+            throw new NotImplementedException("WIP");
         }
         #endregion
     }

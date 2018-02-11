@@ -57,5 +57,16 @@ namespace QuickDataTool.Properties {
                 this["Path_Output"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public object[] TAB2_Array {
+            get {
+                return ((object[])(this["TAB2_Array"]));
+            }
+            set {
+                this["TAB2_Array"] = value;
+            }
+        }
     }
 }

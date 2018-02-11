@@ -37,7 +37,7 @@
             </Button>
         </Grid>
         <!-- Main TabControl -->
-        <TabControl Margin="0,72,-0.4,-0.6" BorderThickness="1,0,0,0" TabStripPlacement="Left" Height="539" VerticalAlignment="Top">
+        <TabControl x:Name="tabControl" Margin="0,72,-0.4,-0.6" BorderThickness="1,0,0,0" TabStripPlacement="Left" Height="539" VerticalAlignment="Top">
             <!-- Styles -->
             <TabControl.Resources>
                 <Style TargetType="TabItem">
@@ -100,7 +100,7 @@
                     <GroupBox Header="Control" Margin="10,194,10,271" Foreground="Black">
                         <Grid>
                             <Button Content="Reset all options" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" Width="128" Height="28" Click="ResetOptions"/>
-                            <Button Content="Launch DataTool" HorizontalAlignment="Left" Margin="220,10,0,0" VerticalAlignment="Top" Width="128" Height="28"/>
+                            <Button Content="Launch DataTool" HorizontalAlignment="Left" Margin="220,10,0,0" VerticalAlignment="Top" Width="128" Height="28" Click="Launch"/>
                             <CheckBox Content="Go to Logging once DataTool is launched" IsChecked="{Binding GoToLogging}" HorizontalAlignment="Left" Margin="365,17,0,0" VerticalAlignment="Top"/>
                         </Grid>
                     </GroupBox>
@@ -243,6 +243,6 @@
             </Grid>
             <CheckBox Content="CheckBox" Height="100" Width="100"/>
         </TabControl>
-        <Label x:Name="lblNotif" Content="OWorkbench has started." HorizontalAlignment="Left" Margin="0,611,-0.4,0" VerticalAlignment="Top" Height="32" Width="844" BorderBrush="#FFB4B4B4" BorderThickness="0,1,0,0"/>
+        <Label x:Name="lblNotif" Content="{Binding Notif, Mode=OneWay}" Foreground="{Binding NotifBrush, Mode=OneWay}" HorizontalAlignment="Left" Margin="0,611,-0.4,0" VerticalAlignment="Top" Height="32" Width="844" BorderBrush="#FFB4B4B4" BorderThickness="0,1,0,0" FontWeight="Bold"/>
     </Grid>
 </Window>

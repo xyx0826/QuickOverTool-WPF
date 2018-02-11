@@ -24,10 +24,5 @@ namespace QuickDataTool.Logics
                 return dataTool;
             }
         }
-
-        public void StartDataTool(Process dataTool)
-        {
-            dataTool.Start();
-        }
     }
 }

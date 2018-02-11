@@ -84,8 +84,6 @@ namespace QuickDataTool
         // Save paths from config file
         private void SaveConfig()
         {
-            // Default.Path_CurrentOW = textBoxOverwatchPath.Text;
-            // Default.Path_Output = textBoxOutputPath.Text;
             Default.Save();
         }
 

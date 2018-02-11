@@ -24,9 +24,9 @@ namespace QuickDataTool.Logics
                     "C:\\Program Files (x86)\\Overwatch"
                 };
             }
-            Default.Save();
+            object[] defaultOptions = { 0, null, false, true };
+            if (Default.TAB2_Array == null) Default.TAB2_Array = defaultOptions;
         }
-
         public Dictionary<string, string> ReadGenericConfig()
         {
             Dictionary<string, string> settings = new Dictionary<string, string>();

@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Logics\Validation.cs" />
     <Compile Include="Logics\VersionManagement.cs" />
+    <Compile Include="Tabs\ExecutionHandler.cs" />
     <Compile Include="Tabs\GameVersion.cs" />
     <Compile Include="Tabs\ListAssets.cs" />
     <Compile Include="Tabs\Logging.cs" />

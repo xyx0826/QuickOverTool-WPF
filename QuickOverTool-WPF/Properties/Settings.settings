@@ -11,5 +11,8 @@
     <Setting Name="Path_Output" Type="System.String" Scope="User">
       <Value Profile="(Default)">.\\</Value>
     </Setting>
+    <Setting Name="TAB2_Array" Type="System.Object[]" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

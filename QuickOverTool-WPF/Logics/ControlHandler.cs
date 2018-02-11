@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static QuickDataTool.Properties.Settings;
 
 namespace QuickDataTool.Logics
@@ -11,36 +7,45 @@ namespace QuickDataTool.Logics
     class ControlHandler : INotifyPropertyChanged
     {
         #region ListAssets controls handler
-        private object[] listAssetsOptions = { 0, null, false, false };
-
         public int ComboBoxIndex
         {
-            get { return (int)listAssetsOptions[0]; }
-            set { listAssetsOptions[0] = value; }
+            get { return (int)Default.TAB2_Array[0]; }
+            set
+            {
+                Default.TAB2_Array[0] = value;
+            }
         }
 
         public KeyValuePair<string, string> ComboBoxMode
         {
-            get { return (KeyValuePair<string, string>)listAssetsOptions[1]; }
-            set { listAssetsOptions[1] = value; }
+            get { return (KeyValuePair<string, string>)Default.TAB2_Array[1]; }
+            set { Default.TAB2_Array[1] = value; }
         }
         
         public bool IsJson
         {
-            get { return (bool)listAssetsOptions[2]; }
-            set { listAssetsOptions[2] = value; }
+            get { return (bool)Default.TAB2_Array[2]; }
+            set
+            {
+                Default.TAB2_Array[2] = value;
+                Default.TAB2_Array[2] = value;
+            }
         }
 
         public bool GoToLogging
         {
-            get { return (bool)listAssetsOptions[3]; }
-            set { listAssetsOptions[3] = value; }
+            get { return (bool)Default.TAB2_Array[3]; }
+            set
+            {
+                Default.TAB2_Array[3] = value;
+                Default.TAB2_Array[3] = value;
+            }
         }
 
         public void ResetOptions()
         {
             object[] template = { 0, null, false, false };
-            listAssetsOptions = template;
+            Default.TAB2_Array = template;
             OnPropertyChanged(null);
         }
         #endregion

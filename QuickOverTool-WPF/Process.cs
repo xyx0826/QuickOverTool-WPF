@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Windows;
@@ -113,10 +114,16 @@ namespace QuickOverTool_WPF
                 }
                 try
                 {
-                    dataTool.EnableRaisingEvents = true;
-                    dataTool.Exited += DataTool_Exited;
+                    // dataTool.EnableRaisingEvents = true;
+                    // dataTool.Exited += DataTool_Exited;
                     dataTool.Start();
+                    buttonStart.IsEnabled = false;
+                    buttonStart.Content = "DataTool is running...";
                     dataToolPID = dataTool.Id;
+                    BackgroundWorker aliveChecker = new BackgroundWorker();
+                    aliveChecker.DoWork += CheckAlive;
+                    aliveChecker.RunWorkerCompleted += OnProcessDead;
+                    aliveChecker.RunWorkerAsync(dataTool);
                 }
                 catch
                 {
@@ -128,6 +135,23 @@ namespace QuickOverTool_WPF
                 dataTool.OutputDataReceived += new DataReceivedEventHandler(DataTool_DataReceived);
                 dataTool.ErrorDataReceived += new DataReceivedEventHandler(DataTool_DataReceived);
             }
+        }
+
+        private void CheckAlive(object sender, DoWorkEventArgs e)
+        {
+            Process dataTool = (Process)(e.Argument);
+            try { dataTool.WaitForExit(); }
+            catch (InvalidOperationException)
+            {
+                return;
+            }
+        }
+
+        private void OnProcessDead(object sender, RunWorkerCompletedEventArgs e)
+        {
+            buttonStart.IsEnabled = true;
+            buttonStart.Content = "DataTool has exited.";
+            buttonStart.Foreground = Brushes.Green;
         }
     }
 }

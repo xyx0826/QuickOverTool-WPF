@@ -53,10 +53,10 @@
                 <Grid Background="#FFFFFFFF">
                     <Label Content="This utility sorts unique files in a directory." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label Content="Path to be processed:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBoxUtility" HorizontalAlignment="Left" Height="23" Margin="14,72,0,0" MaxLines="1" IsReadOnly="True" VerticalAlignment="Top" Width="270"/>
-                    <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="289,70,0,0" VerticalAlignment="Top" Width="25" Height="25" Content="..." Click="buttonPath_Click"/>
-                    <Button Content="Go" HorizontalAlignment="Left" Margin="14,100,0,0" VerticalAlignment="Top" Width="75" Click="OnUtilRun"/>
-                    <Label x:Name="lblUtilStatus" Content="Completed." HorizontalAlignment="Left" Margin="100,97,0,0" VerticalAlignment="Top" Width="218" Visibility="Hidden"/>
+                    <TextBox x:Name="utilTextBox" HorizontalAlignment="Left" Height="23" Margin="14,72,0,0" MaxLines="1" IsReadOnly="True" VerticalAlignment="Top" Width="270"/>
+                    <Button x:Name="utilButtonPath" HorizontalAlignment="Left" Margin="289,70,0,0" VerticalAlignment="Top" Width="25" Height="25" Content="..." Click="buttonPath_Click"/>
+                    <Button x:Name="utilButtonGo" Content="Go" HorizontalAlignment="Left" Margin="14,100,0,0" VerticalAlignment="Top" Width="75" Click="OnUtilRun"/>
+                    <Label x:Name="utilLabelStatus" Content="Completed." HorizontalAlignment="Left" Margin="100,97,0,0" VerticalAlignment="Top" Width="218" Visibility="Hidden"/>
                 </Grid>
             </TabItem>
         </TabControl>

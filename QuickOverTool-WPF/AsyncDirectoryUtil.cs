@@ -1,42 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Security.Cryptography;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Forms;
-using System.Windows.Media;
 
 namespace QuickOverTool_WPF
 {
-    public partial class AboutWindow : Window
+    public partial class AboutWindow 
     {
         private void buttonPath_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
-            DialogResult folderBrowserResult = folderBrowser.ShowDialog();
-            textBoxUtility.Text = folderBrowser.SelectedPath;
+            folderBrowser.ShowDialog();
+            utilTextBox.Text = folderBrowser.SelectedPath;
         }
 
         public void OnUtilRun(object sender, RoutedEventArgs e)
         {
-            lblUtilStatus.Visibility = Visibility.Hidden;
+            utilLabelStatus.Visibility = Visibility.Visible;
+            utilLabelStatus.Content = "Working...";
+            utilButtonGo.IsEnabled = false;
+            
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += ProcessDirectory;
-            worker.RunWorkerAsync(textBoxUtility.Text);
-            lblUtilStatus.Visibility = Visibility.Visible;
+            worker.RunWorkerCompleted += (o, args) =>
+            {
+                utilLabelStatus.Content = "Done";
+                utilButtonGo.IsEnabled = true;
+            };
+            worker.RunWorkerAsync(utilTextBox.Text);
         }
 
         public void ProcessDirectory(object sender, DoWorkEventArgs e)
         {
             string sharedPath = Path.GetDirectoryName
             (Assembly.GetEntryAssembly().CodeBase).Substring(6);
-            string[] files = GetFileList((string)(e.Argument));
+            string[] files = GetFileList((string)e.Argument);
             List<string> uniqueFiles = new List<string>();
             List<string> hashes = new List<string>();
             Directory.CreateDirectory(sharedPath + "\\Sorted Files");

@@ -118,7 +118,7 @@
         <GroupBox Header="Texture Format" HorizontalAlignment="Left" Height="150" Margin="645,70,0,0" VerticalAlignment="Top" Width="153">
             <Grid HorizontalAlignment="Left" Height="110" Margin="0,0,-2.2,-12.8" VerticalAlignment="Top" Width="143">
                 <Label Content="Convert Texture To:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="123"/>
-                <ComboBox x:Name="comboBoxTextureFmt" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+                <ComboBox x:Name="comboBoxTextureFmt" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="1">
                     <ComboBoxItem Content="dds"/>
                     <ComboBoxItem Content="tif"/>
                     <ComboBoxItem Content="tga"/>

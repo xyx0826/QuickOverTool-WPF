@@ -23,7 +23,7 @@ namespace QuickDataTool
             }
             catch (ArgumentException f)
             {
-                AddLog(f.Message);
+                uistring.SetNotif(lblNotif.Dispatcher, f.Message);
             }
             FlushInst();
         }
@@ -32,7 +32,7 @@ namespace QuickDataTool
         {
             if (cfg.CountOWInst() == 1)
             {
-                AddLog("Failed to delete installation record. This is the last one.");
+                uistring.SetNotif(lblNotif.Dispatcher, "Failed to delete installation record. This is the last one.");
                 return;
             }
             try
@@ -43,7 +43,7 @@ namespace QuickDataTool
             }
             catch (NullReferenceException)
             {
-                AddLog("Failed to remove installation from settings. " +
+                uistring.SetNotif(lblNotif.Dispatcher, "Failed to remove installation from settings. " +
                     "Please select an installation first.");
             }
         }
@@ -55,7 +55,7 @@ namespace QuickDataTool
                 cfg.SetOWInst(comboOWInsts.SelectedIndex);
                 uistring.Rebind(null);
             }
-            else AddLog("Failed to set Overwatch installation. " +
+            else uistring.SetNotif(lblNotif.Dispatcher, "Failed to set Overwatch installation. " +
                     "Please select an installation first.");
         }
 
@@ -68,13 +68,13 @@ namespace QuickDataTool
                 try { key = vm.GetOWVersion(path); }
                 catch (FileNotFoundException e)
                 {
-                    AddLog(e.Message);
+                    uistring.SetNotif(lblNotif.Dispatcher, e.Message);
                     key = "(Unknown version)";
                 }
                 try { versionDict.Add(path, key); }
                 catch (ArgumentException)
                 {
-                    AddLog("Failed to add this installation. Path duplicate.");
+                    uistring.SetNotif(lblNotif.Dispatcher, "Failed to add this installation. Path duplicate.");
                     continue;
                 }
             }

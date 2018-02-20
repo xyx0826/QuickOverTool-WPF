@@ -50,7 +50,7 @@ namespace QuickDataTool.Logics
                 Default.Save();
             }
             else
-                throw new ArgumentException("Failed to add " + path + " to installation library." +
+                throw new ArgumentException("Failed to add " + path + " to installation library. " +
                     "Path already exists.");
 
         }

@@ -8,8 +8,8 @@ namespace QuickDataTool
     {
         public void ClearLogs(System.Windows.Controls.ListBox listBox)
         {
-            listBox.ItemsSource = null;
-            listBox.Items.Refresh();
+            logCollection = new ObservableCollection<string>();
+            Refresh();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -31,19 +31,15 @@ namespace QuickDataTool
             get { return logCollection; }
         }
 
-        public delegate void IncrementDelegate(string log);
+        public delegate void IncrementDelegate(string log); // Delegated increment
 
-        public void Increment(string log)
+        public void Increment(string log) // Standard increment
         {
-            try
-            {
-                logCollection.Add(log);
-                Refresh();
-            }
-            catch { throw new System.Exception(); }
+            logCollection.Add(log);
+            Refresh();
         }
 
-        public void Increment(Dispatcher dispatcher, string log)
+        public void Increment(Dispatcher dispatcher, string log) // Dispatched increment
         {
             dispatcher.Invoke(new IncrementDelegate(Increment), log);
         }

@@ -62,13 +62,16 @@ namespace QuickDataTool
 
         public void Launch(object sender, RoutedEventArgs e)
         {
-            if (listAssetsHandler.ComboBoxMode.Value == null)
+            if (listAssetsHandler.ComboBoxMode.Value == null) // Check mode selection
+            {
                 uistring.SetNotif(lblNotif.Dispatcher, "ERROR: Please choose a list mode.");
-            if (listAssetsHandler.GoToLogging) tabControl.SelectedIndex = 4;
-            string cmdLine = " --" + ((KeyValuePair<string, string>)Default.TAB2_Array[1]).Value;
+                return;
+            }
+            if (listAssetsHandler.GoToLogging) tabControl.SelectedIndex = 4; // Jump to log tab
+            string cmdLine = " \"" + uistring.CurrentOWPath + "\" " + ((KeyValuePair<string, string>)Default.TAB2_Array[1]).Value;
             if ((bool)Default.TAB2_Array[2]) cmdLine += " --json";
-            Execution execution = new Execution();
-            throw new NotImplementedException("WIP");
+            logger.Increment(logBox.Dispatcher, "Starting DataTool now. Cmdline: DataTool.exe " + cmdLine);
+            StartDataTool(PrepareDataTool(cmdLine));
         }
         #endregion
     }

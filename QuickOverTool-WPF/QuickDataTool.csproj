@@ -81,7 +81,6 @@
     </ApplicationDefinition>
     <Compile Include="Logics\Config.cs" />
     <Compile Include="Logics\ControlHandler.cs" />
-    <Compile Include="Logics\Execution.cs" />
     <Compile Include="Logics\Logging.cs" />
     <Compile Include="Logics\Networking.cs" />
     <Compile Include="Process.cs" />

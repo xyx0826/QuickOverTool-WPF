@@ -13,44 +13,21 @@ namespace QuickDataTool
         {
             tabLogging.DataContext = logger;
             logger.Refresh();
-            // LogTester();
         }
         #endregion
-        // Log testing
-        BackgroundWorker logPopulator = new BackgroundWorker();
-        BackgroundWorker logGenerator = new BackgroundWorker();
-        List<string> mainList = new List<string>();
-
-        public void LogTester()
+        public void SaveLogs(object sender, RoutedEventArgs e)
         {
-            logGenerator.DoWork += Spam;
-            logGenerator.RunWorkerAsync();
-            logPopulator.DoWork += Pile;
-            logPopulator.RunWorkerAsync();
+            throw new NotImplementedException();
         }
 
-        public void Spam(object sender, DoWorkEventArgs e)
+        public void CopyLogs(object sender, RoutedEventArgs e)
         {
-            
-            Random rnd = new Random();
-            for(int i = 0; i < 10000; i ++)
-            {
-                mainList.Add(i + ". " + rnd.Next(10000000, 90000000).ToString() + rnd.Next(10000000, 90000000).ToString());
-            }
+            throw new NotImplementedException();
         }
 
-        public void Pile(object sender, DoWorkEventArgs e)
+        public void ClearLogs(object sender, RoutedEventArgs e)
         {
-            while(true)
-            {
-                try
-                {
-                    logger.Increment(logBox.Dispatcher, mainList[0]);
-                    mainList.RemoveAt(0);
-                    System.Threading.Thread.Sleep(5);
-                }
-                catch { }
-            }
+            logger.ClearLogs(logBox);
         }
     }
 }

@@ -145,7 +145,7 @@ namespace QuickDataTool
             AddLog("Output: " + textBoxOutputPath.Text);
             StartUp(command);
         }
-        // 获取输出
+        /* 获取输出
         private void DataTool_DataReceived(object sender, DataReceivedEventArgs e)
         {
             if (!String.IsNullOrEmpty(e.Data))
@@ -153,7 +153,7 @@ namespace QuickDataTool
                 logger.Increment(Encoding.UTF8.GetString
                     (Encoding.Default.GetBytes(e.Data)));
             }
-        }
+        } */
 
         private void buttonSaveOutput_Click(object sender, RoutedEventArgs e)
         {

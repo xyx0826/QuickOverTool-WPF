@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using static QuickDataTool.Properties.Settings;
 
@@ -11,37 +9,26 @@ namespace QuickDataTool.Logics
 {
     public class Config
     {
-        public void ConfigInit()
+        /// <summary>
+        /// Initialize the configurations on first run.
+        /// </summary>
+        public void InitConfig()
         {
-            if (String.IsNullOrWhiteSpace(Default.Path_CurrentOW))
+            if (String.IsNullOrWhiteSpace(Default.Path_CurrentOW))  // Default Overwatch path
                 Default.Path_CurrentOW = "C:\\Program Files (x86)\\Overwatch";
-            if (String.IsNullOrWhiteSpace(Default.Path_Output))
+            if (String.IsNullOrWhiteSpace(Default.Path_Output)) // Default output path
                 Default.Path_Output = ".\\";
-            if (Default.List_OWInsts.Count == 0)
+            if (Default.List_OWInsts.Count == 0)    // Default Overwatch path in selector
             {
                 Default.List_OWInsts = new List<String>
                 {
                     "C:\\Program Files (x86)\\Overwatch"
                 };
             }
-            object[] defaultOptions = { 0, null, false, true };
-            if (Default.TAB2_Array == null) Default.TAB2_Array = defaultOptions;
+            if (Default.TAB2_Array == null) // Default ListAssets parameters
+                Default.TAB2_Array = new object[] { 0, null, false, true };
         }
-        public Dictionary<string, string> ReadGenericConfig()
-        {
-            Dictionary<string, string> settings = new Dictionary<string, string>();
-            foreach (SettingsPropertyValue prop in Default.PropertyValues)
-            {
-                settings.Add(prop.Name, prop.PropertyValue.ToString());
-            }
-            return settings;
-        }
-
-        public List<String> ReadOWInstConfig()
-        {
-            return Default.List_OWInsts;
-        }
-
+        #region Overwatch installation management
         public void AddOWInst(string path)
         {
             if (Default.List_OWInsts.IndexOf(path) == -1)
@@ -52,24 +39,22 @@ namespace QuickDataTool.Logics
             else
                 throw new ArgumentException("Failed to add " + path + " to installation library. " +
                     "Path already exists.");
-
         }
-
+        
         public void DelOWInst(string path)
         {
             Default.List_OWInsts.Remove(path);
-            Default.Save();
         }
 
-        public void SetOWInst(int index)
+        public void UseOWInst(int index)
         {
             Default.Path_CurrentOW = Default.List_OWInsts[index];
-            Default.Save();
         }
 
         public int CountOWInst()
         {
             return Default.List_OWInsts.Count();
         }
+        #endregion
     }
 }

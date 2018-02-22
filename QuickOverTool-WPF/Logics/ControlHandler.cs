@@ -44,8 +44,7 @@ namespace QuickDataTool.Logics
 
         public void ResetOptions()
         {
-            object[] template = { 0, null, false, false };
-            Default.TAB2_Array = template;
+            Default.TAB2_Array = new object[] { 0, null, false, true };
             OnPropertyChanged(null);
         }
         #endregion

@@ -15,18 +15,11 @@ namespace QuickDataTool
 {
     public partial class MainWindow : Window
     {
-        // About window and query window
-        QueryWindow query = new QueryWindow();
-        // Color brushes...
-        SolidColorBrush red = new SolidColorBrush(Colors.Red);
-        SolidColorBrush green = new SolidColorBrush(Colors.Green);
-        SolidColorBrush blue = new SolidColorBrush(Colors.Blue);
-        SolidColorBrush gray = new SolidColorBrush(Colors.Gray);
         // DataTool path and PID
         int dataToolPID = -1;
         string sharedPath = Path.GetDirectoryName
             (Assembly.GetEntryAssembly().CodeBase).Substring(6);
-        UIString uistring = new UIString();
+        UIString uiStringProvider = new UIString();
         // Mode parameters dictionary
         Dictionary<string, string> modes = new Dictionary<string, string>();
         // Populate mode dictionary and load config upon application launch
@@ -34,46 +27,20 @@ namespace QuickDataTool
         {
             InitializeComponent();
             
-            cfg.ConfigInit();
-            cfg.ReadGenericConfig();
             FlushInst();
-            DataContext = uistring;
+            DataContext = uiStringProvider;
 
-            Initialize();
+            configProvider.InitConfig();
             InitializeListAssets();
             InitializeLogging();
         }
-        partial void Initialize();
         // Save config and close application upon MainWindow closure
         protected override void OnClosed(EventArgs e)
         {
+            Default.Upgrade();
+            Default.Save();
             base.OnClosed(e);
-            SaveConfig();
             System.Windows.Application.Current.Shutdown();
-        }
-
-        // Mode dictionary populator
-        private void PopulateDict()
-        {
-            modes.Add("l_heroes", "list-heroes");
-            modes.Add("l_generalUnlocks", "list-general-unlocks");
-            modes.Add("l_heroUnlocks", "list-unlocks");
-            modes.Add("l_maps", "list-maps");
-            modes.Add("l_strings", "dump-strings");
-            modes.Add("l_achievements", "list-achievements");
-            modes.Add("l_lootboxes", "list-lootbox");
-            modes.Add("l_keys", "list-keys");
-            modes.Add("e_generalUnlocks", "extract-general");
-            modes.Add("e_heroUnlocks", "extract-unlocks");
-            modes.Add("e_heroVoice", "extract-hero-voice");
-            modes.Add("e_maps", "extract-maps");
-            modes.Add("e_lootboxes", "extract-lootbox");
-            modes.Add("e_npcs", "extract-npcs");
-            modes.Add("e_abilities", "extract-abilities");
-            modes.Add("l_subt", "list-subtitles");
-            modes.Add("l_subtAudio", "list-subtitles-real");
-            modes.Add("l_highlights", "list-highlights");
-            modes.Add("l_chat", "list-chat-replacements");
         }
         // Read paths from config file
         private void ReadConfig()
@@ -81,12 +48,6 @@ namespace QuickDataTool
             textBoxOverwatchPath.Text = Default.Path_CurrentOW;
             textBoxOutputPath.Text = Default.Path_Output;
         }
-        // Save paths from config file
-        private void SaveConfig()
-        {
-            Default.Save();
-        }
-
         // Log increment
         public delegate void AddLogRuntime(string content);
 
@@ -145,15 +106,6 @@ namespace QuickDataTool
             AddLog("Output: " + textBoxOutputPath.Text);
             StartUp(command);
         }
-        /* 获取输出
-        private void DataTool_DataReceived(object sender, DataReceivedEventArgs e)
-        {
-            if (!String.IsNullOrEmpty(e.Data))
-            {
-                logger.Increment(Encoding.UTF8.GetString
-                    (Encoding.Default.GetBytes(e.Data)));
-            }
-        } */
 
         private void buttonSaveOutput_Click(object sender, RoutedEventArgs e)
         {
@@ -224,24 +176,6 @@ namespace QuickDataTool
             textBoxCommand.Text = "";
         }
 
-        private void listMode_Checked(object sender, RoutedEventArgs e)
-        {
-            UpdateQueryEditor(null, null);
-            comboBoxList.IsEnabled = true;
-            comboBoxList.Foreground = new SolidColorBrush(Colors.Black);
-            comboBoxExtract.IsEnabled = false;
-            comboBoxExtract.Foreground = gray;
-        }
-
-        private void extractMode_Checked(object sender, RoutedEventArgs e)
-        {
-            UpdateQueryEditor(null, null);
-            comboBoxList.IsEnabled = false;
-            comboBoxList.Foreground = gray;
-            comboBoxExtract.IsEnabled = true;
-            comboBoxExtract.Foreground = new SolidColorBrush(Colors.Black);
-        }
-
         private void UpdateQueryEditor(object sender, RoutedEventArgs e)
         {
             if (radioButtonExtractMode.IsChecked == true && 
@@ -250,11 +184,6 @@ namespace QuickDataTool
                 e_heroVoice.IsSelected == true))
                 buttonExtractQuery.Visibility = Visibility.Visible;
             else buttonExtractQuery.Visibility = Visibility.Hidden;
-        }
-
-        private void buttonExtractQuery_Click(object sender, RoutedEventArgs e)
-        {
-            query.Show();
         }
     }
 }

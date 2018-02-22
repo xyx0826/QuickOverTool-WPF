@@ -10,7 +10,7 @@ namespace QuickDataTool
 {
     public partial class MainWindow : Window
     {
-        Config cfg = new Config();
+        Config configProvider = new Config();
         VersionManagement vm = new VersionManagement();
 
         public void AddInst(object sender, RoutedEventArgs e)
@@ -19,31 +19,31 @@ namespace QuickDataTool
             DialogResult folderBrowserResult = folderBrowser.ShowDialog();
             try
             {
-                cfg.AddOWInst(folderBrowser.SelectedPath);
+                configProvider.AddOWInst(folderBrowser.SelectedPath);
             }
             catch (ArgumentException f)
             {
-                uistring.SetNotif(lblNotif.Dispatcher, f.Message);
+                uiStringProvider.SetNotif(lblNotif.Dispatcher, f.Message);
             }
             FlushInst();
         }
 
         public void DelInst(object sender, RoutedEventArgs e)
         {
-            if (cfg.CountOWInst() == 1)
+            if (configProvider.CountOWInst() == 1)
             {
-                uistring.SetNotif(lblNotif.Dispatcher, "Failed to delete installation record. This is the last one.");
+                uiStringProvider.SetNotif(lblNotif.Dispatcher, "Failed to delete installation record. This is the last one.");
                 return;
             }
             try
             {
                 string path = comboOWInsts.SelectedItem.ToString();
-                cfg.DelOWInst(path);
+                configProvider.DelOWInst(path);
                 FlushInst();
             }
             catch (NullReferenceException)
             {
-                uistring.SetNotif(lblNotif.Dispatcher, "Failed to remove installation from settings. " +
+                uiStringProvider.SetNotif(lblNotif.Dispatcher, "Failed to remove installation from settings. " +
                     "Please select an installation first.");
             }
         }
@@ -52,10 +52,10 @@ namespace QuickDataTool
         {
             if (comboOWInsts.SelectedIndex != -1)
             {
-                cfg.SetOWInst(comboOWInsts.SelectedIndex);
-                uistring.Rebind(null);
+                configProvider.UseOWInst(comboOWInsts.SelectedIndex);
+                uiStringProvider.Rebind(null);
             }
-            else uistring.SetNotif(lblNotif.Dispatcher, "Failed to set Overwatch installation. " +
+            else uiStringProvider.SetNotif(lblNotif.Dispatcher, "Failed to set Overwatch installation. " +
                     "Please select an installation first.");
         }
 
@@ -68,13 +68,13 @@ namespace QuickDataTool
                 try { key = vm.GetOWVersion(path); }
                 catch (FileNotFoundException e)
                 {
-                    uistring.SetNotif(lblNotif.Dispatcher, e.Message);
+                    uiStringProvider.SetNotif(lblNotif.Dispatcher, e.Message);
                     key = "(Unknown version)";
                 }
                 try { versionDict.Add(path, key); }
                 catch (ArgumentException)
                 {
-                    uistring.SetNotif(lblNotif.Dispatcher, "Failed to add this installation. Path duplicate.");
+                    uiStringProvider.SetNotif(lblNotif.Dispatcher, "Failed to add this installation. Path duplicate.");
                     continue;
                 }
             }

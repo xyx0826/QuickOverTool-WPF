@@ -1,11 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Collections.Generic;
-using System.IO;
 using static QuickDataTool.Properties.Settings;
-using System;
 using QuickDataTool.Logics;
-using System.Windows.Forms;
-using System.Windows.Media;
 
 namespace QuickDataTool
 {
@@ -20,11 +17,6 @@ namespace QuickDataTool
         }
         #endregion
         #region Populate modes
-        private KeyValuePair<string, string> CreatePair(string text, string value)
-        {
-            return new KeyValuePair<string, string>(text, value);
-        }
-
         private void PopulateListAssets()
         {
             List<KeyValuePair<string, string>> modes = new List<KeyValuePair<string, string>>();
@@ -43,6 +35,11 @@ namespace QuickDataTool
             comboListAssets.ItemsSource = modes;
             comboListAssets.SelectedValuePath = "Value";
             comboListAssets.DisplayMemberPath = "Key";
+        }
+
+        private KeyValuePair<string, string> CreatePair(string text, string value)
+        {
+            return new KeyValuePair<string, string>(text, value);
         }
         #endregion
         #region Global interaction
@@ -64,11 +61,11 @@ namespace QuickDataTool
         {
             if (listAssetsHandler.ComboBoxMode.Value == null) // Check mode selection
             {
-                uistring.SetNotif(lblNotif.Dispatcher, "ERROR: Please choose a list mode.");
+                uiStringProvider.SetNotif(lblNotif.Dispatcher, "ERROR: Please choose a list mode.");
                 return;
             }
             if (listAssetsHandler.GoToLogging) tabControl.SelectedIndex = 4; // Jump to log tab
-            string cmdLine = " \"" + uistring.CurrentOWPath + "\" " + ((KeyValuePair<string, string>)Default.TAB2_Array[1]).Value;
+            string cmdLine = " \"" + uiStringProvider.CurrentOWPath + "\" " + ((KeyValuePair<string, string>)Default.TAB2_Array[1]).Value;
             if ((bool)Default.TAB2_Array[2]) cmdLine += " --json";
             logger.Increment(logBox.Dispatcher, "Starting DataTool now. Cmdline: DataTool.exe " + cmdLine);
             StartDataTool(PrepareDataTool(cmdLine));

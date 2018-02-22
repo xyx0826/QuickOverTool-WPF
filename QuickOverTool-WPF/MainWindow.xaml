@@ -109,6 +109,12 @@
             <TabItem Header="Extract Assets">
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB3_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <GroupBox Header="Select a Mode" Margin="10,44,10,421" Foreground="Black">
+                        <Grid>
+                            <Label Content="Mode:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <ComboBox x:Name="comboExtractAssets" SelectedIndex="{Binding ComboBoxIndex}" SelectedItem="{Binding ComboBoxMode, Mode=OneWayToSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="59,12,0,0" Width="240"/>
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabLogging" Header="Logging">
@@ -197,8 +203,8 @@
                 <!-- Modes -->
                 <GroupBox x:Name="groupBoxModesNew" Header="Mode" HorizontalAlignment="Left" Height="120" Margin="592,231,-203.4,0" VerticalAlignment="Top" Width="455">
                     <Grid Height="110" VerticalAlignment="Top" Margin="0,0,-2,-12.8">
-                        <RadioButton x:Name="radioButtonListMode" Content="List..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="listMode_Checked"/>
-                        <RadioButton x:Name="radioButtonExtractMode" Content="Extract..." HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Checked="extractMode_Checked"/>
+                        <RadioButton x:Name="radioButtonListMode" Content="List..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                        <RadioButton x:Name="radioButtonExtractMode" Content="Extract..." HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top"/>
                         <ComboBox x:Name="comboBoxExtract" HorizontalAlignment="Left" Margin="135,30,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
                             <ComboBoxItem x:Name="e_generalUnlocks" Content="General Unlocks" ToolTip="Extract general icons, sprays and player portraits."/>
                             <ComboBoxItem x:Name="e_heroUnlocks" Content="Hero Unlocks..." ToolTip="Extract hero-specific unlockable contents." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
@@ -208,7 +214,7 @@
                             <ComboBoxItem x:Name="e_npcs" Content="NPCs..." ToolTip="Extract NPC models." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
                             <ComboBoxItem x:Name="e_abilities" Content="Abilities" ToolTip="Extract hero ability icons and video demos."/>
                         </ComboBox>
-                        <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="260,30,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Hidden" Click="buttonExtractQuery_Click" Height="22"/>
+                        <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="260,30,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Hidden" Height="22"/>
                         <CheckBox x:Name="checkBoxNoTex" Content="Don't Convert Textures" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" ToolTip="Disable texture conversion to DDS."/>
                         <CheckBox x:Name="checkBoxNoSnd" Content="Don't Convert Sound" HorizontalAlignment="Left" Margin="155,70,0,0" VerticalAlignment="Top" ToolTip="Disable sound conversion to OGG."/>
                     </Grid>

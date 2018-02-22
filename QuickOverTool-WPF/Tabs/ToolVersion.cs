@@ -63,8 +63,8 @@ namespace QuickDataTool
 
         private void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            uistring.DownloadProgress = e.ProgressPercentage;
-            uistring.Rebind(null);
+            uiStringProvider.DownloadProgress = e.ProgressPercentage;
+            uiStringProvider.Rebind(null);
         }
     }
 }

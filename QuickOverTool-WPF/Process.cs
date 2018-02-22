@@ -62,7 +62,7 @@ namespace QuickDataTool
                 cmdLine += " .\\";
             }
 
-            // Extract queries
+            /* Extract queries
             if (radioButtonExtractMode.IsChecked == true && 
                 (e_heroUnlocks.IsSelected == true ||
                 e_npcs.IsSelected == true ||
@@ -77,7 +77,7 @@ namespace QuickDataTool
                 }
                 cmdLine += query.GetQueries();
             }
-
+            */
             textBoxCommand.Text = cmdLine;
             return cmdLine;
         }

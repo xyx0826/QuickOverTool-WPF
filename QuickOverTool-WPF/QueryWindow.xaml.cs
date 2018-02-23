@@ -23,7 +23,11 @@ namespace QuickOverTool_WPF
         // Method for passing the query back to MainWindow
         public string GetQueries()
         {
-            return " " + textBoxQuery.Text;
+            if (String.IsNullOrWhiteSpace(textBoxQuery.Text)) return null;
+            string input = textBoxQuery.Text;   // In case someone forgets the parentheses
+            if (!input.StartsWith("\"")) input = "\"" + input;
+            if (!input.EndsWith("\"")) input += "\"";
+            return " " + input;
         }
         // Event selector
         private void AppendEvent(object sender, RoutedEventArgs e)

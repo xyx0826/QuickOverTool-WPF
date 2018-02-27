@@ -4,7 +4,7 @@ using static QuickDataTool.Properties.Settings;
 
 namespace QuickDataTool.Logics
 {
-    class ControlHandler : INotifyPropertyChanged
+    class ListAssetsHandler : INotifyPropertyChanged
     {
         #region ListAssets controls handler
         public int ComboBoxIndex

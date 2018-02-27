@@ -32,6 +32,7 @@ namespace QuickDataTool
 
             configProvider.InitConfig();
             InitializeListAssets();
+            InitializeExtrAssets();
             InitializeLogging();
         }
         // Save config and close application upon MainWindow closure

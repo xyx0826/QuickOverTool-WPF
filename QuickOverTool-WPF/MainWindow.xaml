@@ -106,13 +106,13 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Extract Assets">
+            <TabItem x:Name="tabExtrAssets" Header="Extract Assets">
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB3_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     <GroupBox Header="Select a Mode" Margin="10,44,10,421" Foreground="Black">
                         <Grid>
                             <Label Content="Mode:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                            <ComboBox x:Name="comboExtractAssets" SelectedIndex="{Binding ComboBoxIndex}" SelectedItem="{Binding ComboBoxMode, Mode=OneWayToSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="59,12,0,0" Width="240"/>
+                            <ComboBox x:Name="comboExtrAssets" SelectedIndex="{Binding ComboBoxIndex}" SelectedItem="{Binding ComboBoxMode, Mode=OneWayToSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="59,12,0,0" Width="240"/>
                         </Grid>
                     </GroupBox>
                 </Grid>

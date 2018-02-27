@@ -14,5 +14,8 @@
     <Setting Name="TAB2_Array" Type="System.Object[]" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-  </Settings>
+    <Setting Name="TAB3_Array" Type="System.Object[]" Scope="User">
+        <Value Profile="(Default)" />
+      </Setting>
+    </Settings>
 </SettingsFile>

@@ -9,7 +9,7 @@ namespace QuickDataTool
     public partial class MainWindow : Window
     {
         #region Initialization
-        ControlHandler listAssetsHandler = new ControlHandler();
+        ListAssetsHandler listAssetsHandler = new ListAssetsHandler();
         public void InitializeListAssets()
         {
             tabListAssets.DataContext = listAssetsHandler;
@@ -20,26 +20,26 @@ namespace QuickDataTool
         private void PopulateListAssets()
         {
             List<KeyValuePair<string, string>> modes = new List<KeyValuePair<string, string>>();
-            modes.Add(CreatePair("(Please select a mode...)", null));
-            modes.Add(CreatePair("List achievements", "list-achievements"));
-            modes.Add(CreatePair("List chat replacements", "list-chat-replacements"));
-            modes.Add(CreatePair("List general unlocks", "list-general-unlocks"));
-            modes.Add(CreatePair("List heroes", "list-heroes"));
-            modes.Add(CreatePair("List user highlights", "list-highlights"));
-            modes.Add(CreatePair("List encryption keys", "list-keys"));
-            modes.Add(CreatePair("List lootboxes", "list-lootbox"));
-            modes.Add(CreatePair("List maps", "list-maps"));
-            modes.Add(CreatePair("List subtitles", "list-subtitles"));
-            modes.Add(CreatePair("List subtitles (from audio data)", "list-subtitles-real"));
-            modes.Add(CreatePair("List unlocks", "list-hero-unlocks"));
+            modes.Add(CreateListMode("(Please select a mode...)", null));
+            modes.Add(CreateListMode("List achievements", "list-achievements"));
+            modes.Add(CreateListMode("List chat replacements", "list-chat-replacements"));
+            modes.Add(CreateListMode("List general unlocks", "list-general-unlocks"));
+            modes.Add(CreateListMode("List heroes", "list-heroes"));
+            modes.Add(CreateListMode("List user highlights", "list-highlights"));
+            modes.Add(CreateListMode("List encryption keys", "list-keys"));
+            modes.Add(CreateListMode("List lootboxes", "list-lootbox"));
+            modes.Add(CreateListMode("List maps", "list-maps"));
+            modes.Add(CreateListMode("List subtitles", "list-subtitles"));
+            modes.Add(CreateListMode("List subtitles (from audio data)", "list-subtitles-real"));
+            modes.Add(CreateListMode("List unlocks", "list-hero-unlocks"));
             comboListAssets.ItemsSource = modes;
             comboListAssets.SelectedValuePath = "Value";
             comboListAssets.DisplayMemberPath = "Key";
         }
 
-        private KeyValuePair<string, string> CreatePair(string text, string value)
+        private static KeyValuePair<string, string> CreateListMode(string displayName, string command)
         {
-            return new KeyValuePair<string, string>(text, value);
+            return new KeyValuePair<string, string>(displayName, command);
         }
         #endregion
         #region Global interaction

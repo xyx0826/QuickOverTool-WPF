@@ -25,6 +25,10 @@ namespace QuickDataTool
         }
         #endregion
         #region Header strings
+        public string owbVersion
+        {
+            get { return "dev"; }
+        }
         public string BenchDir
         {
             get

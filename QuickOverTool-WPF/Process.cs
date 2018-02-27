@@ -85,8 +85,8 @@ namespace QuickOverTool_WPF
                 e_maps.IsSelected == true))
             {
                 if (String.IsNullOrWhiteSpace(query.GetQueries()) &&
-                    e_heroUnlocks.IsSelected == true ||
-                    e_npcs.IsSelected == true)
+                    (e_heroUnlocks.IsSelected == true ||
+                    e_npcs.IsSelected == true))
                 {
                     buttonExtractQuery.BorderBrush = new SolidColorBrush(Colors.Red);
                     throw new ArgumentException("Queries not found; please enter a query in the editor.");

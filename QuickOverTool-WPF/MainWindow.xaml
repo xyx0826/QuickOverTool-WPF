@@ -78,7 +78,7 @@
                 </ComboBox>
                 <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="260,30,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Hidden" Click="buttonExtractQuery_Click" Height="22"/>
                 <Label Content="Do not convert:" Margin="6,62,344.2,23"/>
-                <CheckBox x:Name="checkBoxNoTex" Content="Textures" HorizontalAlignment="Left" Margin="101,68,0,0" VerticalAlignment="Top" ToolTip="Disable texture conversion to DDS."/>
+                <CheckBox x:Name="checkBoxNoTex" Content="Textures" HorizontalAlignment="Left" Margin="101,68,0,0" VerticalAlignment="Top" ToolTip="Disable texture conversion to DDS." Checked="checkBoxNoTex_Checked" Unchecked="checkBoxNoTex_Unchecked"/>
                 <CheckBox x:Name="checkBoxNoSnd" Content="Sound" HorizontalAlignment="Left" Margin="169,68,0,0" VerticalAlignment="Top" ToolTip="Disable sound conversion to OGG."/>
                 <CheckBox x:Name="checkBoxNoMdl" Content="Models" HorizontalAlignment="Left" Margin="228,68,0,0" VerticalAlignment="Top" ToolTip="Disable model conversion to OWMDL."/>
                 <CheckBox x:Name="checkBoxNoAni" Content="Animations" HorizontalAlignment="Left" Margin="292,68,0,0" VerticalAlignment="Top" ToolTip="Disable animation conversion to SEANIM."/>

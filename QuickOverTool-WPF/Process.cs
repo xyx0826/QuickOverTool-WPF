@@ -53,8 +53,9 @@ namespace QuickOverTool_WPF
             if (checkBoxRefpose.IsChecked == true) cmdLine += " --extract-refpose=true";
             if (textBoxLOD.Text != "0") cmdLine += " --lod=" + textBoxLOD.Text;
             if (checkBoxJSONOut.IsChecked == true) cmdLine += " --json";
-            cmdLine += (" --convert-textures-type=" + comboBoxTextureFmt.SelectedItem. // Texture conversion type
-                ToString().Substring(38, 3));
+            if (checkBoxNoTex.IsChecked == false)
+                cmdLine += (" --convert-textures-type=" + comboBoxTextureFmt.SelectedItem. // Texture conversion type
+                    ToString().Substring(38, 3));
 
             // Overwatch path
             if (textBoxOutputPath.IsEnabled &&

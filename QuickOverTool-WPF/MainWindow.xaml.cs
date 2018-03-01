@@ -354,5 +354,15 @@ namespace QuickOverTool_WPF
         {
             query.Show();
         }
+
+        private void checkBoxNoTex_Checked(object sender, RoutedEventArgs e)
+        {
+            comboBoxTextureFmt.IsEnabled = false;
+        }
+
+        private void checkBoxNoTex_Unchecked(object sender, RoutedEventArgs e)
+        {
+            comboBoxTextureFmt.IsEnabled = true;
+        }
     }
 }

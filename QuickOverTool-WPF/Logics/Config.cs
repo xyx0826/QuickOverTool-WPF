@@ -27,6 +27,8 @@ namespace QuickDataTool.Logics
             }
             if (Default.TAB2_Array == null) // Default ListAssets parameters
                 Default.TAB2_Array = new object[] { 0, null, false, true };
+            if (Default.TAB3_Array == null) // Default ExtrAssets parameters
+                Default.TAB3_Array = new object[] { 0, null, false, true };
         }
         #region Overwatch installation management
         public void AddOWInst(string path)

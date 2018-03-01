@@ -31,8 +31,7 @@ namespace QuickDataTool
             DataContext = uiStringProvider;
 
             configProvider.InitConfig();
-            InitializeListAssets();
-            InitializeExtrAssets();
+            InitializeDataToolHandling();
             InitializeLogging();
         }
         // Save config and close application upon MainWindow closure

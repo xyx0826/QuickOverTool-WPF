@@ -102,6 +102,8 @@ namespace QuickOverTool_WPF
             // Retrieve results from validators
             string[] dataTool = Validation.DataTool(sharedPath);
             string[] overwatch = Validation.Overwatch(textBoxOverwatchPath.Text);
+            // Also set the window title
+            WindowMain.Title += " | " + "GUI Version " + Validation.QuickDataTool;
             // Datatool.exe
             if (dataTool[0] != null)
             {

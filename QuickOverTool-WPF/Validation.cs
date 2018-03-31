@@ -95,5 +95,10 @@ namespace QuickOverTool_WPF
                 keys = "ok";
             return new string[] { version, keys };
         }
+
+        public static string QuickDataTool
+        {
+            get { return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+        }
     }
 }

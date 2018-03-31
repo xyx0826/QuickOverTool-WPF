@@ -68,6 +68,7 @@ namespace QuickOverTool_WPF
             modes.Add("e_lootboxes", "extract-lootbox");
             modes.Add("e_npcs", "extract-npcs");
             modes.Add("e_abilities", "extract-abilities");
+            modes.Add("e_menv", "extract-map-envs");
             modes.Add("l_subt", "list-subtitles");
             modes.Add("l_subtAudio", "list-subtitles-real");
             modes.Add("l_highlights", "list-highlights");

@@ -75,6 +75,7 @@
                     <ComboBoxItem x:Name="e_lootboxes" Content="Lootboxes" ToolTip="Extract all lootbox models."/>
                     <ComboBoxItem x:Name="e_npcs" Content="NPCs..." ToolTip="Extract NPC models." Selected="UpdateQueryEditor" Unselected="UpdateQueryEditor" Foreground="Blue"/>
                     <ComboBoxItem x:Name="e_abilities" Content="Abilities" ToolTip="Extract hero ability icons and video demos."/>
+                    <ComboBoxItem x:Name="e_menv" Content="Map Environments" ToolTip="Extract map skybox geometry/cubemaps, ground/blend cubemaps, map announcer files, LUT files, and ambient sound."/>
                 </ComboBox>
                 <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." HorizontalAlignment="Left" Margin="260,30,0,0" VerticalAlignment="Top" Width="158" Foreground="Blue" Visibility="Hidden" Click="buttonExtractQuery_Click" Height="22"/>
                 <Label Content="Do not convert:" Margin="6,62,344.2,23"/>

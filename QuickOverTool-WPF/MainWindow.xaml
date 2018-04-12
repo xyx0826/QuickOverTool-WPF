@@ -73,7 +73,7 @@
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB0_TITLE1}" FontSize="36" Margin="10,10,0,0" Width="Auto" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <Label Content="{x:Static local:Resources.TAB0_DESC1}" Margin="12,70,9.6,432.2" FontSize="16" Height="33" Width="Auto" FontWeight="Normal"/>
-                    <Label Content="{Binding owbVersion, ElementName=WindowMain}" Margin="245,13,397.8,471.4" FontFamily="Segoe UI" VerticalContentAlignment="Bottom" FontWeight="Bold" FontSize="16" Height="50" Width="Auto"/>
+                    <Label Content="{Binding BenchVersion, ElementName=WindowMain}" Margin="245,13,397.8,471.4" FontFamily="Segoe UI" VerticalContentAlignment="Bottom" FontWeight="Bold" FontSize="16" Height="50" Width="Auto"/>
                     <Label Content="{x:Static local:Resources.TAB0_TITLE2}" FontSize="36" Margin="10,108,9.6,367.2" Width="Auto" Height="60" FontWeight="Bold" Foreground="#FF007BD8"/>
                     <Label Content="{x:Static local:Resources.TAB0_DESC2}" Margin="12,168,9.6,334.2" FontSize="16" Height="33" FontWeight="Normal"/>
                 </Grid>
@@ -119,10 +119,10 @@
             <TabItem x:Name="tabLogging" Header="Logging">
                 <Grid>
                     <ListBox x:Name="logBox" ItemsSource="{Binding LogCollection}" Margin="0,0,0,40"/>
-                    <Button Content="Save logs to output directory" HorizontalAlignment="Left" Margin="14,500,0,0" VerticalAlignment="Top" Width="170" Height="30" Click="SaveLogs"/>
-                    <Button Content="Copy logs to clipboard" HorizontalAlignment="Left" Margin="189,500,0,0" VerticalAlignment="Top" Width="170" Height="30" Click="CopyLogs"/>
-                    <Button Content="Clear logs" HorizontalAlignment="Left" Margin="364,500,0,0" VerticalAlignment="Top" Width="170" Height="30" Click="ClearLogs"/>
-                    <Button Content="Terminate DataTool process" HorizontalAlignment="Left" Margin="539,500,0,0" VerticalAlignment="Top" Width="170" Height="30"/>
+                    <Button Content="Save all logs" HorizontalAlignment="Left" Margin="14,500,0,0" VerticalAlignment="Top" Width="170" Height="30" Click="SaveLogs"/>
+                    <Button Content="Copy selected log" HorizontalAlignment="Left" Margin="189,500,0,0" VerticalAlignment="Top" Width="170" Height="30" Click="CopyLogs"/>
+                    <Button Content="Clear all logs" HorizontalAlignment="Left" Margin="364,500,0,0" VerticalAlignment="Top" Width="170" Height="30" Click="ClearLogs"/>
+                    <Button Content="Terminate DataTool process" Foreground="Red" HorizontalAlignment="Left" Margin="539,500,0,0" VerticalAlignment="Top" Width="170" Height="30"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Version Controls" Height="30" IsEnabled="False" FontWeight="Bold">

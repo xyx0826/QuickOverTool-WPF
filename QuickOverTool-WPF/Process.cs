@@ -13,7 +13,7 @@ namespace QuickDataTool
             // If custom cmdline is specified
             if (checkBoxCommand.IsChecked == true)
             {
-                AddLog("Custom cmdline is checked; using specified cmdline instead.");
+                Logging.GetInstance().Increment("Custom cmdline is checked; using specified cmdline instead.");
                 return " " + textBoxCommand.Text;
             }
 
@@ -58,7 +58,7 @@ namespace QuickDataTool
             else
             {
                 textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Red);
-                AddLog("Output path not found; setting it to DataTool directory.");
+                Logging.GetInstance().Increment("Output path not found; setting it to DataTool directory.");
                 cmdLine += " .\\";
             }
 
@@ -103,7 +103,7 @@ namespace QuickDataTool
                 }
                 catch
                 {
-                    AddLog("Launch unsuccessful. Check DataTool validity.");
+                    Logging.GetInstance().Increment("Launch unsuccessful. Check DataTool validity.");
                     return;
                 }
                 dataTool.BeginOutputReadLine();

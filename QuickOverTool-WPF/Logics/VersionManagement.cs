@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace QuickDataTool
 {
-    public class VersionManagement
+    class VersionManagement
     {
         public string GetOWVersion(string owPath)
         {

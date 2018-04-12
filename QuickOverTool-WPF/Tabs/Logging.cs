@@ -16,12 +16,12 @@ namespace QuickDataTool
         #endregion
         public void SaveLogs(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Logging.GetInstance().SaveLogs();
         }
 
         public void CopyLogs(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Clipboard.SetText(logBox.SelectedItem.ToString());
         }
 
         public void ClearLogs(object sender, RoutedEventArgs e)

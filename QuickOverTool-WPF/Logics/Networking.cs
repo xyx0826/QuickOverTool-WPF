@@ -10,20 +10,37 @@ namespace QuickDataTool
 {
     class Networking
     {
-        public static string[] GetDTInfo()
+        /// <summary>
+        /// Polls AppVeyor API for information regarding a project.
+        /// </summary>
+        /// <param name="project">Project name, in the format of "[authorname]/[repoName]"</param>
+        /// <param name="branch">Branch name</param>
+        /// <param name="innerText">The artifact file name to search for</param>
+        /// <returns>An array of latest build version, message and artifact link.</returns>
+        public static string[] PollAppveyorInfo(string project, string branch, string innerText)
         {
             // Request XML data from Appveyor API
-            HttpWebRequest req = WebRequest.Create("https://ci.appveyor.com/api/projects/yukimono/owlib/branch/overwatch/1.14") as HttpWebRequest;
+            HttpWebRequest req = WebRequest.Create("https://ci.appveyor.com/api/projects/" + project + "/branch/" + branch) as HttpWebRequest;
             req.Accept = "application/xml";
             HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
             // Parse XML response
             XmlDocument appveyor = new XmlDocument();
             appveyor.Load(resp.GetResponseStream());
-            string dtVersion = appveyor.GetElementsByTagName("Version")[0].InnerText;
-            string dtMessage = appveyor.GetElementsByTagName("Message")[0].InnerText;
-            string dtDownload = MakeDownloadURL(appveyor.GetElementsByTagName("JobId")[0].InnerText,
-                                              "dist%2Ftoolchain-release.zip");
-            return new string[] { dtVersion, dtMessage, dtDownload };
+            string version = appveyor.GetElementsByTagName("Version")[0].InnerText;
+            string message = appveyor.GetElementsByTagName("Message")[0].InnerText;
+            string download = MakeDownloadURL(appveyor.GetElementsByTagName("JobId")[0].InnerText,
+                                              innerText);
+            return new string[] { version, message, download };
+        }
+
+        public static string[] GetDTInfo()
+        {
+            return PollAppveyorInfo("yukimono/owlib", "overwatch/1.14", "dist%2Ftoolchain-release.zip");
+        }
+
+        public static string[] GetGUIInfo()
+        {
+            return PollAppveyorInfo("xyx0826/quickovertool-wpf", "datatool", "output%2FQuickDataTool.exe");
         }
 
         public static string MakeDownloadURL(string jobID, string filename)

@@ -7,7 +7,7 @@ using static QuickDataTool.Properties.Settings;
 
 namespace QuickDataTool.Logics
 {
-    public class Config
+    class Config
     {
         /// <summary>
         /// Initialize the configurations on first run.

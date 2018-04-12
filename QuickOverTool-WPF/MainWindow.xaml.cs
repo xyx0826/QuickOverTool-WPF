@@ -33,6 +33,9 @@ namespace QuickDataTool
             configProvider.InitConfig();
             InitializeDataToolHandling();
             InitializeLogging();
+
+            CheckGUIUpdate();
+            CheckDTUpdate();
         }
         // Save config and close application upon MainWindow closure
         protected override void OnClosed(EventArgs e)
@@ -47,13 +50,6 @@ namespace QuickDataTool
         {
             textBoxOverwatchPath.Text = Default.Path_CurrentOW;
             textBoxOutputPath.Text = Default.Path_Output;
-        }
-        // Log increment
-        public delegate void AddLogRuntime(string content);
-
-        public void AddLog(string content)
-        {
-            throw new NotImplementedException();
         }
 
         // Get mode selection
@@ -82,7 +78,7 @@ namespace QuickDataTool
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             DialogResult folderBrowserResult = folderBrowser.ShowDialog();
             textBoxOutputPath.Text = folderBrowser.SelectedPath;
-            AddLog("Output path: " + textBoxOutputPath.Text);
+            Logging.GetInstance().Increment("Output path: " + textBoxOutputPath.Text);
             textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Blue);
             return;
         }
@@ -97,13 +93,13 @@ namespace QuickDataTool
             }
             catch (ArgumentException x)
             {
-                AddLog(x.Message);
+                Logging.GetInstance().Increment(x.Message);
                 return;
             }
             // Launch
-            AddLog("Time now: " + DateTime.Now.ToString());
-            AddLog("Cmdline: DataTool.exe" + command);
-            AddLog("Output: " + textBoxOutputPath.Text);
+            Logging.GetInstance().Increment("Time now: " + DateTime.Now.ToString());
+            Logging.GetInstance().Increment("Cmdline: DataTool.exe" + command);
+            Logging.GetInstance().Increment("Output: " + textBoxOutputPath.Text);
             StartUp(command);
         }
 
@@ -117,7 +113,7 @@ namespace QuickDataTool
             catch
             {
                 textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Red);
-                AddLog("Output path invalid or permission denied.");
+                Logging.GetInstance().Increment("Output path invalid or permission denied.");
             }
         }
 
@@ -129,7 +125,7 @@ namespace QuickDataTool
                 ".\\DataTool.exe" + FabricateCmdline(),
                 "\npause\n"};
                 File.WriteAllLines(".\\_" + GetMode() + ".bat", batFile);
-                AddLog("Written batch file for mode " + GetMode() +
+                Logging.GetInstance().Increment("Written batch file for mode " + GetMode() +
                     " to _" + GetMode() + ".bat.");
             }
             catch
@@ -148,13 +144,13 @@ namespace QuickDataTool
                 if (prompt == System.Windows.Forms.DialogResult.Yes)
                 {
                     proc.Kill();
-                    AddLog("DataTool is terminated.");
+                    Logging.GetInstance().Increment("DataTool is terminated.");
                 }
                 else if (prompt == System.Windows.Forms.DialogResult.No) return;
             }
             catch
             {
-                AddLog("Termination failed; DataTool might not be running.");
+                Logging.GetInstance().Increment("Termination failed; DataTool might not be running.");
                 return;
             }
         }

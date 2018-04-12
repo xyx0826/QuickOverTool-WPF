@@ -33,6 +33,8 @@ namespace QuickDataTool.Logics
         #region Overwatch installation management
         public void AddOWInst(string path)
         {
+            if (String.IsNullOrEmpty(path))
+                throw new ArgumentException("Please select a path to add to installation library.");
             if (Default.List_OWInsts.IndexOf(path) == -1)
             {
                 Default.List_OWInsts.Add(path);

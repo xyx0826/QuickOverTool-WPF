@@ -82,10 +82,10 @@ namespace QuickDataTool
                 uiStringProvider.SetNotif(lblNotif.Dispatcher, "ERROR: Please choose a list mode.");
                 return;
             }
-            if (listAssetsHandler.GoToLogging) tabControl.SelectedIndex = 4; // Jump to log tab
+            tabControl.SelectedIndex = 4; // Jump to log tab
             string cmdLine = " \"" + uiStringProvider.CurrentOWPath + "\" " + ((KeyValuePair<string, string>)Default.TAB2_Array[1]).Value;
             if ((bool)Default.TAB2_Array[2]) cmdLine += " --json";
-            logger.Increment(logBox.Dispatcher, "Starting DataTool now. Cmdline: DataTool.exe " + cmdLine);
+            Logging.GetInstance().Increment(logBox.Dispatcher, "Starting DataTool now. Cmdline: DataTool.exe " + cmdLine);
             StartDataTool(PrepareDataTool(cmdLine));
         }
         #endregion

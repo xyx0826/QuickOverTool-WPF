@@ -34,7 +34,7 @@ namespace QuickDataTool
 
         public void DataTool_DataReceived(object sender, DataReceivedEventArgs e)
         {
-            if (e.Data != null) logger.Increment(logBox.Dispatcher, Encoding.UTF8.GetString
+            if (e.Data != null) Logging.GetInstance().Increment(logBox.Dispatcher, Encoding.UTF8.GetString
                 (Encoding.Default.GetBytes(e.Data)));
         }
     }

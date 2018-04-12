@@ -71,11 +71,11 @@
             <!-- Individual tabs-->
             <TabItem Header="Quick Start" Height="30" FontWeight="Bold">
                 <Grid>
-                    <Label Content="{x:Static local:Resources.TAB0_TITLE1}" FontSize="36" Margin="10,10,0,0" Width="235" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <Label Content="{x:Static local:Resources.TAB0_DESC1}" Margin="12,70,290.8,431.4" FontSize="16" Height="33" Width="420" FontWeight="Normal"/>
-                    <Label Content="{Binding owbVersion, ElementName=WindowMain}" Margin="245,13,397.8,471.4" FontFamily="Segoe UI" VerticalContentAlignment="Bottom" FontWeight="Bold" FontSize="16" Height="50" Width="80"/>
-                    <Label Content="{x:Static local:Resources.TAB0_TITLE2}" FontSize="36" Margin="10,108,437.8,366.4" Width="275" Height="60" FontWeight="Bold" Foreground="#FF007BD8"/>
-                    <Label Content="{x:Static local:Resources.TAB0_DESC2}" Margin="12,168,280.8,333.4" FontSize="16" Height="33" FontWeight="Normal"/>
+                    <Label Content="{x:Static local:Resources.TAB0_TITLE1}" FontSize="36" Margin="10,10,0,0" Width="Auto" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="{x:Static local:Resources.TAB0_DESC1}" Margin="12,70,9.6,432.2" FontSize="16" Height="33" Width="Auto" FontWeight="Normal"/>
+                    <Label Content="{Binding owbVersion, ElementName=WindowMain}" Margin="245,13,397.8,471.4" FontFamily="Segoe UI" VerticalContentAlignment="Bottom" FontWeight="Bold" FontSize="16" Height="50" Width="Auto"/>
+                    <Label Content="{x:Static local:Resources.TAB0_TITLE2}" FontSize="36" Margin="10,108,9.6,367.2" Width="Auto" Height="60" FontWeight="Bold" Foreground="#FF007BD8"/>
+                    <Label Content="{x:Static local:Resources.TAB0_DESC2}" Margin="12,168,9.6,334.2" FontSize="16" Height="33" FontWeight="Normal"/>
                 </Grid>
             </TabItem>
             <TabItem Header="DataTool Modes" Height="30" IsEnabled="False" FontWeight="Bold">
@@ -101,7 +101,6 @@
                         <Grid>
                             <Button Content="Reset all options" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" Width="128" Height="28" Click="ResetOptions"/>
                             <Button Content="Launch DataTool" HorizontalAlignment="Left" Margin="220,10,0,0" VerticalAlignment="Top" Width="128" Height="28" Click="Launch"/>
-                            <CheckBox Content="Go to Logging once DataTool is launched" IsChecked="{Binding GoToLogging}" HorizontalAlignment="Left" Margin="365,17,0,0" VerticalAlignment="Top"/>
                         </Grid>
                     </GroupBox>
                 </Grid>

@@ -134,7 +134,7 @@ namespace QuickDataTool
             }
             catch
             {
-                logger.Increment("Settings invalid. Please check your mode settings.");
+                Logging.GetInstance().Increment("Settings invalid. Please check your mode settings.");
             }
         }
 

@@ -8,11 +8,10 @@ namespace QuickDataTool
     public partial class MainWindow : Window
     {
         #region Initialization
-        Logging logger = new Logging();
         public void InitializeLogging()
         {
-            tabLogging.DataContext = logger;
-            logger.Refresh();
+            tabLogging.DataContext = Logging.GetInstance();
+            Logging.GetInstance().Refresh();
         }
         #endregion
         public void SaveLogs(object sender, RoutedEventArgs e)
@@ -27,7 +26,7 @@ namespace QuickDataTool
 
         public void ClearLogs(object sender, RoutedEventArgs e)
         {
-            logger.ClearLogs(logBox);
+            Logging.GetInstance().ClearLogs(logBox);
         }
     }
 }

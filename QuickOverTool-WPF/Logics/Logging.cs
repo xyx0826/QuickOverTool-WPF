@@ -6,6 +6,22 @@ namespace QuickDataTool
 {
     public class Logging : INotifyPropertyChanged
     {
+        private static Logging _uniqueInstance;
+        private static readonly object _threadLock = new object();
+
+        private Logging()
+        {
+
+        }
+
+        public static Logging GetInstance()
+        {
+            if (_uniqueInstance == null)
+                lock (_threadLock)
+                    _uniqueInstance = new Logging();
+            return _uniqueInstance;
+        }
+
         public void ClearLogs(System.Windows.Controls.ListBox listBox)
         {
             logCollection = new ObservableCollection<string>();

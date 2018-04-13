@@ -69,7 +69,7 @@
                 </Style>
             </TabControl.Resources>
             <!-- Individual tabs-->
-            <TabItem Header="Quick Start" Height="30" FontWeight="Bold">
+            <TabItem x:Name="tabStart" Header="Quick Start" Height="30" FontWeight="Bold">
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB0_TITLE1}" FontSize="36" Margin="10,10,0,0" Width="Auto" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <Label Content="{x:Static local:Resources.TAB0_DESC1}" Margin="12,70,9.6,432.2" FontSize="16" Height="33" Width="Auto" FontWeight="Normal"/>
@@ -87,10 +87,10 @@
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB2_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     <GroupBox Header="Select a Mode" Margin="10,44,10,421" Foreground="Black">
-                        <Grid>
+                        <StackPanel Orientation="Horizontal">
                             <Label Content="Mode:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                             <ComboBox x:Name="comboListAssets" SelectedIndex="{Binding ComboBoxIndex}" SelectedItem="{Binding ComboBoxMode, Mode=OneWayToSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="59,12,0,0" Width="240"/>
-                        </Grid>
+                        </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Extra Options" Margin="10,119,10,346" Foreground="Black">
                         <Grid>
@@ -98,23 +98,72 @@
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Control" Margin="10,194,10,271" Foreground="Black">
-                        <Grid>
-                            <Button Content="Reset all options" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" Width="128" Height="28" Click="ResetOptions"/>
-                            <Button Content="Launch DataTool" HorizontalAlignment="Left" Margin="220,10,0,0" VerticalAlignment="Top" Width="128" Height="28" Click="Launch"/>
-                        </Grid>
+                        <StackPanel Orientation="Horizontal" Margin="10,10">
+                            <Button x:Name="btnReset_List" Content="Reset all options" Margin="100,0,80,0" VerticalAlignment="Top" Width="128" Height="28" Click="ResetOptions"/>
+                            <Button x:Name="btnLaunch_List" Content="Launch DataTool" Margin="0,0,80,0" VerticalAlignment="Top" Width="128" Height="28" Click="Launch"/>
+                        </StackPanel>
                     </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabExtrAssets" Header="Extract Assets">
-                <Grid>
-                    <Label Content="{x:Static local:Resources.TAB3_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-                    <GroupBox Header="Select a Mode" Margin="10,44,10,421" Foreground="Black">
-                        <Grid>
-                            <Label Content="Mode:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                            <ComboBox x:Name="comboExtrAssets" SelectedIndex="{Binding ComboBoxIndex}" SelectedItem="{Binding ComboBoxMode, Mode=OneWayToSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="59,12,0,0" Width="240"/>
-                        </Grid>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="{x:Static local:Resources.TAB3_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="14" FontWeight="Bold"/>
+                    <GroupBox Header="Select a Mode" Margin="10,10" Foreground="Black">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Label Content="Mode:" HorizontalAlignment="Left" Margin="10,10,0,0"/>
+                            <ComboBox x:Name="comboExtrAssets" SelectedIndex="{Binding comboBoxIndex}" SelectedItem="{Binding comboBoxMode, Mode=OneWayToSource}" SelectionChanged="comboExtrAssets_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="59,12,0,0" Width="240"/>
+                        </StackPanel>
                     </GroupBox>
-                </Grid>
+                    <GroupBox Header="Extraction and Conversion" Margin="10,0" Foreground="Black">
+                        <StackPanel x:Name="panelExtrOptions" Orientation="Vertical" Margin="10,10">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <Label Content="Convert textures to: "/>
+                                <ComboBox x:Name="comboBoxTextureFmt" SelectedItem="{Binding comboBoxFormat, Mode=OneWayToSource}" HorizontalContentAlignment="Center" SelectedIndex="0">
+                                    <ComboBoxItem Content="tif"/>
+                                    <ComboBoxItem Content="dds"/>
+                                    <ComboBoxItem Content="tga"/>
+                                </ComboBox>
+                                <CheckBox Content="Output lossless textures" IsChecked="{Binding isLosslessTexture}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                <Label Content="Model LOD =" Margin="20,0"/>
+                                <TextBox x:Name="textBoxLOD" Height="20" Text="{Binding modelLOD}" VerticalAlignment="Center" Width="Auto" MaxLength="1"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Do NOT extract: "/>
+                                <CheckBox Content="Textures" VerticalAlignment="Center" IsChecked="{Binding noExtTextures}" Margin="0,0,10,0"/>
+                                <CheckBox Content="Sound" VerticalAlignment="Center" IsChecked="{Binding noExtSound}" Margin="0,0,10,0"/>
+                                <CheckBox Content="Models" VerticalAlignment="Center" IsChecked="{Binding noExtModels}" Margin="0,0,10,0"/>
+                                <CheckBox Content="Animation" VerticalAlignment="Center" IsChecked="{Binding noExtAnimation}" Margin="0,0,10,0"/>
+                                <CheckBox Content="Refpose" VerticalAlignment="Center" IsChecked="{Binding noExtRefpose}" Margin="0,0,10,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Do NOT convert: "/>
+                                <CheckBox Content="Anything" FontWeight="Bold" VerticalAlignment="Center" IsChecked="{Binding noConAnything}" Margin="0,0,10,0"/>
+                                <CheckBox Content="Textures" VerticalAlignment="Center" IsChecked="{Binding noConTextures}" Margin="0,0,10,0"/>
+                                <CheckBox Content="Sound" VerticalAlignment="Center" IsChecked="{Binding noConSound}" Margin="0,0,10,0"/>
+                                <CheckBox Content="Models" VerticalAlignment="Center" IsChecked="{Binding noConModels}" Margin="0,0,10,0"/>
+                                <CheckBox Content="Animation" VerticalAlignment="Center" IsChecked="{Binding noConAnimation}" Margin="0,0,10,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox x:Name="groupBoxMapOptions" Header="Map Environment Extraction" Margin="10,0" Foreground="Black">
+                        <WrapPanel x:Name="panelMapOptions" Orientation="Horizontal" Margin="10,10">
+                            <Label Content="Do NOT extract: "/>
+                            <CheckBox Content="Sound" VerticalAlignment="Center" IsChecked="{Binding noEnvSound}" Margin="0,0,10,0"/>
+                            <CheckBox Content="Entity" VerticalAlignment="Center" IsChecked="{Binding noEnvEntity}" Margin="0,0,10,0"/>
+                            <CheckBox Content="LUT" VerticalAlignment="Center" IsChecked="{Binding noEnvLUT}" Margin="0,0,10,0"/>
+                            <CheckBox Content="Skybox" VerticalAlignment="Center" IsChecked="{Binding noEnvSkybox}" Margin="0,0,250,0"/>
+                            <CheckBox Content="Blend Cubemap" VerticalAlignment="Center" IsChecked="{Binding noEnvBlend}" Margin="0,0,10,0"/>
+                            <CheckBox Content="Ground Cubemap" VerticalAlignment="Center" IsChecked="{Binding noEnvCubemap}" Margin="0,0,10,0"/>
+                            <CheckBox Content="Sky Cubemap" VerticalAlignment="Center" IsChecked="{Binding noEnvSky}" Margin="0,0,10,0"/>
+                        </WrapPanel>
+                    </GroupBox>
+                    <GroupBox Header="Control" Margin="10,0" Foreground="Black">
+                        <StackPanel Orientation="Horizontal" Margin="10,10">
+                            <Button x:Name="btnReset_Extr" Content="Reset all options" Margin="100,0,80,0" VerticalAlignment="Top" Width="128" Height="28" Click="ResetOptions"/>
+                            <Button x:Name="btnlaunch_Extr" Content="Launch DataTool" Margin="0,0,80,0" VerticalAlignment="Top" Width="128" Height="28" Click="Launch"/>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
             </TabItem>
             <TabItem x:Name="tabLogging" Header="Logging">
                 <Grid>

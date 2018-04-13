@@ -19,20 +19,20 @@ namespace QuickDataTool
         int dataToolPID = -1;
         string sharedPath = Path.GetDirectoryName
             (Assembly.GetEntryAssembly().CodeBase).Substring(6);
-        UIString uiStringProvider = new UIString();
         // Mode parameters dictionary
         Dictionary<string, string> modes = new Dictionary<string, string>();
         // Populate mode dictionary and load config upon application launch
         public MainWindow()
         {
             InitializeComponent();
-            
-            FlushInst();
-            DataContext = uiStringProvider;
 
-            configProvider.InitConfig();
+            Config.GetInstance().InitConfig();
             InitializeDataToolHandling();
             InitializeLogging();
+            FlushInst();
+            DataContext = UIString.GetInstance();
+            tabStart.DataContext = UIString.GetInstance();
+
 
             CheckGUIUpdate();
             CheckDTUpdate();

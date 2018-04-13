@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 
 using static QuickDataTool.Properties.Settings;
@@ -72,9 +74,9 @@ namespace QuickDataTool
             Refresh();
         }
 
-        public void Increment(Dispatcher dispatcher, string log) // Dispatched increment
+        public void Increment(ListBox box, string log) // Dispatched increment
         {
-            dispatcher.Invoke(new IncrementDelegate(Increment), log);
+            box.Dispatcher.Invoke(new IncrementDelegate(Increment), log);
         }
     }
 }

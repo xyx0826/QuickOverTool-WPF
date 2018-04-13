@@ -3,18 +3,17 @@ using System.Windows;
 using System.Collections.Generic;
 using static QuickDataTool.Properties.Settings;
 using QuickDataTool.Logics;
+using System.Windows.Controls;
 
 namespace QuickDataTool
 {
     public partial class MainWindow : Window
     {
         #region Initialization
-        ListAssetsHandler listAssetsHandler = new ListAssetsHandler();
-        ExtrAssetsHandler extrAssetsHandler = new ExtrAssetsHandler();
         public void InitializeDataToolHandling()
         {
-            tabListAssets.DataContext = listAssetsHandler;
-            tabExtrAssets.DataContext = extrAssetsHandler;
+            tabListAssets.DataContext = ListAssetsHandler.GetInstance();
+            tabExtrAssets.DataContext = ExtrAssetsHandler.GetInstance();
             PopulateModes();
         }
         #endregion
@@ -47,6 +46,7 @@ namespace QuickDataTool
             extrModes.Add(CreateMode("Extract hero voice", "extract-hero-voice"));
             extrModes.Add(CreateMode("Extract lootbox", "extract-lootbox"));
             extrModes.Add(CreateMode("Extract maps", "extract-maps"));
+            extrModes.Add(CreateMode("Extract map environment data", "extract-map-envs"));
             extrModes.Add(CreateMode("Extract NPCs", "extract-npcs"));
             extrModes.Add(CreateMode("Extract unlocks", "extract-unlocks"));
             comboExtrAssets.ItemsSource = extrModes;
@@ -60,32 +60,54 @@ namespace QuickDataTool
         }
         #endregion
         #region Global interaction
-        public void ResetOptions(object sender, RoutedEventArgs e)
+        
+        /// <summary>
+        /// Hides and shows certain parts of the UI according to the extrmode combobox selection.
+        /// </summary>
+        private void comboExtrAssets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            listAssetsHandler.ResetOptions();
-            extrAssetsHandler.ResetOptions();
+            if (((KeyValuePair<string, string>)comboExtrAssets.SelectedItem).Value == "extract-map-envs")
+                groupBoxMapOptions.Visibility = Visibility.Collapsed;
+            else groupBoxMapOptions.Visibility = Visibility.Visible;
         }
 
-        public Object[] GetSummary()
+        public void ResetOptions(object sender, RoutedEventArgs e)  // Fire corresponding ResetOptions()
         {
-            Object[] values = new Object[] {listAssetsHandler.ComboBoxIndex,
-                listAssetsHandler.ComboBoxMode.Value,
-                listAssetsHandler.IsJson,
-                listAssetsHandler.ComboBoxMode};
-            return values;
+            if (((Button)sender).Name.Contains("List")) ListAssetsHandler.GetInstance().ResetOptions();
+            else if (((Button)sender).Name.Contains("Extr")) ExtrAssetsHandler.GetInstance().ResetOptions();
         }
 
+        /// <summary>
+        /// Fire corresponding launch logics according to the pressed button.
+        /// </summary>
         public void Launch(object sender, RoutedEventArgs e)
         {
-            if (listAssetsHandler.ComboBoxMode.Value == null) // Check mode selection
+            object handler;
+            if ((((Button)sender).DataContext) == ListAssetsHandler.GetInstance()) // If the button belongs to list mode
             {
-                uiStringProvider.SetNotif(lblNotif.Dispatcher, "ERROR: Please choose a list mode.");
-                return;
+                if (ListAssetsHandler.GetInstance().ComboBoxMode.Value == null)
+                {
+                    UIString.GetInstance().SetNotif(lblNotif.Dispatcher, "ERROR: Please choose a list mode.");
+                    return;
+                }
+                handler = ListAssetsHandler.GetInstance();
             }
+            if ((((Button)sender).DataContext) == ExtrAssetsHandler.GetInstance()) // If the button belongs to extr mode
+            {
+                if (ExtrAssetsHandler.GetInstance().comboBoxMode.Value == null)
+                {
+                    UIString.GetInstance().SetNotif(lblNotif.Dispatcher, "ERROR: Please choose a list mode.");
+                    return;
+                }
+                handler = ExtrAssetsHandler.GetInstance();
+            }
+
+            // Initial check passed
             tabControl.SelectedIndex = 4; // Jump to log tab
-            string cmdLine = " \"" + uiStringProvider.CurrentOWPath + "\" " + ((KeyValuePair<string, string>)Default.TAB2_Array[1]).Value;
-            if ((bool)Default.TAB2_Array[2]) cmdLine += " --json";
-            Logging.GetInstance().Increment(logBox.Dispatcher, "Starting DataTool now. Cmdline: DataTool.exe " + cmdLine);
+            string cmdLine = " \"" + UIString.GetInstance().CurrentOWPath + "\" " + ListAssetsHandler.GetInstance().ComboBoxMode.Value;
+            if (Default.TAB2_OutputJSON) cmdLine += " --json";
+            Logging.GetInstance().ClearLogs(logBox);
+            Logging.GetInstance().Increment(logBox, "Starting DataTool now. Cmdline: DataTool.exe " + cmdLine);
             StartDataTool(PrepareDataTool(cmdLine));
         }
         #endregion

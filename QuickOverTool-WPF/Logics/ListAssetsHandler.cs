@@ -6,45 +6,50 @@ namespace QuickDataTool.Logics
 {
     class ListAssetsHandler : INotifyPropertyChanged
     {
-        #region ListAssets controls handler
-        public int ComboBoxIndex
-        {
-            get { return (int)Default.TAB2_Array[0]; }
-            set
-            {
-                Default.TAB2_Array[0] = value;
-            }
-        }
+        private static ListAssetsHandler _uniqueInstance;
 
-        public KeyValuePair<string, string> ComboBoxMode
+        private ListAssetsHandler()
         {
-            get { return (KeyValuePair<string, string>)Default.TAB2_Array[1]; }
-            set { Default.TAB2_Array[1] = value; }
+
         }
         
-        public bool IsJson
+        public static ListAssetsHandler GetInstance()
         {
-            get { return (bool)Default.TAB2_Array[2]; }
+            if (_uniqueInstance == null) _uniqueInstance = new ListAssetsHandler();
+            return _uniqueInstance;
+        }
+
+        #region ListAssets controls handler
+        public KeyValuePair<string, string> comboBoxMode;
+
+        public int ComboBoxIndex    // Binded ComboBox index
+        {
+            get { return Default.TAB2_ModeIndex; }
             set
             {
-                Default.TAB2_Array[2] = value;
-                Default.TAB2_Array[2] = value;
+                Default.TAB2_ModeIndex = value;
             }
         }
 
-        public bool GoToLogging
+        public KeyValuePair<string, string> ComboBoxMode    // This KeyValuePair is temporary and is reset every app launch
         {
-            get { return (bool)Default.TAB2_Array[3]; }
+            get { return comboBoxMode; }
+            set { comboBoxMode = value; }
+        }
+        
+        public bool IsJson  // Binded JSON checkbox
+        {
+            get { return Default.TAB2_OutputJSON; }
             set
             {
-                Default.TAB2_Array[3] = value;
-                Default.TAB2_Array[3] = value;
+                Default.TAB2_OutputJSON = value;
             }
         }
 
         public void ResetOptions()
         {
-            Default.TAB2_Array = new object[] { 0, null, false, true };
+            Default.TAB2_ModeIndex = 0;
+            Default.TAB2_OutputJSON = true;
             OnPropertyChanged(null);
         }
         #endregion

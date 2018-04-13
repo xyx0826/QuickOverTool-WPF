@@ -9,6 +9,19 @@ namespace QuickDataTool.Logics
 {
     class Config
     {
+        private static Config _uniqueInstance;
+
+        private Config()
+        {
+
+        }
+
+        public static Config GetInstance()
+        {
+            if (_uniqueInstance == null) _uniqueInstance = new Config();
+            return _uniqueInstance;
+        }
+
         /// <summary>
         /// Initialize the configurations on first run.
         /// </summary>
@@ -18,17 +31,13 @@ namespace QuickDataTool.Logics
                 Default.Path_CurrentOW = "C:\\Program Files (x86)\\Overwatch";
             if (String.IsNullOrWhiteSpace(Default.Path_Output)) // Default output path
                 Default.Path_Output = ".\\";
-            if (Default.List_OWInsts.Count == 0)    // Default Overwatch path in selector
+            if (Default.List_OWInsts == null || Default.List_OWInsts.Count == 0)    // Default Overwatch path in selector
             {
                 Default.List_OWInsts = new List<String>
                 {
                     "C:\\Program Files (x86)\\Overwatch"
                 };
             }
-            if (Default.TAB2_Array == null) // Default ListAssets parameters
-                Default.TAB2_Array = new object[] { 0, null, false, true };
-            if (Default.TAB3_Array == null) // Default ExtrAssets parameters
-                Default.TAB3_Array = new object[] { 0, null, false, true };
         }
         #region Overwatch installation management
         public void AddOWInst(string path)
@@ -53,6 +62,7 @@ namespace QuickDataTool.Logics
         public void UseOWInst(int index)
         {
             Default.Path_CurrentOW = Default.List_OWInsts[index];
+            Default.Save();
         }
 
         public int CountOWInst()

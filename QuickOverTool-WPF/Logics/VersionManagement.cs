@@ -8,9 +8,11 @@ namespace QuickDataTool
 {
     class VersionManagement
     {
+        private bool _isOWValid;
         public string GetOWVersion(string owPath)
         {
             string[] buildInfo;
+            _isOWValid = true;
             List<string> versions = new List<string>();
             string latestVersion = "0.00.0.0.00000";
             try
@@ -19,6 +21,7 @@ namespace QuickDataTool
             }
             catch
             {
+                _isOWValid = false;
                 return "(Version unknown)";
                 // throw new FileNotFoundException("Failed to read version info for " + owPath + ": .build.info not found.");
             }
@@ -42,6 +45,7 @@ namespace QuickDataTool
             if (latestVersion != "0.00.0.0.00000") return latestVersion;
             else
             {
+                _isOWValid = false;
                 throw new FileNotFoundException("Failed to read version info for " + owPath +
                     ": .build.info invalid.");
             }

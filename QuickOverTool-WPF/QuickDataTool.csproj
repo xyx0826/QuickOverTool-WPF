@@ -97,7 +97,7 @@
     <Compile Include="Logics\VersionManagement.cs" />
     <Compile Include="Tabs\ExecutionHandler.cs" />
     <Compile Include="Tabs\GameVersion.cs" />
-    <Compile Include="Tabs\ListExtractAssets.cs" />
+    <Compile Include="Tabs\DataToolHandler.cs" />
     <Compile Include="Tabs\Logging.cs" />
     <Compile Include="Tabs\StatusBar.cs" />
     <Compile Include="Tabs\ToolVersion.cs" />

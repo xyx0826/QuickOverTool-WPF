@@ -21,6 +21,7 @@ namespace QuickDataTool
 
         public void CopyLogs(object sender, RoutedEventArgs e)
         {
+            if (logBox.SelectedItem == null) return;   // Prevent no-selection from crashing the app
             Clipboard.SetText(logBox.SelectedItem.ToString());
         }
 

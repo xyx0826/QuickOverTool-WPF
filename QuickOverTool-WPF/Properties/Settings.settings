@@ -11,11 +11,32 @@
     <Setting Name="Path_Output" Type="System.String" Scope="User">
       <Value Profile="(Default)">.\\</Value>
     </Setting>
-    <Setting Name="TAB2_Array" Type="System.Object[]" Scope="User">
+    <Setting Name="TAB2_ModeIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TAB2_OutputJSON" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="TAB3_ModeIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TAB3_FormatIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TAB3_LosslessTexture" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="TAB3_LOD" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TAB3_NoExtract" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="TAB3_Array" Type="System.Object[]" Scope="User">
-        <Value Profile="(Default)" />
-      </Setting>
-    </Settings>
+    <Setting Name="TAB3_NoConvert" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TAB3_NoEnvExtract" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
 </SettingsFile>

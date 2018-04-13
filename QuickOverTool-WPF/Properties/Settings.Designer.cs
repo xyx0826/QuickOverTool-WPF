@@ -12,7 +12,7 @@ namespace QuickDataTool.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.5.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -60,23 +60,109 @@ namespace QuickDataTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public object[] TAB2_Array {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int TAB2_ModeIndex {
             get {
-                return ((object[])(this["TAB2_Array"]));
+                return ((int)(this["TAB2_ModeIndex"]));
             }
             set {
-                this["TAB2_Array"] = value;
+                this["TAB2_ModeIndex"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public object[] TAB3_Array {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool TAB2_OutputJSON {
             get {
-                return ((object[])(this["TAB3_Array"]));
+                return ((bool)(this["TAB2_OutputJSON"]));
             }
             set {
-                this["TAB3_Array"] = value;
+                this["TAB2_OutputJSON"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int TAB3_ModeIndex {
+            get {
+                return ((int)(this["TAB3_ModeIndex"]));
+            }
+            set {
+                this["TAB3_ModeIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int TAB3_FormatIndex {
+            get {
+                return ((int)(this["TAB3_FormatIndex"]));
+            }
+            set {
+                this["TAB3_FormatIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool TAB3_LosslessTexture {
+            get {
+                return ((bool)(this["TAB3_LosslessTexture"]));
+            }
+            set {
+                this["TAB3_LosslessTexture"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int TAB3_LOD {
+            get {
+                return ((int)(this["TAB3_LOD"]));
+            }
+            set {
+                this["TAB3_LOD"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TAB3_NoExtract {
+            get {
+                return ((string)(this["TAB3_NoExtract"]));
+            }
+            set {
+                this["TAB3_NoExtract"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TAB3_NoConvert {
+            get {
+                return ((string)(this["TAB3_NoConvert"]));
+            }
+            set {
+                this["TAB3_NoConvert"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TAB3_NoEnvExtract {
+            get {
+                return ((string)(this["TAB3_NoEnvExtract"]));
+            }
+            set {
+                this["TAB3_NoEnvExtract"] = value;
             }
         }
     }

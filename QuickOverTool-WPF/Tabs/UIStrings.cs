@@ -11,6 +11,22 @@ namespace QuickDataTool
 {
     class UIString : INotifyPropertyChanged
     {
+        private static UIString _uniqueInstance;
+        private static readonly object _threadLock = new object();
+
+        private UIString()
+        {
+
+        }
+
+        public static UIString GetInstance() // Ensure singleton model
+        {
+            if (_uniqueInstance == null)
+                lock (_threadLock)
+                    _uniqueInstance = new UIString();
+            return _uniqueInstance;
+        }
+
         #region Binding implementation
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -52,6 +68,7 @@ namespace QuickDataTool
             get
             {
                 VersionManagement vm = new VersionManagement();
+                Logging.GetInstance().Increment("Attmepting to read Overwatch version from path " + Default.Path_CurrentOW);
                 string s = vm.GetOWVersion(Default.Path_CurrentOW);
                 if (s != null) return s;
                 else return "Unknown";

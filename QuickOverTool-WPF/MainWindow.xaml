@@ -19,6 +19,7 @@
             <Label Content="Integrity:" HorizontalAlignment="Left" Margin="305,34,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White"/>
             <Label Content="{Binding DTVersion}" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label Content="{Binding DTIntegrity}" HorizontalAlignment="Left" Margin="362,34,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <!-- Buttons
             <Button Content="{StaticResource SettingsIcon}" HorizontalAlignment="Left" Margin="765,20,0,0" VerticalAlignment="Top" Width="32" Height="32">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF007BD8" Opacity="0"/>
@@ -35,6 +36,7 @@
                     <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                 </Button.Background>
             </Button>
+            -->
         </Grid>
         <!-- Main TabControl -->
         <TabControl x:Name="tabControl" BorderThickness="1,0,0,0" TabStripPlacement="Left" Height="540" VerticalAlignment="Top">

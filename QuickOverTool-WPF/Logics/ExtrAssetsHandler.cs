@@ -13,6 +13,7 @@ namespace OWorkbench.Logics
         private ExtrAssetsHandler()
         {
             noExtRefpose = true;
+            isLosslessTexture = true;
         }
 
         public static ExtrAssetsHandler GetInstance()

@@ -127,7 +127,7 @@ namespace OWorkbench
                 {
                     if (!handler.noConTextures) // if texture will be converted
                     {
-                        if (handler.isLosslessTexture) cmdLine += "--convert-lossless-textures=false ";    // texture lossless
+                        if (!handler.isLosslessTexture) cmdLine += "--convert-lossless-textures=false ";    // texture lossless
                         cmdLine += "--convert-textures-type=" + handler.comboBoxFormat.Content + " ";   // texture format
                     }
                     else cmdLine += "--convert-textures=false ";

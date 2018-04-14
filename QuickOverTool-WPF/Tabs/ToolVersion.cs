@@ -58,13 +58,14 @@ namespace OWorkbench
                 ZipFile.ExtractToDirectory(zipPath, ".\\");
             }
             catch { }
+            UIString.GetInstance().Rebind(null);
             textBlockDownloader.Text = "Update successful.";
         }
 
         private void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             UIString.GetInstance().DownloadProgress = e.ProgressPercentage;
-            UIString.GetInstance().Rebind(null);
+            UIString.GetInstance().Rebind("DownloadProgress");
         }
     }
 }

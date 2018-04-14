@@ -70,7 +70,6 @@ namespace OWorkbench
             get
             {
                 VersionManagement vm = new VersionManagement();
-                Logging.GetInstance().Increment("OWB startup. Attmepting to read Overwatch version from path " + Default.Path_CurrentOW);
                 string s = vm.GetOWVersion(Default.Path_CurrentOW);
                 if (s != null) return s;
                 else return "Unknown";

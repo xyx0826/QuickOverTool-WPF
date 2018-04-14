@@ -29,13 +29,19 @@ namespace OWorkbench
                 aliveChecker.DoWork += CheckAlive;
                 aliveChecker.RunWorkerCompleted += OnProcessDead;
                 
-                // Certain tabs have to be disabled to prevent multi-launch
-                tabListAssets.IsEnabled = false;
-                tabExtrAssets.IsEnabled = false;
                 Logging.GetInstance().Increment("List and extract tabs are now temporarily disabled until DataTool terminates or exits.");
                 
-                dataTool.Start();
-                dataToolPID = dataTool.Id;
+                try
+                {
+                    dataTool.Start();
+                    dataToolPID = dataTool.Id;
+                }
+                catch
+                {
+                    Logging.GetInstance().Increment("DataTool launch failure. Update your DataTool from \"Tool Version\" tab.");
+                    ToggleRunningState(false);
+                    return;
+                }
                 Logging.GetInstance().Increment("Starting DataTool now. PID: " + dataTool.Id);
                 ToggleRunningState(true);
                 aliveChecker.RunWorkerAsync(dataTool);
@@ -55,11 +61,16 @@ namespace OWorkbench
         {
             if (state)
             {
+                // Certain tabs have to be disabled to prevent multi-launch
+                tabListAssets.IsEnabled = false;
+                tabExtrAssets.IsEnabled = false;
                 lblInactive.Visibility = Visibility.Collapsed;
                 lblRunning.Visibility = Visibility.Visible;
             }
             else
             {
+                tabListAssets.IsEnabled = true;
+                tabExtrAssets.IsEnabled = true;
                 lblInactive.Visibility = Visibility.Visible;
                 lblRunning.Visibility = Visibility.Collapsed;
             }
@@ -78,8 +89,6 @@ namespace OWorkbench
         private void OnProcessDead(object sender, RunWorkerCompletedEventArgs e)
         {
             Logging.GetInstance().Increment("DataTool has exited.");
-            tabListAssets.IsEnabled = true;
-            tabExtrAssets.IsEnabled = true;
             ToggleRunningState(false);
         }
     }

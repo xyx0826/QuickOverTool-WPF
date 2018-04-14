@@ -32,14 +32,36 @@ namespace QuickDataTool
                 // Certain tabs have to be disabled to prevent multi-launch
                 tabListAssets.IsEnabled = false;
                 tabExtrAssets.IsEnabled = false;
+                Logging.GetInstance().Increment("List and extract tabs are now temporarily disabled until DataTool terminates or exits.");
                 
                 dataTool.Start();
+                dataToolPID = dataTool.Id;
+                Logging.GetInstance().Increment("Starting DataTool now. PID: " + dataTool.Id);
+                ToggleRunningState(true);
                 aliveChecker.RunWorkerAsync(dataTool);
 
                 dataTool.BeginOutputReadLine();
                 dataTool.BeginErrorReadLine();
                 dataTool.OutputDataReceived += new DataReceivedEventHandler(DataTool_DataReceived);
                 dataTool.ErrorDataReceived += new DataReceivedEventHandler(DataTool_DataReceived);
+            }
+        }
+
+        /// <summary>
+        /// Toggle the display of lower right corner icons.
+        /// </summary>
+        /// <param name="state">Whether DataTool is running or not.</param>
+        public void ToggleRunningState(bool state)
+        {
+            if (state)
+            {
+                lblInactive.Visibility = Visibility.Collapsed;
+                lblRunning.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                lblInactive.Visibility = Visibility.Visible;
+                lblRunning.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -55,8 +77,10 @@ namespace QuickDataTool
 
         private void OnProcessDead(object sender, RunWorkerCompletedEventArgs e)
         {
+            Logging.GetInstance().Increment("DataTool has exited.");
             tabListAssets.IsEnabled = true;
             tabExtrAssets.IsEnabled = true;
+            ToggleRunningState(false);
         }
     }
 }

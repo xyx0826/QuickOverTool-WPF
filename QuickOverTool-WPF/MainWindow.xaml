@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:QuickDataTool"
         xmlns:logics="clr-namespace:QuickDataTool.Logics"
         Title="OWorkbench - DataTool GUI（For Overwatch 1.14+）" Height="673.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="Height" Visibility="Visible">
-    <Grid>
+    <StackPanel Orientation="Vertical">
         <!-- Header -->
         <Grid x:Name="grdHeader" HorizontalAlignment="Left" VerticalAlignment="Top" Width="844" Margin="0,0,-0.4,0" Background="#FF0080E2" Height="72">
             <Image HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="{StaticResource OverwatchLogo}"/>
@@ -37,7 +37,7 @@
             </Button>
         </Grid>
         <!-- Main TabControl -->
-        <TabControl x:Name="tabControl" Margin="0,72,-0.4,-0.6" BorderThickness="1,0,0,0" TabStripPlacement="Left" Height="539" VerticalAlignment="Top">
+        <TabControl x:Name="tabControl" BorderThickness="1,0,0,0" TabStripPlacement="Left" Height="540" VerticalAlignment="Top">
             <!-- Styles -->
             <TabControl.Resources>
                 <Style TargetType="TabItem">
@@ -217,13 +217,15 @@
                 </StackPanel>
             </TabItem>
             <TabItem x:Name="tabLogging" Header="Logging">
-                <Grid>
-                    <ListBox x:Name="logBox" ItemsSource="{Binding LogCollection}" Margin="0,0,0,40"/>
-                    <Button Content="Save all logs" HorizontalAlignment="Left" Margin="14,500,0,0" VerticalAlignment="Top" Width="170" Height="30" Click="SaveLogs"/>
-                    <Button Content="Copy selected log" HorizontalAlignment="Left" Margin="189,500,0,0" VerticalAlignment="Top" Width="170" Height="30" Click="CopyLogs"/>
-                    <Button Content="Clear all logs" HorizontalAlignment="Left" Margin="364,500,0,0" VerticalAlignment="Top" Width="170" Height="30" Click="ClearLogs"/>
-                    <Button Content="Terminate DataTool process" Foreground="Red" HorizontalAlignment="Left" Margin="539,500,0,0" VerticalAlignment="Top" Width="170" Height="30"/>
-                </Grid>
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                        <Button Content="Save all logs" Margin="10,0,5,0" Width="170" Height="30" Click="SaveLogs"/>
+                        <Button Content="Copy selected log" Margin="0,0,5,0" Width="170" Height="30" Click="CopyLogs"/>
+                        <Button Content="Clear all logs" Margin="0,0,5,0" Width="170" Height="30" Click="ClearLogs"/>
+                        <Button Content="Terminate DataTool process" Margin="0,0,5,0" Foreground="Red" Width="170" Height="30" Click="buttonTaskkill_Click"/>
+                    </StackPanel>
+                    <ListBox x:Name="logBox" ItemsSource="{Binding LogCollection}" DockPanel.Dock="Top"/>
+                </DockPanel>
             </TabItem>
             <TabItem Header="Version Controls" Height="30" IsEnabled="False" FontWeight="Bold">
                 <Grid>
@@ -348,6 +350,12 @@
             </Grid>
             <CheckBox Content="CheckBox" Height="100" Width="100"/>
         </TabControl>
-        <Label x:Name="lblNotif" Content="{Binding Notif, Mode=OneWay}" Foreground="{Binding NotifBrush, Mode=OneWay}" HorizontalAlignment="Left" Margin="0,611,-0.4,0" VerticalAlignment="Top" Height="32" Width="844" BorderBrush="#FFB4B4B4" BorderThickness="0,1,0,0" FontWeight="Bold"/>
-    </Grid>
+        <DockPanel>
+            <Grid DockPanel.Dock="Right" Height="32">
+                <Label x:Name="lblInactive" Content="{StaticResource InactiveIcon}" BorderBrush="#FFB4B4B4" BorderThickness="0,1,0,0" />
+                <Label x:Name="lblRunning" Visibility="Collapsed" Content="{StaticResource RunningIcon}" BorderBrush="#FFB4B4B4" BorderThickness="0,1,0,0" />
+            </Grid>
+            <Label x:Name="lblNotif" Content="{Binding Notif, Mode=OneWay}" Foreground="{Binding NotifBrush, Mode=OneWay}" DockPanel.Dock="Left" Height="32" BorderBrush="#FFB4B4B4" BorderThickness="0,1,0,0" FontWeight="Bold"/>
+        </DockPanel>
+    </StackPanel>
 </Window>

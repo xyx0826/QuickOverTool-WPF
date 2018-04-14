@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace QuickDataTool
 {
@@ -28,6 +29,21 @@ namespace QuickDataTool
         public void ClearLogs(object sender, RoutedEventArgs e)
         {
             Logging.GetInstance().ClearLogs(logBox);
+        }
+
+        private void buttonTaskkill_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process proc = Process.GetProcessById(dataToolPID);
+                proc.Kill();
+                Logging.GetInstance().Increment("DataTool is terminated.");
+            }
+            catch
+            {
+                Logging.GetInstance().Increment("Termination failed; DataTool might not be running.");
+                return;
+            }
         }
     }
 }

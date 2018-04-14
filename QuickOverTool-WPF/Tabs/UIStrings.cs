@@ -70,7 +70,7 @@ namespace QuickDataTool
             get
             {
                 VersionManagement vm = new VersionManagement();
-                Logging.GetInstance().Increment("Attmepting to read Overwatch version from path " + Default.Path_CurrentOW);
+                Logging.GetInstance().Increment("OWB startup. Attmepting to read Overwatch version from path " + Default.Path_CurrentOW);
                 string s = vm.GetOWVersion(Default.Path_CurrentOW);
                 if (s != null) return s;
                 else return "Unknown";
@@ -109,6 +109,11 @@ namespace QuickDataTool
                 else
                 {
                     // output missing files to log
+                    Logging.GetInstance().Increment("At least " + list.Count + " DataTool dependency files are missing.");
+                    foreach (string file in list)
+                    {
+                        Logging.GetInstance().Increment("    " + file);
+                    }
                     return "Incomplete";
                 }
             }

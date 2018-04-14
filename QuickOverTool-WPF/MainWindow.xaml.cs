@@ -128,6 +128,7 @@ namespace QuickDataTool
             }
         }
 
+        /*
         private void buttonTaskkill_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -148,6 +149,7 @@ namespace QuickDataTool
                 return;
             }
         }
+        */
 
         private void checkBoxCommand_Checked(object sender, RoutedEventArgs e)
         {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using static QuickDataTool.Properties.Settings;
+using static OWorkbench.Properties.Settings;
 
-namespace QuickDataTool.Logics
+namespace OWorkbench.Logics
 {
     class ListAssetsHandler : INotifyPropertyChanged
     {

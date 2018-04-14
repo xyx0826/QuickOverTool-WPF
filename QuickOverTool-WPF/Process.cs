@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-namespace QuickDataTool
+namespace OWorkbench
 {
     public partial class MainWindow : Window
     {

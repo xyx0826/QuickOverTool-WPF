@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows;
 
-namespace QuickDataTool
+namespace OWorkbench
 {
     public partial class MainWindow : Window
     {

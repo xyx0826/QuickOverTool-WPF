@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 
-using static QuickDataTool.Properties.Settings;
+using static OWorkbench.Properties.Settings;
 
-namespace QuickDataTool.Logics
+namespace OWorkbench.Logics
 {
     class Config
     {

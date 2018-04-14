@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Controls;
-using static QuickDataTool.Properties.Settings;
+using static OWorkbench.Properties.Settings;
 
-namespace QuickDataTool.Logics
+namespace OWorkbench.Logics
 {
     class ExtrAssetsHandler : INotifyPropertyChanged
     {

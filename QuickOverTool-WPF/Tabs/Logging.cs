@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace QuickDataTool
+namespace OWorkbench
 {
     public partial class MainWindow : Window
     {

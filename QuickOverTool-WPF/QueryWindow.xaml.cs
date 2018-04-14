@@ -1,8 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
-namespace QuickDataTool
+namespace OWorkbench
 {
     /// <summary>
     /// QueryWindow.xaml 的交互逻辑
@@ -23,7 +24,11 @@ namespace QuickDataTool
         // Method for passing the query back to MainWindow
         public string GetQueries()
         {
-            return " " + textBoxQuery.Text;
+            if (String.IsNullOrWhiteSpace(textBoxQuery.Text)) return null;
+            string input = textBoxQuery.Text;   // In case someone forgets the parentheses
+            if (!input.StartsWith("\"")) input = "\"" + input;
+            if (!input.EndsWith("\"")) input += "\"";
+            return " " + input;
         }
         // Event selector
         private void AppendEvent(object sender, RoutedEventArgs e)
@@ -70,7 +75,10 @@ namespace QuickDataTool
                 return "    Format: {hero name}|{type}=({tag name}={tag}),{item name}\n" +
                     "        Enter the hero name in target locale, then use buttons to compose your query.\n" +
                     "        You may add multiple queries separated by space.\n" +
-                    "        Example: \"Roadhog|emote=(rarity=rare)\"";
+                    "        Example: \"Roadhog|emote=(rarity=rare)\"\n" +
+                    "       To extract OWL skins, examples:\n" +
+                    "        \"{hero name}|skin=(leagueTeam=*)\"\n" +
+                    "        \"{hero name}|skin=(leagueTeam=Boston Uprising)\"\n";
             }
             set { }
         }
@@ -94,6 +102,16 @@ namespace QuickDataTool
             {
                 return "    Enter the NPC name in target locale.\n" +
                     "        Example: \"Eradicator\"";
+            }
+            set { }
+        }
+
+        public string MapHelp
+        {
+            get
+            {
+                return "    Enter the map name in target locale.\n" +
+                    "        Example: \"Black Forest\"";
             }
             set { }
         }

@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Windows;
 using System.Collections.Generic;
-using static QuickDataTool.Properties.Settings;
-using QuickDataTool.Logics;
+using static OWorkbench.Properties.Settings;
+using OWorkbench.Logics;
 using System.Windows.Controls;
 
-namespace QuickDataTool
+namespace OWorkbench
 {
     public partial class MainWindow : Window
     {
         #region Initialization
+        QueryWindow _queryWindow;
         public void InitializeDataToolHandling()
         {
             tabListAssets.DataContext = ListAssetsHandler.GetInstance();
             tabExtrAssets.DataContext = ExtrAssetsHandler.GetInstance();
+            _queryWindow = new QueryWindow();
             PopulateModes();
         }
         #endregion
@@ -67,8 +69,20 @@ namespace QuickDataTool
         private void comboExtrAssets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (((KeyValuePair<string, string>)comboExtrAssets.SelectedItem).Value == "extract-map-envs")
-                groupBoxMapOptions.Visibility = Visibility.Collapsed;
-            else groupBoxMapOptions.Visibility = Visibility.Visible;
+                groupBoxMapOptions.Visibility = Visibility.Visible;
+            else groupBoxMapOptions.Visibility = Visibility.Collapsed;
+            if (ExtrAssetsHandler.GetInstance().ComboBoxMode.Value == "extract-hero-voice" ||
+                ExtrAssetsHandler.GetInstance().ComboBoxMode.Value == "extract-maps" ||
+                ExtrAssetsHandler.GetInstance().ComboBoxMode.Value == "extract-map-envs" ||
+                ExtrAssetsHandler.GetInstance().ComboBoxMode.Value == "extract-npcs" ||
+                ExtrAssetsHandler.GetInstance().ComboBoxMode.Value == "extract-unlocks")
+                buttonExtractQuery.Visibility = Visibility.Visible;
+            else buttonExtractQuery.Visibility = Visibility.Collapsed;
+        }
+
+        private void buttonExtractQuery_Click(object sender, RoutedEventArgs e)
+        {
+            _queryWindow.Show();
         }
 
         public void ResetOptions(object sender, RoutedEventArgs e)  // Fire corresponding ResetOptions()
@@ -108,8 +122,6 @@ namespace QuickDataTool
                 ExtrAssetsHandler handler = ExtrAssetsHandler.GetInstance();
                 // Real shit below
                 cmdLine += "--language=" + DataToolConfig.GetInstance().ComboBoxLanguage.Content + " ";   // Language
-                cmdLine = " \"" + UIString.GetInstance().CurrentOWPath + "\" "  // Game path and mode
-                    + handler.ComboBoxMode.Value + " ";
                 
                 if (!handler.noExtTextures) // if texture will be extracted
                 {
@@ -156,11 +168,14 @@ namespace QuickDataTool
                     if (handler.noEnvSkybox) cmdLine += "--skip-map-env-skybox=true ";
                     if (handler.noEnvEntity) cmdLine += "--skip-map-env-entity=true ";
                 }
-
-                cmdLine += Default.TAB_SETTINGS_OutputPath += " ";
+                
+                cmdLine += " \"" + UIString.GetInstance().CurrentOWPath + "\" "  // Game path and mode
+                    + handler.ComboBoxMode.Value + " ";
+                cmdLine += "\"" + Default.TAB_SETTINGS_OutputPath + "\" ";
             }
             
             if (Default.TAB_LIST_OutputJSON) cmdLine += " --json";
+            if (buttonExtractQuery.IsVisible) cmdLine += _queryWindow.GetQueries();
 
             tabControl.SelectedIndex = 5;
             Logging.GetInstance().ClearLogs(logBox);

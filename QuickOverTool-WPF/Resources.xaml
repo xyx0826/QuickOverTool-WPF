@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:QuickDataTool">
+                    xmlns:local="clr-namespace:OWorkbench">
     <!-- Program Icon-->
     <Rectangle Width="128" Height="128" x:Key="MainIcon">
         <Rectangle.Fill>

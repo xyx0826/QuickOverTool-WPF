@@ -7,11 +7,11 @@ using System.Windows;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("QuickDataTool")]
+[assembly: AssemblyTitle("OWorkbench")]
 [assembly: AssemblyDescription("Graphical interface for DataTool, the Overwatch assets extractor.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("QuickDataTool")]
+[assembly: AssemblyProduct("OWorkbench")]
 [assembly: AssemblyCopyright("Copyright © 2017: xyx0826 (GitHub)")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 
-namespace QuickDataTool
+namespace OWorkbench
 {
     /// <summary>
     /// Methods for getting the info on

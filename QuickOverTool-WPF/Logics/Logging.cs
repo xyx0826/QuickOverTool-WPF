@@ -6,9 +6,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
-using static QuickDataTool.Properties.Settings;
+using static OWorkbench.Properties.Settings;
 
-namespace QuickDataTool
+namespace OWorkbench
 {
     class Logging : INotifyPropertyChanged
     {

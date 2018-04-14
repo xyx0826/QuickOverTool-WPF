@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
-using static QuickDataTool.Properties.Settings;
+using static OWorkbench.Properties.Settings;
 
-namespace QuickDataTool
+namespace OWorkbench
 {
     class UIString : INotifyPropertyChanged
     {
@@ -87,7 +87,7 @@ namespace QuickDataTool
         } // Current Overwatch server
         public string CurrentOWPath
         {
-            get { return Default.Path_CurrentOW; }
+            get { return Path.GetDirectoryName(Default.Path_CurrentOW); }
         } // Current Overwatch path
         public string DTVersion
         {

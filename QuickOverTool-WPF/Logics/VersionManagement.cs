@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace QuickDataTool
+namespace OWorkbench
 {
     class VersionManagement
     {

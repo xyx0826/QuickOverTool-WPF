@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Net;
 using System.Reflection;
 using System.Windows;
 
-namespace QuickDataTool
+namespace OWorkbench
 {
     public partial class MainWindow : Window
     {
@@ -42,8 +43,12 @@ namespace QuickDataTool
             if (Assembly.GetExecutingAssembly().GetName().Version.CompareTo(new Version(result[0])) < 0)    // Remote has a new version
             {
                 Logging.GetInstance().Increment("OWorkbench has an update! Latest version is " + result[0] + ".");
-                Logging.GetInstance().Increment("Download latest QuickDataTool here:");
-                Logging.GetInstance().Increment(result[2] + "\n");
+                Logging.GetInstance().Increment("Automatic downloading initiated.");
+                using (WebClient wc = new WebClient())
+                {
+                    wc.DownloadFileAsync(new Uri(result[2]), ".\\OWorkbench_" + result[0] + ".exe");
+                }
+                Logging.GetInstance().Increment("New OWorkbench version has been downloaded to .\\OWorkbench_" + result[0] + ".exe.");
             }
         }
 

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows;
 using System.Collections.Generic;
-using static QuickDataTool.Properties.Settings;
-using QuickDataTool.Logics;
+using static OWorkbench.Properties.Settings;
+using OWorkbench.Logics;
 using System.Windows.Controls;
 using System.Windows.Forms;
 
-namespace QuickDataTool
+namespace OWorkbench
 {
     public partial class MainWindow : Window
     {

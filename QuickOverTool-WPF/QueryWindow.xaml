@@ -1,9 +1,9 @@
-﻿<Window x:Name="windowQuery" x:Class="QuickDataTool.QueryWindow"
+﻿<Window x:Name="windowQuery" x:Class="OWorkbench.QueryWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:QuickDataTool"
+        xmlns:local="clr-namespace:OWorkbench"
         mc:Ignorable="d"
         Title="Edit Extraction Queries" ResizeMode="NoResize" Topmost="True" Width="670" Height="600.4">
     <Grid>
@@ -54,6 +54,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Expander Header="Hero Unlocks">
                     <TextBlock Text="{Binding HeroUnlocksHelp, ElementName=windowQuery}" />
@@ -63,6 +64,9 @@
                 </Expander>
                 <Expander Grid.Row="2" Header="NPCs">
                     <TextBlock Text="{Binding NPCsHelp, ElementName=windowQuery}" />
+                </Expander>
+                <Expander Grid.Row="3" Header="Map">
+                    <TextBlock Text="{Binding MapHelp, ElementName=windowQuery}" />
                 </Expander>
             </Grid>
         </GroupBox>

@@ -44,7 +44,9 @@ namespace QuickDataTool
             {
                 foreach (String log in logCollection) logFile.WriteLine(log);
             }
+            logCollection = new ObservableCollection<string>();
             Logging.GetInstance().Increment("Log written to " + @logPath + ".");
+            Refresh();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

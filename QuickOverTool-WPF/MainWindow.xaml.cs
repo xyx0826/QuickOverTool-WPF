@@ -37,6 +37,8 @@ namespace QuickDataTool
 
             CheckGUIUpdate();
             CheckDTUpdate();
+
+            WindowMain.Title += " | " + UIString.GetInstance().BenchVersion;
         }
         // Save config and close application upon MainWindow closure
         protected override void OnClosed(EventArgs e)

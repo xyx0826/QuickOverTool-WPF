@@ -93,8 +93,8 @@ namespace QuickDataTool
                     return;
                 }
                 // Real shit below
-                tabControl.SelectedIndex = 4;
-                cmdLine = " \"" + UIString.GetInstance().CurrentOWPath + "\" "
+                cmdLine += "--language=" + DataToolConfig.GetInstance().ComboBoxLanguage.Content + " ";   // Language
+                cmdLine += " \"" + UIString.GetInstance().CurrentOWPath + "\" "
                     + ListAssetsHandler.GetInstance().ComboBoxMode.Value;
             }
             // Extract Assets
@@ -107,10 +107,10 @@ namespace QuickDataTool
                 }
                 ExtrAssetsHandler handler = ExtrAssetsHandler.GetInstance();
                 // Real shit below
-                tabControl.SelectedIndex = 4;   // Jump to log page
+                cmdLine += "--language=" + DataToolConfig.GetInstance().ComboBoxLanguage.Content + " ";   // Language
                 cmdLine = " \"" + UIString.GetInstance().CurrentOWPath + "\" "  // Game path and mode
                     + handler.ComboBoxMode.Value + " ";
-
+                
                 if (!handler.noExtTextures) // if texture will be extracted
                 {
                     if (!handler.noConTextures) // if texture will be converted
@@ -148,19 +148,21 @@ namespace QuickDataTool
 
                 if (handler.ComboBoxMode.Value == "extract-map-envs")   // if map env extraction is active
                 {
-                    if (handler.noEnvSound) cmdLine += "--skip-map-env-sound ";
-                    if (handler.noEnvLUT) cmdLine += "--skip-map-env-lut ";
-                    if (handler.noEnvBlend) cmdLine += "--skip-map-env-blend ";
-                    if (handler.noEnvGround) cmdLine += "--skip-map-env-ground ";
-                    if (handler.noEnvSky) cmdLine += "--skip-map-env-sky ";
-                    if (handler.noEnvSkybox) cmdLine += "--skip-map-env-skybox ";
-                    if (handler.noEnvEntity) cmdLine += "--skip-map-env-entity ";
+                    if (handler.noEnvSound) cmdLine += "--skip-map-env-sound=true ";
+                    if (handler.noEnvLUT) cmdLine += "--skip-map-env-lut=true ";
+                    if (handler.noEnvBlend) cmdLine += "--skip-map-env-blend=true ";
+                    if (handler.noEnvGround) cmdLine += "--skip-map-env-ground=true ";
+                    if (handler.noEnvSky) cmdLine += "--skip-map-env-sky=true ";
+                    if (handler.noEnvSkybox) cmdLine += "--skip-map-env-skybox=true ";
+                    if (handler.noEnvEntity) cmdLine += "--skip-map-env-entity=true ";
                 }
 
                 cmdLine += Default.TAB_SETTINGS_OutputPath += " ";
             }
             
             if (Default.TAB_LIST_OutputJSON) cmdLine += " --json";
+
+            tabControl.SelectedIndex = 5;
             Logging.GetInstance().ClearLogs(logBox);
             Logging.GetInstance().Increment(logBox, "Starting DataTool now. Cmdline: DataTool.exe " + cmdLine);
             StartDataTool(PrepareDataTool(cmdLine));

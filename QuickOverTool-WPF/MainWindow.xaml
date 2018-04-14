@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickDataTool"
         xmlns:logics="clr-namespace:QuickDataTool.Logics"
-        Title="QuickDataTool - DataTool GUI（For Overwatch 1.14+）" Height="673.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="Height" Visibility="Visible">
+        Title="OWorkbench - DataTool GUI（For Overwatch 1.14+）" Height="673.6" Width="850" ScrollViewer.CanContentScroll="True" ResizeMode="NoResize" SizeToContent="Height" Visibility="Visible">
     <Grid>
         <!-- Header -->
         <Grid x:Name="grdHeader" HorizontalAlignment="Left" VerticalAlignment="Top" Width="844" Margin="0,0,-0.4,0" Background="#FF0080E2" Height="72">

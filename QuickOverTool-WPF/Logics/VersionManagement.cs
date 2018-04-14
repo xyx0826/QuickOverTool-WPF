@@ -78,14 +78,24 @@ namespace QuickDataTool
         {
             string[] files = {"\\CascLib.dll",
                               "\\DataTool.exe",
+                              "\\DynamicExpresso.Core.dll",
+                              "\\librevorb.dll",
+                              "\\Newtonsoft.Json.dll",
+                              "\\OpenTK.dll",
                               "\\ow.events",
                               "\\ow.keys",
                               "\\OWlib.dll",
                               "\\OWReplayLib.dll",
+                              "\\RevorbStd.dll",
                               "\\STULib.dll",
+                              "\\System.Data.HashFunction.Core.dll",
+                              "\\System.Data.HashFunction.CRC.dll",
+                              "\\System.Data.HashFunction.Interfaces.dll",
+                              "\\ZstdNet.dll",
                               "\\Third Party\\packed_codebooks_aoTuV_603.bin",
-                              "\\Third Party\\revorb.exe",
-                              "\\Third Party\\texconv.exe"};
+                              "\\Third Party\\texconv.exe",
+                              "\\x64\\libzstd.dll",
+                              "\\x86\\libzstd.dll"};
             List<string> missingFiles = new List<string>();
             foreach (string file in files)
             {

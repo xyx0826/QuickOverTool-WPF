@@ -11,10 +11,10 @@
     <Setting Name="Path_Output" Type="System.String" Scope="User">
       <Value Profile="(Default)">.\\</Value>
     </Setting>
-    <Setting Name="TAB2_ModeIndex" Type="System.Int32" Scope="User">
+    <Setting Name="TAB_LIST_ModeIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="TAB2_OutputJSON" Type="System.Boolean" Scope="User">
+    <Setting Name="TAB_LIST_OutputJSON" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="TAB3_ModeIndex" Type="System.Int32" Scope="User">
@@ -37,6 +37,12 @@
     </Setting>
     <Setting Name="TAB3_NoEnvExtract" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TAB_SETTINGS_OutputPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\\</Value>
+    </Setting>
+    <Setting Name="TAB_SETTINGS_LangIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

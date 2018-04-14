@@ -70,22 +70,72 @@
             </TabControl.Resources>
             <!-- Individual tabs-->
             <TabItem x:Name="tabStart" Header="Quick Start" Height="30" FontWeight="Bold">
-                <Grid>
-                    <Label Content="{x:Static local:Resources.TAB0_TITLE1}" FontSize="36" Margin="10,10,0,0" Width="Auto" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <Label Content="{x:Static local:Resources.TAB0_DESC1}" Margin="12,70,9.6,432.2" FontSize="16" Height="33" Width="Auto" FontWeight="Normal"/>
-                    <Label Content="{Binding BenchVersion, ElementName=WindowMain}" Margin="245,13,397.8,471.4" FontFamily="Segoe UI" VerticalContentAlignment="Bottom" FontWeight="Bold" FontSize="16" Height="50" Width="Auto"/>
-                    <Label Content="{x:Static local:Resources.TAB0_TITLE2}" FontSize="36" Margin="10,108,9.6,367.2" Width="Auto" Height="60" FontWeight="Bold" Foreground="#FF007BD8"/>
-                    <Label Content="{x:Static local:Resources.TAB0_DESC2}" Margin="12,168,9.6,334.2" FontSize="16" Height="33" FontWeight="Normal"/>
-                </Grid>
+                <StackPanel Orientation="Vertical" Margin="10,10">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{x:Static local:Resources.TAB0_TITLE1}" FontSize="36" Width="Auto" FontWeight="Bold" Foreground="#FF007BD8" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Content="{Binding BenchVersion}" FontFamily="Segoe UI" VerticalContentAlignment="Bottom" FontWeight="Bold" Foreground="#FF007BD8" FontSize="16" Height="40" Width="Auto"/>
+                    </StackPanel>
+                    <Label Content="{x:Static local:Resources.TAB0_DESC1}" FontSize="16" Height="33" Width="Auto" FontWeight="Normal"/>
+                    <Label Content="{x:Static local:Resources.TAB0_TITLE2}" FontSize="36" Width="Auto" Height="60" FontWeight="Bold" Foreground="#FF007BD8"/>
+                    <Label Content="{x:Static local:Resources.TAB0_DESC2}" FontSize="16" Height="33" FontWeight="Normal"/>
+                </StackPanel>
             </TabItem>
-            <TabItem Header="DataTool Modes" Height="30" IsEnabled="False" FontWeight="Bold">
+            <TabItem Header="DataTool Modes" Height="30" Width="Auto" IsEnabled="False" FontWeight="Bold">
                 <Grid>
 
                 </Grid>
             </TabItem>
+            <TabItem x:Name="tabConfig" Header="General Settings">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="{x:Static local:Resources.TAB_SETTINGS_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <GroupBox Header="Output" Margin="10,10" Foreground="Black">
+                        <StackPanel Orientation="Vertical" Margin="10,10">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Target language: "/>
+                                <ComboBox x:Name="comboBoxLanguage" Width="Auto" SelectedIndex="{Binding ComboBoxLangIndex}" SelectedItem="{Binding ComboBoxLanguage, Mode=OneWayToSource}">
+                                    <ComboBoxItem Content="enUS"/>
+                                    <ComboBoxItem Content="zhCN"/>
+                                    <ComboBoxItem Content="zhTW"/>
+                                    <ComboBoxItem Content="jaJP"/>
+                                    <ComboBoxItem Content="frFR"/>
+                                    <ComboBoxItem Content="deDE"/>
+                                    <ComboBoxItem Content="ruRU"/>
+                                    <ComboBoxItem Content="koKR"/>
+                                    <ComboBoxItem Content="itIT"/>
+                                    <ComboBoxItem Content="plPL"/>
+                                    <ComboBoxItem Content="ptBR"/>
+                                    <ComboBoxItem Content="esES"/>
+                                    <ComboBoxItem Content="esMX"/>
+                                </ComboBox>
+                                <Label Content="Output path: " Margin="25,0,0,0"/>
+                                <TextBox x:Name="textBoxOutputPath" Height="25" Width="330" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Text="{Binding OutputPath}"/>
+                                <Button x:Name="buttonOutputPath" Content="..." Margin="1,0,0,0" Width="25" Height="25" Click="buttonOutputPath_Click"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <CheckBox Content="Quiet mode" Margin="5,0,10,0"/>
+                                <CheckBox Content="Expert mode" Margin="5,0,10,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="CDN and CMF" Margin="10,0" Foreground="Black">
+                        <StackPanel Orientation="Vertical" Margin="10,10">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Content="Graceful exit" Margin="0,0,10,0"/>
+                                <CheckBox Content="Use (R)CN CMF" Margin="0,0,10,0"/>
+                                <CheckBox Content="Skip key detection" Margin="0,0,10,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <CheckBox Content="Validate files" Margin="0,0,10,0"/>
+                                <CheckBox Content="Cache index files" Margin="0,0,10,0"/>
+                                <CheckBox Content="Cache data files" Margin="0,0,10,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
             <TabItem x:Name="tabListAssets" Header="List Assets">
                 <Grid>
-                    <Label Content="{x:Static local:Resources.TAB2_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <Label Content="{x:Static local:Resources.TAB_LIST_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     <GroupBox Header="Select a Mode" Margin="10,44,10,421" Foreground="Black">
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Mode:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
@@ -111,7 +161,8 @@
                     <GroupBox Header="Select a Mode" Margin="10,10" Foreground="Black">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <Label Content="Mode:" HorizontalAlignment="Left" Margin="10,10,0,0"/>
-                            <ComboBox x:Name="comboExtrAssets" SelectedIndex="{Binding comboBoxIndex}" SelectedItem="{Binding comboBoxMode, Mode=OneWayToSource}" SelectionChanged="comboExtrAssets_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="59,12,0,0" Width="240"/>
+                            <ComboBox x:Name="comboExtrAssets" SelectedIndex="{Binding ComboBoxModeIndex}" SelectedItem="{Binding ComboBoxMode, Mode=OneWayToSource}" SelectionChanged="comboExtrAssets_SelectionChanged" Margin="59,7,0,5" Width="240"/>
+                            <Button Content="Edit Extraction Queries..." Visibility="Hidden"  Foreground="#FF007BD8" VerticalAlignment="Center" Width="Auto" Height="23" Margin="5,2,0,0"/>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Extraction and Conversion" Margin="10,0" Foreground="Black">
@@ -152,7 +203,7 @@
                             <CheckBox Content="Entity" VerticalAlignment="Center" IsChecked="{Binding noEnvEntity}" Margin="0,0,10,0"/>
                             <CheckBox Content="LUT" VerticalAlignment="Center" IsChecked="{Binding noEnvLUT}" Margin="0,0,10,0"/>
                             <CheckBox Content="Skybox" VerticalAlignment="Center" IsChecked="{Binding noEnvSkybox}" Margin="0,0,250,0"/>
-                            <CheckBox Content="Blend Cubemap" VerticalAlignment="Center" IsChecked="{Binding noEnvBlend}" Margin="0,0,10,0"/>
+                            <CheckBox Content="Blend Cubemap" VerticalAlignment="Center" IsChecked="{Binding noEnvBlend}" Margin="5,0,10,0"/>
                             <CheckBox Content="Ground Cubemap" VerticalAlignment="Center" IsChecked="{Binding noEnvCubemap}" Margin="0,0,10,0"/>
                             <CheckBox Content="Sky Cubemap" VerticalAlignment="Center" IsChecked="{Binding noEnvSky}" Margin="0,0,10,0"/>
                         </WrapPanel>
@@ -216,7 +267,7 @@
                 <Label x:Name="labelValidity" Content="" HorizontalAlignment="Left" Margin="1082,171,-364.4,0" VerticalAlignment="Top" Foreground="Red" Height="25" Width="126"/>
                 <Button x:Name="buttonPath" HorizontalAlignment="Left" Margin="1052,171,-233.4,0" VerticalAlignment="Top" Width="25" Height="25" Content="..."/>
                 <Label x:Name="labelLanguage" Content="Language:" HorizontalAlignment="Left" Margin="382,201,0,0" VerticalAlignment="Top" Height="25" Width="70" VerticalContentAlignment="Center"/>
-                <ComboBox x:Name="comboBoxLanguage" HorizontalAlignment="Left" Margin="457,203,0,0" VerticalAlignment="Top" Width="130" SelectedIndex="0">
+                <ComboBox x:Name="comboBoxLanguage_old" HorizontalAlignment="Left" Margin="457,203,0,0" VerticalAlignment="Top" Width="130" SelectedIndex="0">
                     <ComboBoxItem Content="enUS"/>
                     <ComboBoxItem Content="zhCN"/>
                     <ComboBoxItem Content="zhTW"/>
@@ -269,8 +320,8 @@
                 </GroupBox>
                 <!-- Export path -->
                 <Label x:Name="labelOutputPath" Content="Output Path" HorizontalAlignment="Left" Margin="381,394,0,0" VerticalAlignment="Top" Height="25" Width="110" VerticalContentAlignment="Center"/>
-                <TextBox x:Name="textBoxOutputPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="495,394,-201.4,0" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Text="./"/>
-                <Button x:Name="buttonOutputPath" Content="..." HorizontalAlignment="Left" Margin="1052,394,-233.4,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
+                <TextBox x:Name="textBoxOutputPath_old" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="495,394,-201.4,0" VerticalAlignment="Top" Width="550" MaxLines="1" IsReadOnly="True" BorderBrush="#FFABADB3" Text="./"/>
+                <Button x:Name="buttonOutputPath_old" Content="..." HorizontalAlignment="Left" Margin="1052,394,-233.4,0" VerticalAlignment="Top" Width="25" Height="25" Click="buttonOutputPath_Click"/>
                 <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="1082,394,-361.4,0" VerticalAlignment="Top" Width="123" Height="25" Foreground="Blue" Click="buttonStart_Click"/>
                 <!-- Checklist -->
                 <GroupBox x:Name="groupBoxChecklists" Header="Checklist" HorizontalAlignment="Left" Height="123" Margin="382,432,-158.4,0" VerticalAlignment="Top" Width="620">

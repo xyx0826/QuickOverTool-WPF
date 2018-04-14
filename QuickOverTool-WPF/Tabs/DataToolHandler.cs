@@ -82,7 +82,9 @@ namespace QuickDataTool
         /// </summary>
         public void Launch(object sender, RoutedEventArgs e)
         {
-            object handler;
+            string cmdLine = "";
+
+            // List assets
             if ((((Button)sender).DataContext) == ListAssetsHandler.GetInstance()) // If the button belongs to list mode
             {
                 if (ListAssetsHandler.GetInstance().ComboBoxMode.Value == null)
@@ -90,22 +92,75 @@ namespace QuickDataTool
                     UIString.GetInstance().SetNotif(lblNotif.Dispatcher, "ERROR: Please choose a list mode.");
                     return;
                 }
-                handler = ListAssetsHandler.GetInstance();
+                // Real shit below
+                tabControl.SelectedIndex = 4;
+                cmdLine = " \"" + UIString.GetInstance().CurrentOWPath + "\" "
+                    + ListAssetsHandler.GetInstance().ComboBoxMode.Value;
             }
+            // Extract Assets
             if ((((Button)sender).DataContext) == ExtrAssetsHandler.GetInstance()) // If the button belongs to extr mode
             {
-                if (ExtrAssetsHandler.GetInstance().comboBoxMode.Value == null)
+                if (ExtrAssetsHandler.GetInstance().ComboBoxMode.Value == null)
                 {
                     UIString.GetInstance().SetNotif(lblNotif.Dispatcher, "ERROR: Please choose a list mode.");
                     return;
                 }
-                handler = ExtrAssetsHandler.GetInstance();
-            }
+                ExtrAssetsHandler handler = ExtrAssetsHandler.GetInstance();
+                // Real shit below
+                tabControl.SelectedIndex = 4;   // Jump to log page
+                cmdLine = " \"" + UIString.GetInstance().CurrentOWPath + "\" "  // Game path and mode
+                    + handler.ComboBoxMode.Value + " ";
 
-            // Initial check passed
-            tabControl.SelectedIndex = 4; // Jump to log tab
-            string cmdLine = " \"" + UIString.GetInstance().CurrentOWPath + "\" " + ListAssetsHandler.GetInstance().ComboBoxMode.Value;
-            if (Default.TAB2_OutputJSON) cmdLine += " --json";
+                if (!handler.noExtTextures) // if texture will be extracted
+                {
+                    if (!handler.noConTextures) // if texture will be converted
+                    {
+                        if (handler.isLosslessTexture) cmdLine += "--convert-lossless-textures=false ";    // texture lossless
+                        cmdLine += "--convert-textures-type=" + handler.comboBoxFormat.Content + " ";   // texture format
+                    }
+                    else cmdLine += "--convert-textures=false ";
+                }
+                else cmdLine += "--skip-textures=true ";
+
+                if (!handler.noExtSound)    // if sound will be extracted
+                {
+                    if (handler.noConSound) cmdLine += "--convert-sound=false ";
+                }
+                else cmdLine += "--skip-sound=true ";
+
+                if (!handler.noExtModels)   // if models will be extracted
+                {
+                    cmdLine += "--lod=" + handler.modelLOD + " ";   // model LOD
+                    if (handler.noConModels) cmdLine += "--convert-models=false ";
+                }
+                else cmdLine += "--skip-models=true ";
+
+                if (!handler.noExtAnimation)   // if models will be extracted
+                {
+                    if (handler.noConAnimation) cmdLine += "--convert-animations=false ";
+                }
+                else cmdLine += "--skip-animations=true ";
+
+                if (!handler.noExtRefpose)  // if refposes will be extracted
+                    cmdLine += "--extract-refpose=true ";
+
+                if (handler.noConAnything) cmdLine += "--raw "; // convert nothing
+
+                if (handler.ComboBoxMode.Value == "extract-map-envs")   // if map env extraction is active
+                {
+                    if (handler.noEnvSound) cmdLine += "--skip-map-env-sound ";
+                    if (handler.noEnvLUT) cmdLine += "--skip-map-env-lut ";
+                    if (handler.noEnvBlend) cmdLine += "--skip-map-env-blend ";
+                    if (handler.noEnvGround) cmdLine += "--skip-map-env-ground ";
+                    if (handler.noEnvSky) cmdLine += "--skip-map-env-sky ";
+                    if (handler.noEnvSkybox) cmdLine += "--skip-map-env-skybox ";
+                    if (handler.noEnvEntity) cmdLine += "--skip-map-env-entity ";
+                }
+
+                cmdLine += Default.TAB_SETTINGS_OutputPath += " ";
+            }
+            
+            if (Default.TAB_LIST_OutputJSON) cmdLine += " --json";
             Logging.GetInstance().ClearLogs(logBox);
             Logging.GetInstance().Increment(logBox, "Starting DataTool now. Cmdline: DataTool.exe " + cmdLine);
             StartDataTool(PrepareDataTool(cmdLine));

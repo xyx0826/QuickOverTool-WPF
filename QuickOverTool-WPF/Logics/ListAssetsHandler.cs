@@ -24,10 +24,10 @@ namespace QuickDataTool.Logics
 
         public int ComboBoxIndex    // Binded ComboBox index
         {
-            get { return Default.TAB2_ModeIndex; }
+            get { return Default.TAB_LIST_ModeIndex; }
             set
             {
-                Default.TAB2_ModeIndex = value;
+                Default.TAB_LIST_ModeIndex = value;
             }
         }
 
@@ -39,17 +39,17 @@ namespace QuickDataTool.Logics
         
         public bool IsJson  // Binded JSON checkbox
         {
-            get { return Default.TAB2_OutputJSON; }
+            get { return Default.TAB_LIST_OutputJSON; }
             set
             {
-                Default.TAB2_OutputJSON = value;
+                Default.TAB_LIST_OutputJSON = value;
             }
         }
 
         public void ResetOptions()
         {
-            Default.TAB2_ModeIndex = 0;
-            Default.TAB2_OutputJSON = true;
+            Default.TAB_LIST_ModeIndex = 0;
+            Default.TAB_LIST_OutputJSON = true;
             OnPropertyChanged(null);
         }
         #endregion

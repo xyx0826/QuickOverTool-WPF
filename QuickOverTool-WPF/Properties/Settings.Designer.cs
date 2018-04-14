@@ -61,24 +61,24 @@ namespace QuickDataTool.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int TAB2_ModeIndex {
+        public int TAB_LIST_ModeIndex {
             get {
-                return ((int)(this["TAB2_ModeIndex"]));
+                return ((int)(this["TAB_LIST_ModeIndex"]));
             }
             set {
-                this["TAB2_ModeIndex"] = value;
+                this["TAB_LIST_ModeIndex"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool TAB2_OutputJSON {
+        public bool TAB_LIST_OutputJSON {
             get {
-                return ((bool)(this["TAB2_OutputJSON"]));
+                return ((bool)(this["TAB_LIST_OutputJSON"]));
             }
             set {
-                this["TAB2_OutputJSON"] = value;
+                this["TAB_LIST_OutputJSON"] = value;
             }
         }
         
@@ -163,6 +163,30 @@ namespace QuickDataTool.Properties {
             }
             set {
                 this["TAB3_NoEnvExtract"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\\\")]
+        public string TAB_SETTINGS_OutputPath {
+            get {
+                return ((string)(this["TAB_SETTINGS_OutputPath"]));
+            }
+            set {
+                this["TAB_SETTINGS_OutputPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int TAB_SETTINGS_LangIndex {
+            get {
+                return ((int)(this["TAB_SETTINGS_LangIndex"]));
+            }
+            set {
+                this["TAB_SETTINGS_LangIndex"] = value;
             }
         }
     }

@@ -12,7 +12,7 @@ namespace QuickDataTool.Logics
 
         private ExtrAssetsHandler()
         {
-
+            noExtRefpose = true;
         }
 
         public static ExtrAssetsHandler GetInstance()
@@ -24,7 +24,7 @@ namespace QuickDataTool.Logics
 
         #region ExtractAssets controls handler
         // Variables binding to UI controls
-        public KeyValuePair<string, string> comboBoxMode { get; set; }
+        public KeyValuePair<string, string> ComboBoxMode { get; set; }
         public ComboBoxItem comboBoxFormat { get; set; }
         public int modelLOD { get; set; }
         public bool isLosslessTexture { get; set; }
@@ -46,7 +46,7 @@ namespace QuickDataTool.Logics
         public bool noEnvGround { get; set; }
         public bool noEnvSky { get; set; }
 
-        public int comboBoxModeIndex    // Adapter: Mode ComboBox index <-> AppSettings
+        public int ComboBoxModeIndex    // Adapter: Mode ComboBox index <-> AppSettings
         {
             get { return Default.TAB3_ModeIndex; }
             set

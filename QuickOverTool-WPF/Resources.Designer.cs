@@ -61,6 +61,24 @@ namespace QuickDataTool {
         }
         
         /// <summary>
+        ///   查找类似 Using DataTool to list Overwatch contents. 的本地化字符串。
+        /// </summary>
+        public static string TAB_LIST_SUMMARY {
+            get {
+                return ResourceManager.GetString("TAB_LIST_SUMMARY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Configuring basic DataTool settings. 的本地化字符串。
+        /// </summary>
+        public static string TAB_SETTINGS_SUMMARY {
+            get {
+                return ResourceManager.GetString("TAB_SETTINGS_SUMMARY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Simplifying Overwatch asset extraction and management. 的本地化字符串。
         /// </summary>
         public static string TAB0_DESC1 {
@@ -70,7 +88,7 @@ namespace QuickDataTool {
         }
         
         /// <summary>
-        ///   查找类似 Simply choose something to do from the menu on the left. 的本地化字符串。
+        ///   查找类似 Choose something to do from the menu on the left. 的本地化字符串。
         /// </summary>
         public static string TAB0_DESC2 {
             get {
@@ -93,15 +111,6 @@ namespace QuickDataTool {
         public static string TAB0_TITLE2 {
             get {
                 return ResourceManager.GetString("TAB0_TITLE2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Using DataTool to list Overwatch contents. 的本地化字符串。
-        /// </summary>
-        public static string TAB2_SUMMARY {
-            get {
-                return ResourceManager.GetString("TAB2_SUMMARY", resourceCulture);
             }
         }
         

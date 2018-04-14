@@ -121,16 +121,13 @@
     <value>Simplifying Overwatch asset extraction and management.</value>
   </data>
   <data name="TAB0_DESC2" xml:space="preserve">
-    <value>Simply choose something to do from the menu on the left.</value>
+    <value>Choose something to do from the menu on the left.</value>
   </data>
   <data name="TAB0_TITLE1" xml:space="preserve">
     <value>OWorkbench</value>
   </data>
   <data name="TAB0_TITLE2" xml:space="preserve">
     <value>Getting Started</value>
-  </data>
-  <data name="TAB2_SUMMARY" xml:space="preserve">
-    <value>Using DataTool to list Overwatch contents.</value>
   </data>
   <data name="TAB3_SUMMARY" xml:space="preserve">
     <value>Using DataTool to extract Overwatch contents.</value>
@@ -140,5 +137,11 @@
   </data>
   <data name="TAB7_SUMMARY" xml:space="preserve">
     <value>Updating the DataTool version used in OWorkbench.</value>
+  </data>
+  <data name="TAB_LIST_SUMMARY" xml:space="preserve">
+    <value>Using DataTool to list Overwatch contents.</value>
+  </data>
+  <data name="TAB_SETTINGS_SUMMARY" xml:space="preserve">
+    <value>Configuring basic DataTool settings.</value>
   </data>
 </root>

@@ -32,6 +32,7 @@ namespace QuickDataTool
             FlushInst();
             DataContext = UIString.GetInstance();
             tabStart.DataContext = UIString.GetInstance();
+            tabConfig.DataContext = DataToolConfig.GetInstance();
 
 
             CheckGUIUpdate();
@@ -72,16 +73,7 @@ namespace QuickDataTool
                 throw new ArgumentException("Mode is not selected; please select a mode.");
             }
         }
-        // 选定输出路径
-        private void buttonOutputPath_Click(object sender, RoutedEventArgs e)
-        {
-            FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
-            DialogResult folderBrowserResult = folderBrowser.ShowDialog();
-            textBoxOutputPath.Text = folderBrowser.SelectedPath;
-            Logging.GetInstance().Increment("Output path: " + textBoxOutputPath.Text);
-            textBoxOutputPath.BorderBrush = new SolidColorBrush(Colors.Blue);
-            return;
-        }
+        
         // 开始
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {

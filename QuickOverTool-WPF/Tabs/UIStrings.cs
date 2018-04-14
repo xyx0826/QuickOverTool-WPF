@@ -11,6 +11,7 @@ namespace QuickDataTool
 {
     class UIString : INotifyPropertyChanged
     {
+        #region Singleton implementation
         private static UIString _uniqueInstance;
         private static readonly object _threadLock = new object();
 
@@ -26,6 +27,7 @@ namespace QuickDataTool
                     _uniqueInstance = new UIString();
             return _uniqueInstance;
         }
+        #endregion
 
         #region Binding implementation
         public event PropertyChangedEventHandler PropertyChanged;

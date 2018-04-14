@@ -80,6 +80,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Logics\Config.cs" />
+    <Compile Include="Logics\DataToolConfig.cs" />
     <Compile Include="Logics\ExtrAssetsHandler.cs" />
     <Compile Include="Logics\ListAssetsHandler.cs" />
     <Compile Include="Logics\Logging.cs" />
@@ -95,6 +96,7 @@
     </Compile>
     <Compile Include="Logics\Validation.cs" />
     <Compile Include="Logics\VersionManagement.cs" />
+    <Compile Include="Tabs\ConfigurationHandler.cs" />
     <Compile Include="Tabs\ExecutionHandler.cs" />
     <Compile Include="Tabs\GameVersion.cs" />
     <Compile Include="Tabs\DataToolHandler.cs" />

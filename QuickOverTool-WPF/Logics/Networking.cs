@@ -40,7 +40,7 @@ namespace OWorkbench
 
         public static string[] GetGUIInfo()
         {
-            return PollAppveyorInfo("xyx0826/quickovertool-wpf", "datatool", "output%2FQuickDataTool.exe");
+            return PollAppveyorInfo("xyx0826/quickovertool-wpf-5nemq", "experimental", "output%2FOWorkbench.exe");
         }
 
         public static string MakeDownloadURL(string jobID, string filename)

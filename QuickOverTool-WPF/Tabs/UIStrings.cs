@@ -86,7 +86,7 @@ namespace OWorkbench
         } // Current Overwatch server
         public string CurrentOWPath
         {
-            get { return Path.GetDirectoryName(Default.Path_CurrentOW); }
+            get { return Path.GetFullPath(Default.Path_CurrentOW); }
         } // Current Overwatch path
         public string DTVersion
         {

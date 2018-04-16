@@ -85,7 +85,6 @@
     <Compile Include="Logics\ListAssetsHandler.cs" />
     <Compile Include="Logics\Logging.cs" />
     <Compile Include="Logics\Networking.cs" />
-    <Compile Include="Process.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

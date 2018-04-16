@@ -48,7 +48,7 @@ namespace OWorkbench
                 {
                     wc.DownloadFileAsync(new Uri(result[2]), ".\\OWorkbench_" + result[0] + ".exe");
                 }
-                Logging.GetInstance().Increment("New OWorkbench version has been downloaded to .\\OWorkbench_" + result[0] + ".exe.");
+                UIString.GetInstance().SetNotif("New OWorkbench version will be downloaded to .\\OWorkbench_" + result[0] + ".exe.");
             }
         }
 

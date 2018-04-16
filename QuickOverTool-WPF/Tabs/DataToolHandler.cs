@@ -96,6 +96,8 @@ namespace OWorkbench
         /// </summary>
         public void Launch(object sender, RoutedEventArgs e)
         {
+            // Once again, refresh OW path to prevent weird config glitches
+            Config.GetInstance().UseOWInst(comboOWInsts.SelectedIndex);
             string cmdLine = "";
 
             // List assets
@@ -106,7 +108,7 @@ namespace OWorkbench
                     UIString.GetInstance().SetNotif(lblNotif.Dispatcher, "ERROR: Please choose a list mode.");
                     return;
                 }
-                // Real shit below
+                // Cmdline fabrication
                 cmdLine += "--language=" + DataToolConfig.GetInstance().ComboBoxLanguage.Content + " ";   // Language
                 cmdLine += " \"" + UIString.GetInstance().CurrentOWPath + "\" "
                     + ListAssetsHandler.GetInstance().ComboBoxMode.Value;
@@ -120,7 +122,7 @@ namespace OWorkbench
                     return;
                 }
                 ExtrAssetsHandler handler = ExtrAssetsHandler.GetInstance();
-                // Real shit below
+                // Cmdline fabrication
                 cmdLine += "--language=" + DataToolConfig.GetInstance().ComboBoxLanguage.Content + " ";   // Language
                 
                 if (!handler.noExtTextures) // if texture will be extracted

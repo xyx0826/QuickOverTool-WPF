@@ -77,6 +77,8 @@
                     <Label Content="{x:Static local:Resources.TAB0_DESC1}" FontSize="16" Height="33" Width="Auto" FontWeight="Normal"/>
                     <Label Content="{x:Static local:Resources.TAB0_TITLE2}" FontSize="36" Width="Auto" Height="60" FontWeight="Bold" Foreground="#FF007BD8"/>
                     <Label Content="{x:Static local:Resources.TAB0_DESC2}" FontSize="16" Height="33" FontWeight="Normal"/>
+                    <CheckBox Content="Show Logging tab instead of this at launch" Margin="0,70,0,0" IsChecked="{Binding LoggingOnLaunch}"/>
+                    <CheckBox Content="OWorkbench debug mode" Margin="0,5,0,0" IsChecked="{Binding DebugMode}"/>
                 </StackPanel>
             </TabItem>
             <TabItem Header="DataTool Modes" Height="30" Width="Auto" IsEnabled="False" FontWeight="Bold">
@@ -232,16 +234,21 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Game Version" Margin="0,0,0.2,0" Height="Auto">
-                <Grid>
-                    <Label Content="{x:Static local:Resources.TAB6_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-                    <Label Content="Currently used installation:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0"/>
-                    <Label Content="{Binding CurrentOWPath}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,60,0,0"/>
-                    <Label Content="Select another installation:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0"/>
-                    <ComboBox x:Name="comboOWInsts" Margin="174,91,317.6,417.2"/>
-                    <Button Content="{StaticResource AddIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,286.6,418.2" Background="{x:Null}" BorderBrush="{x:Null}" Click="AddInst"/>
-                    <Button Content="{StaticResource RemoveIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,255.6,417.2" Background="{x:Null}" BorderBrush="{x:Null}" Click="DelInst"/>
-                    <Button Content="{StaticResource ProceedIcon}" Width="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,224.6,417.2" Background="{x:Null}" BorderBrush="{x:Null}" Click="SetInst"/>
-                </Grid>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="{x:Static local:Resources.TAB6_SUMMARY}" Margin="10,10" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <StackPanel Orientation="Horizontal" Margin="10,10">
+                        <Label Content="Currently used installation:" Margin="0,0,10,0"/>
+                        <Label Content="{Binding CurrentOWPath}" Margin="0,0,10,0"/>
+                        <Label Content="{Binding CurrentOWSize}" Margin="0,0,10,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10">
+                        <Label Content="Select another installation:" Margin="0,0,10,0"/>
+                        <ComboBox x:Name="comboOWInsts" Margin="0,0,10,0"/>
+                        <Button Content="{StaticResource AddIcon}" Width="26" Margin="0,0,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="AddInst"/>
+                        <Button Content="{StaticResource RemoveIcon}" Width="26" Margin="0,0,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="DelInst"/>
+                        <Button Content="{StaticResource ProceedIcon}" Width="26" Margin="0,0,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="SetInst"/>
+                    </StackPanel>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Tool Version">
                 <Grid>

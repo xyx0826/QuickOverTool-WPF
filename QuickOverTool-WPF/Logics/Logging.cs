@@ -28,11 +28,11 @@ namespace OWorkbench
             return _uniqueInstance;
         }
 
-        public void ClearLogs(System.Windows.Controls.ListBox listBox)
+        public void ClearLogs(ListBox listBox)
         {
             logCollection = new ObservableCollection<string>();
             Increment("Logs have been cleared.");
-            Refresh();
+            IncrementDebug("OWorkbench is in debug mode.");
         }
 
         public void SaveLogs()
@@ -44,8 +44,9 @@ namespace OWorkbench
             {
                 foreach (String log in logCollection) logFile.WriteLine(log);
             }
-            logCollection = new ObservableCollection<string>();
-            Logging.GetInstance().Increment("Log written to " + @logPath + ".");
+            if (!UIString.GetInstance().DebugMode)
+                logCollection = new ObservableCollection<string>();
+            Increment("Log written to " + @logPath + ".");
             Refresh();
         }
 
@@ -74,6 +75,15 @@ namespace OWorkbench
         {
             logCollection.Add(log);
             Refresh();
+        }
+
+        public void IncrementDebug(string log)  // Debug increment
+        {
+            if (Default.DebugMode)
+            {
+                logCollection.Add("DEBUG - " + DateTime.Now.ToShortTimeString() + " - " + log);
+                Refresh();
+            }
         }
 
         public void Increment(ListBox box, string log) // Dispatched increment

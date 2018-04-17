@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
+using static OWorkbench.Properties.Settings;
+
 namespace OWorkbench
 {
     public partial class MainWindow : Window
@@ -12,7 +14,8 @@ namespace OWorkbench
         public void InitializeLogging()
         {
             tabLogging.DataContext = Logging.GetInstance();
-            Logging.GetInstance().Refresh();
+            if (Default.TAB_QUICKSTART_LoggingOnLaunch) tabControl.SelectedIndex = 5;
+            Logging.GetInstance().IncrementDebug("Logging: OWorkbench is in debug mode. Logs can only be cleared manually.");
         }
         #endregion
         public void SaveLogs(object sender, RoutedEventArgs e)

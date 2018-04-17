@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace OWorkbench
@@ -20,6 +21,7 @@ namespace OWorkbench
                 StreamReader pdbStream = new StreamReader(pdbPath);
                 using (var reader = File.OpenText(pdbPath))
                 {
+                    Logging.GetInstance().IncrementDebug("Validation: now reading .product.db at installation " + path);
                     string pdbRead = pdbStream.ReadLine();
                     while (pdbStream.Peek() >= 0)
                     {
@@ -31,17 +33,17 @@ namespace OWorkbench
                 }
                 return new string[] { version, branch };
             }
-            catch
+            catch (Exception e)
             {
                 // If .product.db does not even exist
+                Logging.GetInstance().IncrementDebug("Validation: error reading .product.db. " + e.Message);
                 return null;
             }
         }
         // Validate DataTool and ow.keys
-        public static string[] DataTool(string path)
+        public static string DataTool(string path)
         {
             string version;
-            string keys = null;
             try
             {
                 version = FileVersionInfo.GetVersionInfo(
@@ -52,10 +54,7 @@ namespace OWorkbench
             {
                 version = null;
             }
-            if (File.Exists(
-                Path.Combine(path, "ow.keys")))
-                keys = "ok";
-            return new string[] { version, keys };
+            return version;
         }
     }
 }

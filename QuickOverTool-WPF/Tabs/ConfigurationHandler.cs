@@ -10,7 +10,9 @@ namespace OWorkbench
 {
     public partial class MainWindow : Window
     {
-        // 选定输出路径
+        /// <summary>
+        /// Select output path.
+        /// </summary>
         private void buttonOutputPath_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();

@@ -44,6 +44,7 @@ namespace OWorkbench
             {
                 Logging.GetInstance().Increment("OWorkbench has an update! Latest version is " + result[0] + ".");
                 Logging.GetInstance().Increment("Automatic downloading initiated.");
+                Logging.GetInstance().IncrementDebug("UpdateChecker: found new OWorkbench version at " + result[2]);
                 using (WebClient wc = new WebClient())
                 {
                     wc.DownloadFileAsync(new Uri(result[2]), ".\\OWorkbench_" + result[0] + ".exe");
@@ -55,8 +56,8 @@ namespace OWorkbench
         private void worker_DTCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             string[] result = (string[])e.Result;
-            if (Validation.DataTool(".\\")[0] == null || 
-                new Version(Validation.DataTool(".\\")[0]).CompareTo(new Version(result[0])) < 0)    // Remote has a new version
+            if (Validation.DataTool(".\\") == null || 
+                new Version(Validation.DataTool(".\\")).CompareTo(new Version(result[0])) < 0)    // Remote has a new version
             {
                 Logging.GetInstance().Increment("DataTool has an update! Latest version is " + result[0] + ".");
                 Logging.GetInstance().Increment("Download the latest DataTool in \"Tool Version\" tab.\n");

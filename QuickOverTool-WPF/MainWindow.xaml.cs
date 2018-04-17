@@ -24,17 +24,18 @@ namespace OWorkbench
         // Populate mode dictionary and load config upon application launch
         public MainWindow()
         {
+            Logging.GetInstance().IncrementDebug("MainWindow: OWorkbench is initializing.");
             InitializeComponent();
 
             Config.GetInstance().InitConfig();
             InitializeDataToolHandling();
             InitializeLogging();
             FlushInst();
+
             DataContext = UIString.GetInstance();
             tabStart.DataContext = UIString.GetInstance();
             tabConfig.DataContext = DataToolConfig.GetInstance();
-
-
+            
             CheckGUIUpdate();
             CheckDTUpdate();
 

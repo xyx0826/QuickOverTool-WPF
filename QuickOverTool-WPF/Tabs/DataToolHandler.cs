@@ -180,8 +180,8 @@ namespace OWorkbench
             if (buttonExtractQuery.IsVisible) cmdLine += _queryWindow.GetQueries();
 
             tabControl.SelectedIndex = 5;
-            Logging.GetInstance().ClearLogs(logBox);
-            Logging.GetInstance().Increment(logBox, "Starting DataTool now. Cmdline: DataTool.exe " + cmdLine);
+            if (!Default.DebugMode) Logging.GetInstance().ClearLogs(logBox); // Debug mode will not clear logs
+            Logging.GetInstance().Increment(logBox, DateTime.Now.ToString() + " - Starting DataTool now.\nCmdline: DataTool.exe " + cmdLine);
             StartDataTool(PrepareDataTool(cmdLine));
         }
         #endregion

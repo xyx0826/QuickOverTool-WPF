@@ -189,5 +189,29 @@ namespace OWorkbench.Properties {
                 this["TAB_SETTINGS_LangIndex"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TAB_QUICKSTART_LoggingOnLaunch {
+            get {
+                return ((bool)(this["TAB_QUICKSTART_LoggingOnLaunch"]));
+            }
+            set {
+                this["TAB_QUICKSTART_LoggingOnLaunch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DebugMode {
+            get {
+                return ((bool)(this["DebugMode"]));
+            }
+            set {
+                this["DebugMode"] = value;
+            }
+        }
     }
 }

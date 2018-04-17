@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Windows;
@@ -36,8 +37,9 @@ namespace OWorkbench
                     dataTool.Start();
                     dataToolPID = dataTool.Id;
                 }
-                catch
+                catch (Exception e)
                 {
+                    Logging.GetInstance().IncrementDebug("ExecutionHandler: DataTool launch exception /// " + e.Message);
                     Logging.GetInstance().Increment("DataTool launch failure. Update your DataTool from \"Tool Version\" tab.");
                     ToggleRunningState(false);
                     return;

@@ -17,7 +17,7 @@ namespace OWorkbench
 
         private UIString()
         {
-
+            currentOWSize = "?";
         }
 
         public static UIString GetInstance() // Ensure singleton model
@@ -43,10 +43,6 @@ namespace OWorkbench
         }
         #endregion
         #region Header strings
-        public string owbVersion
-        {
-            get { return "dev"; }
-        }
         public string BenchDir
         {
             get
@@ -88,6 +84,18 @@ namespace OWorkbench
         {
             get { return Path.GetFullPath(Default.Path_CurrentOW); }
         } // Current Overwatch path
+
+        private string currentOWSize;
+
+        public string CurrentOWSize
+        {
+            get { return "(" + currentOWSize + " GB)"; }
+            set
+            {
+                currentOWSize = value;
+                OnPropertyChanged(null);
+            }
+        }
         public string DTVersion
         {
             get
@@ -164,12 +172,27 @@ namespace OWorkbench
             ((Dispatcher)e.Argument).Invoke(new System.Action(() => { NotifBrush = Brushes.Black; }));
         }
         #endregion
-        private int downloadProgress = 0;
 
-        public int DownloadProgress
+        public int DownloadProgress { get; set; }
+
+        public bool LoggingOnLaunch
         {
-            get { return downloadProgress; }
-            set { downloadProgress = value; }
+            get { return Default.TAB_QUICKSTART_LoggingOnLaunch; }
+            set
+            {
+                Default.TAB_QUICKSTART_LoggingOnLaunch = value;
+                Default.Save();
+            }
+        }
+
+        public bool DebugMode
+        {
+            get { return Default.DebugMode; }
+            set
+            {
+                Default.DebugMode = value;
+                Default.Save();
+            }
         }
     }
 }

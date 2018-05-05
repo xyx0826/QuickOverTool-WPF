@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OWorkbench.Logics;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
@@ -34,6 +35,7 @@ namespace OWorkbench
                 
                 try
                 {
+                    BNetDetector.CheckForBattleNet();   // Do a final check on Battle.net instances
                     dataTool.Start();
                     dataToolPID = dataTool.Id;
                 }
@@ -90,6 +92,7 @@ namespace OWorkbench
 
         private void OnProcessDead(object sender, RunWorkerCompletedEventArgs e)
         {
+            ToastManager.GetInstance().CreateToast("DataTool Termination", "DataTool has finished working.", 1);
             Logging.GetInstance().Increment("DataTool has exited.");
             ToggleRunningState(false);
         }

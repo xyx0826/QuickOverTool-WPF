@@ -76,7 +76,13 @@ namespace OWorkbench
             get
             {
                 VersionManagement vm = new VersionManagement();
-                if (vm.IsOWPtr(Default.Path_CurrentOW)) return "PTR";
+                if (vm.IsOWPtr(Default.Path_CurrentOW))
+                {
+                    ToastManager.GetInstance().CreateToast("PTR Incompatibility",
+                        "Overwatch PTR build detected. While you can still run DataTool with it, note that PTR builds are incompatible with DataTool.", 2);
+                    return "PTR";
+                }
+
                 else return "Live";
             }
         } // Current Overwatch server
@@ -116,6 +122,8 @@ namespace OWorkbench
                 else
                 {
                     // output missing files to log
+                    ToastManager.GetInstance().CreateToast("DataTool File Incomplete",
+                        "Some files required by DataTool could not be found. See the log for details. Try updating DataTool to resolve this issue.", 3);
                     Logging.GetInstance().Increment("At least " + list.Count + " DataTool dependency files are missing.");
                     foreach (string file in list)
                     {

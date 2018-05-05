@@ -29,6 +29,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,6 +55,9 @@
     <ApplicationIcon>extract.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Notifications.Wpf, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Notifications.Wpf.0.1.1\lib\net461\Notifications.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -79,22 +84,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Logics\BNetDetector.cs" />
+    <Compile Include="Logics\CommandLineFabricator.cs" />
     <Compile Include="Logics\Config.cs" />
     <Compile Include="Logics\DataToolConfig.cs" />
     <Compile Include="Logics\ExtrAssetsHandler.cs" />
     <Compile Include="Logics\ListAssetsHandler.cs" />
-    <Compile Include="Logics\Logging.cs" />
-    <Compile Include="Logics\Networking.cs" />
+    <Compile Include="Logics\LoggingManager.cs" />
+    <Compile Include="Logics\NetworkingManager.cs" />
+    <Compile Include="Logics\ToastManager.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="QueryWindow.xaml.cs">
-      <DependentUpon>QueryWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Logics\Validation.cs" />
-    <Compile Include="Logics\VersionManagement.cs" />
+    <Compile Include="Logics\ValidationManager.cs" />
+    <Compile Include="Logics\VersionManager.cs" />
     <Compile Include="Tabs\ConfigurationHandler.cs" />
     <Compile Include="Tabs\ExecutionHandler.cs" />
     <Compile Include="Tabs\GameVersion.cs" />
@@ -116,10 +121,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="QueryWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -134,6 +135,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

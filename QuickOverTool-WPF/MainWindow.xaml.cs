@@ -1,14 +1,10 @@
 ﻿using OWorkbench.Logics;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
+using System.Net;
 using System.Reflection;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Forms;
-using System.Windows.Media;
 using static OWorkbench.Properties.Settings;
 
 namespace OWorkbench
@@ -21,15 +17,18 @@ namespace OWorkbench
             (Assembly.GetEntryAssembly().CodeBase).Substring(6);
         // Mode parameters dictionary
         Dictionary<string, string> modes = new Dictionary<string, string>();
-        // Populate mode dictionary and load config upon application launch
+
         public MainWindow()
         {
-            Logging.GetInstance().IncrementDebug("MainWindow: OWorkbench is initializing.");
+            AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
+            
             InitializeComponent();
-
+            Logging.GetInstance().IncrementDebug("MainWindow: OWorkbench is initializing.");
             Config.GetInstance().InitConfig();
             InitializeDataToolHandling();
             InitializeLogging();
+
+            BNetDetector.CheckForBattleNet();
             FlushInst();
 
             DataContext = UIString.GetInstance();
@@ -41,13 +40,27 @@ namespace OWorkbench
 
             WindowMain.Title += " | " + UIString.GetInstance().BenchVersion;
         }
+
         // Save config and close application upon MainWindow closure
         protected override void OnClosed(EventArgs e)
         {
             Default.Upgrade();
             Default.Save();
             base.OnClosed(e);
-            System.Windows.Application.Current.Shutdown();
+            Application.Current.Shutdown();
+        }
+
+        protected Assembly ResolveAssembly(object sender, ResolveEventArgs args)
+        {
+            if (args.Name.Contains("Notifications.Wpf"))
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    wc.DownloadFile(new Uri(Networking.GetGUIDependency()), ".\\Notifications.Wpf.dll");
+                }
+                UIString.GetInstance().SetNotif("OWorkbench is downloading a required assembly file. Please restart OWorkbench.");
+            }
+            return null;
         }
 
         /* TBD in OWB

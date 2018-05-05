@@ -52,6 +52,7 @@ namespace OWorkbench
             if (comboOWInsts.SelectedIndex != -1)
             {
                 Config.GetInstance().UseOWInst(comboOWInsts.SelectedIndex);
+                ToastManager.GetInstance().CreateToast("Test", "hello", 0);
                 UIString.GetInstance().Rebind(null);
             }
             else UIString.GetInstance().SetNotif(lblNotif.Dispatcher, "Failed to set Overwatch installation. " +

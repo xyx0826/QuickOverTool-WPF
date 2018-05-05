@@ -39,6 +39,7 @@
         <TabControl x:Name="tabControl" BorderThickness="1,0,0,0" TabStripPlacement="Left" Height="540" VerticalAlignment="Top">
             <!-- Styles -->
             <TabControl.Resources>
+                <!-- Main TabItem style -->
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
                         <Setter.Value>
@@ -65,6 +66,16 @@
                     </Setter>
                     <Setter Property="Width" Value="115" />
                     <Setter Property="Height" Value="20" />
+                </Style>
+                <!-- ExtractAssets query editor Label style -->
+                <Style x:Key="QueryEditorHintStyle" TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Setter Property="FontSize" Value="24" />
+                </Style>
+                <!-- ExtractAssets query editor TextBox style -->
+                <Style x:Key="QueryEditorBoxStyle" TargetType="TextBox">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Setter Property="FontSize" Value="24" />
                 </Style>
             </TabControl.Resources>
             <!-- Individual tabs-->
@@ -134,7 +145,7 @@
                     </GroupBox>
                 </StackPanel>
             </TabItem>
-            <TabItem x:Name="tabListAssets" Header="List Assets">
+            <TabItem x:Name="tabListAssets" Header="List Assets" IsSelected="{Binding IsTabSelected}">
                 <Grid>
                     <Label Content="{x:Static local:Resources.TAB_LIST_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     <GroupBox Header="Select a Mode" Margin="10,44,10,421" Foreground="Black">
@@ -156,14 +167,13 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabExtrAssets" Header="Extract Assets">
+            <TabItem x:Name="tabExtrAssets" Header="Extract Assets" IsSelected="{Binding IsTabSelected}">
                 <StackPanel Orientation="Vertical">
                     <Label Content="{x:Static local:Resources.TAB3_SUMMARY}" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="14" FontWeight="Bold"/>
                     <GroupBox Header="Select a Mode" Margin="10,10" Foreground="Black">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <Label Content="Mode:" HorizontalAlignment="Left" Margin="10,10,0,0"/>
-                            <ComboBox x:Name="comboExtrAssets" SelectedIndex="{Binding ComboBoxModeIndex}" SelectedItem="{Binding ComboBoxMode, Mode=OneWayToSource}" SelectionChanged="comboExtrAssets_SelectionChanged" Margin="59,7,0,5" Width="240"/>
-                            <Button x:Name="buttonExtractQuery" Content="Edit Extraction Queries..." Visibility="Hidden"  Foreground="#FF007BD8" VerticalAlignment="Center" Width="Auto" Height="23" Margin="5,2,0,0" Click="buttonExtractQuery_Click"/>
+                            <ComboBox x:Name="comboExtrAssets" SelectedItem="{Binding ComboBoxMode, Mode=OneWayToSource}" SelectionChanged="comboExtrAssets_SelectionChanged" Margin="59,7,0,5" Width="240"/>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Extraction and Conversion" Margin="10,0" Foreground="Black">
@@ -208,6 +218,76 @@
                             <CheckBox Content="Ground Cubemap" VerticalAlignment="Center" IsChecked="{Binding noEnvCubemap}" Margin="0,0,10,0"/>
                             <CheckBox Content="Sky Cubemap" VerticalAlignment="Center" IsChecked="{Binding noEnvSky}" Margin="0,0,10,0"/>
                         </WrapPanel>
+                    </GroupBox>
+                    <!-- GroupBox for extraction queries for different modes -->
+                    <!-- Extract Unlockables -->
+                    <GroupBox Header="Edit Extraction Queries" Margin="10,10" Visibility="{Binding queryGeneralVisb, Mode=OneWay}" Foreground="Black">
+                        <StackPanel Orientation="Horizontal" Margin="10,10">
+                            <Label Content="&quot;" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="hero name" FontSize="8" Foreground="Gray"/>
+                                <TextBox Text="{Binding queryUnlockable_Name}"/>
+                            </StackPanel>
+                            <Label Content="|" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="type" FontSize="8" Foreground="Gray"/>
+                                <ComboBox x:Name="comboBoxQueryType" SelectedItem="{Binding queryUnlockable_Type}"/>
+                            </StackPanel>
+                            <Label Content="=(" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="tag" FontSize="8" Foreground="Gray"/>
+                                <ComboBox x:Name="comboBoxQueryTag" SelectedItem="{Binding queryUnlockable_Tag}"/>
+                            </StackPanel>
+                            <Label Content="=" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="parameter" FontSize="8" Foreground="Gray"/>
+                                <TextBox Text="{Binding queryUnlockable_Param}"/>
+                            </StackPanel>
+                            <Label Content=")&quot;" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <!-- Extract Voice -->
+                    <GroupBox Header="Edit Extraction Queries" Margin="10,10" Visibility="{Binding queryVoiceVisb, Mode=OneWay}" Foreground="Black">
+                        <StackPanel Orientation="Horizontal" Margin="10,10">
+                            <Label Content="(Optional) &quot;" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="hero name" FontSize="8" Foreground="Gray"/>
+                                <TextBox Text="{Binding queryVoice_Name}"/>
+                            </StackPanel>
+                            <Label Content="|" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="type" FontSize="8" Foreground="Gray"/>
+                                <ComboBox x:Name="comboBoxQuerySound" SelectedItem="{Binding queryVoice_Type}"/>
+                            </StackPanel>
+                            <Label Content="=" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="parameter" FontSize="8" Foreground="Gray"/>
+                                <TextBox Text="{Binding queryVoice_Param}"/>
+                            </StackPanel>
+                            <Label Content="&quot;" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <!-- Extract NPCs -->
+                    <GroupBox Header="Edit Extraction Queries" Margin="10,10" Visibility="{Binding queryNpcVisb, Mode=OneWay}" Foreground="Black">
+                        <StackPanel Orientation="Horizontal" Margin="10,10">
+                            <Label Content="&quot;" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="npc name" FontSize="8" Foreground="Gray"/>
+                                <TextBox Text="{Binding queryNpc_Name}"/>
+                            </StackPanel>
+                            <Label Content="&quot;" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <!-- Extract Maps -->
+                    <GroupBox Header="Edit Extraction Queries" Margin="10,10" Visibility="{Binding queryMapVisb, Mode=OneWay}" Foreground="Black">
+                        <StackPanel Orientation="Horizontal" Margin="10,10">
+                            <Label Content="&quot;" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="map name" FontSize="8" Foreground="Gray"/>
+                                <TextBox Text="{Binding queryMap_Name}"/>
+                            </StackPanel>
+                            <Label Content="&quot;" FontWeight="Bold" FontSize="20" Margin="0,6,0,0" Height="Auto"/>
+                        </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Control" Margin="10,0" Foreground="Black">
                         <StackPanel Orientation="Horizontal" Margin="10,10">

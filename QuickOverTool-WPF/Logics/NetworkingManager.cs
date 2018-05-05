@@ -35,14 +35,19 @@ namespace OWorkbench
 
         public static string[] GetDTInfo()
         {
-            Logging.GetInstance().IncrementDebug("Networking: polling AppVeyor API for DataTool.");
+            // Logging.GetInstance().IncrementDebug("Networking: polling AppVeyor API for DataTool.");
             return PollAppveyorInfo("yukimono/owlib", "overwatch/1.14", "dist%2Ftoolchain-release.zip");
         }
 
         public static string[] GetGUIInfo()
         {
-            Logging.GetInstance().IncrementDebug("Networking: polling AppVeyor API for OWorkbench.");
+            // Logging.GetInstance().IncrementDebug("Networking: polling AppVeyor API for OWorkbench.");
             return PollAppveyorInfo("xyx0826/quickovertool-wpf-5nemq", "experimental", "output%2FOWorkbench.exe");
+        }
+
+        public static string GetGUIDependency()
+        {
+            return PollAppveyorInfo("xyx0826/quickovertool-wpf-5nemq", "experimental", "output%2FNotifications.Wpf.dll")[2];
         }
 
         public static string MakeDownloadURL(string jobID, string filename)

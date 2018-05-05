@@ -2,9 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
 
 using static OWorkbench.Properties.Settings;
 
@@ -84,6 +82,11 @@ namespace OWorkbench
                 logCollection.Add("DEBUG - " + DateTime.Now.ToShortTimeString() + " - " + log);
                 Refresh();
             }
+        }
+
+        public void IncrementDebug(ListBox box, string log)  // Delegated debug increment
+        {
+            box.Dispatcher.Invoke(new IncrementDelegate(IncrementDebug), log);
         }
 
         public void Increment(ListBox box, string log) // Dispatched increment

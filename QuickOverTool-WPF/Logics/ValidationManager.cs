@@ -26,7 +26,10 @@ namespace OWorkbench
                     while (pdbStream.Peek() >= 0)
                     {
                         pdbRead = pdbStream.ReadLine();
-                        if (pdbRead.Contains("prometheus_test")) branch = "PTR";
+                        if (pdbRead.Contains("prometheus_test"))
+                        {
+                            branch = "PTR";
+                        }
                         if (pdbRead.EndsWith("B&")) break;
                     }
                     version = pdbRead.Substring(pdbRead.IndexOf("1."), 14);

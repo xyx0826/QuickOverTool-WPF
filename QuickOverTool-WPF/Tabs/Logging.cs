@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Notifications.Wpf;
 
 using static OWorkbench.Properties.Settings;
 

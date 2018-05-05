@@ -7,11 +7,6 @@ namespace OWorkbench.Logics
     class ListAssetsHandler : INotifyPropertyChanged
     {
         private static ListAssetsHandler _uniqueInstance;
-
-        private ListAssetsHandler()
-        {
-
-        }
         
         public static ListAssetsHandler GetInstance()
         {
@@ -20,6 +15,8 @@ namespace OWorkbench.Logics
         }
 
         #region ListAssets controls handler
+        public bool IsTabSelected { get; set; }
+
         public KeyValuePair<string, string> comboBoxMode;
 
         public int ComboBoxIndex    // Binded ComboBox index
